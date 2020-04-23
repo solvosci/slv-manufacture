@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mdc_config_settings_view_form" model="ir.ui.view">
+        <field name="inherit_id" ref="mdc.mdc_config_settings_view_form"/>
+        <field name="model">mdc.config.settings</field>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <group name="group_rpt_physical_worksheet_report"
+                       string="Physical Worksheet Report"
+                       groups="mdc.group_mdc_manager">
+                    <div>
+                        <label for="rpt_physical_worksheet_timezone"/>
+                        <field name="rpt_physical_worksheet_timezone"
+                               required="True"/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

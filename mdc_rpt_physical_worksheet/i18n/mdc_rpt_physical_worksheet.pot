@@ -1,0 +1,291 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mdc_rpt_physical_worksheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-29 09:05+0000\n"
+"PO-Revision-Date: 2020-04-29 09:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.actions.act_window,help:mdc_rpt_physical_worksheet.action_mdc_rpt_physical_worksheet
+msgid "Can't create or update records in this view."
+msgstr "Can't create or update records in this view."
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:95
+#, python-format
+msgid "Date"
+msgstr "Date"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:87
+#, python-format
+msgid "Date From:"
+msgstr "Date From:"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:227
+#, python-format
+msgid "Date From: %s to %s"
+msgstr "Date From: %s to %s"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:229
+#, python-format
+msgid "Date: #%s"
+msgstr "Date: #%s"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_display_name
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_report_mdc_rpt_physical_worksheet_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:92
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_employee_code
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+#, python-format
+msgid "Employee Code"
+msgstr "Employee Code"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:93
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_employee_name
+#, python-format
+msgid "Employee Name"
+msgstr "Employee Name"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Group By"
+msgstr "Group By"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_id
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_report_mdc_rpt_physical_worksheet_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mdc_rpt_physical_worksheet
+#: selection:mdc.rpt_physical_worksheet,worksheet_type:0
+msgid "In"
+msgstr "In"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet___last_update
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_report_mdc_rpt_physical_worksheet___last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: mdc_rpt_physical_worksheet
+#: selection:mdc.rpt_physical_worksheet,worksheet_mode:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.actions.act_window,help:mdc_rpt_physical_worksheet.action_mdc_rpt_physical_worksheet
+msgid "Not possible."
+msgstr "Not possible."
+
+#. module: mdc_rpt_physical_worksheet
+#: selection:mdc.rpt_physical_worksheet,worksheet_type:0
+msgid "Out"
+msgstr "Out"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:84
+#, python-format
+msgid "PHYSICAL WORKSHEET REPORT"
+msgstr "PHYSICAL WORKSHEET REPORT"
+
+#. module: mdc_rpt_physical_worksheet
+#: selection:mdc.rpt_physical_worksheet,worksheet_mode:0
+msgid "Physical"
+msgstr "Physical"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.actions.act_window,name:mdc_rpt_physical_worksheet.action_mdc_rpt_physical_worksheet
+#: model:ir.model,name:mdc_rpt_physical_worksheet.model_mdc_rpt_physical_worksheet
+#: model:ir.ui.menu,name:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_menu
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_config_settings_view_form
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_tree
+msgid "Physical Worksheet Report"
+msgstr "Physical Worksheet Report"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_config_settings_rpt_physical_worksheet_timezone
+msgid "Physical Worksheet Report default timezone"
+msgstr "Physical Worksheet Report default timezone"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.actions.report,name:mdc_rpt_physical_worksheet.physical_worksheet_xlsx
+msgid "Print to XLSX"
+msgstr "Print to XLSX"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_shift_code
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Shift Code"
+msgstr "Shift Code"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:231
+#, python-format
+msgid "Shift: %s"
+msgstr "Shift: %s"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "This Week"
+msgstr "This Week"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:98
+#, python-format
+msgid "Time In 1"
+msgstr "Time In 1"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:100
+#, python-format
+msgid "Time In 2"
+msgstr "Time In 2"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:102
+#, python-format
+msgid "Time In 3"
+msgstr "Time In 3"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:104
+#, python-format
+msgid "Time In 4"
+msgstr "Time In 4"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:106
+#, python-format
+msgid "Time In 5"
+msgstr "Time In 5"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:99
+#, python-format
+msgid "Time Out 1"
+msgstr "Time Out 1"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:101
+#, python-format
+msgid "Time Out 2"
+msgstr "Time Out 2"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:103
+#, python-format
+msgid "Time Out 3"
+msgstr "Time Out 3"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:105
+#, python-format
+msgid "Time Out 4"
+msgstr "Time Out 4"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:107
+#, python-format
+msgid "Time Out 5"
+msgstr "Time Out 5"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Today"
+msgstr "Today"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:96
+#, python-format
+msgid "Total Hours Corrected"
+msgstr "Total Hours Corrected"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:97
+#, python-format
+msgid "Total Hours only Physical Worksheet"
+msgstr "Total Hours only Physical Worksheet"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_worksheet_date
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Worksheet Date"
+msgstr "Worksheet Date"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_worksheet_datetime
+msgid "Worksheet Datetime"
+msgstr "Worksheet Datetime"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Worksheet Input"
+msgstr "Worksheet Input"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Worksheet Manual"
+msgstr "Worksheet Manual"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_worksheet_mode
+msgid "Worksheet Mode"
+msgstr "Worksheet Mode"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Worksheet Output"
+msgstr "Worksheet Output"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.ui.view,arch_db:mdc_rpt_physical_worksheet.mdc_rpt_physical_worksheet_search
+msgid "Worksheet Physical"
+msgstr "Worksheet Physical"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_worksheet_type
+msgid "Worksheet Type"
+msgstr "Worksheet Type"
+
+#. module: mdc_rpt_physical_worksheet
+#: code:addons/mdc_rpt_physical_worksheet/report/report_xlsx.py:94
+#, python-format
+msgid "Workstation"
+msgstr "Workstation"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model.fields,field_description:mdc_rpt_physical_worksheet.field_mdc_rpt_physical_worksheet_workstation_name
+msgid "Workstation Name"
+msgstr "Workstation Name"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model,name:mdc_rpt_physical_worksheet.model_mdc_config_settings
+msgid "mdc.config.settings"
+msgstr "mdc.config.settings"
+
+#. module: mdc_rpt_physical_worksheet
+#: model:ir.model,name:mdc_rpt_physical_worksheet.model_report_mdc_rpt_physical_worksheet
+msgid "report.mdc.rpt_physical_worksheet"
+msgstr "report.mdc.rpt_physical_worksheet"
+

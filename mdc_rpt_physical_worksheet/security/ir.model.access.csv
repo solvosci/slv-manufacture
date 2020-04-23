@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_mdc_rpt_physical_worksheet,mdc.rpt_physical_worksheet default,model_mdc_rpt_physical_worksheet,,1,0,0,0
