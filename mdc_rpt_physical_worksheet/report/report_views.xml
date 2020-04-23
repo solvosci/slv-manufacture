@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+         <report
+            id="physical_worksheet_xlsx"
+            model="mdc.rpt_physical_worksheet"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="mdc.rpt_physical_worksheet"
+            file="mdc_rpt_physical_worksheet"
+            attachment_use="False"
+        />
+
+        <!-- Search view: default search for Physical Worksheet Report -->
+        <record id="mdc_rpt_physical_worksheet_search" model="ir.ui.view">
+            <field name="name">mdc.rpt_physical_worksheet.search</field>
+            <field name="model">mdc.rpt_physical_worksheet</field>
+            <field name="arch" type="xml">
+                <search string="Physical Worksheet Report">
+                    <field name="employee_code"/>
+                    <field name="employee_name"/>
+                    <field name="shift_code"/>
+                    <field name="worksheet_date"/>
+                    <field name="worksheet_type"/>
+                    <field name="worksheet_mode"/>
+                    <separator/>
+                    <filter name="today" string="Today" domain="[('worksheet_date', '&gt;=', current_date)]"/>
+                    <filter name="week" string="This Week"
+                        domain="[
+                            '&amp;',
+                            ('worksheet_date', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                            ('worksheet_date', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
+                        ]"/>
+                    <separator/>
+                    <filter name="worksheet_input" string="Worksheet Input" domain="[('worksheet_type', '=', 'I')]"/>
+                    <filter name="worksheet_output" string="Worksheet Output" domain="[('worksheet_type', '=', 'O')]"/>
+                    <separator/>
+                    <filter name="worksheet_physical" string="Worksheet Physical" domain="[('worksheet_mode', '=', 'P')]"/>
+                    <filter name="worksheet_manual" string="Worksheet Manual" domain="[('worksheet_mode', '=', 'M')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
+                        <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
+                        <filter string="Worksheet Date" name="groupby_worksheet_date" domain="[]" context="{'group_by':'worksheet_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Tree view: default view for Physical Worksheet Report -->
+        <record id="mdc_rpt_physical_worksheet_tree" model="ir.ui.view">
+            <field name="name">mdc.rpt_physical_worksheet.tree</field>
+            <field name="model">mdc.rpt_physical_worksheet</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" string="Physical Worksheet Report">
+                    <field name="employee_code"/>
+                    <field name="employee_name"/>
+                    <field name="workstation_name"/>
+                    <field name="shift_code"/>
+                    <field name="worksheet_date"/>
+                    <field name="worksheet_datetime"/>
+                    <field name="worksheet_type"/>
+                    <field name="worksheet_mode"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+
+</odoo>
