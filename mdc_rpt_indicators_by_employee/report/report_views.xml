@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+         <report
+            id="indicators_by_employee_xlsx"
+            model="mdc.rpt_indicators_by_employee"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="mdc.rpt_indicators_by_employee"
+            file="mdc_rpt_indicators_by_employee"
+            attachment_use="False"
+        />
+
+        <!-- Search view: default search for Indicators by Employee Report -->
+        <record id="mdc_rpt_indicators_by_employee_search" model="ir.ui.view">
+            <field name="name">mdc.rpt_indicators_by_employee.search</field>
+            <field name="model">mdc.rpt_indicators_by_employee</field>
+            <field name="arch" type="xml">
+                <search string="Indicators by Employee Report">
+                    <field name="create_date"/>
+                    <field name="employee_code"/>
+                    <field name="employee_name"/>
+                    <field name="shift_code"/>
+                    <field name="line_code"/>
+                    <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
+                    <filter name="week" string="This Week"
+                        domain="[
+                            '&amp;',
+                            ('create_date', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                            ('create_date', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
+                        ]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
+                        <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
+                        <filter string="Line Code" name="groupby_line" domain="[]" context="{'group_by':'line_code'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Tree view: default view for Indicators by Employee Report -->
+        <record id="mdc_rpt_indicators_by_employee_tree" model="ir.ui.view">
+            <field name="name">mdc.rpt_indicators_by_employee.tree</field>
+            <field name="model">mdc.rpt_indicators_by_employee</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" string="Indicators by Employee Report">
+                    <field name="create_date"/>
+                    <field name="employee_code"/>
+                    <field name="employee_name"/>
+                    <field name="shift_code"/>
+                    <field name="line_code"/>
+                    <field name="ind_backs"/>
+                    <field name="ind_mo"/>
+                    <field name="ind_crumbs"/>
+                    <field name="ind_quality"/>
+                    <field name="ind_cleaning"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+
+</odoo>
