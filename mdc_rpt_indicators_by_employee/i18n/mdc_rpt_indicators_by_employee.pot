@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mdc_rpt_indicators_by_employee
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 11:25+0000\n"
+"PO-Revision-Date: 2020-04-28 11:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.actions.act_window,help:mdc_rpt_indicators_by_employee.action_mdc_rpt_indicators_by_employee
+msgid "Can't create or update records in this view."
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_create_date
+msgid "Date"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:64
+#, python-format
+msgid "Date From:"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:201
+#, python-format
+msgid "Date From: %s to %s"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:203
+#, python-format
+msgid "Date: #%s"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_display_name
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_report_mdc_rpt_indicators_by_employee_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:69
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_employee_code
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+#, python-format
+msgid "Employee Code"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:70
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_employee_name
+#, python-format
+msgid "Employee Name"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_gross_weight
+msgid "Gross"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_gross_weight_reference
+msgid "Gross Reference"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+msgid "Group By"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_id
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_report_mdc_rpt_indicators_by_employee_id
+msgid "ID"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:71
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_ind_backs
+#, python-format
+msgid "IND Backs"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:75
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_ind_cleaning
+#, python-format
+msgid "IND Cleaning"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:73
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_ind_crumbs
+#, python-format
+msgid "IND Crumbs"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:72
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_ind_mo
+#, python-format
+msgid "IND MO"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:74
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_ind_quality
+#, python-format
+msgid "IND Quality"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:61
+#, python-format
+msgid "INDICATORS REPORT"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.actions.act_window,name:mdc_rpt_indicators_by_employee.action_mdc_rpt_indicators_by_employee
+#: model:ir.model,name:mdc_rpt_indicators_by_employee.model_mdc_rpt_indicators_by_employee
+#: model:ir.ui.menu,name:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_menu
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_tree
+msgid "Indicators by Employee Report"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee___last_update
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_report_mdc_rpt_indicators_by_employee___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_line_code
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+msgid "Line Code"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:207
+#, python-format
+msgid "Line: %s"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.actions.act_window,help:mdc_rpt_indicators_by_employee.action_mdc_rpt_indicators_by_employee
+msgid "Not possible."
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.actions.report,name:mdc_rpt_indicators_by_employee.indicators_by_employee_xlsx
+msgid "Print to XLSX"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model.fields,field_description:mdc_rpt_indicators_by_employee.field_mdc_rpt_indicators_by_employee_shift_code
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+msgid "Shift Code"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: code:addons/mdc_rpt_indicators_by_employee/report/report_xlsx.py:205
+#, python-format
+msgid "Shift: %s"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+msgid "This Week"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.ui.view,arch_db:mdc_rpt_indicators_by_employee.mdc_rpt_indicators_by_employee_search
+msgid "Today"
+msgstr ""
+
+#. module: mdc_rpt_indicators_by_employee
+#: model:ir.model,name:mdc_rpt_indicators_by_employee.model_report_mdc_rpt_indicators_by_employee
+msgid "report.mdc.rpt_indicators_by_employee"
+msgstr ""
+

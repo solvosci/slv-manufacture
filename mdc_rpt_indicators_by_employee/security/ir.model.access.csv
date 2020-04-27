@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_mdc_rpt_indicators_by_employee,mdc.rpt_indicators_by_employee default,model_mdc_rpt_indicators_by_employee,,1,0,0,0
