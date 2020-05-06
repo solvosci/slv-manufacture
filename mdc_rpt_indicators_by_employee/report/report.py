@@ -52,7 +52,7 @@ class RptIndicatorsByEmployee(models.Model):
                             FROM (
                                 SELECT woutdata.id, woutdata.create_date, 
                                     emp.employee_code, emp.name as employee_name, line.line_code, shift.shift_code, woutdata.lot_id, 
-                                    case when (lot.finished and (lot.weight > 0)) then woutdata.gross_weight/(lot.total_gross_weight/lot.weight) when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.gross_weight /(1-coalesce(lot.std_loss,0)/100) end as gross_weight_reference,
+                                    case when (lot.finished and (lot.weight > 0) and (lot.total_gross_weight/lot.weight)<>0) then woutdata.gross_weight/(lot.total_gross_weight/lot.weight) when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.gross_weight /(1-coalesce(lot.std_loss,0)/100) end as gross_weight_reference,
                                     woutdata.gross_weight, woutdata.product_weight, woutdata.sp1_weight, 
                                     case when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.shared_gross_weight /(1-coalesce(lot.std_loss,0)/100) end as shared_gross_weight_reference,
                                     woutdata.shared_gross_weight, woutdata.shared_product_weight, woutdata.shared_sp1_weight,
