@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mdc_last_data_wout_gross_weight_rev_cron" model="ir.config_parameter">
+            <field name="key">last_data_wout_gross_weight_revision.last_data_wout_gross_weight_rev_cron</field>
+            <field name="value">2050-01-01 16:00:00</field>
+        </record>
+    </data>
+</odoo>

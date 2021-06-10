@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mdc_last_data_wout_gross_weight_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-10 12:29+0000\n"
+"PO-Revision-Date: 2021-06-10 12:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.model.fields,field_description:mdc_last_data_wout_gross_weight_revision.field_mdc_data_wout_old_gross_weight
+msgid "Gross Weight before revision"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.model.fields,field_description:mdc_last_data_wout_gross_weight_revision.field_mdc_data_wout_revised_gross_weight_dt
+msgid "Gross Weight review datetime"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.actions.server,name:mdc_last_data_wout_gross_weight_revision.ir_cron_last_data_wout_gross_weight_revision_ir_actions_server
+#: model:ir.cron,cron_name:mdc_last_data_wout_gross_weight_revision.ir_cron_last_data_wout_gross_weight_revision
+#: model:ir.cron,name:mdc_last_data_wout_gross_weight_revision.ir_cron_last_data_wout_gross_weight_revision
+msgid "MDC: last data wout gross weight revision"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.model.fields,field_description:mdc_last_data_wout_gross_weight_revision.field_mdc_config_settings_last_data_wout_gross_weight_rev_cron
+msgid "Next date for gross weight revision cron"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.ui.view,arch_db:mdc_last_data_wout_gross_weight_revision.mdc_config_settings_view_form
+msgid "Scheduled Actions Parameters"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.model,name:mdc_last_data_wout_gross_weight_revision.model_mdc_data_wout
+msgid "Weight Output Data"
+msgstr ""
+
+#. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.model,name:mdc_last_data_wout_gross_weight_revision.model_mdc_config_settings
+msgid "mdc.config.settings"
+msgstr ""
+

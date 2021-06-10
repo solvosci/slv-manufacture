@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mdc_config_settings_view_form" model="ir.ui.view">
+        <field name="inherit_id" ref="mdc.mdc_config_settings_view_form"/>
+        <field name="model">mdc.config.settings</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='input_data_params_group']" position="attributes">
+                <attribute name="string">Scheduled Actions Parameters</attribute>
+                <attribute name="groups">mdc.group_mdc_manager</attribute>
+            </xpath>
+            <xpath expr="//group[@name='input_data_params_group']/div" position="inside">
+                <div>
+                    <label for="last_data_wout_gross_weight_rev_cron"/>
+                    <field name="last_data_wout_gross_weight_rev_cron"
+                           required="True"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
