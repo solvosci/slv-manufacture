@@ -19,6 +19,7 @@
     "data": [
         'data/ir_config_parameter.xml',
         'data/ir_cron.xml',
+        'views/chkpointdata_views.xml',
         'views/mdc_config_settings.xml',
     ],
     'installable': True,

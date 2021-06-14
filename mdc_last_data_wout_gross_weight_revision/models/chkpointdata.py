@@ -36,12 +36,14 @@ class DataWOut(models.Model):
         dt_to = d + " 23:59:59"
 
         try:
+            _logger.info('[mdc.data_wout] gross_weight revision process start')
+            wout_categ_p_code = self.env.ref('mdc.mdc_wout_categ_P').code
             # firstly we update if there is previous gross weight revision
             num_reg = 0
             wouts = self.search(
                 [('create_datetime', '>=', dt_from),
                  ('create_datetime', '<=', dt_to),
-                 ('wout_categ_id.code', '=', 'P'),
+                 ('wout_categ_id.code', '=', wout_categ_p_code),
                  ('wout_shared_id', '=', False),
                  ('old_gross_weight', '!=', 0)])
             for w in wouts:
@@ -63,7 +65,7 @@ class DataWOut(models.Model):
             wouts = self.read_group(
                 domain=[('create_datetime', '>=', dt_from),
                         ('create_datetime', '<=', dt_to),
-                        ('wout_categ_id.code', '=', 'P'),
+                        ('wout_categ_id.code', '=', wout_categ_p_code),
                         ('wout_shared_id', '=', False)]
                 , fields=['employee_id', 'line_id', 'lot_id',
                           'gross_weight', 'weight', 'tare']
@@ -78,7 +80,7 @@ class DataWOut(models.Model):
                     last_emp_out = self.search(
                         [('create_datetime', '>=', dt_from),
                          ('create_datetime', '<=', dt_to),
-                         ('wout_categ_id.code', '=', 'P'),
+                         ('wout_categ_id.code', '=', wout_categ_p_code),
                          ('wout_shared_id', '=', False),
                          ('employee_id', '=', w['employee_id'][0])]
                         , order='create_datetime desc', limit=1)
@@ -118,8 +120,9 @@ class DataWOut(models.Model):
                 '[mdc.data_wout] updated %d regs in gross_weight revision'
                 % num_reg)
             # update next execution date
-            next_datetime_cron = dt.datetime.strptime(
-                next_datetime_cron, "%Y-%m-%d %H:%M:%S")
+            # next_datetime_cron = dt.datetime.strptime(
+            #     next_datetime_cron, "%Y-%m-%d %H:%M:%S")
+            next_datetime_cron = fields.Datetime.from_string(next_datetime_cron)
             next_datetime_cron = next_datetime_cron + dt.timedelta(days=1)
             IrConfParam.set_param(
                 'last_data_wout_gross_weight_revision'

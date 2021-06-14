@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mdc_data_wouts_search" model="ir.ui.view">
+        <field name="name">mdc.data_wouts.search (in mdc_last_data_wout_gross_weight_revision)</field>
+        <field name="inherit_id" ref="mdc.mdc_data_wouts_search"/>
+        <field name="model">mdc.data_wout</field>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <filter name="gross_weight_revised" 
+                    string="Gross Weight Revised" 
+                    domain="[('old_gross_weight', '&gt;', 0)]" 
+                    groups="base.group_no_one"/>
+                <separator groups="base.group_no_one"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mdc_data_wouts_tree" model="ir.ui.view">
+        <field name="name">mdc.data_wouts.tree (in mdc_last_data_wout_gross_weight_revision)</field>
+        <field name="inherit_id" ref="mdc.mdc_data_wouts_tree"/>
+        <field name="model">mdc.data_wout</field>
+        <field name="arch" type="xml">
+            <field name="wout_categ_id" position="after">
+                <field name="gross_weight" groups="base.group_no_one"/>
+                <field name="old_gross_weight" groups="base.group_no_one"/>
+                <field name="revised_gross_weight_dt" groups="base.group_no_one"/>
+            </field>
+        </field>
+    </record>
+</odoo>

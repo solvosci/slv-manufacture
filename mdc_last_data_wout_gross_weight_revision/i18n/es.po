@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mdc_last_data_wout_gross_weight_revision
+#: model:ir.ui.view,arch_db:mdc_last_data_wout_gross_weight_revision.mdc_data_wouts_search
+msgid "Gross Weight Revised"
+msgstr "Peso bruto revisado"
+
+#. module: mdc_last_data_wout_gross_weight_revision
 #: model:ir.model.fields,field_description:mdc_last_data_wout_gross_weight_revision.field_mdc_data_wout_old_gross_weight
 msgid "Gross Weight before revision"
 msgstr "Peso bruto antes de revisión"
