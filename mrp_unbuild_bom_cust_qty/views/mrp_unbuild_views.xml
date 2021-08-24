@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_search_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.search (in mrp_unbuild_bom_cust_qty)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="done" position="after">
+                <separator/>
+                <filter
+                    name="from_bom_cust_quants"
+                    string="From BoM with custom quants"
+                    domain="[('bom_custom_quants','=',True)]"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form (in mrp_unbuild_bom_cust_qty)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group name="bom_quants">
+                    <field name="bom_quants_has_totals" invisible="1" />
+                    
+                    <field
+                        name="bom_custom_quants"
+                        attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
+                    />
+                </group>
+                <group></group>
+                <notebook 
+                    colspan="4"
+                    attrs="{'invisible': ['|',('bom_custom_quants','=',False),('id','=',False)]}"
+                    >
+                    <page string="BoM Quant Totals" autofocus="autofocus">
+                        <field name="bom_quants_total_ids" />
+                    </page>
+                    <page string="BoM Quants">
+                        <field
+                            name="bom_quants_ids"
+                            context="{'default_unbuild_id': id}"
+                            class="oe_editable_tree_only"
+                        />
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="mrp_unbuild_search_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form (in mrp_unbuild_bom_cust_qty)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="done" position="after">
+                <separator/>
+                <filter
+                    name="from_bom_cust_quants"
+                    string="From BoM with custom quants"
+                    domain="[('bom_custom_quants','=',True)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

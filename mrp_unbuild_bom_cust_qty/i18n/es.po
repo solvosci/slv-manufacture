@@ -1,0 +1,229 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_bom_cust_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 07:37+0000\n"
+"PO-Revision-Date: 2021-09-15 07:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__bom_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__bom_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__bom_id
+msgid "Bill of Material"
+msgstr "Lista de materiales"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_basic
+msgid "Bill of Material line"
+msgstr "Línea de Lista de Materiales"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_quants_total_ids
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view
+msgid "BoM Quant Totals"
+msgstr "Resumen de cantidades"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_quants_ids
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view
+msgid "BoM Quants"
+msgstr "Detalle de cantidades"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__company_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__company_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__create_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__create_date
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__deco_danger
+msgid "Deco Danger"
+msgstr "Peligro Deco"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__departure_date
+msgid "Departure Date"
+msgstr "Fecha"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__name
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__name
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_extended
+msgid "Discard"
+msgstr "Descartar"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__expected_qty
+msgid "Expected Quantity"
+msgstr "Cantidad prevista"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants
+msgid "Fill Custom Quants"
+msgstr "Rellenar cantidades personalizadas"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_search_view
+msgid "From BoM with custom quants"
+msgstr "De LdM con cantidades personalizadas"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_unbuild_bom_cust_qty
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
+#, python-format
+msgid ""
+"Insufficient quantities for\n"
+"\n"
+"%s\n"
+"You should register at least one quantity, or unset expected quantity for them"
+msgstr ""
+"Cantidades insuficientes para\n"
+"\n"
+"%s\n"
+"Debe registrar al menos una cantidad, o indicar que la cantidad prevista es 0"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_quants.py:0
+#, python-format
+msgid "Invalid quant for %s: it must be greater than zero!"
+msgstr "Cantidad invalida para %s: ¡debe ser mayor que cero!"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__write_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__write_date
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_totals
+msgid "Quant Totals for BoM based Unbuild"
+msgstr "Resúmenes de cantidades para LdM basado en Desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__custom_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_tree
+msgid "Quants"
+msgstr "Cantidades"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_quants
+msgid "Quants for BoM based Unbuild"
+msgstr "Cantidades para LdM basado en Desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__bom_line_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__bom_line_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__bom_line_id
+msgid "Related BoM Line"
+msgstr "Producto"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_extended
+msgid "Save & Close"
+msgstr "Guardar & Cerrar"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_extended
+msgid "Save & New"
+msgstr "Guardar & Nuevo"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__total_qty
+msgid "Total Quantity"
+msgstr "Cantidad total"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree
+msgid "Totals"
+msgstr "Resumenes"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__unbuild_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__unbuild_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__unbuild_id
+msgid "Unbuild"
+msgstr "Desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_quants.py:0
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_total.py:0
+#, python-format
+msgid "Unbuild Bom"
+msgstr "LdM de Desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Orden de Desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants
+msgid ""
+"When selected, you'll be able to add custom quants for unbuild, and standard"
+" ones are not used"
+msgstr ""
+"Cuando se selecciona, podrá agregar cantidades para la desconstrucción y no "
+"se utilizarán los estándar"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_mixin
+msgid "mrp.unbuild.bom.mixin"
+msgstr ""
