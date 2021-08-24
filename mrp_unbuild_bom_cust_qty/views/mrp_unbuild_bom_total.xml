@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_bom_total_view_tree" model="ir.ui.view">
+        <field name="name">mrp.unbuild.bom.totals.view.tree</field>
+        <field name="model">mrp.unbuild.bom.totals</field>
+        <field name="arch" type="xml">
+            <tree 
+                string="Totals" 
+                editable="top" 
+                create="false" 
+                delete="false" 
+                decoration-danger="deco_danger == True"
+                >
+                <field name="deco_danger" invisible="1" />
+                <field name="unbuild_id" invisible="1" />
+                <field name="bom_id" invisible="1" />
+                <field name="bom_line_id" readonly="1"/>
+                <field name="total_qty" />
+                <field name="expected_qty" />
+                <button name="product_weighing"
+                    type="object"
+                    icon="fa-refresh"
+                    attrs="{'invisible': [('parent.state', '=', 'done')]}"
+                />
+            </tree>
+        </field>
+    </record>
+</odoo>
