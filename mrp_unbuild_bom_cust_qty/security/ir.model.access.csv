@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_unbuild_bom_quants,mrp.unbuild.bom.quants,model_mrp_unbuild_bom_quants,mrp.group_mrp_user,1,1,1,1
+access_mrp_unbuild_bom_quants_manager,mrp.unbuild.bom.quants manager,model_mrp_unbuild_bom_quants,mrp.group_mrp_manager,1,1,1,1
+access_mrp_unbuild_bom_totals,mrp.unbuild.bom.totals,model_mrp_unbuild_bom_totals,mrp.group_mrp_user,1,1,1,1
+access_mrp_unbuild_bom_totals_manager,mrp.unbuild.bom.totals manager,model_mrp_unbuild_bom_totals,mrp.group_mrp_manager,1,1,1,1
