@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_move_line_view_tree_qc" model="ir.ui.view">
+        <field name="name">stock.move.line (in mrp_unbuild_qc)</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field
+            name="groups_id"
+            eval="[(4,ref('quality_control_oca.group_quality_control_user'))]"
+        />
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='company_id']" position="after">
+                <button 
+                    name="action_unbuild_quality_control"
+                    type="object"
+                    icon="fa-bookmark-o"
+                    invisible="not context.get('mrp_unbuild', False)"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
