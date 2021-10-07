@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_advanced_qc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-06 14:30+0000\n"
+"PO-Revision-Date: 2021-10-06 14:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_advanced_qc
+#: model:ir.model,name:mrp_unbuild_advanced_qc.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_unbuild_advanced_qc
+#: code:addons/mrp_unbuild_advanced_qc/models/stock_move.py:0
+#, python-format
+msgid ""
+"There are %d inspections(s) linked to the current generated moves. Please "
+"remove them before backing unbuild to draft"
+msgstr ""
