@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-06 14:26+0000\n"
+"PO-Revision-Date: 2021-10-06 14:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view
+msgid "Back to draft"
+msgstr "Cambiar a borrador"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
+#, python-format
+msgid "No negative quantities allowed"
+msgstr "No se permiten cantidades negativas"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model,name:mrp_unbuild_advanced.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimientos de Producto (Stock Move Line)"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model,name:mrp_unbuild_advanced.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Inventario"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
+#, python-format
+msgid ""
+"The quantity done for the product \"%s\" doesn't respect the rounding "
+"precision                                   defined on the unit of measure "
+"\"%s\". Please change the quantity done or the"
+"                                   rounding precision of your unit of "
+"measure."
+msgstr ""
+"La cantidad realizada para el producto \"%s\" no respeta la precisión de "
+"redondeo definida en la unidad de medida \"%s\". Cambie la cantidad "
+"realizada o la precisión de redondeo de su unidad de medida."
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,help:mrp_unbuild_advanced.field_mrp_unbuild__unbuild_date
+msgid "This date will be used in further stock moves, when unbuild is done"
+msgstr "Esta fecha se usará en los movimientos de stock que se generen cuando el despiece se complete"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__unbuild_date
+msgid "Unbuild Date"
+msgstr "Fecha de despiece"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model,name:mrp_unbuild_advanced.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Orden de Desconstrucción"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#, python-format
+msgid "Unbuild date cannot be in the future!"
+msgstr "¡La fecha de de despiece no puede ser futura!"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/stock_move_recode.py:0
+#, python-format
+msgid ""
+"You cannot move the same package content more than once in the same transfer"
+" or split the same package into two location."
+msgstr ""
+"No puede mover el mismo contenido del paquete más de una vez en la misma "
+"transferencia o dividir el mismo paquete en dos ubicaciones."
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
+#, python-format
+msgid "You need to supply a Lot/Serial number for product %s."
+msgstr "Debe proporcionar un lote/número de serie para %s."
