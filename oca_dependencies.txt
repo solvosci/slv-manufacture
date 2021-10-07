@@ -1,1 +1,2 @@
 manufacture
+slv-stock https://github.com/solvosci/slv-stock
