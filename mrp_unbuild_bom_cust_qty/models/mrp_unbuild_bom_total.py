@@ -2,6 +2,7 @@
 # License LGPL-3.0 (http://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class MrpUnbuildBoMTotals(models.Model):
@@ -84,3 +85,13 @@ class MrpUnbuildBoMTotals(models.Model):
             'type': 'ir.actions.act_window',
             'context': context,
         }
+
+    def unlink(self):
+        for record in self:
+            # TODO float_is_zero()
+            if record.total_qty > 0.0:
+                raise UserError(_(
+                    "Cannot delete Bom line for %s: please delete first its"
+                    " related quantities"
+                ) % record.bom_line_id.display_name)
+        return super().unlink()
