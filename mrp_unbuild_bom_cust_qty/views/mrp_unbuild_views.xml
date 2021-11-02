@@ -36,6 +36,7 @@
                     attrs="{'invisible': ['|',('bom_custom_quants','=',False),('id','=',False)]}"
                     >
                     <page string="BoM Quant Totals" autofocus="autofocus">
+                        <field name="bom_line_ids" invisible="1"/>
                         <field name="bom_quants_total_ids" />
                     </page>
                     <page string="BoM Quants">

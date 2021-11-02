@@ -7,20 +7,32 @@
             <tree 
                 string="Totals" 
                 editable="top" 
-                create="false" 
+                create="true" 
                 delete="false" 
                 decoration-danger="deco_danger == True"
                 >
+                <field name="company_id" invisible="1" />
                 <field name="deco_danger" invisible="1" />
+                <field name="check_bom_line" invisible="1" />
                 <field name="unbuild_id" invisible="1" />
+                <field name="bom_line_ids" invisible="1" />
                 <field name="bom_id" invisible="1" />
-                <field name="bom_line_id" readonly="1"/>
+                <field name="bom_line_id"
+                    domain="[('id', 'not in', bom_line_ids)]" 
+                    attrs="{'readonly': ['|',('check_bom_line', '=', True), ('total_qty','>',0)]}"
+                />
                 <field name="total_qty" />
                 <field name="expected_qty" />
                 <button name="product_weighing"
                     type="object"
                     icon="fa-refresh"
                     attrs="{'invisible': [('parent.state', '=', 'done')]}"
+                />
+                <button name="unlink"
+                    class="o_list_record_remove"
+                    type="object"
+                    icon="fa-trash-o"
+                    attrs="{'invisible': ['|', ('check_bom_line', '=', True), ('parent.state', '=', 'done')]}"
                 />
             </tree>
         </field>

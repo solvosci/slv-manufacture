@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="assets_backend"
+        name="MRP Unbuild Bom Cust Qty Assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr=".">
+            <link rel="stylesheet" href="/mrp_unbuild_bom_cust_qty/static/src/css/styles.css"/>
+        </xpath>
+    </template>
+</odoo>
