@@ -36,6 +36,17 @@ class MrpUnbuild(models.Model):
         compute="_compute_bom_quants_has_totals",
     )
 
+    bom_line_ids = fields.Many2many(
+        comodel_name="mrp.bom.line",
+        compute="_compute_bom_line_ids",
+    )
+
+    @api.depends("bom_quants_total_ids.bom_line_id")
+    def _compute_bom_line_ids(self):
+        for record in self:
+            bom_line_ids = record.bom_quants_total_ids.bom_line_id
+            record.bom_line_ids = [(4, bom_line.id) for bom_line in bom_line_ids]
+
     def _compute_bom_quants_has_totals(self):
         for record in self:
             if record.bom_quants_total_ids.filtered(lambda x: x.total_qty > 0):
@@ -87,3 +98,29 @@ class MrpUnbuild(models.Model):
             quantity = bom_line_obj.total_qty
 
         return super()._generate_move_from_bom_line(product, product_uom, quantity, bom_line_id=bom_line_id, byproduct_id=byproduct_id)
+
+    def _generate_produce_moves(self):
+        moves = super()._generate_produce_moves()
+        for record in self.bom_quants_total_ids.filtered(lambda x: x.check_bom_line == False):
+            product_id = record.bom_line_id.product_id
+            product_uom_id = record.bom_line_id.product_uom_id
+            moves += self._generate_move_from_bom_quants_total(product_id, product_uom_id, record.total_qty)
+        return moves
+
+    def _generate_move_from_bom_quants_total(self, product, product_uom, quantity):
+        location_id = product.property_stock_production or self.location_id
+        location_dest_id = self.location_dest_id or product.with_context(force_company=self.company_id.id).property_stock_production
+        warehouse = location_dest_id.get_warehouse()
+        return self.env['stock.move'].create({
+            'name': self.name,
+            'date': self.create_date,
+            'product_id': product.id,
+            'product_uom_qty': quantity,
+            'product_uom': product_uom.id,
+            'procure_method': 'make_to_stock',
+            'location_dest_id': location_dest_id.id,
+            'location_id': location_id.id,
+            'warehouse_id': warehouse.id,
+            'unbuild_id': self.id,
+            'company_id': self.company_id.id,
+        })
