@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 18:11+0000\n"
+"PO-Revision-Date: 2021-11-29 18:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__active
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: mrp_tag
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_form
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__color
+msgid "Color Index (0-15)"
+msgstr "Índice de color (0-15)"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__create_date
+msgid "Created on"
+msgstr "Creado en "
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__id
+msgid "ID"
+msgstr "Id."
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado últ. vez por"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__write_date
+msgid "Last Updated on"
+msgstr "Últ. actualización en"
+
+#. module: mrp_tag
+#: model:ir.model,name:mrp_tag.model_mrp_tag
+msgid "MRP Tag"
+msgstr "Etiqueta MRP"
+
+#. module: mrp_tag
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_search
+msgid "MRP Tag Search"
+msgstr "Búsqueda para etiqueta MRP"
+
+#. module: mrp_tag
+#: model:ir.actions.act_window,name:mrp_tag.mrp_tag_action
+msgid "MRP Tags"
+msgstr "Etiquetas MRP"
+
+#. module: mrp_tag
+#: model:ir.model.fields,field_description:mrp_tag.field_mrp_tag__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mrp_tag
+#: code:addons/mrp_tag/models/mrp_tag.py:0
+#, python-format
+msgid "Tag copy is disabled"
+msgstr "La copia de etiquetas está deshabilitada"
+
+#. module: mrp_tag
+#: model:ir.model.constraint,message:mrp_tag.constraint_mrp_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "¡El nombre de la etiqueta ya existe!"
+
+#. module: mrp_tag
+#: model:ir.ui.menu,name:mrp_tag.mrp_tag_menu
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_form
+#: model_terms:ir.ui.view,arch_db:mrp_tag.view_mrp_tag_tree
+msgid "Tags"
+msgstr "Etiquetas"
