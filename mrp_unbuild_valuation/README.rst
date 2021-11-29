@@ -19,7 +19,8 @@ MRP Unbuild Valuation
 
 |badge1| |badge2| |badge3| 
 
-Adds valuation view for done unbuilds.
+Adds valuation view for done unbuilds and new valuation methods, selected when
+an unbuild is created.
 
 **Table of contents**
 
@@ -29,8 +30,7 @@ Adds valuation view for done unbuilds.
 Known issues / Roadmap
 ======================
 
-* Valuation method itself is not changed from standard. Add other optional
-  methods, if required.
+* Add New Valuation methods, if needed.
 
 Bug Tracker
 ===========

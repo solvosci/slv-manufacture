@@ -16,6 +16,12 @@
                     attrs="{'invisible': [('state', '!=', 'done')]}"
                 />
             </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field
+                    name="valuation_method" 
+                    widget="radio"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

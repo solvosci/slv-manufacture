@@ -3,11 +3,11 @@
 {
     "name": "MRP Unbuild Valuation",
     "summary": """
-        Adds valuation view for done unbuilds
+        Adds valuation view for done unbuilds and new valuation methods
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "13.0.1.0.0",
+    "version": "13.0.2.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp", "stock_account"],
