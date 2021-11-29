@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-06 14:26+0000\n"
-"PO-Revision-Date: 2021-10-06 14:26+0000\n"
+"POT-Creation-Date: 2021-11-29 18:32+0000\n"
+"PO-Revision-Date: 2021-11-29 18:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,76 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_unbuild_advanced
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_manager
 msgid "Back to draft"
 msgstr "Cambiar a borrador"
 
 #. module: mrp_unbuild_advanced
-#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
-#, python-format
-msgid "No negative quantities allowed"
-msgstr "No se permiten cantidades negativas"
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "Break time"
+msgstr "Descanso"
 
 #. module: mrp_unbuild_advanced
-#: model:ir.model,name:mrp_unbuild_advanced.model_stock_move_line
-msgid "Product Moves (Stock Move Line)"
-msgstr "Movimientos de Producto (Stock Move Line)"
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "End"
+msgstr "Fin"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__notes
+msgid "Notes"
+msgstr "Observaciones"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_break_time
+msgid "Shift Break Time"
+msgstr "Tiempo de descanso del turno"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_end_date
+msgid "Shift End Date"
+msgstr "Fecha fin del turno"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_start_date
+msgid "Shift Start Date"
+msgstr "Fecha inicio del turno"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_stop_time
+msgid "Shift Stop Time"
+msgstr "Total paradas técnicas"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_total_time
+msgid "Shift Total Time"
+msgstr "Tiempo total del turno"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "Shift data"
+msgstr "Datos del turno"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#, python-format
+msgid "Shift dates must be filled before unbuild action for %s is performed!"
+msgstr "¡Las fechas del turno tienen que estar cubiertas antes ejecutar la acción de despiezar para %s!"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#, python-format
+msgid "Shift end date must be older than start date!"
+msgstr "¡La fecha fin debe de ser mayor que la fecha inicio!"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "Shift time"
+msgstr "Tiempo del turno"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "Start"
+msgstr "Inicio"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_stock_move
@@ -37,23 +93,21 @@ msgid "Stock Move"
 msgstr "Movimiento de Inventario"
 
 #. module: mrp_unbuild_advanced
-#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
-#, python-format
-msgid ""
-"The quantity done for the product \"%s\" doesn't respect the rounding "
-"precision                                   defined on the unit of measure "
-"\"%s\". Please change the quantity done or the"
-"                                   rounding precision of your unit of "
-"measure."
-msgstr ""
-"La cantidad realizada para el producto \"%s\" no respeta la precisión de "
-"redondeo definida en la unidad de medida \"%s\". Cambie la cantidad "
-"realizada o la precisión de redondeo de su unidad de medida."
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
+msgid "Stop time"
+msgstr "Total paradas técnicas"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__tag_ids
+msgid "Tags"
+msgstr "Etiquetas"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,help:mrp_unbuild_advanced.field_mrp_unbuild__unbuild_date
 msgid "This date will be used in further stock moves, when unbuild is done"
-msgstr "Esta fecha se usará en los movimientos de stock que se generen cuando el despiece se complete"
+msgstr ""
+"Esta fecha se usará en los movimientos de stock que se generen cuando el "
+"despiece se complete"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__unbuild_date
@@ -70,19 +124,3 @@ msgstr "Orden de Desconstrucción"
 #, python-format
 msgid "Unbuild date cannot be in the future!"
 msgstr "¡La fecha de de despiece no puede ser futura!"
-
-#. module: mrp_unbuild_advanced
-#: code:addons/mrp_unbuild_advanced/models/stock_move_recode.py:0
-#, python-format
-msgid ""
-"You cannot move the same package content more than once in the same transfer"
-" or split the same package into two location."
-msgstr ""
-"No puede mover el mismo contenido del paquete más de una vez en la misma "
-"transferencia o dividir el mismo paquete en dos ubicaciones."
-
-#. module: mrp_unbuild_advanced
-#: code:addons/mrp_unbuild_advanced/models/stock_move_line_recode.py:0
-#, python-format
-msgid "You need to supply a Lot/Serial number for product %s."
-msgstr "Debe proporcionar un lote/número de serie para %s."
