@@ -17,10 +17,50 @@ class MrpUnbuild(models.Model):
         " when unbuild is done",
     )
 
+    shift_start_date = fields.Datetime(
+        states={"draft": [("required", False)], "done": [("required", True)]},
+    )
+    shift_end_date = fields.Datetime(
+        states={"draft": [("required", False)], "done": [("required", True)]},
+    )
+    shift_total_time = fields.Float(
+        states={"draft": [("required", False)], "done": [("required", True)]},
+        default=8,
+    )
+    shift_break_time = fields.Float(
+        states={"draft": [("required", False)], "done": [("required", True)]},
+    )
+    shift_stop_time = fields.Float()
+
+    notes = fields.Text()
+
+    tag_ids = fields.Many2many(
+        string="Tags",
+        comodel_name="mrp.tag",
+    )
+
     @api.constrains("unbuild_date")
     def _check_unbuild_date(self):
         if self.unbuild_date > fields.Datetime.now():
             raise ValidationError(_("Unbuild date cannot be in the future!"))
+
+    @api.constrains("shift_start_date", "shift_end_date")
+    def _check_shift_dates(self):
+        if self.shift_start_date and self.shift_end_date and (
+            self.shift_start_date > self.shift_end_date
+        ):
+            raise ValidationError(_(
+                "Shift end date must be older than start date!"
+            ))
+
+    def action_validate(self):
+        for unbuild in self:
+            if not (unbuild.shift_start_date and unbuild.shift_end_date):
+                raise ValidationError(_(
+                    "Shift dates must be filled before"
+                    " unbuild action for %s is performed!"
+                ) % unbuild.name)
+        return super().action_validate()
 
     def action_unbuild(self):
         unbuild = self.with_context(stock_move_custom_date=self.unbuild_date)

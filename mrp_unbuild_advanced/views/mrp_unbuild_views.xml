@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="mrp_unbuild_form_view" model="ir.ui.view">
-        <field name="name">mrp.unbuild.form (in mrp_unbuild_advanced)</field>
+    <record id="mrp_unbuild_form_view_manager" model="ir.ui.view">
+        <field name="name">
+            mrp.unbuild.form manager (in mrp_unbuild_advanced)
+        </field>
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
         <field name="groups_id" eval="[(4,ref('stock.group_stock_manager'))]"/>
@@ -18,6 +20,80 @@
             <xpath expr="//field[@name='product_id']" position="before">
                 <field name="unbuild_date"/>
             </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view_user" model="ir.ui.view">
+        <field name="name">
+            mrp.unbuild.form user (in mrp_unbuild_advanced)
+        </field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
+        <field eval="100" name="priority"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
+            </xpath>
+            <xpath expr="sheet" position="inside">
+                <group
+                    name="group_shift"
+                    attrs="{'invisible': [('id','=',False)]}"
+                    string="Shift data"
+                >
+                    <group>
+                        <field name="shift_start_date" string="Start"/>
+                        <field name="shift_end_date" string="End"/>
+                        <field name="notes"/>
+                    </group>
+                    <group>
+                        <field
+                            name="shift_total_time"
+                            widget="float_time"
+                            string="Shift time"
+                        />
+                        <field
+                            name="shift_break_time"
+                            widget="float_time"
+                            string="Break time"
+                        />
+                        <field
+                            name="shift_stop_time"
+                            widget="float_time"
+                            string="Stop time"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_tree_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.tree (in mrp_unbuild_advanced)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_search_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.search (in mrp_unbuild_advanced)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view"/>
+        <field name="arch" type="xml">
+            <field name="mo_id" position="after">
+                <field name="tag_ids" />
+            </field>
         </field>
     </record>
 </odoo>
