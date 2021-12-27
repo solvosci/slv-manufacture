@@ -24,36 +24,13 @@ class MrpUnbuild(models.Model):
         states={"draft": [("readonly", False)]},
       )
 
-    def action_unbuild(self):
-        res = super().action_unbuild()
-        self._update_stock_valuation_layer_ids()
-        return res
-
-    def _update_stock_valuation_layer_ids(self):
-        """
-        This method should be overriden if new methods are added
-        via inheritance
-        """
-        for unbuild in self.filtered(
-            lambda x: x.valuation_method == "product_cost"
-        ):
-            # TODO we've already detected that all moves are produce_line_ids,
-            # but this code (merging them and select them with _is_in and
-            # _is_out methods) is more secure
-            move_ids = (unbuild.consume_line_ids + unbuild.produce_line_ids)
-            # TODO prevent more than one output move (or valuation layer)
-            out_unit_cost = move_ids.filtered(
-                lambda x: x._is_out()
-            ).stock_valuation_layer_ids.unit_cost
-
-            for layer in move_ids.filtered(
-                lambda x: x._is_in()
-            ).stock_valuation_layer_ids:
-                layer.write({
-                    "unit_cost": out_unit_cost,
-                    "value": out_unit_cost * layer.quantity,
-                })
-        # Default does not change anything
+    def _generate_produce_moves(self):
+        moves = super()._generate_produce_moves()
+        if self.valuation_method == "product_cost":
+            moves.write({
+                "price_unit": self.product_id.standard_price,
+            })
+        return moves
 
     def action_view_stock_valuation_layers(self):
         self.ensure_one()
