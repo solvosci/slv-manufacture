@@ -12,3 +12,9 @@ class StockMove(models.Model):
         Override when required
         """
         pass
+
+    def _unlink_previous_stuff(self):
+        """
+        Override when required
+        """
+        pass

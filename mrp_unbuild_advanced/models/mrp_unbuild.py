@@ -89,5 +89,6 @@ class MrpUnbuild(models.Model):
             )
 
         moves.write({"state": "draft"})
+        moves._unlink_previous_stuff()
         moves.unlink()
         self.state = "draft"

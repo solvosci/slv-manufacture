@@ -1,19 +1,15 @@
 # © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 {
-    "name": "MRP Unbuild Advanced additions",
+    "name": "MRP Unbuild Advanced additions - Stock Valuation Layer bridge",
     "summary": """
-        Adds some improvements for Unbuilds: move back to draft,
-        custom date, shift data, tags, etc
+        Links Advanced Unbuilds with Stock Valuation Layer
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "13.0.2.1.0",
+    "version": "13.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
-    "depends": ["mrp_tag", "stock_move_action_done_custdate"],
-    "data": [
-        "views/mrp_unbuild_views.xml",
-    ],
+    "depends": ["mrp_unbuild_advanced", "stock_account"],
     'installable': True,
 }
