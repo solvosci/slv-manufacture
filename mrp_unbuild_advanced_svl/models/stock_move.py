@@ -49,3 +49,12 @@ class StockMove(models.Model):
             ).sudo().write({"standard_price": new_std_price})
 
         self.sudo().stock_valuation_layer_ids.unlink()
+
+        # Move deletion: before deleting them they must be cancelled or
+        #  drafted (previously not posted) => we ensure they're all cancelled
+        moves = self.sudo().account_move_ids
+        moves_posted = moves.filtered(lambda x: x.state == "posted")
+        if moves_posted:
+            moves_posted.button_draft()
+        moves.filtered(lambda x: x.state != "cancel").button_cancel()
+        moves.with_context(force_delete=True).unlink()
