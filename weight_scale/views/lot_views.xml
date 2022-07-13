@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+  <!-- Tree view: default view for lots -->
+    <record id="weight_scale_lot_tree" model="ir.ui.view">
+        <field name="name">weight.scale.lot.tree</field>
+        <field name="model">weight.scale.lot</field>
+        <field name="arch" type="xml">
+            <tree string="Lots">
+                <field name="name"/>
+                <field name="weight"/>
+                <field name="product_id"/>
+                <field name="finished"/>
+            </tree>
+        </field>
+    </record>
+  <!-- Form view: default form for lots -->
+      <record id="weight_scale_lot_form" model="ir.ui.view">
+        <field name="name">weight.scale.lot.form</field>
+        <field name="model">weight.scale.lot</field>
+        <field name="arch" type="xml">
+          <form string="Lots">
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="weight"/>
+                <field name="product_id"/>
+                <field name="finished"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+    </record>
+</odoo>

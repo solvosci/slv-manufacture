@@ -1,0 +1,14 @@
+#input_weight{
+    width: 400px;
+}
+#selection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#weight_output{
+
+}
+#action_buttons{
+
+}

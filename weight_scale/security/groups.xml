@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_weight_packaging_cp" model="res.groups">
+        <field name="name">Weight Packaging Check Point</field>
+        <field name="category_id" ref="base.module_category_manufacturing"/>
+    </record>
+</odoo>
