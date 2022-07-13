@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción -->
+    <act_window
+        id="action_scale_packaging_weight_scale"
+        name="Lot Weight Scale"
+        res_model="weight.scale.lot"
+        view_mode="tree,form"/>
+        
+    <!-- Menu Lot -->
+    <menuitem 
+        id="menu_lot"
+        name="Lot"
+        action="action_scale_packaging_weight_scale"
+        sequence="1"/>
+</odoo>

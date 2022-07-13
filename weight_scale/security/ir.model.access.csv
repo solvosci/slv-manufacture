@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_weight_scale_weight_scale_lot,weight.scale.lot,model_weight_scale_lot,weight_scale.group_weight_packaging_cp,1,1,1,1
+access_weight_scale_weight_scale_chkpoint,weight.scale.chkpoint,model_weight_scale_chkpoint,weight_scale.group_weight_packaging_cp,1,1,1,1     

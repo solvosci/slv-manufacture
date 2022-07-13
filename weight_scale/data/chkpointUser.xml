@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- <record id="default_user_defecto" model="res.users">
+            <field name="name">Defecto usuario</field>
+            <field name="login">defecto</field>
+            <field name="notification_type">inbox</field>
+            <field name="active" eval="True"/>
+        </record> -->
+        <!-- TODO user should NOT be customer -->
+        <record id="weight_packaging_user_cp" model="res.users">
+            <field name="name">checkpoint user</field>
+            <field name="login">defecto</field>
+            <!-- field name="notification_type">inbox</field -->
+            <field name="groups_id" eval="[(6, 0, [ref('weight_scale.group_weight_packaging_cp')])]"/>
+        </record>
+    </data>
+</odoo>
