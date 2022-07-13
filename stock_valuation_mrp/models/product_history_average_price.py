@@ -12,13 +12,16 @@ class ProductHistoryAveragePrice(models.Model):
         From affected SVL, this function should return extra SVLs
         that should be updated and subsequent PHAP that should be
         recomputed.
-        In this addon, we've got one case:
+        In this addon, we've got two case:
         * A production component price has changed, so production
           price has changed too
+        * An unbuild, product unbuilded and the following created
+          componentes changes their prices
         """
         upd_svls, ret_phaps = super()._from_svl_get_upd_svls_and_ret_phaps(svl)
 
         move = svl.stock_move_id
+        # Production
         if move and move.raw_material_production_id:
             production_id = move.raw_material_production_id
             # - Consume SVL should simply be updated
@@ -35,5 +38,19 @@ class ProductHistoryAveragePrice(models.Model):
                 svlp.unit_cost = prod_price
                 svlp.value = round(svlp.unit_cost * svlp.quantity, 2)
                 ret_phaps |= svlp.history_average_price_id
+        # Unbuild
+        if move and move.unbuild_id and svl.quantity < 0.0:
+            # We received the consumed move, it must be updated
+            upd_svls |= svl
+            # TODO better access to produced moves?
+            prod_moves = move.unbuild_id.produce_line_ids.filtered(
+                lambda x: sum(x.stock_valuation_layer_ids.mapped("quantity")) > 0.0
+            )
+            # The related consumes also will be updated, so PHAP will vary
+            upd_svls |= prod_moves.stock_valuation_layer_ids
+
+            ret_phaps |= prod_moves.stock_valuation_layer_ids.mapped(
+                "history_average_price_id"
+            )
 
         return upd_svls, ret_phaps

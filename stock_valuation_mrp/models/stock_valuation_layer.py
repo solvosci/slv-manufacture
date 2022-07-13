@@ -46,8 +46,8 @@ class StockValuationLayer(models.Model):
                 # TODO for productions
                 date = self.env.context.get(
                     "stock_move_custom_date",
-                    fields.Datetime.now()
-                )
+                    False
+                ) or fields.Datetime.now()
                 # date = move_id.picking_id.scheduled_date
                 # if not move_id.picking_id:
                 #     date = fields.Datetime.now()
