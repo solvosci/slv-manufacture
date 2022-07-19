@@ -36,7 +36,7 @@ class ProductHistoryAveragePrice(models.Model):
             )
             for svlp in prod_moves.stock_valuation_layer_ids:
                 svlp.unit_cost = prod_price
-                svlp.value = round(svlp.unit_cost * svlp.quantity, 2)
+                svlp.value = svlp.unit_cost * svlp.quantity
                 ret_phaps |= svlp.history_average_price_id
         # Unbuild
         if move and move.unbuild_id and svl.quantity < 0.0:

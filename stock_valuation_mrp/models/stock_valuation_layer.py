@@ -83,7 +83,7 @@ class StockValuationLayer(models.Model):
                         # # TODO divide by zero, is it possible?
                         # vals["unit_cost"] = total_amount / total_qtys
                         vals["unit_cost"] = move_id._compute_production_svl_price(date)
-                        vals["value"] = round(vals.get("unit_cost") * vals.get("quantity"), 2)
+                        vals["value"] = vals.get("unit_cost") * vals.get("quantity")
                         vals["accumulated"] = True
                     # Production components
                     else:
@@ -93,7 +93,7 @@ class StockValuationLayer(models.Model):
                             move_id.location_id.get_warehouse(),
                             dt=date
                         )
-                        vals["value"] = round(vals.get("unit_cost") * vals.get("quantity"), 2)
+                        vals["value"] = vals.get("unit_cost") * vals.get("quantity")
 
                 # Unbuild
                 elif not move_id.picking_id and move_id.unbuild_id:
@@ -107,7 +107,7 @@ class StockValuationLayer(models.Model):
                         move_id.unbuild_id.location_id.get_warehouse(),
                         dt=date
                     )
-                    vals["value"] = round(vals.get("unit_cost") * vals.get("quantity"), 2)
+                    vals["value"] = vals.get("unit_cost") * vals.get("quantity")
 
                     # unbuild_move = move_id.unbuild_id.produce_line_ids.filtered(lambda x: x.warehouse_id.id is False)
                     # if move_id != unbuild_move:
@@ -115,12 +115,12 @@ class StockValuationLayer(models.Model):
                     vals["accumulated"] = (unbuild_product != move_id.product_id)
 
                 if vals.get("accumulated"):
-                    vals["average_price"] = round((history_last_day.total_quantity * history_last_day.average_price + (history_today.summary_entry + vals.get("value"))) / (history_last_day.total_quantity + history_today.total_quantity_day + quantity), 2)
+                    vals["average_price"] = (history_last_day.total_quantity * history_last_day.average_price + (history_today.summary_entry + vals.get("value"))) / (history_last_day.total_quantity + history_today.total_quantity_day + quantity)
                 else:
                     if average_price_last > 0:
-                        vals["average_price"] = round(average_price_last, 2)
+                        vals["average_price"] = average_price_last
                     else:
-                        vals["average_price"] = round(history_last_day.average_price, 2)
+                        vals["average_price"] = history_last_day.average_price
 
                 vals["history_average_price_id"] = self.product_history_link(vals.get("product_id"), vals.get("warehouse_id"), vals.get("average_price"), vals.get("quantity"), vals.get("value"), vals.get("accumulated"), history_today, date)
 
