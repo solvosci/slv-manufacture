@@ -71,19 +71,14 @@ class StockMove(models.Model):
         * SVLs should be deleted
         * PHAP for moves date and later will be affected
         * Other SVLs (because of PHAP changes) will be affected too
-        This process only makes sense for destination moves (the components
-        created before), because they're the inputs
         """
         super()._unlink_previous_stuff()
 
-        in_moves = self.filtered(
-            lambda x: x._is_in()
-            and x.product_id.warehouse_valuation
-        )
+        moves = self.filtered(lambda x: x.product_id.warehouse_valuation)
         # Every SVL will be deleted, but only those that are linked to
         #  incoming moves are important fot later PHAPs recalculation
-        svls_in = in_moves.sudo().stock_valuation_layer_ids
-        phaps = svls_in.mapped("history_average_price_id")
+        svls = moves.sudo().stock_valuation_layer_ids
+        phaps = svls.mapped("history_average_price_id")
 
         self.sudo().stock_valuation_layer_ids.unlink()
 
@@ -97,7 +92,7 @@ class StockMove(models.Model):
         acct_moves.filtered(lambda x: x.state != "cancel").button_cancel()
         acct_moves.with_context(force_delete=True).unlink()
 
-        in_moves._compute_phaps_and_update_slvs(phaps=phaps)
+        moves._compute_phaps_and_update_slvs(phaps=phaps)
 
     def _init_phaps(self):
         """
