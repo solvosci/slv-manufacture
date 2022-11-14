@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_project_inherited_form" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" attrs="{'invisible': [('manufacture_order_count', '=', 0)]}" name="binded_productions" type="object" icon="fa fa-wrench" help="Manufactures">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="manufacture_order_count"></field>
+                        </span>
+                        <span class="o_stat_text">Manufactures</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
