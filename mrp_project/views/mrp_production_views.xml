@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_form" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="model">mrp.production</field>
+        <field name="groups_id" eval="[(4, ref('project.group_project_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="project_id" />
+                <field name="project_sequence" attrs="{'invisible':[('project_id', '=', False)], 'required':[('project_id', '!=', False)]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_tree" model="ir.ui.view">
+        <field name="name">mrp.production.tree</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="model">mrp.production</field>
+        <field name="groups_id" eval="[(4, ref('project.group_project_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="project_id" invisible="context.get('manufacture_binding_list', False)"/>
+                <field name="project_sequence" string="Proj. Seq."/>
+            </field> 
+        </field>
+    </record>
+
+    <record id="mrp_production_search" model="ir.ui.view">
+        <field name="name">mrp.production.search</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="model">mrp.production</field>
+        <field name="groups_id" eval="[(4, ref('project.group_project_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="before">
+                <field name="project_id"></field>
+                <field name="project_sequence"></field>
+            </field>
+            <filter name="activities_my" position="after">
+                <separator/>
+                <filter name="with_project" 
+                    string="With Project" 
+                    domain="[('project_id', '!=', False)]" />
+                    <filter name="with_project" 
+                    string="Without Project" 
+                    domain="[('project_id', '=', False)]" />
+                <separator/>
+            </filter>
+            <group position="inside">
+                <filter string="Project" name="groupby_project_id" domain="[]" context="{'group_by':'project_id'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
