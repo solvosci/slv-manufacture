@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_fcd_weight_scale_mrp_checkpoint" model="ir.actions.act_window">
+        <field name="name">Checkpoint</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fcd.checkpoint</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Create your first Chkpoint!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_fcd_weight_scale_mrp_scale" model="ir.actions.act_window">
+        <field name="name">Scale</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fcd.weight.scale</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                Create your first Scale!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_fcd_weight_scale_mrp_log" model="ir.actions.act_window">
+        <field name="name">Weighing Logs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fcd.weight.scale.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_purchase_order_id': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smilling_face">
+                None Weighing Log Registered!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_scale_production_equipment"
+        name="Production equipment"
+        parent="mrp.menu_mrp_configuration"
+        groups="fcd.group_fcd_manager"
+        sequence="101"/>
+
+    <menuitem 
+        id="menu_scale"
+        name="Scale"
+        action="action_fcd_weight_scale_mrp_scale"
+        parent="menu_scale_production_equipment"
+        groups="fcd.group_fcd_manager"
+        sequence="7"/>
+
+    <menuitem 
+        id="menu_chkpoint"
+        name="Checkpoint"
+        action="action_fcd_weight_scale_mrp_checkpoint"
+        parent="menu_scale_production_equipment"
+        groups="fcd.group_fcd_manager"
+        sequence="8"/>
+
+    <menuitem 
+        id="menu_log"
+        name="Log"
+        action="action_fcd_weight_scale_mrp_log"
+        parent="menu_scale_production_equipment"
+        groups="fcd.group_fcd_manager"
+        sequence="9"/>
+
+</odoo>

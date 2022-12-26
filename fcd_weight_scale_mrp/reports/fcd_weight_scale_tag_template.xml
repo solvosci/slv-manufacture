@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_tag_document_pdf">
+      <t t-set="doc" t-value="doc.with_context({'lang':doc.stock_move_id.partner_id.lang})"/>
+      <div class="page" style="font-size: 9px">
+          <div>
+            <div class="row" style="border-bottom: 1px solid black">
+                <div class="col-4" style="border-right: 1px solid black">
+                    <span class="d-block font-weight-bold">Produced by:</span>
+                    <span>
+                      <t t-esc="doc.purchase_order_id.partner_id.name"/>
+                      <t t-esc="doc.purchase_order_id.partner_id.street"/>
+                      <t t-esc="doc.purchase_order_id.partner_id.city"/>
+                      <span> - </span>
+                      <t t-esc="doc.purchase_order_id.partner_id.zip"/>
+                      <span> - </span>
+                      <t t-esc="doc.purchase_order_id.partner_id.state_id.name"/>
+                    </span>
+                    <div class="d-flex mt-2" style="font-size: 8px;">
+                      <div class="pl-1 pr-1" style="width: 60%; border: 1px solid black">
+                          <span class="d-block font-weight-bold">SHIP:</span>
+                          <span>
+                            <t t-esc="doc.fcd_document_line_id.fcd_document_id.ship_id.name"/>
+                            <span> - </span>
+                            <t t-esc="doc.fcd_document_line_id.fcd_document_id.ship_id.license_plate"/>
+                          </span>
+                      </div>
+                      <div class="font-weight-bold" style="width: 40%; border: 1px solid black; border-radius: 50%; margin-left: 5px;">
+                        <span class="d-block w-100 text-center">ES</span>
+                        <span class="d-block w-100 text-center">12021988/PO</span>
+                        <span class="d-block w-100 text-center">CE</span>
+                      </div>
+                    </div>
+                    <div class="row mt-2 row font-weight-bold" style="border-bottom: 1px solid black; border-top: 1px solid black">
+                      <div class="col-12 mt-1 mb-1">
+                        <span class="d-block">PRODUCT: FRESH</span>
+                      </div>
+                    </div>
+                    
+                      <div class="row mt-1 font-weight-bold">
+                        <div class="col-6">
+                          <span>D.EXPIRY</span>
+                        </div>
+                        <div class="col-6 text-right">
+                          <t t-esc="doc.fcd_document_line_id.fcd_document_id.expiration_date" />
+                        </div>
+                      </div>
+                      <div class="row pb-1 font-weight-bold" style="border-bottom: 1px solid black;">
+                        <div class="col-6">
+                          <span>D.PACKING</span>
+                        </div>
+                        <div class="col-6 text-right">
+                          <t t-esc="doc.fcd_document_line_id.fcd_document_id.packaging_date" />
+                        </div>
+                      </div>
+                    
+                    <div class="row mt-1 font-weight-bold" style="font-size: 10px;">
+                        <div class="col-6">
+                          <span>LOT:</span>
+                        </div>
+                        <div class="col-6 text-right">
+                          <t t-esc="doc.fcd_document_line_id.lot_id.name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="row">
+                        <div class="col-12">
+                          <span class="font-weight-bold" style="font-size: 10px">COMERCIAL DESIGNATION:</span>
+                          <span class="d-block font-weight-bold" style="font-size: 11px"><t t-esc="doc.output_product_id.name" /></span>
+                        </div>
+                      </div>
+                      <div class="row" style="border-bottom: 1px solid black">
+                        <div class="col-12 mt-1 mb-1">
+                          <span class="font-weight-bold">SCIENTIFIC NAME:</span> 
+                          <t t-esc="doc.output_product_id.scientific_name" />
+                        </div>
+                      </div>
+                      <div class="row" style="border-bottom: 1px solid black">
+                        <div class="col-12 mt-1 mb-1">
+                          <span class="font-weight-bold">CAPTURE ZONE:</span>
+                          <span class="d-block mb-1">FAO <t t-esc="doc.fcd_document_line_id.fcd_document_id.subzone_id.name"/></span>
+                          <span class="font-weight-bold">METHOD OF PRODUCTION: <t t-esc="doc.fcd_document_line_id.fcd_document_id.production_method_id.name"/></span>
+                        </div>
+                      </div>
+                      <div class="row"> 
+                        <div class="col-6 pt-1" style="border-right: 1px solid black; font-weight: bold;">
+                          <span class="d-block">NET WEIGHT:</span>
+                          <span class="d-block" style="font-size: 32px; font-weight: bold; text-align: right;"><t t-esc="doc.quantity"/><span style="font-size: 12px;">KG</span></span>
+                        </div>
+                        <div class="col-6 pt-1 ">
+                          <div class="mb-1">
+                            <span class="d-block font-weight-bold">COUNTRY OF ORIGIN:</span>
+                            <t t-esc="doc.fcd_document_line_id.fcd_document_id.country_id.name"/>
+                          </div>
+                          <div class="mb-1">
+                            <span class="font-weight-bold">FISHING GEAR: </span>
+                            <t t-esc="doc.fcd_document_line_id.fcd_document_id.fishing_gear_id.name"/>
+                          </div>
+                          <div>
+                            <span class="font-weight-bold">PRESENTATION: </span>
+                            <span style="position: fixed;"><t t-esc="doc.fcd_document_line_id.fcd_document_id.presentation_id.name"/> (<t t-esc="doc.fcd_document_line_id.fcd_document_id.presentation_id.code"/>)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4" style="border-left: 1px solid; border-bottom: 1px solid; height: 150px; display: flex; justify-content: center; align-items: center;">
+                      <!--<img style="width: 135px; height: 135px" src="/report/barcode/?type=QR&amp;width=500&amp;height=500"&amp;value= />-->
+                      <img t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=500&amp;height=500' % (doc.generate_qr())" style="width: 135px; height: 135px"/>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="row" style="border: 1px solid black; font-size: 9px;">
+              <div class="col-4">
+                <span>KEEP FROM 0 TO 2ºC. FRESH PRODUCT</span>
+              </div>
+              <div class="col-4" style="border-left: 1px solid black">
+                <span>Contains Fish, may contain crustaceans and molluscs</span>
+              </div>
+              <div class="col-4" style="border-left: 1px solid black"/>
+            </div>
+          </div>
+          <div>
+            <div class="row" style="height: 65px; border: 1px solid black; border-top: none; border-left: 1px dashed black">
+              <div class="col-12 text-center m-2">
+                <t t-set="barcode" t-value="doc.generate_barcode()"/>
+                <!--<img class="w-100 m-2" t-att-src="'/report/barcode/?type=Code128&amp;value=(01)98432059013505(3102)000400(17)200706(10)0018326992&amp;width=2000&amp;height=40'" style="height: 40px"/>-->
+                <!-- <img class="d-block w-100" t-att-src="'/report/barcode/?type=Code128&amp;value=(01)98432059013505(3102)000400(17)200706(10)0018326992&amp;width=2000&amp;height=40'" style="height: 40px; width: 100%"/> -->
+                <img t-att-src="'/report/barcode/?type=Code128&amp;value=%s&amp;width=2000&amp;height=40' % (barcode)" style="height: 40px; width: 100%"/>
+                <!--<t t-esc="doc.output_product_id.barcode"/>-->
+                <!-- <span class="d-block text-center">(01)98432059013505(3102)000400(17)200706(10)0018326992</span> -->
+                <span class="d-block text-center"><t t-esc="barcode"/></span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </template>
+
+    <template id="report_tag_pdf">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="fcd_weight_scale_mrp.report_tag_document_pdf"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

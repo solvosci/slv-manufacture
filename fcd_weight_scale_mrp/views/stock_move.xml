@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_move_view_inherited" model="ir.ui.view">
+        <field name="name">stock.move.view.inherited</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="groups_id" eval="[(4, ref('fcd.group_fcd_user'))]"/>
+        <field name="arch" type="xml">
+            <field name="move_dest_ids" position="after">
+                <group name="logMoves" string="Weight Scale Log" colspan="2">
+                    <field name="weight_log_ids" string="Logs" nolabel="1" readonly="1">
+                        <tree>
+                            <field name="date"/>
+                            <field name="quantity"/>
+                        </tree>
+                    </field>
+                </group>
+            </field>
+        </field>
+    </record>
+
+</odoo>

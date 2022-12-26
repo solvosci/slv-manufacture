@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fcd_checkpoint_user,fcd.checkpoint,model_fcd_checkpoint,fcd.group_fcd_user,1,0,0,0
+access_fcd_weight_scale_user,fcd.weight.scale,model_fcd_weight_scale,fcd.group_fcd_user,1,0,0,0
+access_fcd_weight_scale_log_user,fcd.weight.scale.log,model_fcd_weight_scale_log,fcd.group_fcd_user,1,0,0,0
+access_fcd_checkpoint,fcd.checkpoint,model_fcd_checkpoint,fcd.group_fcd_manager,1,1,1,1
+access_fcd_weight_scale,fcd.weight.scale,model_fcd_weight_scale,fcd.group_fcd_manager,1,1,1,1
+access_fcd_weight_scale_log,fcd.weight.scale.log,model_fcd_weight_scale_log,fcd.group_fcd_manager,1,1,1,1

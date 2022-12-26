@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+    <record id="fcd_document_line_view_form_inherit" model="ir.ui.view">
+        <field name="name">fcd.document.line.form (fcd_weight_scale_mrp)</field>
+        <field name="model">fcd.document.line</field>
+        <field name="inherit_id" ref="fcd_purchase_order.fcd_document_line_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group" position="after">
+                <group>
+                    <field name="quantity_real_kg" />
+                    <field name="price_real_kg" widget="monetary"/>
+                    <field name="revised_subtotal" />
+                </group>
+            </xpath>
+            <xpath expr="//group[2]" position="after">
+                <group>
+                    <field name="log_ids"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+<!-- 
+    <record id="fcd_document_line_view_form_inherit2" model="ir.ui.view">
+        <field name="name">fcd.document.line.form (fcd_weight_scale_mrp)</field>
+        <field name="model">fcd.document.line</field>
+        <field name="inherit_id" ref="fcd.fcd_document_line_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group>
+                    <field name="log_ids"/>
+                </group>
+            </xpath>
+        </field>
+    </record> -->
+
+    <record id="fcd_document_line_view_tree_inherit" model="ir.ui.view">
+        <field name="name">fcd.document.line.tree (fcd_weight_scale_mrp)</field>
+        <field name="model">fcd.document.line</field>
+        <field name="inherit_id" ref="fcd_purchase_order.fcd_document_line_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='subtotal']" position="before">
+                <field name="quantity_real_kg" />
+                <field name="price_real_kg" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

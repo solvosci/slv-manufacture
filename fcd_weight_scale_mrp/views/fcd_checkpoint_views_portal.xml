@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="chkpoint_weight">
+        <html id="fcd_weight_scale_mrp_portal">
+            <head>
+                <title>Weight Packaging</title>
+                <t t-call-assets="web.assets_backend" />
+                <t t-call-assets="web.assets_common" />
+                <t t-call-assets="web.assets_frontend" />
+                <link rel="stylesheet" href="/fcd_weight_scale_mrp/static/src/css/style.css"></link>
+                <link rel="shortcut icon" type="image/x-icon" href="/fcd_weight_scale_mrp/static/description/icon.png" />
+                <!-- <script src="/fcd_weight_scale_mrp/static/src/js/index.var.js"></script> -->
+                <link rel="stylesheet" type="text/css" href="/fcd_weight_scale_mrp/static/src/css/cp.css"/>
+                <link rel="stylesheet" type="text/css" href="/fcd_weight_scale_mrp/static/src/css/print.min.css"/>
+                <script language="JavaScript" src="/fcd_weight_scale_mrp/static/src/js/jquery-3.3.1.min.js"></script>
+                <!-- <script language="Javascript" src="/fcd_weight_scale_mrp/static/src/js/cp_weight.js"></script> -->
+                <script language="Javascript" src="/fcd_weight_scale_mrp/static/src/js/print.min.js"></script>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            </head>
+            <body>
+                <header>
+                    <div id="translates">
+                        <span id="txt_translate_select_lot">Select a lot</span>
+                        <span id="txt_translate_select_type_box">Type of box</span>
+                        <span id="txt_translate_select_product">Select a product</span>
+                        <span id="txt_translate_select_family">Family</span>
+                        <span id="txt_translate_alert_no_product">None product selected</span>
+                        <span id="txt_translate_alert_no_type_box">None box type selected</span>
+                        <span id="txt_translate_alert_no_lot">None lot selected</span>
+                        <span id="txt_translate_alert_valid_value_fixed_weight_box">Put some valid value at Fixed Weight Box</span>
+                        <span id="txt_translate_alert_tare_greater_weight">Tare value is greater than Weight Value</span>
+                        <span id="txt_translate_alert_connect_scale">Invalid Weight</span>
+                        <span id="txt_translate_contact_administrator">Unexpected error, please contact with administrator</span>
+                        <span id="txt_translate_lot_finished">Lot has been finished</span>
+                    </div>
+                    <nav class="o_main_navbar" style="height: 60px;">
+                        <a class="o_menu_brand" role="button" style="font-size: 30px; padding-top: 5px;">WEIGHT SCALE</a>
+                        <ul class="o_menu_systray">
+                            <li>
+                                <a class="o_user_menu" role="button">
+                                    <span class="oe_topbar_name" t-esc="user_name"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+                <div class="o_content">
+                    <div class="o_form_view o_xxl_form_view o_purchase_order o_form_readonly">
+                        <div class="o_form_sheet_bg">
+                            <div class="clearfix position-relative o_form_sheet">
+                                <div class="o_not_full oe_button_box" id="header2" style="padding-bottom: 10px; margin-top: 0px;">
+                                    <img src="/fcd_weight_scale_mrp/static/src/img/logo.png" class="img" alt="Cigurria" style="height: 75px;"></img>
+                                    <h3 id="chkpName" t-esc="chkpoint.name" t-att-value="chkpoint.id"/>
+                                    <div class="digital-clock">12/12/2012 00:00:00</div>
+                                </div>
+                                <div class="o_group">
+                                    <div class="modal fade" id="areUSure" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h3 class="modal-title" id="areUSureLabel">Are you sure you want to end this LOT: </h3> 
+                                            <h3 id="lotSure"></h3>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button id="no" type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal">No</button>
+                                            <button id="yes" type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Yes</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid" id="container1">
+                                        <div class="row selects">
+                                            <div class="lot col-4">
+                                                <h2>Product Entry:</h2>
+                                            </div>
+                                            <div class="lot col-6">
+                                                <select id="lotSelect" class="form-select" aria-label="Default select example">
+                                                    <option>Select a lot</option>
+                                                </select>
+                                            </div>
+                                            <div class="lot col-2">
+                                                <select id="familySelect" class="form-select" aria-label="Default select example">
+                                                    <option>Family</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row selects">
+                                            <div class="col-4 etiquetando">
+                                                <h2>Packaging:</h2>
+                                            </div>
+                                            <div class="col-4">
+                                                <select id="productSelect" class="form-select" aria-label="Default select example">
+                                                    <option>Select a product</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2">
+                                                <select id="typeBoxSelect" class="form-select" aria-label="Default select example">
+                                                    <option>Type of box</option>
+                                                </select>
+                                            </div>
+                                            <div class="lot col-2">
+                                                <button id="endLot" type="button" class="btn btn-outline-secondary" style="width: 100%; height: 100%; font-size: 18px; font-weight: bold;">Finish Lot</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid" id="container2">
+                                        <div class="row" id="rowTwo">
+                                            <div class="col-5" style="padding-right:3%;">
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col" style="border-top: none; border-bottom: none; width: 21%">Hour</th>
+                                                        <th scope="col" style="border-top: none; border-bottom: none; text-align: center">Product</th>
+                                                        <th scope="col" style="border-top: none; border-bottom: none; width:24%">Weight</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <div class="col-6" id="weightTare">
+                                                <div id="weight_output">
+                                                    <div class="input-group input-group-lg mb-3" id="input_weight">
+                                                        <input id="weight" type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                                                        <span class="input-group-text" id="basic-addon2">KG</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center align-items-center">
+                                                    <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
+                                                    <div class="col-6" id="tareButton" style="margin-left: 0px">
+                                                        <button id="taring" type="button" style="width: 100%;" class="btn btn-outline-secondary">Tare</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid" id="container3">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div id="checkBoxs">
+                                                    <div class="form-check form-switch d-flex checkbox row">
+                                                        <input class="form-check-input" type="checkbox" id="chkboxLabel"/>
+                                                        <label class="form-check-label" for="chkboxLabel"> Unlabeled </label>
+                                                    </div>
+                                                    <div class="form-check form-switch d-flex checkbox row">
+                                                        <input class="form-check-input" type="checkbox" id="chkboxFixed"/>
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault2"> Fixed Weight </label>
+                                                        <div id="fixedPriceValue">
+                                                            <div class="input-group">
+                                                                <input type="number" id="fixedQuantity" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <!-- <button id="scaleEmulator" class="btn btn-primary" type="button">Scale Emulator</button> -->
+                                                <button id="package" type="button" style="width: 100%;">Package</button>
+                                                <!-- <button id="print_tag" type="button" onclick="printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/223')">Print Tag</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </template>
+    <template id="chkpoint_list">
+        <html id="fcd_weight_scale_mrp_list">
+            <head>
+                <title>Checkpoint list</title>
+                <t t-call-assets="web.assets_backend" />
+                <t t-call-assets="web.assets_common" />
+                <t t-call-assets="web.assets_frontend" />
+                <link rel="stylesheet" href="/fcd_weight_scale_mrp/static/src/css/cp.css"></link>
+                <script language="JavaScript" src="/fcd_weight_scale_mrp/static/src/js/jquery-3.3.1.min.js"></script>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            </head>
+            <body>
+                <header>
+                    <nav class="o_main_navbar">
+                        <a class="o_menu_brand" role="button">CHECKPOINT LIST</a>
+                        <ul class="o_menu_systray">
+                            <li>
+                                <a class="o_user_menu" role="button">
+                                    <span class="oe_topbar_name" t-esc="user_name"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+                <div class="o_content">
+                    <div class="o_form_view o_xxl_form_view o_purchase_order o_form_readonly">
+                        <div class="o_form_sheet_bg">
+                            <div class="clearfix position-relative o_form_sheet">
+                                <div class="o_not_full oe_button_box" id="header2">
+                                    <h3 id="chkpName" class="p-4 text-center">Checkpoint list</h3>
+                                </div>
+                                <div class="o_group">
+                                    <div class="list-group" style="flex-wrap: wrap; justify-content: center; flex-direction: row;">
+                                        <t t-foreach="chkpoints" t-as="chkpoint">
+                                            <a class="list-group-item list-group-item-action" t-attf-href="/fcd_weight_scale_mrp/{{chkpoint.id}}" style="border-top: 1px solid rgba(0,0,0,.125); font-size: 15px; padding: 13px; width: 30% !important; margin: 5px; height: 70px; display: flex; justify-content: center; align-items: center;">
+                                                <t t-esc="chkpoint.name"></t>
+                                            </a>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </template>
+</odoo>
