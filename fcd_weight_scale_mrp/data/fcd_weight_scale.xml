@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="defaultScale" model="fcd.weight.scale">
+            <field name="name">Scale for development</field>
+            <field name="tcp_address_ip">127.0.0.1</field>
+            <field name="tcp_address_port">1001</field>
+            <field name="timeout_secs">0</field>
+            <field name="scale_protocol">$</field>
+        </record>
+    </data>
+</odoo>

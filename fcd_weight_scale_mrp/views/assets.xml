@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="fcd_weight_scale_mrp_frontend" name="FCD Weight Scale MRP" inherit_id="web.assets_frontend">
+        <xpath expr=".">
+            <script 
+                type="application/javascript"
+                src="/fcd_weight_scale_mrp/static/src/js/index.var.js"
+            />
+            <script
+                type="application/javascript"
+                src="/fcd_weight_scale_mrp/static/src/js/cp_weight.js"
+            />
+        </xpath>
+    </template>
+</odoo>

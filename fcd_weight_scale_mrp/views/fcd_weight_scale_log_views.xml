@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="fcd_weight_scale_log_view_search" model="ir.ui.view">
+        <field name="name">fcd.weight.scale.log.view.search</field>
+        <field name="model">fcd.weight.scale.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="input_product_id" />
+                <field name="output_product_id" />
+                <separator />
+                <filter string="Today" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]" name="Date Today" />
+                <separator />
+                <group expand="1" string="Group By">
+                    <filter string="Purchase Order" name="purchase_order_id" context="{'group_by':'purchase_order_id'}" />
+                    <filter string="Document Line" name="fcd_document_line_id" context="{'group_by':'fcd_document_line_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="fcd_weight_scale_log_view_tree" model="ir.ui.view">
+        <field name="name">fcd.weight.scale.log.view.tree</field>
+        <field name="model">fcd.weight.scale.log</field>
+        <field name="arch" type="xml">
+            <tree string="Weight scale logs">
+                <field name="input_product_id" />
+                <field name="output_product_id" />
+                <field name="stock_move_id" />
+                <field name="purchase_order_id" />
+                <field name="weight_quantity" />
+                <field name="quantity" />
+                <field name="date" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fcd_weight_scale_log_view_form" model="ir.ui.view">
+        <field name="name">fcd.weight.scale.log.view.form</field>
+        <field name="model">fcd.weight.scale.log</field>
+        <field name="arch" type="xml">
+            <form string="Weight scale logs">
+                <sheet>
+                    <group>
+                        <field name="input_product_id" />
+                        <field name="output_product_id" />
+                        <field name="fcd_document_line_id" />
+                    </group>
+                    <group>
+                        <field name="stock_move_id" 
+                               context="{'fcd_weight_scale_mrp': True}"
+                               domain="[
+                                    ('fcd_document_line_id', '!=', False),
+                                    ('fcd_lot_finished', '=', False)
+                               ]"
+                        />
+                        <field name="purchase_order_id" />
+                        <field name="production_id" />
+                    </group>
+                    <group>
+                        <field name="weight_quantity" />
+                        <field name="quantity" />
+                        <field name="date" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

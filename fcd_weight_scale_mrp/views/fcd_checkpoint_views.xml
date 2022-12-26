@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+  <record id="fcd_checkpoint_tree" model="ir.ui.view">
+    <field name="name">fcd.checkpoint.tree</field>
+    <field name="model">fcd.checkpoint</field>
+    <field name="arch" type="xml">
+        <tree string="Checkpoints">
+            <field name="name" />
+            <field name="scale_id" />
+            <field name="allowed_ip" />
+            <field name="warehouse_id" />
+        </tree>
+    </field>
+  </record>
+
+  <record id="fcd_checkpoint_form" model="ir.ui.view">
+    <field name="name">fcd.checkpoint.form</field>
+    <field name="model">fcd.checkpoint</field>
+    <field name="arch" type="xml">
+      <form string="Check">
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="scale_id" />
+            <field name="allowed_ip" />
+            <field name="warehouse_id" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

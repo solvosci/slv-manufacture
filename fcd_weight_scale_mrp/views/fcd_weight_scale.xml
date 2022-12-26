@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+  <record id="fcd_weight_scale_tree" model="ir.ui.view">
+      <field name="name">fcd.weight.scale.tree</field>
+      <field name="model">fcd.weight.scale</field>
+      <field name="arch" type="xml">
+          <tree string="Scales">
+              <field name="name"/>
+              <field name="tcp_address_ip"/>
+              <field name="tcp_address_port"/>
+              <field name="timeout_secs"/>
+              <field name="active"/>
+          </tree>
+      </field>
+  </record>
+
+  <record id="fcd_weight_scale_form" model="ir.ui.view">
+    <field name="name">fcd.weight.scale.form</field>
+    <field name="model">fcd.weight.scale</field>
+    <field name="arch" type="xml">
+      <form string="Scale">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="tcp_address_ip"/>
+            <field name="tcp_address_port"/>
+            <field name="timeout_secs"/>
+            <field name="scale_protocol"/>
+            <field name="weight_uom_id"/>
+            <field name="active"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

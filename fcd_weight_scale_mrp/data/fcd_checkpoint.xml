@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="defaultCheckpoint" model="fcd.checkpoint">
+            <field name="name">Checkpoint for development</field>
+            <field name="allowed_ip">127.0.0.1</field>
+            <field name="scale_id" ref="defaultScale"/>
+        </record>
+    </data>
+</odoo>

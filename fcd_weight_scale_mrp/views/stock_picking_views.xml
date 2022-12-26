@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_picking_view_inherit_form" model="ir.ui.view"> 
+        <field name="name">stock.picking.form (FCD Weight Scale Mrp)</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/button[@name='action_assign_serial']" position="after">
+                <field name="purchase_line_id" invisible="1" />
+                <button
+                    name="action_complete_stock_move_line"
+                    icon="fa-gears"
+                    class="p-0"
+                    attrs="{'invisible': ['|', ('state', '=', 'done'), ('purchase_line_id', '=', False)]}"
+                    type="object"
+                    title="Autocomplete"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

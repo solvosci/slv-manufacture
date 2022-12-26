@@ -1,0 +1,275 @@
+body{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Chrome etc */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+#container1{
+
+}
+#container2{
+
+}
+#container3{
+
+}
+#jaja{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+#etiquetando{
+
+    display:flex;  
+    justify-content: flex-start;
+}
+#lot{
+    display:flex;  
+    justify-content: flex-end;
+}
+#weight_output{
+    display: flex;
+    justify-content: center;
+}
+#btn{
+    font-size: 1.5em;
+   
+}
+.selects{
+    display: flex;
+}
+#weight{
+    height: 100px;
+    font-size: 7em;
+    text-align: right;
+}
+#tareOutput{
+    font-size: 2.3em;
+}
+
+#container3 > div{
+    height: 140px;
+}
+
+#basic-addon2{
+    font-size: 4em;
+}
+#weight_output{
+    display: flex;
+    justify-content: center;
+}
+#tareButton{
+    display: flex;
+    justify-content: center;
+    margin-left: 30px;
+    font-size: 1.4em;
+    height: 60px;
+}
+#weightTare{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#lotSure{
+    font-weight: bold;
+    color: red;
+}
+#areUSure > div > div > div.modal-header{
+    flex-direction: column;
+}
+table{
+    table-layout: fixed;
+}
+table tr > td.overflowTd {
+    text-align: center;
+}
+table thead tr > th:nth-child(3) {
+    text-align: center;
+}
+table tbody tr > td:nth-child(3){
+    text-align: center;
+}
+.overflowTd{
+    white-space: nowrap;
+    overflow: hidden;
+}
+#tareOutput{
+    text-align: center;
+}
+#rowTwo{
+    align-items: flex-start;
+    justify-content: center;
+}
+body > div > div > div > div{
+    height: 89%;
+}
+#checkBoxs > div:nth-child(2){
+    flex-wrap: nowrap;
+}
+#checkBoxs{
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    font-size: 2em;
+}
+#fixedWeight{
+    align-items: center;
+}
+.checkbox input{
+    margin-right: 20px;
+}
+.checkbox{
+    align-items: center;
+}
+#fixedPriceValue{
+    text-align: center;
+    width: 60%;
+}
+
+
+/* CLOCK */
+.digital-clock {
+    text-align: center;
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#header2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#chkpName{
+    font-size: 2.4em;
+    font-family: sans-serif;
+}
+.form-select{
+    font-size: 1.5em !important;
+}
+#container1{
+    margin-bottom: 50px;
+}
+#container2{
+    margin-bottom: 36px;
+}
+#fixedPriceValue input{
+    font-size: 20px;
+}
+#checkBoxs > div:nth-child(2) > label{
+    width: unset;
+}
+
+#package{
+    height: 100%;
+    width: 100%;
+    font-size: 6em;
+    background-color: #7C7BAD;
+    border-color: #7C7BAD;
+    color: white;
+    border-radius: 4px;
+    border-style: none;
+}
+#package:active{
+    box-shadow: 0 0 0 0.2rem rgb(144 143 185 / 50%);
+}
+#package:hover{
+    background-color: #5f5e97;
+    border-color: #5a598f;
+}
+#taring, #endLot{
+    font-size: 2em;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+#taring:hover, #endLot:hover{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    color: rgb(108, 117, 125);
+}
+#taring:active, #endLot:active{
+    background-color: #6c757d ;
+    border-color: #6c757d;
+    transform: translateY(3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+#yes{
+    font-size: 25px;
+    margin-left: 30px;
+    width: 70px;
+}
+#no{
+    font-size: 25px;
+    width: 70px;
+}
+#tareValue{
+    font-weight: bold;
+}
+.selects{
+    margin-bottom: 12px;
+}
+#alerts{
+    flex-direction: column;
+    z-index: 1;
+}
+#translates{
+    display: none;
+}
+.toast-header{
+    background-color: #e59ea4 !important;
+    color: red !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+.toast-body{
+    color: #842029 !important;
+    font-size: 1.2em;
+}
+svg{
+    margin-right: 20px;
+    color: red;
+}
+.toast{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* Select de los lotes cambiar color segun si el movimiento tiene una cantidad pendiente menor o igual a 0 */
+.lot_pending_warning > option{
+    background-color: rgb(255, 255, 255);
+}
+.lot_pending_warning{
+    background-color: rgb(236, 156, 156) !important;
+}
+.lot_pending_warning:hover{
+    background-color: rgb(236, 156, 156) !important;
+}
+
+
+/* #taring:active{
+    
+    border-color: #6c757d;
+    transform: translateY(3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+    color: #fff;
+    background-color: #6c757d;
+    border-color: rgb(108, 117, 125);
+} */

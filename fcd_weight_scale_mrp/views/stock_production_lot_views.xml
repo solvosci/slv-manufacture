@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_production_lot_view_inherit_form" model="ir.ui.view">
+        <field name="name">stock.production.lot.form (FCD Weight Scale Mrp)</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="fcd_purchase_order.stock_production_lot_view_inherit_form" />
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='ref']" position="before">
+                <field name="secondary_uom_ids">
+                    <tree>
+                        <field name="secondary_uom_id" />
+                        <field name="secondary_uom_qty" />
+                    </tree>
+                </field>
+            </xpath> -->
+            <xpath expr="//field[@name='fcd_document_line_id']" position="after">
+                <field name="fcd_origin_lot_id" attrs="{'invisible': [('fcd_document_line_id', '!=', False)]}" />
+                <field name="fcd_relation_lot_ids" attrs="{'invisible': [('fcd_document_line_id', '=', False)]}">
+                    <tree>
+                        <field name="name"></field>
+                        <field name="product_id"></field>
+                        <field name="product_qty"></field>
+                    </tree>
+                </field>
+            </xpath>
+            <xpath expr="//field[@name='fcd_document_line_box_count']" position="after">
+                <field name="fcd_document_line_quantity_real_kg" />
+                <field name="fcd_document_line_price_real_kg" />
+                <field name="fcd_document_line_revised_subtotal" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

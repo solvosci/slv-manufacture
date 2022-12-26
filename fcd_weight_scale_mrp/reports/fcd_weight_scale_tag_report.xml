@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_cigurria_tag" model="report.paperformat">
+        <field name="name">Cigurria Tag</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">70</field>
+        <field name="page_width">160</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        id="action_report_tag_pdf"
+        model="fcd.weight.scale.log"
+        string="Tag Weight Scale"
+        name="fcd_weight_scale_mrp.report_tag_pdf"
+        file="fcd_weight_scale_mrp.report_tag_pdf"
+        report_type="qweb-pdf"
+        paperformat="fcd_weight_scale_mrp.paperformat_cigurria_tag"
+        attachment_use="False"
+    />
+
+</odoo>
