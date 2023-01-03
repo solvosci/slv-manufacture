@@ -15,7 +15,10 @@ class ProductTemplate(models.Model):
 
     def _compute_production_secondary_uom_id(self):
         for record in self:
-            record.production_secondary_uom_id = record.secondary_uom_ids.filtered(lambda x: x.factor == 0)
+            if record.secondary_uom_ids.filtered(lambda x: x.factor == 0):
+                record.production_secondary_uom_id = record.secondary_uom_ids.filtered(lambda x: x.factor == 0)[0]
+            else:
+                record.production_secondary_uom_id = False
 
 
 class ProductProduct(models.Model):
