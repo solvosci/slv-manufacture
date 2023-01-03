@@ -163,6 +163,25 @@ msgid "CHECKPOINT LIST"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#, python-format
+msgid "Cannot create another secondary unit of measure with factor 0.00 !"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#, python-format
+msgid "Cannot delete secondary unit of measure with factor 0.00 !"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#, python-format
+msgid "Cannot edit secondary unit of measure with factor 0.00 !"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_checkpoint_form
 msgid "Check"
 msgstr ""
