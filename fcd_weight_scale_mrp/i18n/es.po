@@ -822,3 +822,18 @@ msgstr "Confirmar y validar"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template__production_secondary_uom_id
 msgid "Second unit for production"
 msgstr "Segunda unidad de medida para fabricación"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid "Login failed, please contact support."
+msgstr "No se ha iniciado sesión correctamente, contacte con soporte técnico."
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid "Click here"
+msgstr "Pulse aquí"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid "to login."
+msgstr "para iniciar sesión."

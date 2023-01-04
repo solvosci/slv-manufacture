@@ -20,11 +20,12 @@ class WeightScaleCheckPoint(http.Controller):
         return remote_ip
 
     def _get_cp_user_and_lang_context(self, request):
+        user_id = request.env['res.users'].sudo().browse(http.request.env.context.get('uid'))
         cp_user = request.env.ref('fcd_weight_scale_mrp.res_user_fcd_checkpoint_user')
         context = request.env.context.copy()
         context.update({'lang': cp_user.sudo().lang})
         request.env.context = context
-        return cp_user
+        return cp_user, user_id
 
     def get_error_page(self, data):
         data['title'] = 'ERROR - WEIGHT SCALE'
@@ -34,19 +35,22 @@ class WeightScaleCheckPoint(http.Controller):
     @http.route('/fcd_weight_scale_mrp/list/', type='http', auth='none')
     def fcd_weight_scale_mrp_list(self, **kwargs):
         try:
-            cp_user = self._get_cp_user_and_lang_context(request)
+            cp_user, user_id = self._get_cp_user_and_lang_context(request)
             chkpoints = request.env['fcd.checkpoint'].with_user(cp_user).search([], order='name')
 
             return request.render(
                 'fcd_weight_scale_mrp.chkpoint_list',
-                {'chkpoints': chkpoints})
+                {
+                    'chkpoints': chkpoints,
+                    'user_id': user_id,
+                })
         except Exception as e:
             return self.get_error_page({
                 'error_message': e})
 
     @http.route("/fcd_weight_scale_mrp/lotactive", type='json', auth='none')
     def fcd_weight_scale_mrp_lotactive(self, **kwargs):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         chkpoint_id = request.env['fcd.checkpoint'].with_user(cp_user).browse(int(vals["checkpoint_id"]))
         purchase_order_ids = request.env['purchase.order'].with_user(cp_user).search([])
@@ -76,7 +80,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/productget", type='json', auth='none')
     def fcd_weight_scale_mrp_getproduct(self, **kwargs):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         products_return = []
         product_ids = request.env['product.product'].sudo().search([('official_commercial_name', '=', vals['jsonSend']['family_id'])])
@@ -90,7 +94,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/familyget", type='json', auth='none')
     def fcd_weight_scale_mrp_getfamily(self, **kwargs):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         products_return = []
         family_product = sorted(set(list(request.env['product.product'].sudo().search([("official_commercial_name", "!=", False)], order="official_commercial_name").mapped("official_commercial_name"))))
@@ -100,7 +104,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/boxtypeget", type='json', auth='none')
     def fcd_weight_scale_mrp_getboxtype(self, **kwargs):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         type_box_return = []
         product_ids = request.env['product.product'].sudo().browse(int(vals['jsonSend']['product_id']))
@@ -113,7 +117,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/getWeight", type='json', auth='none')
     def fcd_weight_scale_mrp_getWeight(self):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         data = dict(request.jsonrequest)
         createdJson = {}
         LotEnv = request.env['fcd.checkpoint']
@@ -128,12 +132,12 @@ class WeightScaleCheckPoint(http.Controller):
         except:
             createdJson = {}
             createdJson['error'] = "Scale not connected"
-            
+
         return createdJson
 
     @http.route("/fcd_weight_scale_mrp/packaging", type='json', auth='none')
     def fcd_weight_scale_mrp_create_records(self):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         try:
             #Create Log Modificar el vals dependiendo de si ya hay o no un movimiento del mismo producto
@@ -157,7 +161,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/endLot", type='json', auth='none')
     def fcd_weight_scale_mrp_end_lot(self):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         vals = dict(request.jsonrequest)
         if vals['stock_move_id']:
             move_id = request.env['stock.move'].with_user(cp_user).browse(int(vals['stock_move_id']))
@@ -171,7 +175,7 @@ class WeightScaleCheckPoint(http.Controller):
     @http.route("/fcd_weight_scale_mrp/<int:chkpoint_id>", type='http', auth='none')
     def fcd_weight_scale_mrp_scale_view(self, chkpoint_id, **kwargs):
         try:
-            cp_user = self._get_cp_user_and_lang_context(request)
+            cp_user, user_id = self._get_cp_user_and_lang_context(request)
             chkpoint_id = request.env['fcd.checkpoint'].with_user(cp_user).browse(chkpoint_id)
             client_ip = self._get_client_ip()
             # self._check_client(checkpoint=chkpoint_id, client_ip=client_ip)
@@ -179,6 +183,7 @@ class WeightScaleCheckPoint(http.Controller):
             return request.render(
                 'fcd_weight_scale_mrp.chkpoint_weight',
                 {'chkpoint': chkpoint_id,
+                 'user_id': user_id,
                  'client_ip': client_ip,
                  })
         except Exception as e:
@@ -191,7 +196,7 @@ class WeightScaleCheckPoint(http.Controller):
 
     @http.route("/fcd_weight_scale_mrp/scaleEmulator", type='http', auth="user", website=False)
     def scale_emulator(self):
-        cp_user = self._get_cp_user_and_lang_context(request)
+        cp_user, user_id = self._get_cp_user_and_lang_context(request)
         weight_byte = ""
         port = 1001
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
