@@ -35,22 +35,25 @@
                         <span id="txt_translate_lot_finished">Lot has been finished</span>
                     </div>
                     <nav class="o_main_navbar" style="height: 60px;">
-                        <a class="o_menu_brand" role="button" style="font-size: 30px; padding-top: 5px;">WEIGHT SCALE</a>
-                        <ul class="o_menu_systray">
-                            <li>
-                                <a class="o_user_menu" role="button">
-                                    <span class="oe_topbar_name" t-esc="user_name"></span>
+                        <a class="o_menu_brand" role="button" style="font-size: 30px; padding-top: 6px; height: 100%;">WEIGHT SCALE</a>
+                        <ul t-if="user_id" class="o_menu_systray h-100">
+                            <li class="h-100">
+                                <a class="o_user_menu pt-2 h-100" role="button" style="font-size: 16px;">
+                                    <span class="oe_topbar_name" id="user_id" t-esc="user_id.name"/>
                                 </a>
                             </li>
                         </ul>
                     </nav>
                 </header>
+                <div t-if="not user_id" class="alert alert-danger" role="alert">
+                    Login failed, please contact support. <a href="/web/login" target="_blank" class="alert-link">Click here</a> to login.
+                </div>
                 <div class="o_content">
                     <div class="o_form_view o_xxl_form_view o_purchase_order o_form_readonly">
                         <div class="o_form_sheet_bg">
-                            <div class="clearfix position-relative o_form_sheet">
+                            <div id="sheet_container" class="clearfix position-relative o_form_sheet">
                                 <div class="o_not_full oe_button_box" id="header2" style="padding-bottom: 10px; margin-top: 0px;">
-                                    <img src="/fcd_weight_scale_mrp/static/src/img/logo.png" class="img" alt="Cigurria" style="height: 75px;"></img>
+                                    <img src="/fcd_weight_scale_mrp/static/src/img/logo.png" class="img" id="cigurria_img" alt="Cigurria" style="height: 75px;"></img>
                                     <h3 id="chkpName" t-esc="chkpoint.name" t-att-value="chkpoint.id"/>
                                     <div class="digital-clock">12/12/2012 00:00:00</div>
                                 </div>
@@ -59,7 +62,7 @@
                                         <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                            <h3 class="modal-title" id="areUSureLabel">Are you sure you want to end this LOT: </h3> 
+                                            <h3 class="modal-title" id="areUSureLabel">Are you sure you want to end this LOT: </h3>
                                             <h3 id="lotSure"></h3>
                                             </div>
                                             <div class="modal-footer">
@@ -100,13 +103,13 @@
                                                 </select>
                                             </div>
                                             <div class="lot col-2">
-                                                <button id="endLot" type="button" class="btn btn-outline-secondary" style="width: 100%; height: 100%; font-size: 18px; font-weight: bold;">Finish Lot</button>
+                                                <button id="endLot" type="button" class="btn btn-outline-secondary" style="width: 100%; height: 100%; font-size: 18px; font-weight: bold;" >Finish Lot</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="container-fluid" id="container2">
                                         <div class="row" id="rowTwo">
-                                            <div class="col-5" style="padding-right:3%;">
+                                            <div class="col-5" id="weight_historic" style="padding-right:3%;">
                                                 <table class="table">
                                                     <thead>
                                                       <tr>
@@ -140,18 +143,18 @@
                                             <div class="col-6">
                                                 <div id="checkBoxs">
                                                     <div class="form-check form-switch d-flex checkbox row">
-                                                        <input class="form-check-input" type="checkbox" id="chkboxLabel"/>
+                                                        <input class="form-check-input" type="checkbox" id="chkboxLabel" />
                                                         <label class="form-check-label" for="chkboxLabel"> Unlabeled </label>
                                                     </div>
                                                     <div class="form-check form-switch d-flex checkbox row">
-                                                        <input class="form-check-input" type="checkbox" id="chkboxFixed"/>
+                                                        <input class="form-check-input" type="checkbox" id="chkboxFixed" />
                                                         <label class="form-check-label" for="flexSwitchCheckDefault2"> Fixed Weight </label>
                                                         <div id="fixedPriceValue">
                                                             <div class="input-group">
-                                                                <input type="number" id="fixedQuantity" class="form-control"/>
+                                                                <input type="number" id="fixedQuantity" class="form-control" />
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>

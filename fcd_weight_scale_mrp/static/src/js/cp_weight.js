@@ -7,6 +7,24 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
     $('#fcd_weight_scale_mrp_portal').ready(function() {
         if ($("#chkpName").text() != "") {
 
+            // Check User Loggin
+            var user_id = document.getElementById('user_id')
+            if (user_id === null){
+                console.log('USER NOT LOGGED')
+                $('button').attr("disabled", "true");
+                $('input').attr("disabled", "true");
+                $('select').attr("disabled", "true");
+                $('select').css("color", "#9FA4AA");
+                $('#sheet_container').css('background-color', '#E9ECEF');
+                $('#sheet_container').css('color', '#9FA4AA');
+                $('#cigurria_img').css('opacity', '0');
+                $('#package').css('background-color', '#E9ECEF');
+                $('#package').css('color', '#9FA4AA');
+                $('#weight_historic').css('opacity', '0');
+            } else {
+                console.log(user_id.textContent);
+            }
+
             function asyncFunc(log) {
                 return new Promise((resolve, reject) => {
                     // printJS(('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log) => {
@@ -19,8 +37,6 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     // printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log, {
                     //     onLoadingEnd: done_resolve
                     // });
-
-
 
                     printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log)
                     setTimeout(() =>
@@ -184,7 +200,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 var jsonSend = {
                     "stock_move_id": $("#lotSelect").val().split("/")[0],
                 }
-                jsonSend = JSON.stringify(jsonSend)          
+                jsonSend = JSON.stringify(jsonSend)
                 $.ajax({
                     url: '/fcd_weight_scale_mrp/endLot',
                     type: 'POST',
@@ -414,7 +430,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                         $("#productSelect").append('<option>' + defaultSelect + '</option>');
                     }else{
                         product_get();
-                        old_product = $("#lotSelect option:selected").val().split("/")[1]; 
+                        old_product = $("#lotSelect option:selected").val().split("/")[1];
                         $("#productSelect option[value='" + old_product + "']").attr("selected", true);
                     }
                 }
