@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_tree_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.tree (in stock_valuation_mrp)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="product_qty" position="attributes">
+                <attribute name="digits">[12,3]</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form (in stock_valuation_mrp)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_qty" position="attributes">
+                <attribute name="digits">[12,3]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
