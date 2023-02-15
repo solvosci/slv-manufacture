@@ -7,6 +7,23 @@ from odoo import fields, models, api
 class StockValuationLayer(models.Model):
     _inherit = "stock.valuation.layer"
 
+    origin_type = fields.Selection(
+        selection_add=[
+            ("mrp", "Production"),
+            ("unbuild", "Unbuild"),
+        ],
+        help="""
+        Possible types:
+        - purchase - comes from a purchase or purchase return
+        - sale - comes from a sale or sale return
+        - internal - internal transfer
+        - adjustment - Inventory adjustment
+        - scrap - Scrap
+        - mrp - comes from a production
+        - unbuild - comes from an unbuild
+        """,
+    )
+
     @api.model
     def create(self, vals):
         PHAP_sudo = self.env["product.history.average.price"].sudo()
@@ -125,3 +142,14 @@ class StockValuationLayer(models.Model):
                 vals["history_average_price_id"] = self.product_history_link(vals.get("product_id"), vals.get("warehouse_id"), vals.get("average_price"), vals.get("quantity"), vals.get("value"), vals.get("accumulated"), history_today, date)
 
         return super(StockValuationLayer, self).create(vals)
+
+    def _compute_origin_type(self):
+        super()._compute_origin_type()
+        for svl in self.filtered(lambda x: not x.origin_type):
+            origin_type = False
+            sm = svl.stock_move_id
+            if sm.raw_material_production_id or sm.production_id:
+                origin_type = "mrp"
+            elif sm.unbuild_id:
+                origin_type = "unbuild"
+            svl.origin_type = origin_type
