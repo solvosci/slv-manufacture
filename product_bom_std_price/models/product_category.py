@@ -7,7 +7,6 @@ from odoo import api, models
 class ProductCategory(models.Model):
     _inherit = "product.category"
 
-    @api.multi
     def write(self, values):
         """
         When a product cost method becomes standard, the average price must be

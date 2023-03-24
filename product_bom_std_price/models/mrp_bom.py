@@ -9,12 +9,11 @@ class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
     @api.model
-    def create(self, values):
-        res = super(MrpBom, self).create(values)
+    def create(self, vals_list):
+        res = super(MrpBom, self).create(vals_list)
         res.update_product_standard_price()
         return res
 
-    @api.multi
     def write(self, values):
         """
         Some changes in BoM or BoM lines should alter product standard price
@@ -29,14 +28,12 @@ class MrpBom(models.Model):
             self.product_tmpl_id.bom_ids.update_product_standard_price()
         return res
 
-    @api.multi
     def unlink(self):
         product_tmpls = self.mapped("product_tmpl_id")
         res = super(MrpBom, self).unlink()
         product_tmpls.bom_ids.update_product_standard_price()
         return res
 
-    @api.multi
     def update_product_standard_price(self):
         """
         Updates standard_price for the products involved in this BoMs
