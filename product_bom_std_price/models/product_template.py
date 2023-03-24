@@ -7,7 +7,6 @@ from odoo import api, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.multi
     def write(self, values):
         """
         When a product becomes standard, average price should be recalculated

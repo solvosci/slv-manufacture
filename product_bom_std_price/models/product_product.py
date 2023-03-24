@@ -13,7 +13,6 @@ class ProductProduct(models.Model):
         string="BoMs that have this product in a BoM line",
     )
 
-    @api.multi
     def write(self, values):
         """
         When standard_price changes for a product, we look for those BoMs
@@ -31,7 +30,6 @@ class ProductProduct(models.Model):
 
         return res
         
-    @api.multi
     def _compute_component_bom_ids(self):
         obj_bomlines = self.env["mrp.bom.line"]
         # TODO search_read for better performance
