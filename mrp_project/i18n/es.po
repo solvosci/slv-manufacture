@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_project
+# 	* mrp_project
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 17:57+0000\n"
-"PO-Revision-Date: 2022-11-28 17:57+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-03-24 17:44+0000\n"
+"PO-Revision-Date: 2023-03-24 17:44+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,74 +16,80 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_project
-#: model:ir.ui.view,arch_db:mrp_project.project_project_inherited_form
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_project_inherited_form
 msgid "<span class=\"o_stat_text\">Manufactures</span>"
 msgstr "<span class=\"o_stat_text\">Fabricaciones</span>"
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_project_project_manufacture_ids
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__manufacture_ids
 msgid "Manufacture"
 msgstr "Fabricación"
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_project_project_manufacture_order_count
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__manufacture_order_count
 msgid "Manufacture Order Count"
 msgstr "Recuento de Pedidos de Fabricación"
 
 #. module: mrp_project
-#: model:ir.ui.view,arch_db:mrp_project.project_project_inherited_form
+#: model_terms:ir.ui.view,arch_db:mrp_project.project_project_inherited_form
 msgid "Manufactures"
 msgstr "Fabricaciones"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_mrp_production
-msgid "Manufacturing Order"
-msgstr "Orden de fabricación"
+msgid "Production Order"
+msgstr "Orden de producción"
 
 #. module: mrp_project
-#: model:ir.ui.view,arch_db:mrp_project.mrp_production_tree
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_tree
 msgid "Proj. Seq."
 msgstr "Sec. Proy."
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_project_id
-#: model:ir.ui.view,arch_db:mrp_project.mrp_production_search
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__project_id
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_search
 msgid "Project"
 msgstr "Proyecto"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/project_project.py:22
+#: code:addons/mrp_project/models/project_project.py:0
 #, python-format
 msgid "Related Manufactures"
 msgstr "Fabricaciones relacionadas"
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production_project_sequence
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__project_sequence
 msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:18
+#: code:addons/mrp_project/models/mrp_production.py:0
 #, python-format
-msgid "Sequence code is mandatory.\n"
+msgid ""
+"Sequence code is mandatory.\n"
 "Please write a code greater than 0"
-msgstr "El código de secuencia es obligatorio.\n"
+msgstr ""
+"El código de secuencia es obligatorio.\n"
 "Por favor, escriba un código superior a 0"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:23
+#: code:addons/mrp_project/models/mrp_production.py:0
 #, python-format
-msgid "The manufacture order with same project sequence already exists in the project"
-msgstr "La orden de fabricación con la misma secuencia de proyecto existe actualmente para el proyecto seleccionado"
+msgid ""
+"The manufacture order with same project sequence already exists in the "
+"project"
+msgstr ""
+"La orden de fabricación con la misma secuencia de proyecto existe "
+"actualmente para el proyecto seleccionado"
 
 #. module: mrp_project
-#: model:ir.ui.view,arch_db:mrp_project.mrp_production_search
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_search
 msgid "With Project"
 msgstr "Con Proyecto"
 
 #. module: mrp_project
-#: model:ir.ui.view,arch_db:mrp_project.mrp_production_search
+#: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_search
 msgid "Without Project"
 msgstr "Sin Proyecto"
 

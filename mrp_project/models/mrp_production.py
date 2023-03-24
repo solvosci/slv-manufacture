@@ -16,9 +16,9 @@ class ManufactureOrder(models.Model):
         if not self.project_id:
             self.project_sequence = 0
 
-    @api.one
     @api.constrains("project_id", "project_sequence")
     def _check_project_values(self):
+        self.ensure_one()
         if self.project_id and self.project_sequence <= 0:
             raise ValidationError(_('Sequence code is mandatory.\nPlease write a code greater than 0'))
         if self.project_id.manufacture_ids.filtered(

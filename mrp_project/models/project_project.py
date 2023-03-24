@@ -9,12 +9,10 @@ class ProjectProject(models.Model):
     manufacture_ids = fields.One2many('mrp.production', 'project_id')
     manufacture_order_count = fields.Integer(compute='_compute_manufacture_order_count')
 
-    @api.multi
     def _compute_manufacture_order_count(self):
         for record in self:
             record.manufacture_order_count = len(record.manufacture_ids)
 
-    @api.multi
     def binded_productions(self):
         self.ensure_one()
         domain = [('project_id', '=', self.id)]
