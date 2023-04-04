@@ -1,7 +1,9 @@
 # © 2022 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from datetime import timedelta
+
 
 class FCDWeightScaleLog(models.Model):
     _name = 'fcd.weight.scale.log'
@@ -10,16 +12,28 @@ class FCDWeightScaleLog(models.Model):
     name = fields.Char(compute="_compute_name" , store=True)
     date = fields.Datetime()
     weight_quantity = fields.Float()
-    quantity = fields.Float()
+    quantity = fields.Float(digits="Product Unit of Measure")
     checkpoint_id = fields.Many2one('fcd.checkpoint')
     input_product_id = fields.Many2one('product.product')
     output_product_id = fields.Many2one('product.product')
     stock_move_id = fields.Many2one('stock.move')
     production_id = fields.Many2one('mrp.production')
     secondary_uom_id = fields.Many2one('product.secondary.unit')
+    purchase_order_line_id = fields.Many2one('purchase.order.line', related='stock_move_id.purchase_line_id', store=True)
     purchase_order_id = fields.Many2one('purchase.order', related='stock_move_id.purchase_line_id.order_id', store=True)
+    produced_partner_id = fields.Many2one('res.partner', related="purchase_order_id.picking_type_id.warehouse_id.partner_id")
     fcd_document_line_id = fields.Many2one('fcd.document.line', related='stock_move_id.fcd_document_line_id', store=True)
+    packaging_date = fields.Date()
+    expiration_date = fields.Date(compute="_compute_expiration_date", store=True)
 
+
+    @api.depends("packaging_date")
+    def _compute_expiration_date(self):
+        for record in self:
+            if record.output_product_id.fcd_expiration_days:
+                record.expiration_date = (record.packaging_date + timedelta(days=record.output_product_id.fcd_expiration_days)).strftime('%Y-%m-%d')
+            else:
+                record.expiration_date = False
 
     @api.depends("purchase_order_id.name", "input_product_id.name")
     def _compute_name(self):
@@ -171,38 +185,34 @@ class FCDWeightScaleLog(models.Model):
         })
 
     def generate_qr(self):
-        qr_code="EmpresaNombre: %s%%0AEmpresaDireccion: %s%%0AEmpresaPoblacion: %s %s%%0AEmpresaNRS: %s%%0AEmpresaAlmacen: %s%%0AProductoDenomComercial: %s%%0AProductoNombreCientifico: %s%%0AProductoFAO: %s%%0AProductoElaboracion: %s%%0AProductoElaboracionNotas: %s%%0AProductoCodAlfa3: %s%%0AProductoNLote: %s%%0AProductoArtePesca: %s%%0AProductoMetodoProd: %s%%0AProductoZona: %s%%0AProductoSubZona: %s%%0AProductoBuque: %s%%0AProductoMatricula: %s%%0AProductoArtes: %s%%0AFechaEnvasado: %s%%0AFechaCaducidad: %s%%0APesoKg: %s%%0AProductoPaisOrigen: %s" % (
+        qr_code="EmpresaNombre: %s%%0AEmpresaDireccion: %s%%0AEmpresaPoblacion: %s %s%%0AEmpresaNRS: %s%%0AEmpresaAlmacen: %s%%0AProductoDenomComercial: %s%%0AProductoNombreCientifico: %s%%0AProductoFAO: %s%%0AProductoElaboracion: %s%%0AProductoCodAlfa3: %s%%0AProductoNLote: %s%%0AProductoArtePesca: %s%%0AProductoMetodoProd: %s%%0AProductoZonaSubzona: %s%%0AProductoBuque: %s%%0AProductoMatricula: %s%%0AFechaEnvasado: %s%%0AFechaCaducidad: %s%%0APesoKg: %s" % (
             self.env.company.name,
-            self.purchase_order_id.partner_id.name,
-            self.purchase_order_id.partner_id.zip,
-            self.purchase_order_id.partner_id.city,
-            "???",
-            self.purchase_order_id.picking_type_id.warehouse_id.name,
-            self.output_product_id.name,
-            self.output_product_id.scientific_name,
-            self.fcd_document_line_id.fcd_document_id.fao,
-            self.fcd_document_line_id.fcd_document_id.presentation_id.name,
-            self.fcd_document_line_id.fcd_document_id.presentation_id.name,
-            "???",
-            self.fcd_document_line_id.fcd_document_id.name,
-            self.fcd_document_line_id.fcd_document_id.fishing_gear_id.name,
-            self.fcd_document_line_id.fcd_document_id.production_method_id.name,
-            self.fcd_document_line_id.fcd_document_id.fao_zone_id.name,
-            self.fcd_document_line_id.fcd_document_id.subzone_id.name,
-            self.fcd_document_line_id.fcd_document_id.ship_id.name,
-            self.fcd_document_line_id.fcd_document_id.ship_id.license_plate,
-            "???",
-            self.fcd_document_line_id.fcd_document_id.packaging_date,
-            self.fcd_document_line_id.fcd_document_id.expiration_date,
+            self.produced_partner_id.second_name_fcd or '',
+            self.produced_partner_id.zip or '',
+            self.produced_partner_id.city or '',
+            self.fcd_document_line_id.fcd_document_id.sanity_reg or '',
+            self.purchase_order_id.picking_type_id.warehouse_id.name or '',
+            self.output_product_id.name or '',
+            self.output_product_id.scientific_name or '',
+            self.fcd_document_line_id.fcd_document_id.fao or '',
+            self.fcd_document_line_id.fcd_document_id.presentation or '',
+            self.fcd_document_line_id.fcd_document_id.presentation_code or '',
+            self.fcd_document_line_id.lot_id.name or '',
+            self.fcd_document_line_id.fcd_document_id.fishing_gear or '',
+            self.fcd_document_line_id.fcd_document_id.production_method or '',
+            self.fcd_document_line_id.fcd_document_id.fao_zone or '',
+            self.fcd_document_line_id.fcd_document_id.ship or '',
+            self.fcd_document_line_id.fcd_document_id.ship_license_plate or '',
+            self.packaging_date or '',
+            self.expiration_date or '',
             self.quantity,
-            self.fcd_document_line_id.fcd_document_id.country_id.name,
         )
         return qr_code
 
     def generate_barcode(self):
-        qty = str(self.quantity / 1000).replace('.', '')[:6]
+        qty = '{:06.0f}'.format(self.quantity * 100)
         ean13 = self.fcd_document_line_id.purchase_order_line_id.product_id.ean13 if self.fcd_document_line_id.purchase_order_line_id.product_id.ean13 else "0000000000000"
         date = self.date.strftime("%y%m%d")
         lot = self.fcd_document_line_id.lot_id.name
 
-        return '(01)%s(3102)%s(17)%s(10)%s' % (ean13, qty, date, lot)
+        return '(01)0%s(3102)%s(17)%s(10)%s' % (ean13, qty, date, lot)

@@ -36,9 +36,14 @@
                     </div>
                     <nav class="o_main_navbar" style="height: 60px;">
                         <a class="o_menu_brand" role="button" style="font-size: 30px; padding-top: 6px; height: 100%;">WEIGHT SCALE</a>
-                        <ul t-if="user_id" class="o_menu_systray h-100">
-                            <li class="h-100">
-                                <a class="o_user_menu pt-2 h-100" role="button" style="font-size: 16px;">
+                        <ul class="o_menu_systray h-100">
+                            <li class="h-100" style="">
+                                <a id="refresh" data-toggle="dropdown" data-display="static" aria-expanded="true" href="#" role="button" style="height: 100%;font-size: 16px;align-items: center;display: flex;">
+                                    <i class="fa fa-refresh fa-lg" role="img"></i>
+                                </a>
+                            </li>
+                            <li t-if="user_id" class="h-100">
+                                <a class="o_user_menu pt-2 h-100" role="button" style="font-size: 20px;">
                                     <span class="oe_topbar_name" id="user_id" t-esc="user_id.name"/>
                                 </a>
                             </li>
@@ -46,7 +51,7 @@
                     </nav>
                 </header>
                 <div t-if="not user_id" class="alert alert-danger" role="alert">
-                    Login failed, please contact support. <a href="/web/login" target="_blank" class="alert-link">Click here</a> to login.
+                    Login failed, please contact support.
                 </div>
                 <div class="o_content">
                     <div class="o_form_view o_xxl_form_view o_purchase_order o_form_readonly">
@@ -112,53 +117,65 @@
                                             <div class="col-5" id="weight_historic" style="padding-right:3%;">
                                                 <table class="table">
                                                     <thead>
-                                                      <tr>
+                                                    <tr>
                                                         <th scope="col" style="border-top: none; border-bottom: none; width: 21%">Hour</th>
                                                         <th scope="col" style="border-top: none; border-bottom: none; text-align: center">Product</th>
                                                         <th scope="col" style="border-top: none; border-bottom: none; width:24%">Weight</th>
-                                                      </tr>
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
                                                     </tbody>
-                                                  </table>
+                                                </table>
+                                                <iframe id="tag_print" src="" style="display: none;"></iframe>
                                             </div>
                                             <div class="col-6" id="weightTare">
                                                 <div id="weight_output">
                                                     <div class="input-group input-group-lg mb-3" id="input_weight">
-                                                        <input id="weight" type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                                                        <input id="weight" type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled="true" style="background-color: white;"/>
                                                         <span class="input-group-text" id="basic-addon2">KG</span>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center align-items-center">
                                                     <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
-                                                    <div class="col-6" id="tareButton" style="margin-left: 0px">
-                                                        <button id="taring" type="button" style="width: 100%;" class="btn btn-outline-secondary">Tare</button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="numpad">
+                                        <button class="num">1</button>
+                                        <button class="num">2</button>
+                                        <button class="num">3</button>
+                                        <button class="num">4</button>
+                                        <button class="num">5</button>
+                                        <button class="num">6</button>
+                                        <button class="num">7</button>
+                                        <button class="num">8</button>
+                                        <button class="num">9</button>
+                                        <button class="num" value=".">.</button>
+                                        <button class="num">0</button>
+                                        <button id="del">←</button>
+                                    </div>
                                     <div class="container-fluid" id="container3">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-4" id="tareButton" style="margin-left: 0px">
+                                                <button id="taring" type="button" style="width: 100%;" class="btn btn-outline-secondary">Tare</button>
+                                            </div>
+                                            <div class="col-4">
                                                 <div id="checkBoxs">
                                                     <div class="form-check form-switch d-flex checkbox row">
-                                                        <input class="form-check-input" type="checkbox" id="chkboxLabel" />
+                                                        <input class="form-check-input" type="checkbox" id="chkboxLabel"/>
                                                         <label class="form-check-label" for="chkboxLabel"> Unlabeled </label>
                                                     </div>
                                                     <div class="form-check form-switch d-flex checkbox row">
-                                                        <input class="form-check-input" type="checkbox" id="chkboxFixed" />
+                                                        <input class="form-check-input" type="checkbox" id="chkboxFixed"/>
                                                         <label class="form-check-label" for="flexSwitchCheckDefault2"> Fixed Weight </label>
-                                                        <div id="fixedPriceValue">
-                                                            <div class="input-group">
-                                                                <input type="number" id="fixedQuantity" class="form-control" />
+                                                            <div class="input-group" id="fixedQuantityContainer">
+                                                                <input id="fixedQuantity" class="form-control"/>
                                                             </div>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-4">
                                                 <!-- <button id="scaleEmulator" class="btn btn-primary" type="button">Scale Emulator</button> -->
                                                 <button id="package" type="button" style="width: 100%;">Package</button>
                                                 <!-- <button id="print_tag" type="button" onclick="printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/223')">Print Tag</button> -->
@@ -172,6 +189,13 @@
                 </div>
             </body>
         </html>
+    </template>
+    <template id="error_page">
+        <div>
+            <h1>
+                ACCESS ERROR - PLEASE CONTACT WITH ADMINISTRATOR
+            </h1>
+        </div>
     </template>
     <template id="chkpoint_list">
         <html id="fcd_weight_scale_mrp_list">

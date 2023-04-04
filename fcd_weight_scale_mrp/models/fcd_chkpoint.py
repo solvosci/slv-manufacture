@@ -28,9 +28,9 @@ class FCDCheckpoint(models.Model):
         except socket.timeout:
             raise UserError(_("Timed out on weighing scale"))
 
-        if weight_stability == 'unstable':
-            raise UserError(_('Unstable %.2f %s weight was read. Please slide the card one more time') %
-                            (weight_value, weight_uom_id.name))
+        # if weight_stability == 'unstable':
+        #     raise UserError(_('Unstable %.2f %s weight was read. Please slide the card one more time') %
+        #                     (weight_value, weight_uom_id.name))
 
         if values.get("tare"):
             weight_value = weight_value - float(values['tare'])

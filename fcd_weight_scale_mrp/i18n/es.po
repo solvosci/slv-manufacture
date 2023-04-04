@@ -6,19 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-20 12:23+0000\n"
-"PO-Revision-Date: 2022-12-20 12:23+0000\n"
+"POT-Creation-Date: 2023-04-18 11:06+0000\n"
+"PO-Revision-Date: 2023-04-18 13:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__fcd_weight_scale__scale_protocol__$
 msgid "$ Protocol"
 msgstr "Protocolo $"
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
+#, python-format
+msgid "%s Weighings"
+msgstr "%s Pesadas"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -27,13 +35,10 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"d-block font-weight-bold\">COUNTRY OF ORIGIN:</span>"
-msgstr "<span class=\"d-block font-weight-bold\">PAÍS ORIGEN:</span>"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"d-block font-weight-bold\">Produced by:</span>"
-msgstr "<span class=\"d-block font-weight-bold\">Elaborado por:</span>"
+msgid ""
+"<span class=\"col-12 d-block font-weight-bold\" style=\"font-size: 16px\">CIGURRIA O CAMPO S.L</"
+"span>"
+msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -42,10 +47,12 @@ msgstr "<span class=\"d-block font-weight-bold\">EST.ELAB/BUQUE:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid ""
-"<span class=\"d-block w-100 text-center\">ES</span>\n"
-"                        <span class=\"d-block w-100 text-center\">12021988/PO</span>\n"
-"                        <span class=\"d-block w-100 text-center\">CE</span>"
+msgid "<span class=\"d-block w-100 text-center\">CE</span>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"d-block w-100 text-center\">ES</span>"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -55,27 +62,38 @@ msgstr "<span class=\"d-block\">PESO NETO:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"d-block\">PRODUCT: FRESH</span>"
-msgstr "<span class=\"d-block\">PRODUCTO: FRESCO</span>"
+msgid "<span class=\"font-weight-bold\" style=\"font-size: 10px\">COMERCIAL DESIGNATION:</span>"
+msgstr "<span class=\"font-weight-bold\" style=\"font-size: 10px\">DENOMINACIÓN COMERCIAL:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid ""
-"<span class=\"font-weight-bold\" style=\"font-size: 10px\">COMERCIAL "
-"DESIGNATION:</span>"
+msgid "<span class=\"font-weight-bold\">CALIBER: </span>"
+msgstr "<span class=\"font-weight-bold\">CALIBRE: </span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">CAPTURE ZONE AND SUBZONE:</span>"
+msgstr "<span class=\"font-weight-bold\">ZONA Y SUBZONA DE CAPTURA:</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">FAO:</span>"
 msgstr ""
-"<span class=\"font-weight-bold\" style=\"font-size: 10px\">DENOMINACIÓN "
-"COMERCIAL:</span>"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"font-weight-bold\">CAPTURE ZONE:</span>"
-msgstr "<span class=\"font-weight-bold\">ZONA DE CAPTURA:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid "<span class=\"font-weight-bold\">FISHING GEAR: </span>"
 msgstr "<span class=\"font-weight-bold\">ARTE DE PESCA: </span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">METHOD OF PRODUCTION:</span>"
+msgstr "<span class=\"font-weight-bold\">MÉTODO DE PRODUCCIÓN:</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">Nº R.S.I:</span>"
+msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -86,6 +104,16 @@ msgstr "<span class=\"font-weight-bold\">PRESENTACIÓN: </span>"
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid "<span class=\"font-weight-bold\">SCIENTIFIC NAME:</span>"
 msgstr "<span class=\"font-weight-bold\">NOMBRE CIENTÍFICO:</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">SHIPPER 1º:</span>"
+msgstr "<span class=\"font-weight-bold\">EXPEDIDOR 1º:</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span class=\"font-weight-bold\">STREET:</span>"
+msgstr "<span class=\"font-weight-bold\">DIRECCIÓN:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -99,26 +127,38 @@ msgid ""
 "                        <span id=\"txt_translate_select_type_box\">Type of box</span>\n"
 "                        <span id=\"txt_translate_select_product\">Select a product</span>\n"
 "                        <span id=\"txt_translate_select_family\">Family</span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">None product selected</span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box\">None box type selected</span>\n"
+"                        <span id=\"txt_translate_alert_no_product\">None product selected</"
+"span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box\">None box type selected</"
+"span>\n"
 "                        <span id=\"txt_translate_alert_no_lot\">None lot selected</span>\n"
-"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Put some valid value at Fixed Weight Box</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight\">Tare value is greater than Weight Value</span>\n"
+"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Put some "
+"valid value at Fixed Weight Box</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight\">Tare value is "
+"greater than Weight Value</span>\n"
 "                        <span id=\"txt_translate_alert_connect_scale\">Invalid Weight</span>\n"
-"                        <span id=\"txt_translate_contact_administrator\">Unexpected error, please contact with administrator</span>\n"
+"                        <span id=\"txt_translate_contact_administrator\">Unexpected error, "
+"please contact with administrator</span>\n"
 "                        <span id=\"txt_translate_lot_finished\">Lot has been finished</span>"
 msgstr ""
 "<span id=\"txt_translate_select_lot\">Seleccione un lote</span>\n"
 "                        <span id=\"txt_translate_select_type_box\">Tipo de caja</span>\n"
-"                        <span id=\"txt_translate_select_product\">Seleccione un producto</span>\n"
+"                        <span id=\"txt_translate_select_product\">Seleccione un producto</"
+"span>\n"
 "                        <span id=\"txt_translate_select_family\">Familia</span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">Ningún producto seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box\">Ninguno tipo de caja seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga algún valor válido en la caja de peso fijo</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight\">El valor de la tara es mayor que el valor del peso</span>\n"
+"                        <span id=\"txt_translate_alert_no_product\">Ningún producto "
+"seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box\">Ninguno tipo de caja "
+"seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote seleccionado</"
+"span>\n"
+"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga "
+"algún valor válido en la caja de peso fijo</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight\">El valor de la "
+"tara es mayor que el valor del peso</span>\n"
 "                        <span id=\"txt_translate_alert_connect_scale\">Peso inválido</span>\n"
-"                        <span id=\"txt_translate_contact_administrator\">Error inesperado, por favor contacte con el administrador</span>\n"
+"                        <span id=\"txt_translate_contact_administrator\">Error inesperado, por "
+"favor contacte con el administrador</span>\n"
 "                        <span id=\"txt_translate_lot_finished\">El lote ha sido terminado</span>"
 
 #. module: fcd_weight_scale_mrp
@@ -128,8 +168,25 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span>Contains Fish, may contain crustaceans and molluscs</span>"
-msgstr "<span>Contiene Pescado, puede contener crustáceos y moluscos</span>"
+msgid "<span>Conservation method between 0ºC-5ºC</span>"
+msgstr "<span>Método de conservación entre 0ºC-5ºC</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid ""
+"<span>Contains crustaceans and sulfites. May contain traces of fish and/or molluscs.</span>"
+msgstr ""
+"<span>Contiene crustáceos y sulfitos. Puede contener trazas de pescado y/o moluscos.</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span>Contains fish. May contain traces of crustaceans and/or molluscs.</span>"
+msgstr "<span>Contiene pescado. Puede contener trazas de crustáceos y/o moluscos.</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "<span>Contains mollusks. May contain traces of fish and/or crustaceans.</span>"
+msgstr "<span>Contiene moluscos. Puede contener trazas de pescado y/o crustáceos.</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -143,13 +200,13 @@ msgstr "<span>F.ENVASADO</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span>KEEP FROM 0 TO 2ºC. FRESH PRODUCT</span>"
-msgstr "<span>MANTENER DE 0 A 2ºc. PRODUCTO FRESCO</span>"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid "<span>LOT:</span>"
 msgstr "<span>LOTE:</span>"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.error_page
+msgid "ACCESS ERROR - PLEASE CONTACT WITH ADMINISTRATOR"
+msgstr "ACCESO DENEGADO - POR FAVOR CONTACTE CON EL ADMINISTRADOR"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__active
@@ -157,9 +214,19 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__produced_partner_id
+msgid "Address"
+msgstr "Dirección"
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__allowed_ip
 msgid "Allowed Ip"
 msgstr "IP Permitida"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
+msgid "Are you sure you want to delete the last weighing of this purchase order line?"
+msgstr "¿Está seguro de que desea eliminar la última pesada de esta línea de pedido de compra?"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -177,7 +244,6 @@ msgid "CHECKPOINT LIST"
 msgstr "LISTA DE PUNTOS DE CONTROL"
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot create another secondary unit of measure with factor 0.00 !"
@@ -229,6 +295,16 @@ msgid "Cigurria"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.actions.act_window,help:fcd_weight_scale_mrp.action_fcd_weight_scale_mrp_checkpoint
 msgid "Create your first Chkpoint!"
 msgstr "Crea tu primer Punto de Control!"
@@ -242,7 +318,7 @@ msgstr "Crea tu primera Báscula!"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__create_uid
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__create_uid
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__create_uid
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__create_uid
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
@@ -250,9 +326,14 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__create_date
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__create_date
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__create_date
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__create_date
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__create_date
 msgid "Created on"
 msgstr "Creado en"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__product_category__fcd_type__crustaceans_sulphites
+msgid "Crustaceans and sulphites"
+msgstr "Crustáceos y sulfitos"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__date
@@ -265,17 +346,29 @@ msgid "Default select example"
 msgstr "Ejemplo de selección por defecto"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Define the user that will be used to work with the weight scale"
+msgstr "Definir el usuario que se utilizará para trabajar con la báscula"
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_ir_http__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_category__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_product__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_secondary_unit__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__display_name
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move_line__display_name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__display_name
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
@@ -285,9 +378,9 @@ msgid "Document Line"
 msgstr "Línea de documento"
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "FAO"
-msgstr ""
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__expiration_date
+msgid "Expiration Date"
+msgstr "Fecha de caducidad"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -302,6 +395,11 @@ msgid "Fcd Document Line"
 msgstr "Línea de Documento de Pesca"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order_line__fcd_log_ids
+msgid "Fcd Log"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__fcd_origin_lot_id
 msgid "Fcd Origin Lot"
 msgstr "Lote Origen de Pesca"
@@ -312,9 +410,19 @@ msgid "Fcd Relation Lot"
 msgstr "Relación de lotes de pesca"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_category__fcd_type
+msgid "Fcd Type"
+msgstr "Caracteristicas del producto"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Finish Lot"
 msgstr "Fin Partida"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__product_category__fcd_type__fish
+msgid "Fish"
+msgstr "Pescado"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -329,7 +437,7 @@ msgstr "Agrupar por"
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_ir_http
 msgid "HTTP Routing"
-msgstr "Ruta HTTP"
+msgstr "Ruta HTTP "
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -341,13 +449,20 @@ msgstr "Hora"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_ir_http__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_mrp_production__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_category__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_product__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_secondary_unit__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move_line__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__id
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__id
 msgid "ID"
 msgstr "Id."
 
@@ -378,13 +493,20 @@ msgstr "Se ha pesado correctamente"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_ir_http____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_category____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_product____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_secondary_unit____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company____last_update
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move_line____last_update
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot____last_update
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot____last_update
 msgid "Last Modified on"
 msgstr "Última Modifiación en"
 
@@ -392,7 +514,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__write_uid
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__write_uid
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__write_uid
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__write_uid
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última Actualización por"
 
@@ -400,7 +522,7 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__write_date
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__write_date
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__write_date
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__write_date
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización en"
 
@@ -431,14 +553,14 @@ msgid "Log"
 msgstr "Registro de pesada"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid "Login failed, please contact support."
+msgstr "No se ha iniciado sesión correctamente, contacte con soporte técnico."
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.stock_move_view_inherited
 msgid "Logs"
 msgstr "Registro de pesadas"
-
-#. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__lot_id
-msgid "Lot"
-msgstr "Lote"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_production_lot
@@ -446,9 +568,9 @@ msgid "Lot/Serial"
 msgstr "Lote/Número de serie"
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "METHOD OF PRODUCTION:"
-msgstr "MÉTODO DE PRODUCCIÓN:"
+#: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__product_category__fcd_type__molluscs
+msgid "Molluscs"
+msgstr "Moluscos"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__move_ids
@@ -456,15 +578,9 @@ msgid "Move"
 msgstr "Movimiento"
 
 #. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__move_line_ids
-msgid "Move Line"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__name
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__name
 msgid "Name"
 msgstr "Nombre"
 
@@ -476,6 +592,7 @@ msgstr "Nueva báscula"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
 msgid "No"
 msgstr ""
 
@@ -500,9 +617,21 @@ msgid "Package"
 msgstr "Empaquetar"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__packaging_date
+msgid "Packaging Date"
+msgstr "Fecha de envasado"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Packaging:"
 msgstr "Empaquetando:"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__weight_scale_password
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__weight_scale_password
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Password"
+msgstr "Contraseña"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__price_real_kg
@@ -525,9 +654,15 @@ msgid "Printing"
 msgstr "Imprimiendo"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_product_product
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Product"
 msgstr "Producto"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -538,6 +673,16 @@ msgstr "Producto de Entrada:"
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
 msgstr "Movimientos de Producto (Stock Move Line)"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_product_secondary_unit
+msgid "Product Secondary Unit"
+msgstr "Unidad secundaria de producto"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model,name:fcd_weight_scale_mrp.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__production_id
@@ -556,15 +701,21 @@ msgid "Production equipment"
 msgstr "Equipos de fabricación"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_mrp_wizard__purchase_line_id
+msgid "Purchase Line"
+msgstr "Linea de pedido de compra"
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_purchase_order
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_search
 msgid "Purchase Order"
-msgstr "Orden de Compra"
+msgstr "Pedido de compra"
 
 #. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__secondary_uom_qty
-msgid "Qty"
-msgstr "Cantidad"
+#: model:ir.model,name:fcd_weight_scale_mrp.model_purchase_order_line
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__purchase_order_line_id
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__quantity
@@ -576,12 +727,17 @@ msgstr "Cantidad"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__quantity_real_kg
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__fcd_document_line_quantity_real_kg
 msgid "Received Qty"
-msgstr "Cantidad recivida"
+msgstr "Cantidad recibida"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Recipient's username"
 msgstr "Nombre del recipiente"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_purchase_order_form_inherit
+msgid "Remove"
+msgstr "Eliminar última pesada"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__revised_subtotal
@@ -615,15 +771,15 @@ msgid "Scales"
 msgstr "Básculas"
 
 #. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__secondary_uom_id
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__secondary_uom_ids
-msgid "Secondary Uom"
-msgstr "Unidad Secundaria"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_product__production_secondary_uom_id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template__production_secondary_uom_id
+msgid "Second unit for production"
+msgstr "Segunda unidad de medida para fabricación"
 
 #. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move_line__secondary_uom_lot_id
-msgid "Secondary Uom Lot"
-msgstr "Unidad secundaria de lote"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__secondary_uom_id
+msgid "Secondary Uom"
+msgstr "Unidad Secundaria"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -644,12 +800,7 @@ msgstr "Estable"
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_move
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__stock_move_id
 msgid "Stock Move"
-msgstr "Movimiento Inventario"
-
-#. module: fcd_weight_scale_mrp
-#: model:ir.model,name:fcd_weight_scale_mrp.model_stock_secondary_unit_lot
-msgid "Stock Secondary Unit Lot"
-msgstr "Unidad de inventario secundaria de lote"
+msgstr "Movimiento de existencias"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.actions.report,name:fcd_weight_scale_mrp.action_report_tag_pdf
@@ -667,10 +818,10 @@ msgid "Tare:  <span id=\"tareValue\">0</span>  KG"
 msgstr "Tara:  <span id=\"tareValue\">0</span>  KG"
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/controllers/controllers.py:0
+#: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
 #, python-format
-msgid "The checkpoint %s is not allowed for this address (%s)"
-msgstr "El punto de control %s no está disponible para esta dirección IP (%s)"
+msgid "There is no record of weighing in this order line"
+msgstr "No hay registro de pesaje en esta línea de pedido"
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
@@ -687,11 +838,6 @@ msgstr "Tiempo superado (s)"
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_search
 msgid "Today"
 msgstr "Hoy"
-
-#. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_secondary_unit_lot__secondary_uom_id
-msgid "Type Box"
-msgstr "Tipo de caja"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -720,17 +866,24 @@ msgid "Unstable"
 msgstr "Inestable"
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
-#, python-format
-msgid "Unstable %.2f %s weight was read. Please slide the card one more time"
-msgstr ""
-"Peso  inestable %.2f %s fue leído. Porfavor pasa la tarjeta una vez más"
-
-#. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "Unsupported weighing protocol (%s)"
 msgstr "Protocolo de pesaje no soportado (%s)"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__weight_scale_username_id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__weight_scale_username_id
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Username"
+msgstr "Usuario"
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
+#, python-format
+msgid "WARNING!!"
+msgstr "¡¡ADVERTENCIA!!"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -760,6 +913,11 @@ msgid "Weighing protocol"
 msgstr "Protocolo de pesada"
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_purchase_order_line__fcd_log_count
+msgid "Weighings"
+msgstr "Pesadas"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Weight"
 msgstr "Peso"
@@ -775,6 +933,11 @@ msgid "Weight Quantity"
 msgstr "Cantidad de pesada"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Weight Scale Credentials"
+msgstr "Crecendiales de la báscula"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.stock_move_view_inherited
 msgid "Weight Scale Log"
 msgstr "Registro de pesadas de báscula"
@@ -783,6 +946,11 @@ msgstr "Registro de pesadas de báscula"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__weight_uom_id
 msgid "Weight Unit"
 msgstr "Unidad de pesaje"
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Weight scale"
+msgstr "Báscula"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_form
@@ -797,14 +965,9 @@ msgstr "Información de pesaje"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
 msgid "Yes"
 msgstr "Si"
-
-#. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#, python-format
-msgid "You should not unlink the secondary unit used on production!"
-msgstr "¡No debe eliminar una unidad secundaria usada en producción!"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_fcd_document_line
@@ -812,28 +975,7 @@ msgstr "¡No debe eliminar una unidad secundaria usada en producción!"
 msgid "fcd.document.line"
 msgstr ""
 
-#. module: purchase_order_action_confirm_multi
-#: model:ir.actions.server,name:purchase_order_action_confirm_multi.action_purchase_order_confirm_multi
-msgid "Confirm and Validate"
-msgstr "Confirmar y validar"
-
 #. module: fcd_weight_scale_mrp
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_product__production_secondary_uom_id
-#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_product_template__production_secondary_uom_id
-msgid "Second unit for production"
-msgstr "Segunda unidad de medida para fabricación"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Login failed, please contact support."
-msgstr "No se ha iniciado sesión correctamente, contacte con soporte técnico."
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Click here"
-msgstr "Pulse aquí"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "to login."
-msgstr "para iniciar sesión."
+#: model:ir.model,name:fcd_weight_scale_mrp.model_fcd_weight_scale_mrp_wizard
+msgid "fcd.weight.scale.mrp.wizard"
+msgstr ""

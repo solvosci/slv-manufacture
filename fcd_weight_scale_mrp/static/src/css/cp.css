@@ -9,13 +9,30 @@ body{
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
-
+.custom-buttons {
+    display: flex;
+    align-items: center;
+}
+.custom-button {
+    height: 40px;
+    width: 40px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.custom-button i {
+    color: #888;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+}
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+-moz-appearance: textfield;
 }
 #container1{
 
@@ -33,11 +50,11 @@ input[type=number] {
 }
 #etiquetando{
 
-    display:flex;  
+    display:flex;
     justify-content: flex-start;
 }
 #lot{
-    display:flex;  
+    display:flex;
     justify-content: flex-end;
 }
 #weight_output{
@@ -46,7 +63,6 @@ input[type=number] {
 }
 #btn{
     font-size: 1.5em;
-   
 }
 .selects{
     display: flex;
@@ -71,13 +87,6 @@ input[type=number] {
     display: flex;
     justify-content: center;
 }
-#tareButton{
-    display: flex;
-    justify-content: center;
-    margin-left: 30px;
-    font-size: 1.4em;
-    height: 60px;
-}
 #weightTare{
     display: flex;
     justify-content: center;
@@ -85,7 +94,7 @@ input[type=number] {
 }
 #lotSure{
     font-weight: bold;
-    color: red;
+    color: #7C7BAD;
 }
 #areUSure > div > div > div.modal-header{
     flex-direction: column;
@@ -117,29 +126,28 @@ body > div > div > div > div{
     height: 89%;
 }
 #checkBoxs > div:nth-child(2){
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 #checkBoxs{
     display: flex;
     height: 100%;
     justify-content: space-evenly;
     flex-direction: column;
-    font-size: 2em;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: sans-serif;
 }
 #fixedWeight{
     align-items: center;
 }
-.checkbox input{
-    margin-right: 20px;
-}
 .checkbox{
     align-items: center;
 }
-#fixedPriceValue{
+#fixedQuantity{
     text-align: center;
     width: 60%;
+    font-size: 20px;
 }
-
 
 /* CLOCK */
 .digital-clock {
@@ -166,17 +174,53 @@ body > div > div > div > div{
 #container2{
     margin-bottom: 36px;
 }
+#fixedQuantityContainer{
+    width: 54%;
+}
 #fixedPriceValue input{
     font-size: 20px;
 }
 #checkBoxs > div:nth-child(2) > label{
     width: unset;
 }
+#numpad {
+    display: none;
+    position: absolute;
+    bottom: 200px;
+    left: 400px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 180px;
+    z-index: 1;
+}
+#productSelect{
+    height: 70px;
+    font-size: 2em !important;
+}
 
+#numpad button {
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    font-size: 2em;
+    font-weight: 900;
+    background-color: #7C7BAD;
+    border-color: #7C7BAD;
+    color: white;
+    border-radius: 4px;
+    border-style: none;
+}
+#numpad button:last-child {
+    grid-column-start: 3;
+}
+#del{
+    font-size: 3em !important;
+}
 #package{
     height: 100%;
     width: 100%;
-    font-size: 6em;
+    font-size: 4em;
     background-color: #7C7BAD;
     border-color: #7C7BAD;
     color: white;
@@ -190,7 +234,19 @@ body > div > div > div > div{
     background-color: #5f5e97;
     border-color: #5a598f;
 }
-#taring, #endLot{
+#taring{
+    height: 100%;
+    font-size: 4em;
+    background-color: #e9ecef;
+    color: black;
+    border: none;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+#endLot{
     font-size: 2em;
     background-color: transparent;
     border-radius: 0.25rem;
@@ -199,16 +255,19 @@ body > div > div > div > div{
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
 }
-#taring:hover, #endLot:hover{
+#endLot:hover{
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    color: rgb(108, 117, 125);
+    color: black;
 }
-#taring:active, #endLot:active{
+#endLot:active{
     background-color: #6c757d ;
     border-color: #6c757d;
     transform: translateY(3px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     color: white;
+}
+#package:active{
+    transform: translateY(3px);
 }
 #yes{
     font-size: 25px;
@@ -218,6 +277,7 @@ body > div > div > div > div{
 #no{
     font-size: 25px;
     width: 70px;
+    background-color: #7C7BAD;
 }
 #tareValue{
     font-weight: bold;
@@ -261,15 +321,3 @@ svg{
 .lot_pending_warning:hover{
     background-color: rgb(236, 156, 156) !important;
 }
-
-
-/* #taring:active{
-    
-    border-color: #6c757d;
-    transform: translateY(3px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-    color: #fff;
-    background-color: #6c757d;
-    border-color: rgb(108, 117, 125);
-} */

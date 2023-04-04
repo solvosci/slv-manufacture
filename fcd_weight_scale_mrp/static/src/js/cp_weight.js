@@ -6,6 +6,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
 
     $('#fcd_weight_scale_mrp_portal').ready(function() {
         if ($("#chkpName").text() != "") {
+            var actualGrossWeight = 0;
 
             // Check User Loggin
             var user_id = document.getElementById('user_id')
@@ -25,25 +26,35 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 console.log(user_id.textContent);
             }
 
+            var session_id = '';
+            $.ajax({
+                type: 'POST',
+                url: '/fcd_weight_scale_mrp/session/authenticate',
+                contentType: 'application/json',
+                data: JSON.stringify({}),
+            }).done(function(response) {
+                // Obtener el token de sesión
+                var result = JSON.parse(response.result);
+                session_id = result.token;
+            });
+
+
             function asyncFunc(log) {
                 return new Promise((resolve, reject) => {
-                    // printJS(('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log) => {
-                    //     resolve("foo");
-                    // },);
-                    //
-                    // function done_resolve(){
-                    //     resolve("test")
-                    // }
-                    // printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log, {
-                    //     onLoadingEnd: done_resolve
-                    // });
-
-                    printJS('/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log)
-                    setTimeout(() =>
-                        resolve("test"),
-                    8000);
+                    var tag_print = document.getElementById('tag_print');
+                        tag_print.focus();
+                        tag_print.contentWindow.print();
+                    resolve("test");
                 });
-            }
+            };
+
+            $('#tag_print').on('load', function() {
+                var tag_print = document.getElementById('tag_print');
+                if (tag_print.getAttribute('src') != ''){
+                    notifier.async(asyncFunc(tag_print.getAttribute('src')), resp => notifier.info(), undefined, _t('Wait a moment, please...'));
+                }
+            })
+
             const globalOptions = {
                 position: "top-right",
                 maxNotifications: 5,
@@ -65,9 +76,11 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
             let old_family
             let endLot = false;
             let barcode_text = ""
+            const numberInput = document.getElementById('fixedQuantity');
+            // Set up a variable to track the state of the mouse button
+            let mouseDown = false;
 
             //Utility Functions
-
             function validation() {
                 var flag = true;
                 if ($("#productSelect" ).val() == $("#txt_translate_select_product").text()) {
@@ -102,15 +115,13 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
             function tareStyleButton(ctx){
                 if (ctx.attr('state') == 'active') {
                     ctx.attr('state', 'inactive');
-                    ctx.css('color', '#6c757d');
-                    ctx.css('background-color', 'transparent');
-                    ctx.css('border-color', '#6c757d;');
+                    ctx.css('color', 'black');
+                    ctx.css('background-color', '#e9ecef');
                 }
                 else{
                     ctx.attr('state', 'active');
-                    ctx.css('color', '#fff');
-                    ctx.css('background-color', '#6c757d');
-                    ctx.css('border-color', 'rgb(108, 117, 125)');
+                    ctx.css('color', 'black');
+                    ctx.css('background-color', '#e9ecef');
                 }
             }
 
@@ -160,29 +171,30 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     data: dataSend
                 }).done(function (data) {
                     if (!data.result.error && !data.error) {
-                        if($("#taring").attr('name') == 'active'){
-                            $('#weight').val(data.result.weight_value)
-                        }else if($("#taring").attr('name') == null){
-                            $('#weight').val(data.result.weight_value)
-                        }
+                        actualGrossWeight = data.result.weight_value
+                        $('#weight').val((parseFloat(actualGrossWeight) - parseFloat($('#tareValue').text())).toFixed(2))
                     }
                     else{
                         console.log(data.result.error)
                     }
                 }).fail(function (e) {
-                    console.log("Impossible to connect with Odoo");
+                    console.log("Getting Weight - Impossible to connect with Odoo");
                 });
             }
             //OnClick
+            $('#refresh').on('click', function() {
+                location.reload(true);
+            });
+
             $('#taring').on('click', function() {
                 tareStyleButton($(this));
-                if ($(this).attr('state') == 'active') {
-                    $('#tareValue').text($("#weight").val())
-                }
-                else{
-                    $('#tareValue').text("0");
-                }
+                $('#tareValue').text(actualGrossWeight)
                 $("#myInputID").blur();
+                setTimeout(function() {
+                    $('#taring').attr('state', 'inactive');
+                    $('#taring').css('color', 'black');
+                    $('#taring').css('background-color', '#e9ecef');
+                }, 500);
             });
 
             $("#endLot").on('click', function() {
@@ -217,11 +229,11 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                         notifier.alert(data.result.error);
                     }
                 }).fail(function (e) {
-                    console.log("Impossible to connect with Odoo");
+                    console.log("End lot - Impossible to connect with Odoo");
                 });
             });
-
             $('#package').on('click', function() {
+
                 var jsonSend = {
                     "output_product_id" : $("#productSelect").val(),
                     "input_product_id" : $("#lotSelect").val().split("/")[1],
@@ -238,6 +250,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     else{
                         jsonSend = JSON.stringify(jsonSend)
                     }
+                    $("#package").attr("disabled", true);
                     $.ajax({
                         url: '/fcd_weight_scale_mrp/packaging',
                         type: 'POST',
@@ -248,7 +261,9 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                             var result = JSON.parse(data.result);
                             notifier.success(_t('It has been weighted correctly'))
                             if (!($("#chkboxLabel").is(':checked'))) {
-                                notifier.async(asyncFunc(result[0]['log_id']), resp => notifier.info(), undefined, _t('Wait a moment, please...'));
+                                getTag(result[0]['log_id'])
+                                // var tag_print = document.getElementById('tag_print')
+                                // tag_print.setAttribute('src', '/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + result[0]['log_id'])
                             }
                             //Set Log View
                             if ($('tbody').children().length >= 4) {
@@ -285,11 +300,53 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                         }
                         loctactive_get();
                     }).fail(function (e) {
-                        console.log("Impossible to connect with Odoo")
+                        console.log("Packaging button - Impossible to connect with Odoo")
+                    }).always(function (xhr, status) {
+                        $("#package").attr("disabled", false);
                     });
                 };
                 $("#package").blur();
             });
+
+            function getTag(log) {
+                // Configurar la solicitud para generar el informe
+                var report_url = '/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log;
+                var headers = {
+                    Cookie: 'session_id=' + session_id,
+                };
+
+                // Hacer la solicitud para generar el informe
+                $.ajax({
+                    type: 'GET',
+                    url: report_url,
+                    headers: headers,
+                    credentials: 'include',
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                }).done(function(response) {
+                    // Convertir la respuesta en un objeto Blob
+                    var blob = new Blob([response], { type: 'application/pdf' });
+
+                    // Crear una URL del objeto Blob
+                    var blob_url = URL.createObjectURL(blob);
+
+                    // Mostrar el informe en un iframe
+                    $('#tag_print').attr('src', blob_url)
+                }).fail(function (e) {
+                    console.log("Error printing")
+                });
+            }
+
+            //Chech if 0
+            function checkFixedValue () {
+                if ($('#fixedQuantity').val() == "0.0" || $('#fixedQuantity').val() == "0." || $('#fixedQuantity').val() == "0.00" || $('#fixedQuantity').val() == "0" || $('#fixedQuantity').val() == "") {
+                    $('#chkboxFixed').prop('checked', false);
+                }
+                else{
+                    $('#chkboxFixed').prop('checked', true);
+                }
+            };
 
             //OnChange
             $('#lotSelect').on('change', function() {
@@ -343,8 +400,6 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     }
                 }
 
-
-
             });
 
             $('#familySelect').on('change', function() {
@@ -357,11 +412,10 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }else{
                     product_get();
                 }
-
             });
 
             $('#chkboxFixed').on('change', function() {
-                if ($('#chkboxFixed').is(':checked')) {
+                if (!$('#chkboxFixed').prop('checked')) {
                     $("#fixedQuantity").val("");
                 }
             });
@@ -381,24 +435,18 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }
             });
 
-            //OnInput
-            $('#fixedQuantity').on('input', function() {
-                if ($('#fixedQuantity').val() != "" && $('#fixedQuantity').val() != "0") {
-                    $('#chkboxFixed').prop('checked', true);
-                }
-                else{
-                    $('#chkboxFixed').prop('checked', false);
-                }
+            $('#fixedQuantity').keypress(function(e) {
+                e.preventDefault();
             });
 
             //OnKeyDown
-            // $('#connectScale').keypress(function(e){
-            //     e.preventDefault();
-            // });
-            // $('connectScale').mousedown(function(e) {
-            //     e.stopImmediatePropagation(); //stops event bubbling
-            //     e.preventDefault();  //stops default browser action (focus)
-            // });
+            $('#connectScale').keypress(function(e){
+                e.preventDefault();
+            });
+            $('connectScale').mousedown(function(e) {
+                e.stopImmediatePropagation(); //stops event bubbling
+                e.preventDefault();  //stops default browser action (focus)
+            });
 
             document.body.onkeydown = function(e){
                 if (e.keyCode != 190){
@@ -432,6 +480,20 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                         product_get();
                         old_product = $("#lotSelect option:selected").val().split("/")[1];
                         $("#productSelect option[value='" + old_product + "']").attr("selected", true);
+                    }
+
+                    //Update Box Type
+                    if ($("#productSelect" ).val() == $("#txt_translate_select_product").text()) {
+                        var defaultSelect = $("#txt_translate_select_type_box").text();
+                        $("#typeBoxSelect  option").remove();
+                        $("#typeBoxSelect").append('<option>' + defaultSelect + '</option>');
+                    }else{
+                        box_type_get();
+                        old_product = $("#lotSelect option:selected").val().split("/")[1];
+                        let type_box_id = $("#productSelect option:selected").attr("typeBox");
+                        if (type_box_id != "False"){
+                            $("#typeBoxSelect option[value='" + type_box_id + "']").attr("selected", true);
+                        }
                     }
                 }
             };
@@ -492,7 +554,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                         loctactive_get();
                     });
                 } catch (error) {
-                    console.log("Impossible to connect with Odoo")
+                    console.log("Get lot - Impossible to connect with Odoo")
                 }
             }
 
@@ -528,7 +590,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
 
                     }).fail(function () {
                         window.setTimeout(family_get, 5000);
-                        console.log("Impossible to connect with Odoo")
+                        console.log("Get family - Impossible to connect with Odoo")
                     });
                 } catch (error) {
                     console.log(error)
@@ -567,7 +629,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                             notifier.alert(data.result.error);
                         }
                     }).fail(function () {
-                        console.log("Impossible to connect with Odoo")
+                        console.log("Get product - Impossible to connect with Odoo")
                     });
                 } catch (error) {
                     console.log(error)
@@ -604,13 +666,57 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                             notifier.alert(data.result.error);
                         }
                     }).fail(function () {
-                        console.log("Impossible to connect with Odoo")
+                        console.log("Get type of box - Impossible to connect with Odoo")
                     });
                 } catch (error) {
                     console.log(error)
                 }
             }
-        }
 
+            var fixedquant = document.getElementById('fixedQuantity');
+            var numpad = document.getElementById('numpad');
+            var numpadButtons = $("button.num");
+
+            fixedquant.addEventListener('focus', function() {
+                numpad.style.display = 'grid';
+            });
+
+            $("*:not(#fixedQuantity, #numpad button, #numpad, #numpad i)").on('click', function() {
+                setTimeout(function() {
+                    numpad.style.display = 'none';
+                }, 100);
+            });
+
+            $("#numpad").on('click', function(event) {
+                event.stopPropagation(); // detener la propagación del evento de clic
+            });
+
+            $("#fixedQuantity").on('click', function(event) {
+                event.stopPropagation(); // detener la propagación del evento de clic
+            });
+
+            $('#del').on('click', function() {
+                fixedquant.value = "";
+                $('#chkboxFixed').prop('checked', false);
+            });
+
+            numpadButtons.each(function(button) {
+                $(this).on('click', function() {
+                    if ($(this).val() == "." && $("#fixedQuantity").val() == "") {
+                        fixedquant.value += "0" + $(this).val();
+                    }
+                    else{
+                        if ($(this).val() == "." && !$("#fixedQuantity").val().includes(".")) {
+                            fixedquant.value += $(this).val();
+                        }
+                        else if(!($(this).val() == ".")){
+                            fixedquant.value += $(this).text();
+                        }
+                    }
+                    checkFixedValue();
+                });
+            });
+        
+        }
     });
 });
