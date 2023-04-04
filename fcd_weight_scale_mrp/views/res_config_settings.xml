@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="conf_settings_weight_scale_credentials_inherit" model="ir.ui.view" >
+            <field name="name">res.config.settings.weight.scale.inherited</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='mrp_mps']/.." position="after">
+                    <h2>Weight scale</h2>
+                    <div class="row mt16 o_settings_container" name="main_weight_scale_setting_folder_container">
+                        <div class="col-6 col-lg-6 o_setting_box" id="weight_scale_settings_username">
+                            <div class="o_setting_right_pane">
+                                <label for="product_weight_in_lbs" string="Weight Scale Credentials"/>
+                                <div class="text-muted">
+                                    Define the user that will be used to work with the weight scale
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <strong><label string="Username" for="weight_scale_username_id" class="col-lg-3 o_light_label"/></strong>
+                                        <field name="weight_scale_username_id" class="oe_inline"/>
+                                    </div>
+                                    <div class="row">
+                                        <strong><label string="Password" for="weight_scale_password" class="col-lg-3 o_light_label"/></strong>
+                                        <field name="weight_scale_password" password="True" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

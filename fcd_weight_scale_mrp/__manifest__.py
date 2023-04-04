@@ -8,7 +8,7 @@
     'author': "Solvos",
     'website': "http://www.solvos.com",
     'category': 'Weight',
-    'version': '14.0.1.2.0',
+    'version': '14.0.1.3.0',
     'depends': [
         "mrp",
         "fcd_purchase_order",
@@ -32,8 +32,11 @@
         'views/stock_picking_views.xml',
         'views/stock_move_line_views.xml',
         'views/fcd_document_line_views.xml',
+        'views/res_config_settings.xml',
+        'views/product_category_views.xml',
         'reports/fcd_weight_scale_tag_report.xml',
         'reports/fcd_weight_scale_tag_template.xml',
+        'wizards/fcd_weight_scale_mrp_wizard_views.xml'
     ],
     'installable': True,
     'application': True,

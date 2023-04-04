@@ -7,4 +7,24 @@
         <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]"/>
     </record>
 
+    <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order (FCD Weight Scale)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='price_subtotal']" position="after">
+                <button
+                    name="emergent_remove_log_open_wizard"
+                    icon="fa-rotate-left"
+                    class="p-0"
+                    type="object"
+                    attrs="{'invisible': [('fcd_log_ids', '=', 0)]}"
+                    title="Remove"
+                />
+                <field name="fcd_log_count" />
+                <field name="fcd_log_ids" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
