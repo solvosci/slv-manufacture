@@ -117,7 +117,7 @@
                           </div>
                           <div>
                             <span class="font-weight-bold">PRESENTATION: </span>
-                            <span style="position: fixed;"><t t-esc="doc.fcd_document_line_id.fcd_document_id.presentation"/></span>
+                            <span style="position: fixed;"><t t-esc="doc.output_product_id.presentation_id.name"/></span>
                           </div>
                         </div>
                       </div>
