@@ -310,17 +310,12 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
 
             function getTag(log) {
                 // Configurar la solicitud para generar el informe
-                var report_url = '/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + log;
-                var headers = {
-                    Cookie: 'session_id=' + session_id,
-                };
+                var report_url = '/fcd_weight_scale_mrp/print/' + log;
 
                 // Hacer la solicitud para generar el informe
                 $.ajax({
                     type: 'GET',
                     url: report_url,
-                    headers: headers,
-                    credentials: 'include',
                     xhrFields: {
                         responseType: 'blob'
                     },
