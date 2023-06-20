@@ -69,13 +69,21 @@ class WeightScaleCheckPoint(http.Controller):
         try:
             cp_user, user_id = self._get_cp_user_and_lang_context(request)
             chkpoints = request.env['fcd.checkpoint'].with_user(cp_user).search([], order='name')
+            client_ip = self._get_client_ip()
 
-            return request.render(
-                'fcd_weight_scale_mrp.chkpoint_list',
-                {
-                    'chkpoints': chkpoints,
-                    'user_id': user_id,
-                })
+            if client_ip in chkpoints.mapped('allowed_ip'):
+                return request.render(
+                    'fcd_weight_scale_mrp.chkpoint_list',
+                    {
+                        'chkpoints': chkpoints,
+                        'user_id': user_id,
+                    })
+            else:
+                return request.render(
+                    'fcd_weight_scale_mrp.error_page',
+                    {'title': "ERROR",
+                    'client_ip': client_ip}
+                )
         except Exception as e:
             return self.get_error_page({
                 'error_message': e})
@@ -236,35 +244,13 @@ class WeightScaleCheckPoint(http.Controller):
         else:
             return {"error": "Stock move does not seems to exist, contact with Administrator"}
 
-    # @http.route("/fcd_weight_scale_mrp/scaleEmulator", type='http', auth="user", website=False)
-    # def scale_emulator(self):
-    #     cp_user, user_id = self._get_cp_user_and_lang_context(request)
-    #     weight_byte = ""
-    #     port = 1001
-    #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #     server_address = ('localhost', port)
-    #     print('starting up on {} port {}'.format(*server_address))
-    #     sock.bind(server_address)
-    #     sock.listen(1)
+    @http.route("/fcd_weight_scale_mrp/print/<int:log_id>", type='http', auth='none')
+    def fcd_weight_scale_mrp_print_log(self, log_id, **data):
+        cp_user = request.env.ref('fcd_weight_scale_mrp.res_user_fcd_checkpoint_user')
+        report = request.env['ir.actions.report'].sudo().search([('report_file', '=', 'fcd_weight_scale_mrp.report_tag_pdf')])
+        context = dict(request.env.context)
+        context['lang'] = cp_user.sudo().lang
 
-    #     while True:
-    #         weight = 0
-    #         print('waiting for a connection')
-    #         connection, client_address = sock.accept()
-    #         try:
-    #             print('connection from', client_address)
-    #             while True:
-    #                 data = connection.recv(16)
-    #                 if b'$' in data:
-    #                     weight = round(0.8*random.randint(1, 10), 3)
-    #                     weight_format = str(weight)
-    #                     weight_byte = weight_format.encode()
-    #                     connection.sendall(weight_byte)
-    #                     print(weight_format)
-    #                     break
-    #                 else:
-    #                     print('no data from', client_address)
-    #                     break
-    #         finally:
-    #             connection.close()
-    #     return weight
+        pdf = report.with_context(context).with_user(cp_user)._render_qweb_pdf(log_id, data=data)[0]
+        pdfhttpheaders = [('Content-Type', 'application/pdf'), ('Content-Length', len(pdf))]
+        return request.make_response(pdf, headers=pdfhttpheaders)
