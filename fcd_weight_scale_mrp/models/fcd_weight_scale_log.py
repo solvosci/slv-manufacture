@@ -25,6 +25,7 @@ class FCDWeightScaleLog(models.Model):
     fcd_document_line_id = fields.Many2one('fcd.document.line', related='stock_move_id.fcd_document_line_id', store=True)
     packaging_date = fields.Date()
     expiration_date = fields.Date(compute="_compute_expiration_date", store=True)
+    mrp_stock_move_line_id = fields.Many2one('stock.move.line')
 
 
     @api.depends("packaging_date")
@@ -117,6 +118,9 @@ class FCDWeightScaleLog(models.Model):
             'secondary_uom_qty': 1,
         })
         mrp_production_id.button_mark_done()
+
+        if finished_move_id.move_line_ids:
+            log_id.mrp_stock_move_line_id = finished_move_id.move_line_ids[0]
 
         return mrp_production_id
 
