@@ -119,10 +119,10 @@ class WeightScaleCheckPoint(http.Controller):
         cp_user = request.env.ref('fcd_weight_scale_mrp.res_user_fcd_checkpoint_user')
         vals = dict(request.jsonrequest)
         chkpoint_id = request.env['fcd.checkpoint'].with_user(cp_user).browse(int(vals["checkpoint_id"]))
-        purchase_order_ids = request.env['purchase.order'].with_user(cp_user).search([])
-        purchase_line_ids = purchase_order_ids.order_line.filtered(lambda x: x.fcd_document_line_id.id != False and
-        x.fcd_lot_finished is False and
-        x.order_id.picking_type_id.warehouse_id == chkpoint_id.warehouse_id)
+        purchase_line_ids = request.env['purchase.order.line'].with_user(cp_user).search([
+            ('fcd_document_line_id', '!=', False),
+            ('fcd_lot_finished', '=', False)
+        ]).filtered(lambda x: x.order_id.picking_type_id.warehouse_id.id == chkpoint_id.warehouse_id.id)
 
         try:
             move_ids = []
