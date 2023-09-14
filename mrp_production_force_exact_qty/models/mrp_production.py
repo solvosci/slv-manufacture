@@ -23,7 +23,10 @@ class MrpProduction(models.Model):
         uom_categs = (consumed_moves | produced_moves).mapped(
             "product_uom_category_id"
         )
-        if len(uom_categs) == 1:
+        mrp_force_exact_skip = self.env.context.get(
+            "mrp_force_exact_skip", False
+        )
+        if not mrp_force_exact_skip and len(uom_categs) == 1:
             qty_produced = sum(produced_moves.mapped("quantity_done"))
             qty_consumed = sum(
                 move.product_uom._compute_quantity(
