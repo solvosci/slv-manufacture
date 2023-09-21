@@ -8,9 +8,11 @@
                 <field name="input_product_id" />
                 <field name="output_product_id" />
                 <separator />
-                <filter string="Today" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]" name="Date Today" />
+                <filter string="Today" domain="[('packaging_date', '=', context_today().strftime('%Y-%m-%d'))]" name="today" />
                 <separator />
                 <group expand="1" string="Group By">
+                    <filter string="Partner" name="produced_partner_id" context="{'group_by':'produced_partner_id'}" />
+                    <filter string="Warehouse" name="warehouse_id" context="{'group_by':'warehouse_id'}" />
                     <filter string="Purchase Order" name="purchase_order_id" context="{'group_by':'purchase_order_id'}" />
                     <filter string="Document Line" name="fcd_document_line_id" context="{'group_by':'fcd_document_line_id'}" />
                 </group>
