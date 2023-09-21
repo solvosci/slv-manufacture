@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-18 11:04+0000\n"
-"PO-Revision-Date: 2023-04-18 11:04+0000\n"
+"POT-Creation-Date: 2023-09-21 07:31+0000\n"
+"PO-Revision-Date: 2023-09-21 07:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,7 @@ msgid "$ Protocol"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #, python-format
 msgid "%s Weighings"
@@ -228,17 +229,21 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot create another secondary unit of measure with factor 0.00 !"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot delete secondary unit of measure with factor 0.00 !"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot edit secondary unit of measure with factor 0.00 !"
@@ -257,6 +262,7 @@ msgid "Checkpoint"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Checkpoint #%s not found"
@@ -467,6 +473,7 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #. openerp-web
 #: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
+#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #, python-format
 msgid "It has been weighted correctly"
 msgstr ""
@@ -569,6 +576,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "New scale"
 msgstr ""
@@ -610,6 +618,11 @@ msgid "Packaging:"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_search
+msgid "Partner"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__weight_scale_password
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__weight_scale_password
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
@@ -625,12 +638,14 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #. openerp-web
 #: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
+#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #, python-format
 msgid "Printed"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #. openerp-web
+#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #, python-format
 msgid "Printing"
@@ -744,6 +759,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
+#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Scale not defined"
 msgstr ""
@@ -802,11 +818,13 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
+#: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
 #, python-format
 msgid "There is no record of weighing in this order line"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Timed out on weighing scale"
@@ -834,6 +852,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "Unknown data format. Data received: %s"
 msgstr ""
@@ -850,6 +869,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "Unsupported weighing protocol (%s)"
 msgstr ""
@@ -862,6 +882,7 @@ msgid "Username"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
 #, python-format
@@ -876,12 +897,15 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #. openerp-web
 #: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
+#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #, python-format
 msgid "Wait a moment, please..."
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__warehouse_id
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__warehouse_id
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_search
 msgid "Warehouse"
 msgstr ""
 
