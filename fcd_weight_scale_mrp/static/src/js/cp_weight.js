@@ -76,6 +76,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
             let old_family
             let endLot = false;
             let barcode_text = ""
+            let box_row = 0
             const numberInput = document.getElementById('fixedQuantity');
             // Set up a variable to track the state of the mouse button
             let mouseDown = false;
@@ -294,6 +295,8 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                                 weight = $("#weight").val();
                             }
                             $("tbody").append(formatString("<tr><td>{0}:{1}:{2}</td><td class='overflowTd'>{3}</td><td>{4} KG</td></tr>", hours, min, seconds, nameProduct, weight));
+                            box_row += 1
+                            document.getElementById('box_row').innerHTML = box_row
                         }
                         else{
                             notifier.alert(data.result.error);
@@ -376,6 +379,10 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     }
                     else{
                         product_get();
+                        if (old_product != $("#lotSelect option:selected").val().split("/")[1]){
+                            box_row = 0
+                            document.getElementById('box_row').innerHTML = box_row
+                        }
                         old_product = $("#lotSelect option:selected").val().split("/")[1];
                         $("#productSelect option[value='" + old_product + "']").attr("selected", true);
                     }
@@ -424,6 +431,8 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }else{
                     box_type_get();
                 }
+                box_row = 0
+                document.getElementById('box_row').innerHTML = box_row
                 let type_box_id = $("#productSelect option:selected").attr("typeBox");
                 if (type_box_id != "False"){
                     $("#typeBoxSelect option[value='" + type_box_id + "']").attr("selected", true);

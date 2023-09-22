@@ -79,10 +79,10 @@
                                     </div>
                                     <div class="container-fluid" id="container1">
                                         <div class="row selects">
-                                            <div class="lot col-4">
+                                            <div class="lot col-3">
                                                 <h2>Product Entry:</h2>
                                             </div>
-                                            <div class="lot col-6">
+                                            <div class="lot col-7">
                                                 <select id="lotSelect" class="form-select" aria-label="Default select example">
                                                     <option>Select a lot</option>
                                                 </select>
@@ -94,10 +94,10 @@
                                             </div>
                                         </div>
                                         <div class="row selects">
-                                            <div class="col-4 etiquetando">
+                                            <div class="col-3 etiquetando">
                                                 <h2>Packaging:</h2>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-5">
                                                 <select id="productSelect" class="form-select" aria-label="Default select example">
                                                     <option>Select a product</option>
                                                 </select>
@@ -113,6 +113,12 @@
                                         </div>
                                     </div>
                                     <div class="container-fluid" id="container2">
+                                        <div class="row" style="display: flex; justify-content: end;">
+                                            <h2 class="col-6">
+                                                <span id="box_row">0</span>
+                                                <span>Boxes in a row</span>
+                                            </h2>
+                                        </div>
                                         <div class="row" id="rowTwo">
                                             <div class="col-5" id="weight_historic" style="padding-right:3%;">
                                                 <table class="table">

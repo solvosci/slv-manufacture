@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-21 07:31+0000\n"
-"PO-Revision-Date: 2023-09-21 09:33+0200\n"
+"POT-Creation-Date: 2023-09-22 07:25+0000\n"
+"PO-Revision-Date: 2023-09-22 09:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -119,6 +119,15 @@ msgstr "<span class=\"font-weight-bold\">DIRECCIÓN:</span>"
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "<span class=\"input-group-text\" id=\"basic-addon2\">KG</span>"
 msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<span id=\"box_row\">0</span>\n"
+"                                                <span>Boxes in a row</span>"
+msgstr ""
+"<span id=\"box_row\">0</span>\n"
+"                                                <span>Cajas seguidas</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -479,7 +488,7 @@ msgstr "Puerto IP"
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__input_product_id
 msgid "Input Product"
-msgstr "Producto de Entrada"
+msgstr "Producto Entrada"
 
 #. module: fcd_weight_scale_mrp
 #. openerp-web
@@ -672,7 +681,7 @@ msgstr "Categoría de producto"
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Product Entry:"
-msgstr "Producto de Entrada:"
+msgstr "Producto Entrada:"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_move_line
