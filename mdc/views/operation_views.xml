@@ -1,0 +1,419 @@
+<odoo>
+  <data>
+
+    <!-- Search view: default search for Check Point active lots -->
+    <record id="mdc_lot_chkpoint_search" model="ir.ui.view">
+        <field name="name">mdc.lot_chkpoint.search</field>
+        <field name="model">mdc.lot_chkpoint</field>
+        <field name="arch" type="xml">
+            <search string="Check Point Active Lot">
+                <field name="chkpoint_id"/>
+                <field name="shift_id"/>
+                <field name="current_lot_active_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for Check Points active lots -->
+    <record id="mdc_lot_chkpoint_tree" model="ir.ui.view">
+        <field name="name">mdc.lot_chkpoint.tree</field>
+        <field name="model">mdc.lot_chkpoint</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <!-- tree editable="top" create="false" delete="false" string="Check Point Lots Actives"-->
+            <tree string="Check Point Lots Actives" default_order="shift_id, chkpoint_id">
+                <field name="chkpoint_id" readonly="True"/>
+                <field name="shift_id" readonly="True"/>
+                <field name="current_lot_active_id" context="{'name_extended': True}"
+                       domain="['|', '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','>=',current_date),
+                                     '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','=',False)]"
+                       options="{'no_create': 1, 'no_create_edit': 1}"  />
+
+                <field name="start_lot_datetime" readonly="False"/>
+            </tree>
+        </field>
+    </record>
+
+  <!-- Form view: default form for check points active lots -->
+    <record id="mdc_lot_chkpoint_form" model="ir.ui.view">
+        <field name="name">mdc.lot_chkpoint.form</field>
+        <field name="model">mdc.lot_chkpoint</field>
+        <field name="arch" type="xml">
+            <form create="false" string="Active Lot per Check Point and Shift">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="chkpoint_id"/>
+                            <h1>
+                                <field name="chkpoint_id"
+                                   attrs="{'readonly': [('id', '!=', False)]}"
+                                   options="{'no_create': 1, 'no_create_edit': 1}"
+                                />
+                            </h1>
+                            <label for="shift_id"/>
+                            <h1>
+                                <field name="shift_id"
+                                   attrs="{'readonly': [('id', '!=', False)]}"
+                                   options="{'no_create': 1, 'no_create_edit': 1}"
+                                />
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="current_lot_active_id" context="{'name_extended': True}"
+                                domain="['|', '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','>=',current_date),
+                                              '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','=',False)]"
+                                options="{'no_create': 1, 'no_create_edit': 1}"  />
+                        <field name="start_lot_datetime"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view: default search for lots -->
+    <record id="mdc_lots_search" model="ir.ui.view">
+        <field name="name">mdc.lots.search</field>
+        <field name="model">mdc.lot</field>
+        <field name="arch" type="xml">
+            <search string="Lot">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="lot_code"/>
+                <field name="partner_id"/>
+                <field name="descrip"/>
+                <filter string="In force" name="inforce"
+                        domain="['|', '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','>=',current_date),
+                                      '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','=',False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="groupby_product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="Partner" name="groupby_partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for lots -->
+    <record id="mdc_lots_tree" model="ir.ui.view">
+        <field name="name">mdc.lots.tree</field>
+        <field name="model">mdc.lot</field>
+        <field name="arch" type="xml">
+            <tree string="Lots">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="weight"/>
+                <field name="w_uom_id"/>
+                <field name="lot_code"/>
+                <field name="partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="descrip"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for lots -->
+    <record id="mdc_lots_form" model="ir.ui.view">
+        <field name="name">mdc.lots.form</field>
+        <field name="model">mdc.lot</field>
+        <field name="arch" type="xml">
+            <form string="Lots">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="gr_lot_main_data" string="Lot parameters">
+                        <group>
+                            <field name="product_id" domain="[('std_count','>',0)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                            <field name="lot_code"/>
+                            <field name="partner_id" domain="[('customer','=',True), ('parent_id','=',False)]" context="{'search_default_customer':1, 'show_address': 1}" options="{&quot;always_reload&quot;: True}"/>
+                        </group>
+                        <group>
+                            <field name="weight"/>
+                            <field name="w_uom_id" domain="[('category_id','=',2)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                            <field name="total_gross_weight" readonly="True"/>
+                            <field name="finished" />
+                        </group>
+                        <field name="descrip" placeholder="_Observations..." colspan="4"/>
+                     </group>
+                     <group name="gr_lot_active_expiration_dates" string="Active and Expiration Dates">
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                     <group name="gr_lot_active_std_data" string="Standard data">
+                        <group>
+                            <field name="std_id" invisible="1"/>
+                            <field name="std_loss"/>
+                            <field name="std_speed"/>
+                        </group>
+                        <group>
+                            <field name="std_yield_product"/>
+                            <field name="std_yield_sp1"/>
+                            <field name="std_yield_sp2" invisible="1"/>
+                            <field name="std_yield_sp3" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search view: default search for active lots -->
+    <record id="mdc_lots_actives_search" model="ir.ui.view">
+        <field name="name">mdc.lots_actives.search</field>
+        <field name="model">mdc.lot_active</field>
+        <field name="arch" type="xml">
+            <search string="Active Lot">
+                <field name="lot_id"/>
+                <field name="chkpoint_id"/>
+                <field name="shift_id"/>
+                <filter name="week" string="This Week"
+                        domain="[
+                            '&amp;',
+                            ('start_datetime', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                            ('start_datetime', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
+                        ]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Lot" name="groupby_product" domain="[]" context="{'group_by':'lot_id'}"/>
+                    <filter string="Line" name="groupby_partner" domain="[]" context="{'group_by':'line_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for active lots -->
+    <record id="mdc_lots_actives_tree" model="ir.ui.view">
+        <field name="name">mdc.lots_actives.tree</field>
+        <field name="model">mdc.lot_active</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" string="Lots">
+                <field name="lot_id"/>
+                <field name="chkpoint_id"/>
+                <field name="shift_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="total_hours"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for lots_actives -->
+    <record id="mdc_lots_actives_form" model="ir.ui.view">
+        <field name="name">mdc.lots_actives.form</field>
+        <field name="model">mdc.lot_active</field>
+        <field name="arch" type="xml">
+            <form string="Active Lot" create="false">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="lot_id"/>
+                            <h1>
+                                <field name="lot_id"
+                                       attrs="{'readonly': True}"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="gr_lot_main_data" string="Lot Activation">
+                        <group>
+                            <field name="chkpoint_id"
+                                   attrs="{'readonly': True}"/>
+                        </group>
+                        <group>
+                            <field name="shift_id"
+                                   attrs="{'readonly': True}"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                        </group>
+                        <group>
+                            <field name="total_hours"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search view: default search for workstations -->
+    <record id="mdc_workstations_search" model="ir.ui.view">
+        <field name="name">mdc.workstations.search</field>
+        <field name="model">mdc.workstation</field>
+        <field name="arch" type="xml">
+            <search string="Workstation">
+                <field name="name"/>
+                <field name="line_id"/>
+                <field name="shift_id"/>
+                <field name="current_employee_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="shift" name="groupby_product" domain="[]" context="{'group_by':'shift_id'}"/>
+                    <filter string="Line" name="groupby_partner" domain="[]" context="{'group_by':'line_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: new action to masive de-allocation -->
+    <record id="action_view_workstations_mass_deallocation" model="ir.actions.server">
+        <field name="name">Masive de-allocation</field>
+        <field name="model_id" ref="model_mdc_workstation" />
+        <field name="binding_model_id" ref="model_mdc_workstation"/>
+        <field name="state">code</field>
+        <field name="multi">True</field>
+        <field name="code">
+            action=model.massive_deallocate()
+        </field>
+    </record>
+
+        <!-- Tree view: default view for workstations -->
+    <record id="mdc_workstations_tree" model="ir.ui.view">
+        <field name="name">mdc.workstations.tree</field>
+        <field name="model">mdc.workstation</field>
+        <field name="arch" type="xml">
+            <tree editable="top" string="Workstations" default_order="name">
+                <field name="shift_id" readonly="True"/>
+                <field name="line_id" readonly="True"/>
+                <field name="name" readonly="True"/>
+                <field name="seat" readonly="True"/>
+                <!-- field name="last_wout_lot_id" readonly="True" string="Last lot"/ -->
+                <field name="current_employee_id" domain="[('workstation_id', '=', False),('operator', '=', True)]"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for workstations -->
+    <record id="mdc_workstations_form" model="ir.ui.view">
+        <field name="name">mdc.workstations.form</field>
+        <field name="model">mdc.workstation</field>
+        <field name="arch" type="xml">
+            <form string="Workstation">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="gr_lot_main_data" string="Lot Activation">
+                        <group>
+                            <field name="shift_id"/>
+                            <field name="current_employee_id"/>
+                        </group>
+                        <group>
+                            <field name="line_id"/>
+                            <field name="seat"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Tree view: default view for Standars -->
+    <record id="mdc_stds_tree" model="ir.ui.view">
+        <field name="name">mdc.stds.tree</field>
+        <field name="model">mdc.std</field>
+        <field name="arch" type="xml">
+            <tree string="Standards">
+                <field name="product_id"/>
+                <field name="std_loss"/>
+                <field name="std_speed"/>
+                <field name="std_yield_product"/>
+                <field name="std_yield_sp1"/>
+                <field name="std_yield_sp2" invisible="1"/>
+                <field name="std_yield_sp3" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for Standars -->
+    <record id="mdc_stds_form" model="ir.ui.view">
+        <field name="name">mdc.stds.form</field>
+        <field name="model">mdc.std</field>
+        <field name="arch" type="xml">
+            <form string="Standards" copy="False">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="product_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                    </group>
+                    <group name="gr_std_data" string="Standard Detail">
+                        <group>
+                            <field name="std_loss"/>
+                            <field name="std_speed"/>
+                        </group>
+                        <group>
+                            <field name="std_yield_product"/>
+                            <field name="std_yield_sp1"/>
+                            <field name="std_yield_sp2" invisible="1"/>
+                            <field name="std_yield_sp3" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Form view: default form for Cards -->
+    <record id="mdc_cards_form" model="ir.ui.view">
+        <field name="name">mdc.cards.form</field>
+        <field name="model">mdc.card</field>
+        <field name="arch" type="xml">
+            <form string="Cards">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="card_categ_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                            attrs="{'readonly': [('id', '!=', False)]}"/>
+                    </group>
+                    <group name="gr_card_data" string="Card Assignment">
+                        <group>
+                            <field name="employee_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_O)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_O)d)]}"/>
+                            <field name="lot_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_PC)d)]}"
+                                domain="['&amp;', ('start_date', '&lt;=', context_today().strftime('%Y-%m-%d')),
+                                        '|', ('end_date', '=', False), ('end_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                        </group>
+                        <group>
+                            <field name="workstation_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_L)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_L)d)]}"/>
+                        </group>
+                    </group>
+                    <group name="gr_card_status" string="Card Status">
+                        <group>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>

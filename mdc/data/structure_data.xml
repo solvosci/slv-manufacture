@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Out Categories Types -->
+        <record id="mdc_wout_categ_P" model="mdc.wout_categ">
+            <field name="name">Producto</field>
+            <field name="code">P</field>
+        </record>
+        <record id="mdc_wout_categ_SP1" model="mdc.wout_categ">
+            <field name="name">Subproducto 1</field>
+            <field name="code">SP1</field>
+        </record>
+        <record id="mdc_wout_categ_SP2" model="mdc.wout_categ">
+            <field name="name">Subproducto 2</field>
+            <field name="code">SP2</field>
+        </record>
+        <record id="mdc_wout_categ_SP3" model="mdc.wout_categ">
+            <field name="name">Subproducto 3</field>
+            <field name="code">SP3</field>
+        </record>
+
+        <!-- Card Categories -->
+        <record id="mdc_card_categ_O" model="mdc.card_categ">
+            <field name="name">Operario</field>
+            <field name="code">O</field>
+        </record>
+        <record id="mdc_card_categ_L" model="mdc.card_categ">
+            <field name="name">Línea (Puesto)</field>
+            <field name="code">L</field>
+        </record>
+        <record id="mdc_card_categ_P" model="mdc.card_categ">
+            <field name="name">Producto</field>
+            <field name="code">P</field>
+        </record>
+        <record id="mdc_card_categ_SP1" model="mdc.card_categ" forcecreate="False">
+            <field name="name">Subproducto 1</field>
+            <field name="code">SP1</field>
+        </record>
+        <record id="mdc_card_categ_SP2" model="mdc.card_categ" forcecreate="False">
+            <field name="name">Subproducto 2</field>
+            <field name="code">SP2</field>
+        </record>
+        <record id="mdc_card_categ_SP3" model="mdc.card_categ" forcecreate="False">
+            <field name="name">Subproducto 3</field>
+            <field name="code">SP3</field>
+        </record>
+        <record id="mdc_card_categ_PC" model="mdc.card_categ">
+            <field name="name">Producto Comodín</field>
+            <field name="code">PC</field>
+        </record>
+
+    </data>
+    <data noupdate="0">
+        <!-- Line -->
+        <record id="mdc_line_1" model="mdc.line" forcecreate="false">
+            <field name="name">Line 1</field>
+            <field name="line_code">1</field>
+        </record>
+        <record id="mdc_line_2" model="mdc.line" forcecreate="false">
+            <field name="name">Line 2</field>
+            <field name="line_code">2</field>
+        </record>
+        <record id="mdc_line_3" model="mdc.line" forcecreate="false">
+            <field name="name">Line 3</field>
+            <field name="line_code">3</field>
+        </record>
+
+        <!-- Shift -->
+        <record id="mdc_shift_1" model="mdc.shift" forcecreate="false">
+            <field name="name">Morning</field>
+            <field name="shift_code">1</field>
+            <field name="start_time">6</field>
+            <field name="end_time">14</field>
+        </record>
+        <record id="mdc_shift_2" model="mdc.shift" forcecreate="false">
+            <field name="name">Afternoon</field>
+            <field name="shift_code">2</field>
+            <field name="start_time">14</field>
+            <field name="end_time">22</field>
+        </record>
+    </data>
+</odoo>

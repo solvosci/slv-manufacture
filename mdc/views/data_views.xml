@@ -1,0 +1,319 @@
+<odoo>
+  <data>
+
+    <!-- Search view: default search for worksheets -->
+    <record id="mdc_worksheets_search" model="ir.ui.view">
+        <field name="name">mdc.worksheets.search</field>
+        <field name="model">mdc.worksheet</field>
+        <field name="arch" type="xml">
+            <search string="Worksheet">
+                <field name="employee_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="lot_id"/>
+                <filter name="today" string="Today" domain="[('start_datetime', '&gt;=', current_date)]"/>
+                <separator/>
+                <filter name="physical_open" string="Physical open" domain="[('physical_open', '=', True)]"/>
+                <filter name="physical_close" string="Physical close" domain="[('physical_close', '=', True)]"/>
+                <separator/>
+                <filter name="manual_open" string="Manual open" domain="[('manual_open', '=', True)]"/>
+                <filter name="manual_close" string="Manual close" domain="[('manual_close', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="groupby_employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Lot" name="groupby_lot" domain="[]" context="{'group_by':'lot_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for worksheets -->
+    <record id="mdc_worksheets_tree" model="ir.ui.view">
+        <field name="name">mdc.worksheets.tree</field>
+        <field name="model">mdc.worksheet</field>
+        <field name="arch" type="xml">
+            <tree delete="false" string="Worksheets" default_order="start_datetime desc, end_datetime desc">
+                <field name="employee_id"/>
+                <field name="start_datetime"/>
+                <field name="physical_open" string="P.O."/>
+                <field name="manual_open" string="M.O."/>
+                <field name="end_datetime"/>
+                <field name="physical_close" string="P.C."/>
+                <field name="manual_close" string="M.C."/>
+                <field name="lot_id"/>
+                <field name="workstation_id"/>
+                <field name="shift_id"/>
+                <field name="total_hours"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for worksheets -->
+    <record id="mdc_worksheets_form" model="ir.ui.view">
+        <field name="name">mdc.worksheets.form</field>
+        <field name="model">mdc.worksheet</field>
+        <field name="arch" type="xml">
+            <form string="Worksheets">
+                <sheet>
+                    <group name="gr_worksheet_main_data" string="Worksheet data">
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                        </group>
+                        <group>
+                            <field name="lot_id"/>
+                        </group>
+                    </group>
+                    <group name="gr_worksheet_other_data" string="Other data">
+                        <group>
+                            <field name="shift_id"/>
+                            <field name="workstation_id"/>
+                        </group>
+                        <group>
+                            <field name="manual_open"/>
+                            <field name="manual_close"/>
+                            <field name="total_hours" readonly="True"/>
+                        </group>
+                    </group>
+                    <group name="gr_worksheet_by_card" string="Worksheet by Card">
+                        <group>
+                            <field name="physical_open" readonly="True"/>
+                            <field name="physical_start_datetime" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="physical_close" readonly="True"/>
+                            <field name="physical_end_datetime" readonly="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view: default search for Data_wINs -->
+    <record id="mdc_data_wins_search" model="ir.ui.view">
+        <field name="name">mdc.data_wins.search</field>
+        <field name="model">mdc.data_win</field>
+        <field name="arch" type="xml">
+            <search string="Data_win">
+                <field name="card_id"/>
+                <field name="line_id"/>
+                <field name="lot_id"/>
+                <field name="id" string="#id"/>
+                <!-- FIXME this filter gives a "ValueError: No known conversion for %H" error -->
+                <!-- filter name="last_24_hours" string="Last 24 hours"
+                        domain="[('create_datetime', '&gt;=', ((context_today() - datetime.timedelta(hours=24)).strftime('%%Y-%%m-%%d %%H:%%M:%%S')))]"/ -->
+                <filter name="today" string="Today" domain="[('create_datetime', '&gt;=', current_date)]"/>
+                <filter name="open" string="Open" domain="[('wout_id', '=', False)]"/>
+                <separator/>
+                <filter name="cancelled" string="Cancelled" domain="[('active', '=', False)]"/>
+                <filter name="all" string="All" domain="['|', ('active','=', True), ('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Line" name="groupby_line" domain="[]" context="{'group_by':'line_id'}"/>
+                    <filter string="Lot" name="groupby_lot" domain="[]" context="{'group_by':'lot_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for Data_wINs -->
+    <record id="mdc_data_wins_tree" model="ir.ui.view">
+        <field name="name">mdc.data_wins.tree</field>
+        <field name="model">mdc.data_win</field>
+        <field name="arch" type="xml">
+            <tree string="Data_wins" decoration-danger="active==False" default_order="create_datetime desc">
+                <field name="id" string="#id"/>
+                <field name="line_id"/>
+                <field name="lot_id"/>
+                <field name="create_datetime"/>
+                <field name="weight"/>
+                <field name="w_uom_id"/>
+                <field name="card_id"/>
+                <field name="wout_id"/>
+                <!-- FIXME confirm message is not working -->
+                <button name="cancel_input" string="Cancel" type="object" help="Cancels this input"
+                    confirm="Are you sure to cancel this input? This will release the related card"
+                    attrs="{'invisible': ['|', ('active', '=', False), ('wout_id', '!=', False)]}"
+                    groups="mdc.group_mdc_office_worker"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for Data_wINs -->
+    <record id="mdc_data_wins_form" model="ir.ui.view">
+        <field name="name">mdc.data_wins.form</field>
+        <field name="model">mdc.data_win</field>
+        <field name="arch" type="xml">
+            <form string="Data_wins">
+                <header>
+                    <button name="cancel_input" string="Cancel input" type="object" help="Cancels this input"
+                        confirm="Are you sure to cancel this input? This will release the related card"
+                        attrs="{'invisible': ['|', ('id', '=', False), ('wout_id', '!=', False)]}"
+                        groups="mdc.group_mdc_office_worker" class="btn-primary"/>
+                </header>
+                <sheet>
+                   <group name="gr_Data_WIN_chkpoint_data" string="Check Point Data">
+                        <group>
+                            <field name="line_id"/>
+                            <field name="lot_id"/>
+                            <field name="cancel_user_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="create_datetime"/>
+                            <field name="tare"/>
+                            <field name="w_uom_id"/>
+                        </group>
+                    </group>
+                    <group name="gr_Data_WIN_Intro_data" string="Capture Data">
+                        <group>
+                            <div class="oe_title">
+                                <label for="weight"/>
+                                <h1>
+                                    <field name="weight"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="oe_title">
+                                <label for="card_id"/>
+                                <h1>
+                                    <field name="card_id"/>
+                                </h1>
+                            </div>
+                        </group>
+                    </group>
+                    <group name="gr_Data_WIN_Data_OUT" string="Read in Data OUT">
+                        <field name="wout_id" readonly="True"/>
+                    </group>
+                    <group name="gr_Data_WIN_audit_data" string="Audit data">
+                        <group>
+                            <field name="cancel_user_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="cancel_datetime" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search view: default search for Data_wOUTs -->
+    <record id="mdc_data_wouts_search" model="ir.ui.view">
+        <field name="name">mdc.data_wouts.search</field>
+        <field name="model">mdc.data_wout</field>
+        <field name="arch" type="xml">
+            <search string="Data_wOUT">
+                <field name="line_id"/>
+                <field name="lot_id"/>
+                <field name="shift_id"/>
+                <field name="workstation_id"/>
+                <field name="employee_id"/>
+                <filter name="today" string="Today" domain="[('create_datetime', '&gt;=', current_date)]"/>
+                <filter name="shared_open" string="Shared open" domain="[('shared', '=', True), ('wout_shared_id', '=', False)]"/>
+                <filter name="shared_close" string="Shared close" domain="[('shared', '=', True), ('wout_shared_id', '!=', False)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Line" name="groupby_line" domain="[]" context="{'group_by':'line_id'}"/>
+                    <filter string="Lot" name="groupby_lot" domain="[]" context="{'group_by':'lot_id'}"/>
+                    <filter string="Employee" name="groupby_employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for Data_wOUTs -->
+    <record id="mdc_data_wouts_tree" model="ir.ui.view">
+        <field name="name">mdc.data_wouts.tree</field>
+        <field name="model">mdc.data_wout</field>
+        <field name="arch" type="xml">
+            <tree string="Data_wouts" decoration-danger="shared and not wout_shared_id"
+                  decoration-info="shared and wout_shared_id" default_order="create_datetime desc">
+                <field name="id" string="#id"/>
+                <field name="line_id"/>
+                <field name="lot_id"/>
+                <field name="create_datetime"/>
+                <field name="weight"/>
+                <field name="w_uom_id" string=" "/>
+                <field name="quality_id"/>
+                <field name="shift_id"/>
+                <field name="workstation_id"/>
+                <field name="employee_id"/>
+                <field name="shared"/>
+                <field name="wout_shared_id" string="Shared #id"/>
+                <field name="wout_categ_id" string="Type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for Data_wOUTs -->
+    <record id="mdc_data_wouts_form" model="ir.ui.view">
+        <field name="name">mdc.data_wouts.form</field>
+        <field name="model">mdc.data_wout</field>
+        <field name="arch" type="xml">
+            <form string="Data_wouts">
+                <sheet>
+                   <group name="gr_Data_WOUT_chkpoint_data" string="Check Point Data">
+                        <group>
+                            <field name="line_id"/>
+                            <field name="lot_id"/>
+                        </group>
+                        <group>
+                            <field name="create_datetime"/>
+                            <field name="tare"/>
+                            <field name="w_uom_id"/>
+                        </group>
+                    </group>
+                    <group name="gr_Data_WOUT_category" string="Product Category">
+                        <field name="wout_categ_id"/>
+                    </group>
+                    <group name="gr_Data_WOUT_Intro_data" string="Capture Data">
+                        <group>
+                            <div class="oe_title">
+                                <label for="weight"/>
+                                <h1>
+                                    <field name="weight"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <group>
+                            <div class="oe_title">
+                                <label for="quality_id"/>
+                                <h1>
+                                    <field name="quality_id"/>
+                                </h1>
+                            </div>
+                        </group>
+                    </group>
+                    <group name="gr_Data_WOUT_Intro_Cards_data" string="Read Cards">
+                        <field name="card_ids"/>
+                    </group>
+                    <group name="gr_Data_WOUT_Intro_Shared_data" string="Shared">
+                        <group>
+                            <field name="shared"/>
+                        </group>
+                        <group>
+                            <field name="wout_shared_id"/>
+                        </group>
+                    </group>
+                  <group name="gr_Data_WOUT_Data_OUT" string="Read in Data OUT">
+                        <group>
+                            <field name="shift_id" readonly="True"/>
+                            <field name="employee_id" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="workstation_id" readonly="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+  </data>
+</odoo>

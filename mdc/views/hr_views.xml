@@ -1,0 +1,233 @@
+<odoo>
+  <data>
+        <!-- New search view: Employees - added is operative filter -->
+        <record id="view_hr_employee_filter" model="ir.ui.view">
+            <field name="name">hr.employee.search</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="sequence" eval="18"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='message_needaction']" position="after">
+                    <filter string="Operatives" name="operatives" domain="[('operator','=',True)]"/>
+                    <filter string="Present" name="present" domain="[('present','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Overwritten action: hr employee - added context ""  -->
+        <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+            <field name="name">Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_operatives':1}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="mdc.view_hr_employee_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new employee
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+        <!-- New tree view: Employees - added employee_code and contract_type-->
+        <record id="hr_view_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="replace">
+                    <field name="employee_code"/>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="before">
+                    <field name="contract_type_id"/>
+                    <field name="present"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- New kanban view: Employees - added employee_code and contract_type-->
+        <record id="hr_hr_kanban_view_employees" model="ir.ui.view">
+            <field name="name">hr.employee.kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//li[@id='last_login']" position="after">
+                    <li t-if="record.employee_code.raw_value"><field name="employee_code"/></li>
+                    <li t-if="record.contract_type_id.raw_value"><field name="contract_type_id"/></li>
+                    <!-- Does NOT work -->
+                    <!-- li t-if="record.present.raw_value">Present</li -->
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Employees - tree view is prior than kanban one -->
+        <record id="act_hr_view_employee_tree" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="2"/>
+            <field name="view_id" ref="hr.view_employee_tree"/>
+            <field name="act_window_id" ref="hr.open_view_employee_list_my"/>
+        </record>
+
+       <!-- TODO disable create and edit? -->
+       <record id="act_hr_employee_2_mdc_worksheet" model="ir.actions.act_window">
+            <field name="name">Worksheet</field>
+            <field name="res_model">mdc.worksheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('employee_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_employee_id': active_id
+            }</field>
+        </record>
+
+        <!-- New form view: Employees - added employee_code and contract_type- -->
+        <record id="hr_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="sequence" eval="18"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='public']" position="before">
+                    <page name="operatives" string="Operative Information">
+                        <group>
+                            <field name="operator" />
+                            <field name="employee_code" attrs="{'invisible': [('operator', '=', False)]}"/>
+                            <field name="contract_type_id" attrs="{'invisible': [('operator', '=', False)], 'required': [('operator', '=', True)]}"/>
+                            <field name="present" attrs="{'invisible': [('operator', '=', False)]}"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//button[@class='oe_stat_button']" position="before">
+                    <button name="%(act_hr_employee_2_mdc_worksheet)d"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        type="action">
+                        <field name="worksheets_count" widget="statinfo" string="Worksheet"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Overwritten action: hr employee - added context ""  -->
+        <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+            <field name="name">Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_operatives':1}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="mdc.view_hr_employee_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new employee
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+        <!-- Tree view: new view for massive worksheet open action -->
+        <record id="hr_employee_tree_massworksheetopen" model="ir.ui.view">
+            <field name="name">hr.employee.tree.massworksheetopen</field>
+            <field name="model">hr.employee</field>
+            <field name="priority" eval="20" />
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" string="Massive worksheet open">
+                    <field name="name" readonly="True"/>
+                    <field name="employee_code" readonly="True"/>
+                    <field name="last_physical_worksheet_end_datetime" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Server action: new action to massive worksheet open -->
+        <record id="action_view_hr_mass_worksheet_open" model="ir.actions.server">
+            <field name="name">Massive worksheet open</field>
+            <field name="model_id" ref="model_hr_employee" />
+            <field name="binding_model_id" ref="model_hr_employee"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="state">code</field>
+            <field name="multi">True</field>
+            <field name="code">
+                action=model.massive_worksheet_open()
+            </field>
+        </record>
+
+      <record id="hr_employee_massworksheetopen_wizard_form" model="ir.ui.view">
+        <field name="name">hr.employee.massworksheetopen.wizard.form</field>
+        <field name="model">hr.employee.massworksheetopen.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Massive worksheet open">
+                <sheet>
+                    <p>
+                        Please select a start date and hour for the worksheets:
+                    </p>
+                    <group>
+                        <field name="start_datetime"/>
+                    </group>
+                    <footer>
+                        <button name="action_save" string="Create open worksheets" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-default"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!-- Tree view: new view for massive worksheet close action -->
+      <record id="hr_employee_tree_massworksheetclose" model="ir.ui.view">
+            <field name="name">hr.employee.tree.massworksheetclose</field>
+            <field name="model">hr.employee</field>
+            <field name="priority" eval="20" />
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" string="Massive worksheet close">
+                    <field name="name" readonly="True"/>
+                    <field name="employee_code" readonly="True"/>
+                    <field name="last_physical_worksheet_start_datetime" readonly="True"/>
+                    <field name="worksheet_status_start_datetime" readonly="True"/>
+                    <field name="worksheet_status_data" readonly="True"/>
+                </tree>
+            </field>
+      </record>
+
+      <!-- Server action: new action to massive worksheet close -->
+      <record id="action_view_hr_mass_worksheet_close" model="ir.actions.server">
+            <field name="name">Massive worksheet close</field>
+            <field name="model_id" ref="model_hr_employee" />
+            <field name="binding_model_id" ref="model_hr_employee"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="state">code</field>
+            <field name="multi">True</field>
+            <field name="code">
+                action=model.massive_worksheet_close()
+            </field>
+      </record>
+
+      <record id="hr_employee_massworksheetclose_wizard_form" model="ir.ui.view">
+        <field name="name">hr.employee.massworksheetclose.wizard.form</field>
+        <field name="model">hr.employee.massworksheetclose.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Massive worksheet close">
+                <sheet>
+                    <p>
+                        Please select a start date and hour for the worksheets:
+                    </p>
+                    <group>
+                        <field name="end_datetime"/>
+                    </group>
+                    <footer>
+                        <button name="action_save" string="Create close worksheets" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-default"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+  </data>
+</odoo>

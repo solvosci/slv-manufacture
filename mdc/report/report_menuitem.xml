@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action: Tracing Report -->
+    <record model="ir.actions.act_window" id="action_mdc_rpt_tracing">
+        <field name="name">Tracing Report</field>
+        <field name="res_model">mdc.rpt_tracing</field>
+        <field name="view_mode">tree,graph,pivot</field>
+        <field name="search_view_id" ref="mdc_rpt_tracing_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">2000</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Can't create or update records in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_rpt_tracing_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_tracing_tree"/>
+        <field name="act_window_id" ref="action_mdc_rpt_tracing"/>
+    </record>
+
+    <record id="action_mdc_rpt_tracing_graph" model="ir.actions.act_window.view">
+        <field name="view_mode">graph</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_tracing_graph"/>
+        <field name="act_window_id" ref="action_mdc_rpt_tracing"/>
+    </record>
+
+    <record id="action_mdc_rpt_tracing_pivot" model="ir.actions.act_window.view">
+        <field name="view_mode">pivot</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_tracing_pivot"/>
+        <field name="act_window_id" ref="action_mdc_rpt_tracing"/>
+    </record>
+
+    <!-- Action: Manufacturing Report -->
+    <record model="ir.actions.act_window" id="action_mdc_rpt_manufacturing">
+        <field name="name">Manufacturing Report</field>
+        <field name="res_model">mdc.rpt_manufacturing</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="mdc_rpt_manufacturing_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">2000</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Can't create or update records in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_rpt_manufacturing_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_manufacturing_tree"/>
+        <field name="act_window_id" ref="action_mdc_rpt_manufacturing"/>
+    </record>
+
+
+    <!-- Action: Indicators Report -->
+    <record model="ir.actions.act_window" id="action_mdc_rpt_indicators">
+        <field name="name">Indicators Report</field>
+        <field name="res_model">mdc.rpt_indicators</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="mdc_rpt_indicators_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">2000</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Can't create or update records in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_rpt_indicators_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_indicators_tree"/>
+        <field name="act_window_id" ref="action_mdc_rpt_indicators"/>
+    </record>
+
+    <!-- Action: Cumulative Report -->
+    <record model="ir.actions.act_window" id="action_mdc_rpt_cumulative">
+        <field name="name">Cumulative Report</field>
+        <field name="res_model">mdc.rpt_cumulative</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="mdc_rpt_cumulative_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">2000</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Can't create or update records in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_rpt_cumulative_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_cumulative_tree"/>
+        <field name="act_window_id" ref="action_mdc_rpt_cumulative"/>
+    </record>
+
+
+    <!-- Reporting menu -->
+    <menuitem id="mdc_rpt_tracing_menu"
+        name="Tracing Report"
+        action="action_mdc_rpt_tracing"
+        parent="mdc_menu_reporting"
+        sequence="10"/>
+
+    <menuitem id="mdc_rpt_manufacturing_menu"
+        name="Manufacturing Report"
+        action="action_mdc_rpt_manufacturing"
+        parent="mdc_menu_reporting"
+        sequence="15"/>
+
+    <menuitem id="mdc_rpt_indicators_menu"
+        name="Indicators Report"
+        action="action_mdc_rpt_indicators"
+        parent="mdc_menu_reporting"
+        sequence="20"/>
+
+    <menuitem id="mdc_rpt_cumulative_menu"
+        name="Cumulative Report"
+        action="action_mdc_rpt_cumulative"
+        parent="mdc_menu_reporting"
+        sequence="25"/>
+
+</odoo>
