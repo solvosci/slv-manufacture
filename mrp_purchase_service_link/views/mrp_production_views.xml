@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form (in MRP Purchase Service Link)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page
+                    string="Subcontracted Services"
+                    name="subcontracted_services"
+                    attrs="{
+                        'invisible': [('state', 'in', ['draft', 'cancel'])],
+                        'readonly': [('state', '=', 'done')],
+                    }"
+                >
+                    <field
+                        name="purchase_line_ids"
+                        mode="tree"
+                        domain="[('product_type', '=', 'service'), ('state', 'in', ['purchase', 'done']), ('qty_received', '>', 0), ('mrp_production_id', '=', False)]"
+                    >
+                        <tree create="0">
+                            <field name="order_id" />
+                            <field name="partner_id" />
+                            <field name="product_id" />
+                            <field name="name" />
+                            <field name="product_qty" />
+                            <field name="price_subtotal" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
