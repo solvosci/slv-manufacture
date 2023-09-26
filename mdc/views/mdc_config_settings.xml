@@ -13,6 +13,7 @@
                         name="cancel" class="oe_link"/>
                 </header>
                 <group string="RFID server" groups="mdc.group_mdc_manager">
+                    <field name="id" invisible="1" />
                     <label for="id" string="Server credentials"/>
                     <div>
                         <div>

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-
+# © 2018 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 import datetime as dt
 import logging
 import socket
@@ -26,9 +26,9 @@ class DataWIn(models.Model):
         return [('card_categ_id', '=', self.env.ref('mdc.mdc_card_categ_P').id)]
 
     def _default_uom(self):
-        return self.env.ref('product.product_uom_kgm')
+        return self.env.ref('uom.product_uom_kgm')
     def _get_w_uom_id_domain(self):
-        return [('category_id', '=', self.env.ref('product.product_uom_categ_kgm').id)]
+        return [('category_id', '=', self.env.ref('uom.product_uom_categ_kgm').id)]
 
     line_id = fields.Many2one(
         'mdc.line',
@@ -50,7 +50,7 @@ class DataWIn(models.Model):
         default=0,
         required=True)
     w_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         string='Weight UoM',
         required=True,
         domain=_get_w_uom_id_domain,
@@ -72,13 +72,14 @@ class DataWIn(models.Model):
         'Active',
         default=True)
 
-    @api.model
-    def create(self, values):
-        data_win_card = self.search([('wout_id', '=', False), ('card_id', '=', values['card_id'])])
-        if data_win_card:
-            raise UserError(_('There is already open data with the selected card (%s)') % data_win_card[0].card_id.name)
+    @api.model_create_multi
+    def create(self, vals_list):
+        cards = [values['card_id'] for values in vals_list]
+        data_win_ids = self.search([('wout_id', '=', False), ('card_id', 'in', cards)])
+        if data_win_ids:
+            raise UserError(_('There is already open data with the selected card(s) (%s)') % data_win_ids.mapped("card_id.name"))
 
-        return super(DataWIn, self).create(values)
+        return super().create(vals_list)
 
     def from_cp_create(self, values):
         '''
@@ -122,7 +123,6 @@ class DataWIn(models.Model):
             'card_id': card.id
         })
 
-    @api.multi
     def cancel_input(self):
         """
         Cancels (if possible) the current input data
@@ -264,9 +264,9 @@ class DataWOut(models.Model):
         return fields.Datetime.now()
 
     def _default_uom(self):
-        return self.env.ref('product.product_uom_kgm')
+        return self.env.ref('uom.product_uom_kgm')
     def _get_w_uom_id_domain(self):
-        return [('category_id', '=', self.env.ref('product.product_uom_categ_kgm').id)]
+        return [('category_id', '=', self.env.ref('uom.product_uom_categ_kgm').id)]
 
     line_id = fields.Many2one(
         'mdc.line',
@@ -288,7 +288,7 @@ class DataWOut(models.Model):
         default=0,
         required=True)
     w_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         string='Weight UoM',
         required=True,
         domain=_get_w_uom_id_domain,
@@ -329,17 +329,13 @@ class DataWOut(models.Model):
 
     @api.onchange('card_ids')
     def _retrieve_workstation_card_data(self):
+        card_ids = self.env['mdc.card'].search([('id', 'in', self.card_ids.ids), ('workstation_id', '!=', False)])
+        if card_ids:
+            card = card_ids[-1]
+            self.workstation_id = card.workstation_id.id
+            self.shift_id = card.workstation_id.shift_id.id
+            self.employee_id = card.workstation_id.current_employee_id.id
 
-        for dataWOut in self:
-            #search workstation card
-            for card_id in dataWOut.card_ids:
-                card = self.env['mdc.card'].search([('id', '=', card_id.id), ('workstation_id', '!=', False)])
-                if card:
-                    dataWOut.workstation_id = card.workstation_id.id
-                    dataWOut.shift_id = card.workstation_id.shift_id.id
-                    dataWOut.employee_id = card.workstation_id.current_employee_id.id
-
-    @api.multi
     def name_get(self):
         res = []
         for rec in self:
@@ -348,6 +344,9 @@ class DataWOut(models.Model):
 
     @api.model
     def create(self, values):
+        """
+        TODO move to create multi
+        """
         gross_weight = 0.0
 
         #retrive all card ids

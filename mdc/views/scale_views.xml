@@ -48,11 +48,10 @@
                 </header>
                 <sheet>
                     <group>
-                        <div class="oe_title">
-                            <label for="name" attrs="{'invisible': [('id', '!=', False)]}"/>
-                            <h1>
+                        <div class="mt-0" colspan="2">
+                            <h2>
                                 <field name="name"/>
-                            </h1>
+                            </h2>
                         </div>
                     </group>
                     <group name="gr_scale_main_data" string="Scale parameters">
@@ -63,7 +62,12 @@
                         </group>
                         <group>
                             <field name="scale_protocol"/>
-                            <field name="weight_uom_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                            <field name="uom_category_domain_id" invisible="1" />
+                            <field
+                                name="weight_uom_id"
+                                domain="[('category_id', '=', uom_category_domain_id)]"
+                                options="{'no_create': 1, 'no_create_edit': 1}"
+                            />
                         </group>
                     </group>
                     <group name="gr_scale_weight_data" string="Last weight data">

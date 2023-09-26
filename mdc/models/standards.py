@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
-import datetime
-from odoo import api, models, fields, _
+# © 2018 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 
 
@@ -45,7 +44,6 @@ class Std(models.Model):
         'Active',
         default=True)
 
-    @api.multi
     def copy(self):
         # we don´t want to duplicate because this action create a new product with out control
         raise UserError(_('It not possible to duplicate the record, please create a new one'))

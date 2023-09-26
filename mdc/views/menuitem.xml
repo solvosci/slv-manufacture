@@ -1,62 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <act_window
-        id="action_mdc_data_wins"
-        name="Data In"
-        context="{'search_default_today':1}"
-        res_model="mdc.data_win"/>
-    <act_window
-        id="action_mdc_data_wouts"
-        name="Data Out"
-        context="{'search_default_today':1}"
-        res_model="mdc.data_wout"/>
-    <act_window
-        id="action_mdc_std"
-        name="Standards"
-        res_model="mdc.std"/>
-    <act_window
-        id="action_mdc_card"
-        name="Cards"
-        res_model="mdc.card"/>
-    <act_window
-        id="action_mdc_card_categ"
-        name="Cards Categories"
-        res_model="mdc.card_categ"/>
-    <act_window
-        id="action_mdc_quality"
-        name="Quality"
-        res_model="mdc.quality"/>
-    <act_window
-        id="action_mdc_tare"
-        name="Tares"
-        res_model="mdc.tare"/>
-    <act_window
-        id="action_mdc_shift"
-        name="Shifts"
-        res_model="mdc.shift"/>
-    <act_window
-        id="action_mdc_line"
-        name="Lines"
-        res_model="mdc.line"/>
-    <act_window
-        id="action_mdc_chkpoint"
-        name="Check Points"
-        res_model="mdc.chkpoint"/>
-    <act_window
-        id="action_mdc_rfid_reader"
-        name="RFID Reades"
-        res_model="mdc.rfid_reader"/>
-    <act_window
-        id="action_mdc_wout_categ"
-        name="Out Category"
-        res_model="mdc.wout_categ"/>
+    <record id="action_mdc_data_wins" model="ir.actions.act_window">
+        <field name="name">Data In</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.data_win</field>
+        <field
+            name="context"
+        >{'search_default_today':1}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_data_wouts" model="ir.actions.act_window">
+        <field name="name">Data Out</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.data_wout</field>
+        <field
+            name="context"
+        >{'search_default_today':1}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_std" model="ir.actions.act_window">
+        <field name="name">Standards</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.std</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_card" model="ir.actions.act_window">
+        <field name="name">Cards</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.card</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_card_categ" model="ir.actions.act_window">
+        <field name="name">Cards Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.card_categ</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_quality" model="ir.actions.act_window">
+        <field name="name">Quality</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.quality</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_tare" model="ir.actions.act_window">
+        <field name="name">Tares</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.tare</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_shift" model="ir.actions.act_window">
+        <field name="name">Shifts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.shift</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_line" model="ir.actions.act_window">
+        <field name="name">Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_chkpoint" model="ir.actions.act_window">
+        <field name="name">Check Points</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.chkpoint</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_rfid_reader" model="ir.actions.act_window">
+        <field name="name">RFID Reades</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.rfid_reader</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_mdc_wout_categ" model="ir.actions.act_window">
+        <field name="name">Out Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.wout_categ</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
      <!-- Action: Check Points Lots Actives -->
     <record model="ir.actions.act_window" id="action_mdc_lot_chkpoint">
         <field name="name">Check Points Lots Actives</field>
         <field name="res_model">mdc.lot_chkpoint</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="mdc_lot_chkpoint_tree"/>
         <field name="search_view_id" ref="mdc_lot_chkpoint_search"/>
@@ -74,7 +101,6 @@
     <record model="ir.actions.act_window" id="action_mdc_lots">
         <field name="name">Lots</field>
         <field name="res_model">mdc.lot</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="mdc_lots_search"/>
         <field name="context">{"search_default_inforce":1}</field>
@@ -105,7 +131,6 @@
     <record model="ir.actions.act_window" id="action_mdc_lots_actives">
         <field name="name">Active Lots</field>
         <field name="res_model">mdc.lot_active</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('active', '!=', True)]</field>
         <field name="search_view_id" ref="mdc_lots_actives_search"/>
@@ -138,7 +163,6 @@
     <record model="ir.actions.act_window" id="action_mdc_workstations">
         <field name="name">Workstations</field>
         <field name="res_model">mdc.workstation</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="mdc_workstations_search"/>
         <field name="limit">99</field>
@@ -168,7 +192,6 @@
     <record model="ir.actions.act_window" id="action_mdc_worksheets">
         <field name="name">Worksheets</field>
         <field name="res_model">mdc.worksheet</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="mdc_worksheets_search"/>
         <field name="context">{"search_default_today":1}</field>
@@ -200,7 +223,6 @@
     <record model="ir.actions.act_window" id="action_mdc_scales">
         <field name="name">Weighing scales</field>
         <field name="res_model">mdc.scale</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="mdc_scales_search"/>
         <field name="limit">25</field>
@@ -225,14 +247,6 @@
         <field name="view_id" ref="mdc_scales_form"/>
         <field name="act_window_id" ref="action_mdc_scales"/>
     </record>
-
-    <!--
-    <act_window
-        id="action_mdc_config_settings"
-        name="Settings"
-        res_model="mdc.config.settings"/>
-    -->
-
     <record id="action_mdc_config_settings" model="ir.actions.act_window">
         <field name="name">MDC settings</field>
         <field name="res_model">mdc.config.settings</field>
@@ -282,9 +296,7 @@
     <record model="ir.actions.act_window" id="action_mdc_card_lotassign">
         <field name="name">Card lot assignment</field>
         <field name="res_model">mdc.card</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="sequence" eval="20"/>
         <!-- FIXME unable to filter by joker card (ref and '%' not working) -->
         <field name="domain">[('card_categ_id.code', '=', 'PC')]</field>
         <field name="search_view_id" ref="mdc_card_lot_assign_search"/>

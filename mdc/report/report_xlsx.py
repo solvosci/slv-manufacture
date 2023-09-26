@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from addons.product.models.product_attribute import ProductAttributevalue
 from odoo import tools, models, _
 import base64
 import tempfile
@@ -83,6 +82,7 @@ def formats():
 class ReportRptTracingXlsx(models.AbstractModel):
     _name = 'report.mdc.rpt_tracing'
     _inherit = 'report.report_xlsx.abstract'
+    _description = "MDC RPT Tracing XLSX"
 
     def generate_xlsx_report(self, workbook, data, rpt_tracing):
         report_name = "rpt_tracing"
@@ -422,6 +422,7 @@ class ReportRptTracingXlsx(models.AbstractModel):
 class ReportRptManufacturingXlsx(models.AbstractModel):
     _name = 'report.mdc.rpt_manufacturing'
     _inherit = 'report.report_xlsx.abstract'
+    _description = "MDC RPT Manufacturing XLSX"
 
     def generate_xlsx_report(self, workbook, data, rpt_manufacturing):
         report_name = "rpt_manufacturing"
@@ -737,6 +738,7 @@ class ReportRptManufacturingXlsx(models.AbstractModel):
 class ReportRptIndicatorsXlsx(models.AbstractModel):
     _name = 'report.mdc.rpt_indicators'
     _inherit = 'report.report_xlsx.abstract'
+    _description = "MDC RPT Indicators XLSX"
 
     def generate_xlsx_report(self, workbook, data, rpt_indicators):
         report_name = "rpt_indicators"
@@ -999,6 +1001,7 @@ class ReportRptIndicatorsXlsx(models.AbstractModel):
 class ReportRptCumulativeXlsx(models.AbstractModel):
     _name = 'report.mdc.rpt_cumulative'
     _inherit = 'report.report_xlsx.abstract'
+    _description = "MDC RPT Cumulative XLSX"
 
     def generate_xlsx_report(self, workbook, data, rpt_cumulative):
         report_name = "rpt_cumulative"

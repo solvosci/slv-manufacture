@@ -16,6 +16,9 @@ class RptTracing(models.Model):
     employee_code = fields.Char('Employee Code', readonly=True)
     employee_name = fields.Char('Employee Name', readonly=True)
     contract_name = fields.Char('Contract Name', readonly=True)
+    # TODO in v11 this data was hr_employee.medic_exam (added by hr_contact), that doesn't
+    #      exist anymore (see https://github.com/OCA/OpenUpgrade/blob/14.0/openupgrade_scripts/scripts/hr_contract/14.0.1.0/upgrade_analysis_work.txt#L19)
+    #      Look for a subtitute field
     employee_date_start = fields.Date('Employee Incorporation date', readonly=True)
     workstation_name = fields.Char('Workstation Name', readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
@@ -77,7 +80,7 @@ class RptTracing(models.Model):
                         FROM (                
                             SELECT woutdata.id, woutdata.create_date, lot.name as lot_name, lot.product_id,
                                 coalesce(cli.name,'') as client_name,
-                                emp.employee_code, emp.name as employee_name, contr.name as contract_name, emp.medic_exam as employee_date_start, shift.shift_code, 
+                                emp.employee_code, emp.name as employee_name, contr.name as contract_name, /*emp.medic_exam as*/NULL employee_date_start, shift.shift_code, 
                                 case when (lot.finished and (lot.weight > 0)) then woutdata.gross_weight/(lot.total_gross_weight/lot.weight) when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.gross_weight /(1-coalesce(lot.std_loss,0)/100) end as gross_weight_reference,
                                 woutdata.gross_weight, woutdata.product_weight, woutdata.sp1_weight, 
                                 case when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.shared_gross_weight /(1-coalesce(lot.std_loss,0)/100) end as shared_gross_weight_reference,
@@ -231,7 +234,7 @@ class RptManufacturing(models.Model):
                     FROM (                
                         SELECT woutdata.id, woutdata.create_date, lot.name as lot_name, lot.product_id,
                             coalesce(cli.name,'') as client_name,
-                            emp.employee_code, emp.name as employee_name, contr.name as contract_name, emp.medic_exam as employee_date_start, shift.shift_code, 
+                            emp.employee_code, emp.name as employee_name, contr.name as contract_name, /*emp.medic_exam as*/NULL employee_date_start, shift.shift_code, 
                             case when (lot.finished and (lot.weight > 0)) then woutdata.gross_weight/(lot.total_gross_weight/lot.weight) when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.gross_weight /(1-coalesce(lot.std_loss,0)/100) end as gross_weight_reference,
                             woutdata.gross_weight, woutdata.product_weight, woutdata.sp1_weight, 
                             case when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.shared_gross_weight /(1-coalesce(lot.std_loss,0)/100) end as shared_gross_weight_reference,
@@ -385,7 +388,7 @@ class RptIndicators(models.Model):
                         FROM (                
                             SELECT woutdata.id, woutdata.create_date, lot.name as lot_name, lot.product_id,
                                 coalesce(cli.name,'') as client_name,
-                                emp.employee_code, emp.name as employee_name, contr.name as contract_name, emp.medic_exam as employee_date_start, shift.shift_code, 
+                                emp.employee_code, emp.name as employee_name, contr.name as contract_name, /*emp.medic_exam as*/NULL employee_date_start, shift.shift_code, 
                                 case when (lot.finished and (lot.weight > 0)) then woutdata.gross_weight/(lot.total_gross_weight/lot.weight) when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.gross_weight /(1-coalesce(lot.std_loss,0)/100) end as gross_weight_reference,
                                 woutdata.gross_weight, woutdata.product_weight, woutdata.sp1_weight, 
                                 case when (1-coalesce(lot.std_loss,0)/100) = 0 then 999999 else woutdata.shared_gross_weight /(1-coalesce(lot.std_loss,0)/100) end as shared_gross_weight_reference,

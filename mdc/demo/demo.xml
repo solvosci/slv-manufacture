@@ -5,12 +5,12 @@
             <record id="mdc_tare_E" model="mdc.tare">
                 <field name="name">Entry Container</field>
                 <field name="tare">0.5</field>
-                <field name="uom_id" ref="product.product_uom_kgm"/>
+                <field name="uom_id" ref="uom.product_uom_kgm"/>
             </record>
             <record id="mdc_tare_O" model="mdc.tare">
                 <field name="name">Output Container</field>
                 <field name="tare">0.4</field>
-                <field name="uom_id" ref="product.product_uom_kgm"/>
+                <field name="uom_id" ref="uom.product_uom_kgm"/>
             </record>
         </data>
 
@@ -46,7 +46,7 @@
                 <field name="name">Scale Device 1</field>
                 <field name="tcp_address_ip">192.168.1.110</field>
                 <field name="tcp_address_port">1234</field>
-                <field name="weight_uom_id" ref="product.product_uom_kgm"/>
+                <field name="weight_uom_id" ref="uom.product_uom_kgm"/>
             </record>
         </data>
 
@@ -1498,42 +1498,42 @@
 
         <data noupdate="1">
             <!-- Product Attribute Line -->
-            <record id="mdc_product_attribute_line_P1A1" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P1A1" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P1"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A1"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A1V1'), ref('mdc_product_attribute_value_A1V2'), ref('mdc_product_attribute_value_A1V3'), ref('mdc_product_attribute_value_A1V4'), ref('mdc_product_attribute_value_A1V5')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P1A2" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P1A2" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P1"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A2"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A2V4'), ref('mdc_product_attribute_value_A2V5'), ref('mdc_product_attribute_value_A2V6')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P2A1" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P2A1" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P2"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A1"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A1V1'), ref('mdc_product_attribute_value_A1V2'), ref('mdc_product_attribute_value_A1V3'), ref('mdc_product_attribute_value_A1V4'), ref('mdc_product_attribute_value_A1V5')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P2A2" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P2A2" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P2"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A2"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A2V1'), ref('mdc_product_attribute_value_A2V2'), ref('mdc_product_attribute_value_A2V3'), ref('mdc_product_attribute_value_A2V4')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P3A1" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P3A1" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P3"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A1"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A1V1'), ref('mdc_product_attribute_value_A1V2'), ref('mdc_product_attribute_value_A1V3'), ref('mdc_product_attribute_value_A1V5')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P3A2" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P3A2" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P3"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A2"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A2V7'), ref('mdc_product_attribute_value_A2V8'), ref('mdc_product_attribute_value_A2V9')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P4A1" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P4A1" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P4"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A1"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A1V1'), ref('mdc_product_attribute_value_A1V2'), ref('mdc_product_attribute_value_A1V3'), ref('mdc_product_attribute_value_A1V4'), ref('mdc_product_attribute_value_A1V5')])]"/>
             </record>
-            <record id="mdc_product_attribute_line_P4A2" model="product.attribute.line">
+            <record id="mdc_product_attribute_line_P4A2" model="product.template.attribute.line">
                 <field name="product_tmpl_id" ref="mdc_product_template_P4"/>
                 <field name="attribute_id" ref="mdc_product_attribute_A2"/>
                 <field name="value_ids" eval="[(6,0,[ref('mdc_product_attribute_value_A2V1'), ref('mdc_product_attribute_value_A2V2'), ref('mdc_product_attribute_value_A2V3'), ref('mdc_product_attribute_value_A2V4')])]"/>
@@ -1542,7 +1542,7 @@
 
         <data>
             <!-- This will create all the product variants for the current templates -->
-            <function name="create_variant_ids" model="product.template">
+            <function name="_create_variant_ids" model="product.template">
                 <function name="search" model="product.template">
                     <value eval="[]"/>
                 </function>
