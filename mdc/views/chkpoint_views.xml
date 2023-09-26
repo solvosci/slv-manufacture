@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="chkpoint_list">
+        <html>
+            <head>
+                <title>Checkpoint list - MDC CP</title>
+                <link rel="stylesheet" type="text/css" href="/mdc/static/src/css/cp.css"/>
+                <script language="JavaScript" src="/mdc/static/src/js/jquery-3.3.1.min.js"></script>
+            </head>
+            <body>
+                <div>MCD CP: <a href="/mdc/cp/list">Home</a> | <a href="/mdc/cp/cardreg">Card registration</a>
+                    | <a href="/mdc/cp/cardlot">Card lot assignment</a>
+                </div>
+                <hr/>
+                List of available checkpoints for RFID simulation:
+                <ul>
+                    <li t-foreach="chkpoints" t-as="chkpoint">
+                        <a t-attf-href="/mdc/cp/{{chkpoint.chkpoint_categ.lower()}}/{{chkpoint.id}}?rfidsimul">
+                            <t t-esc="chkpoint.name"></t>
+                        </a>
+                    </li>
+                </ul>
+            </body>
+        </html>
+    </template>
+
+    <template id="chkpoint_rfid_base">
+        <html>
+            <head>
+                <title><t t-esc="title"></t></title>
+                <link rel="stylesheet" type="text/css" href="/mdc/static/src/css/cp.css"/>
+                <script language="JavaScript" src="/mdc/static/src/js/jquery-3.3.1.min.js"></script>
+                <script language="JavaScript" src="/mdc/static/src/js/jquery-3.3.1.min.js"></script>
+                <script language="JavaScript" src="/mdc/static/src/js/cp_common.js"></script>
+            </head>
+            <body>
+                <div id="hidden_content" style="display: none;">
+                    <input type="hidden" id="ws_session_id" t-attf-value="{{ws_session_data['session_id']}}"/>
+                    <input type="hidden" id="ws_wsapi_url" t-attf-value="{{ws_session_data['wsapi_url']}}"/>
+                    <input type="hidden" id="ws_simul" t-attf-value="{{ws_session_data['simul']}}"/>
+                </div>
+
+                <div id="translations" style="display: none;">
+                    <span id="t_ws_rfid_onopen_wait">Waiting for websocket acceptance...</span>
+                    <span id="t_ws_rfid_onopen_ready">Ready for card readings!!!</span>
+                </div>
+
+                <div class="UpperTitle">
+                    <img src="/web/binary/company_logo" />
+                    <t t-esc="title"></t> (<t t-esc="client_ip"></t>)
+                    <button type="button" id="reload_button"></button>
+                </div>
+                <hr/>
+                <div id="info_div">
+                    Waiting for websocket connection...
+                </div>
+
+                <div id="content"></div>
+            </body>
+        </html>
+    </template>
+
+    <template id="chkpoint_err" inherit_id="chkpoint_rfid_base" primary="True">
+        <xpath expr="//div[@id='hidden_content']" position="replace">
+        </xpath>
+        <xpath expr="//div[@id='info_div']" position="replace">
+            <div id="info_div" class="info_div_err">
+                <t t-esc="error_message"></t>
+            </div>
+            <p/>
+            Please contact with system administrator
+        </xpath>
+    </template>
+
+    <template id="chkpoint_win" inherit_id="chkpoint_rfid_base" primary="True">
+        <xpath expr="//head" position="inside">
+            <script language="JavaScript" src="/mdc/static/src/js/cp_win.js"></script>
+        </xpath>
+        <xpath expr="//div[@id='hidden_content']" position="inside">
+            <t t-foreach="chkpoints" t-as="chkpoint">
+                <input type="hidden" id="rfid_reader_code" t-attf-value="{{chkpoint.rfid_reader_id.device_code}}"/>
+                <input type="hidden" id="chkpoint_id" t-attf-value="{{chkpoint.id}}"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='translations']" position="inside">
+            <span id="t_chkpoint_win_read_card">Read card #{0}</span>
+            <span id="t_chkpoint_win_lot_err">ERROR retrieving active lot: {0}</span>
+            <span id="t_chkpoint_win_lot_err_unknown">ERROR retrieving active lot (unknown)</span>
+            <span id="t_chkpoint_win_save_err_unknown">ERROR registering weight (unknown)</span>
+            <span id="t_chkpoint_win_save_ok">Data successfully saved</span>
+        </xpath>
+        <xpath expr="//div[@id='content']" position="inside">
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Lot
+                        </div>
+                        <div class="divTableCell">
+                            <span id="lot" style="font-size: 2em; font-weight: bold;"></span>
+                        </div>
+                    </div>
+                    <!-- Input data for simulation -->
+                    <div class="divTableRow" id="rfid_simul_data" style="display: none">
+                        <div class="divTableCell label">
+                            Last card read
+                        </div>
+                        <div class="divTableCell">
+                            <input id="last_card_read" type="text" size="10"
+                                   class="centered"  style="font-size: 2em"/>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Last weight
+                        </div>
+                        <div class="divTableCell">
+                            <input id="last_weight" type="text" size="10" readonly="readonly"
+                                   class="centered"  style="font-size: 2em"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="chkpoint_wout" inherit_id="chkpoint_rfid_base" primary="True">
+        <xpath expr="//head" position="inside">
+            <script language="JavaScript" src="/mdc/static/src/js/cp_wout.js"></script>
+        </xpath>
+        <xpath expr="//div[@id='hidden_content']" position="inside">
+            <input type="hidden" id="card_categ_P_id" t-attf-value="{{card_categ_P_id}}"/>
+            <input type="hidden" id="card_categ_L_id" t-attf-value="{{card_categ_L_id}}"/>
+            <input type="hidden" id="card_categ_PC_id" t-attf-value="{{card_categ_PC_id}}"/>
+            <t t-foreach="chkpoints" t-as="chkpoint">
+                <input type="hidden" id="rfid_reader_code" t-attf-value="{{chkpoint.rfid_reader_id.device_code}}"/>
+                <input type="hidden" id="chkpoint_id" t-attf-value="{{chkpoint.id}}"/>
+                <input type="hidden" id="initial_quality_id" t-attf-value="{{chkpoint.quality_id.id}}"/>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='translations']" position="inside">
+            <span id="t_chkpoint_wout_jc_description">Joker card</span>
+            <span id="t_chkpoint_wout_input_workstation_expected_err">Card #{0} not valid. Workstation card is expected</span>
+            <span id="t_chkpoint_wout_input_repeated_err">Card #{0} was already read!</span>
+            <span id="t_chkpoint_wout_input_no_input_err">Card #{0} not valid, there is no input associated!</span>
+            <span id="t_chkpoint_wout_jc_no_lot_err">Joker card #{0} not valid, there is no lot associated. First slide a product card</span>
+            <span id="t_chkpoint_wout_input_lot_err">Card read #{0} belongs to a different lot ({1}) than the current one</span>
+            <span id="t_chkpoint_wout_input_one_input_already_selected_err">Product card #{0} not valid. One input mode is selected!</span>
+            <span id="t_chkpoint_wout_input_jc_added">Added product/joker card Card #{0}</span>
+            <span id="t_chkpoint_wout_workstation_input_expected_err">Card #{0} not valid. Product card is expected</span>
+            <span id="t_chkpoint_wout_workstation_no_workstation_err">Card #{0} not valid, there is no workstation associated!</span>
+            <span id="t_chkpoint_wout_invalid_card_err">Card #{0} not valid</span>
+            <span id="t_chkpoint_wout_save_ok">Weight saved successfully</span>
+            <span id="t_chkpoint_wout_save_err">ERROR saving data: {0}</span>
+            <span id="t_chkpoint_wout_save_err_unknown">ERROR saving data (unknown)</span>
+        </xpath>
+        <xpath expr="//div[@id='content']" position="inside">
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell" style="width: 70%">
+                            <div class="divTable">
+                                <div class="divTableBody">
+                                    <div class="divTableRow" id="rfid_simul_data" style="display: none;">
+                                        <div class="divTableCell label">
+                                            Sim. input
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="card_in_simul" type="text" size="10"
+                                                   class="centered"  style="font-size: 2em"/>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+                                            Lot
+                                        </div>
+                                        <div class="divTableCell data_displayed">
+                                            <span id="lot" style="font-size: 1.25em; font-weight: bold;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+                                            Input(s) read
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="card_in_1" type="text" size="10" readonly="readonly"
+                                                   class="centered"  style="font-size: 2em"/>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="card_in_2" type="text" size="10" readonly="readonly"
+                                                   class="centered"  style="font-size: 2em"/>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+                                            Workstation
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="card_workstation" type="text" size="15" readonly="readonly"
+                                                   class="centered"  style="font-size: 1.5em"/>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+                                            Last weight
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="last_weight" type="text" size="10" readonly="readonly"
+                                                   class="centered"  style="font-size: 2em"/>
+                                        </div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell label">
+                                            Last quality
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="last_quality" type="text" size="10" readonly="readonly"
+                                                   class="centered"  style="font-size: 2em"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divTableCell centered">
+                            <button type="button" id="quality_up_button"></button>
+                            <select id="quality_select">
+                                <!-- option value="" selected="selected">Select a quality...</option -->
+                                <optgroup>
+                                    <t t-foreach="qualities" t-as="quality">
+                                        <option t-attf-value="{{quality.id}}">
+                                            <t t-esc="quality.name"></t>
+                                        </option>
+                                    </t>
+                                </optgroup>
+                            </select>
+                            <button type="button" id="quality_down_button"></button>
+                            <br/>
+                            <button type="button" id="shared_button" class="disabled"></button>
+                            <br/>
+                            <button type="button" id="crumbs_button" class="disabled"></button>
+                            <br/>
+                            <button type="button" id="one_input_button" class="disabled"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="chkpoint_card_registration" inherit_id="chkpoint_rfid_base" primary="True">
+        <xpath expr="//head" position="inside">
+            <script language="JavaScript" src="/mdc/static/src/js/cp_card_registration.js"></script>
+        </xpath>
+        <xpath expr="//div[@id='hidden_content']" position="inside">
+        </xpath>
+        <xpath expr="//div[@id='translations']" position="inside">
+        </xpath>
+        <xpath expr="//div[@id='content']" position="inside">
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                                Device
+                        </div>
+                        <div class="divTableCell">
+                            <select id="device_select">
+                                <option value="" selected="selected">Select a device...</option>
+                                <t t-foreach="devices" t-as="device">
+                                    <option t-attf-value="{{device.device_code}}">
+                                        <t t-esc="device.name"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Card category
+                        </div>
+                        <div class="divTableCell">
+                            <select id="card_categ_select">
+                                <option value="" selected="selected">Select a category...</option>
+                                <t t-foreach="card_categs" t-as="card_categ">
+                                    <option t-attf-value="{{card_categ.id}}">
+                                        <t t-esc="card_categ.name"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Employee
+                        </div>
+                        <div class="divTableCell">
+                            <select id="employee_select">
+                                <option value="" selected="selected">Select an employee...</option>
+                                <t t-foreach="employees" t-as="employee">
+                                    <option t-attf-value="{{employee.id}}">
+                                        <t t-esc="employee.employee_code"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Workstation
+                        </div>
+                        <div class="divTableCell">
+                            <select id="workstation_select">
+                                <option value="" selected="selected">Select a workstation...</option>
+                                <t t-foreach="workstations" t-as="workstation">
+                                    <option t-attf-value="{{workstation.id}}">
+                                        <t t-esc="workstation.name"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="centered" style="font-size: 1.5em; margin-top: 20px; margin-bottom: 20px">
+                Last card read:<br/>
+                <input id="card_read_input" type="text" size="10" readonly="readonly"
+                       class="centered"  style="font-size: 1.5em; background: #D0D0D0;"/>
+            </div>
+            <div class="centered">
+                <button type="button" id="confirm_button" style="font-size: 1.5em">Register card</button>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="chkpoint_card_lot_assignment" inherit_id="chkpoint_rfid_base" primary="True">
+        <xpath expr="//head" position="inside">
+            <script language="JavaScript" src="/mdc/static/src/js/cp_card_lot_assignment.js"></script>
+        </xpath>
+        <xpath expr="//div[@id='translations']" position="inside">
+            <span id="t_cardlot_device_err">there is no device selected</span>
+            <span id="t_cardlot_lot_err">there is no lot selected</span>
+            <span id="t_cardlot_slide_err">first slide a card</span>
+            <span id="t_cardlot_card_info">Read card #{0}</span>
+            <span id="t_cardlot_card_waiting">Assigning card...</span>
+            <span id="t_cardlot_success">Card #{0} successfully assigned to lot {1}</span>
+            <span id="t_cardlot_err_unknown">ERROR assigning card to lot (unknown)</span>
+        </xpath>
+        <xpath expr="//div[@id='content']" position="inside">
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                                Device
+                        </div>
+                        <div class="divTableCell">
+                            <select id="device_select">
+                                <option value="" selected="selected">Select a device...</option>
+                                <t t-foreach="devices" t-as="device">
+                                    <option t-attf-value="{{device.device_code}}">
+                                        <t t-esc="device.name"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell label">
+                            Assigned lot
+                        </div>
+                        <div class="divTableCell">
+                            <select id="lot_select">
+                                <option value="" selected="selected">Select a lot...</option>
+                                <t t-foreach="lots" t-as="lot">
+                                    <option t-attf-value="{{lot.id}}">
+                                        <t t-esc="lot.alias_cp"></t>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="centered" style="font-size: 1.5em; margin-top: 20px; margin-bottom: 20px">
+                Last card read:<br/>
+                <input id="card_read_input" type="text" size="10" readonly="readonly"
+                       class="centered"  style="font-size: 1.5em; background: #D0D0D0;"/>
+            </div>
+            <div class="centered">
+                <button type="button" id="confirm_button" style="font-size: 1.5em">Assign lot</button>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

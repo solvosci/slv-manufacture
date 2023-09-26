@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_worksheet_update_blind_worksheets" model="ir.cron">
+            <field name="name">MDC: Worksheet update blind worksheets</field>
+            <field name="model_id" ref="model_mdc_worksheet"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="code">model._update_blind_worksheets()</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="priority">3</field>
+            <field name="doall" eval="False" />
+        </record>
+
+        <record id="ir_cron_data_win_close" model="ir.cron">
+            <field name="name">MDC: Old unlinked inputs cancellation</field>
+            <field name="model_id" ref="model_mdc_data_win"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="code">model._cancel_expired_inputs()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+        </record>
+
+        <record id="ir_cron_lotactive_total_hours" model="ir.cron">
+            <field name="name">MDC: Calculate total hours of lots without end date</field>
+            <field name="model_id" ref="model_mdc_lot_active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="code">model._online_update_total_hours()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="priority">8</field>
+            <field name="doall" eval="False" />
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="ir_cron_lot_total_hours" model="ir.cron">
+            <field name="name">MDC: Update lot total gross weight</field>
+            <field name="model_id" ref="model_mdc_lot"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="code">model._update_total_gross_weight()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="priority">8</field>
+            <field name="doall" eval="False" />
+        </record>
+    </data>
+</odoo>

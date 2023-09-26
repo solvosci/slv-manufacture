@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mdc_config_settings_view_form" model="ir.ui.view">
+        <field name="name">MDC settings</field>
+        <field name="model">mdc.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="MDC settings" class="oe_form_configuration">
+                <header>
+                    <button string="Save" type="object"
+                        name="execute" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" type="object"
+                        name="cancel" class="oe_link"/>
+                </header>
+                <group string="RFID server" groups="mdc.group_mdc_manager">
+                    <label for="id" string="Server credentials"/>
+                    <div>
+                        <div>
+                            <label for="rfid_server_url"/>
+                            <field name="rfid_server_url" required="True"/>
+                        </div>
+                        <div>
+                            <label for="rfid_server_user"/>
+                            <field name="rfid_server_user" required="True"/>
+                        </div>
+                        <div>
+                            <label for="rfid_server_password"/>
+                            <field name="rfid_server_password" password="True" required="True"/>
+                        </div>
+                        <div>
+                            <label for="rfid_ws_server_url"/>
+                            <field name="rfid_ws_server_url" required="True"/>
+                        </div>
+                        <div>
+                            <label for="rfid_server_min_secs_between_worksheets"/>
+                            <field name="rfid_server_min_secs_between_worksheets" required="True"/>
+                        </div>
+                        <div>
+                            <label for="rfid_server_last_worksheet_timestamp"/>
+                            <field name="rfid_server_last_worksheet_timestamp" readonly="True"/>
+                        </div>
+                    </div>
+                </group>
+                <group string="Lots Parameters">
+                    <div>
+                        <div>
+                            <label for="lot_default_life_days"/>
+                            <field name="lot_default_life_days" required="True"/>
+                        </div>
+                        <div>
+                            <label for="lot_last_total_gross_weight_update_timestamp"/>
+                            <field name="lot_last_total_gross_weight_update_timestamp" readonly="True"/>
+                        </div>
+                    </div>
+                </group>
+                <group name="input_data_params_group" string="Input data parameters">
+                    <div>
+                        <div>
+                            <label for="data_win_cancel_mode"/>
+                            <field name="data_win_cancel_mode" required="True"/>
+                        </div>
+                        <div>
+                            <label for="data_win_cancel_fixed_time"
+                                   attrs="{'invisible': [('data_win_cancel_mode', '!=', 'fixedtime')]}"/>
+                            <field name="data_win_cancel_fixed_time"
+                                   attrs="{'invisible': [('data_win_cancel_mode', '!=', 'fixedtime')],
+                                   'required': [('data_win_cancel_mode', '=', 'fixedtime')]}"/>
+                        </div>
+                    </div>
+                </group>
+                <group name="reports_params_group" string="Report configuration parameters">
+                    <div>
+                        <div name="rpt_hide_shift_change_data_div">
+                            <label for="rpt_hide_shift_change_data"/>
+                            <field name="rpt_hide_shift_change_data" required="True"/>
+                        </div>
+                    </div>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

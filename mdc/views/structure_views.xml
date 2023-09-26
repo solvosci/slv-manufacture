@@ -1,0 +1,393 @@
+<odoo>
+  <data>
+
+    <!-- Tree view: default view for quality -->
+    <record id="mdc_quality_tree" model="ir.ui.view">
+        <field name="name">mdc.quality.tree</field>
+        <field name="model">mdc.quality</field>
+        <field name="arch" type="xml">
+            <tree string="Quality">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for quality -->
+    <record id="mdc_quality_form" model="ir.ui.view">
+        <field name="name">mdc.quality.form</field>
+        <field name="model">mdc.quality</field>
+        <field name="arch" type="xml">
+            <form string="Quality">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group name="gr_quality_data" string="Quality">
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for tare -->
+    <record id="mdc_tare_tree" model="ir.ui.view">
+        <field name="name">mdc.tare.tree</field>
+        <field name="model">mdc.tare</field>
+        <field name="arch" type="xml">
+            <tree string="Card">
+                <field name="name"/>
+                <field name="tare"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Form view: default form for tare -->
+    <record id="mdc_tare_form" model="ir.ui.view">
+        <field name="name">mdc.tare.form</field>
+        <field name="model">mdc.tare</field>
+        <field name="arch" type="xml">
+            <form string="Tare">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="tare"/>
+                        <field name="uom_id" domain="[('category_id','=',2)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view: default search for card -->
+    <record id="mdc_card_search" model="ir.ui.view">
+        <field name="name">mdc.card.search</field>
+        <field name="model">mdc.card</field>
+        <field name="arch" type="xml">
+            <search string="Card">
+                <field name="name"/>
+                <field name="card_categ_id"/>
+                <field name="employee_id"/>
+                <field name="workstation_id"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Tree view: default view for card -->
+    <record id="mdc_card_tree" model="ir.ui.view">
+        <field name="name">mdc.card.tree</field>
+        <field name="model">mdc.card</field>
+        <field name="arch" type="xml">
+            <tree string="Card">
+                <field name="name"/>
+                <field name="card_categ_id"/>
+                <field name="employee_id"/>
+                <field name="workstation_id"/>
+                <field name="lot_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view: default search for joker card assignation lots -->
+    <record id="mdc_card_lot_assign_search" model="ir.ui.view">
+        <field name="name">mdc.card_lot_assign.search</field>
+        <field name="model">mdc.card</field>
+        <field name="arch" type="xml">
+            <search string="Card lot assignment">
+                <field name="name"/>
+                <field name="lot_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for joker card assignation lots -->
+    <record id="mdc_card_lot_assign_tree" model="ir.ui.view">
+        <field name="name">mdc.card_lot_assign.tree</field>
+        <field name="model">mdc.card</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <tree editable="top" create="false" delete="false" string="Card lot assignment">
+                <field name="name" readonly="True"/>
+                <field name="lot_id" context="{'name_extended': True}"
+                       required="False" options="{'no_create': 1, 'no_create_edit': 1}"
+                       domain="['&amp;', ('start_date', '&lt;=', context_today().strftime('%Y-%m-%d')),
+                                '|', ('end_date', '=', False), ('end_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <field name="write_date" readonly="True" string="Last assignment date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for shifts -->
+    <record id="mdc_shift_tree" model="ir.ui.view">
+        <field name="name">mdc.shift.tree</field>
+        <field name="model">mdc.shift</field>
+        <field name="arch" type="xml">
+            <tree string="Shift">
+                <field name="name"/>
+                <field name="shift_code"/>
+                <field name="start_time" widget="float_time"/>
+                <field name="end_time" widget="float_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for shifts -->
+    <record id="mdc_shift_form" model="ir.ui.view">
+        <field name="name">mdc.shift.form</field>
+        <field name="model">mdc.shift</field>
+        <field name="arch" type="xml">
+            <form string="Shift">
+                <sheet>
+                    <group name="gr_shift_data" string="Shift data">
+                        <group>
+                            <field name="name"/>
+                            <field name="shift_code"/>
+                        </group>
+                    </group>
+                    <group name="gr_shift_time" string="Shift time">
+                        <group>
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for lines -->
+    <record id="mdc_line_tree" model="ir.ui.view">
+        <field name="name">mdc.line.tree</field>
+        <field name="model">mdc.line</field>
+        <field name="arch" type="xml">
+            <tree string="Line">
+                <field name="name"/>
+                <field name="line_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for lines -->
+    <record id="mdc_line_form" model="ir.ui.view">
+        <field name="name">mdc.line.form</field>
+        <field name="model">mdc.line</field>
+        <field name="arch" type="xml">
+            <form string="Line">
+                <sheet>
+                    <group name="gr_line_data" string="Line data">
+                        <group>
+                            <field name="name"/>
+                            <field name="line_code"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for check points -->
+    <record id="mdc_chkpoint_tree" model="ir.ui.view">
+        <field name="name">mdc.chkpoint.tree</field>
+        <field name="model">mdc.chkpoint</field>
+        <field name="arch" type="xml">
+            <tree string="Check Point">
+                <field name="name"/>
+                <field name="chkpoint_categ"/>
+                <field name="line_id"/>
+                <field name="order"/>
+                <field name="scale_id"/>
+                <field name="current_lot_active_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for check points -->
+    <record id="mdc_chkpoint_form" model="ir.ui.view">
+        <field name="name">mdc.chkpoint.form</field>
+        <field name="model">mdc.chkpoint</field>
+        <field name="arch" type="xml">
+            <form string="Check Point">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="gr_chkpoint_param" string="Check point parameters">
+                        <group>
+                            <field name="line_id"/>
+                            <field name="chkpoint_categ"/>
+                            <field name="order"/>
+                        </group>
+                        <group>
+                            <field name="scale_id"/>
+                            <field name="rfid_reader_id"/>
+                            <field name="allowed_ip"/>
+                        </group>
+                    </group>
+                    <group name="gr_chkpoint_data" string="Check point data">
+                        <group>
+                            <field name="tare_id"/>
+                            <field name="quality_id"/>
+                        </group>
+                    </group>
+                    <group name="gr_chkpoint_current_lot" string="Check point current lot">
+                        <group>
+                            <field name="current_lot_active_id" readonly="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mdc_rfid_reader_search" model="ir.ui.view">
+        <field name="name">mdc.rfid_reader.search</field>
+        <field name="model">mdc.rfid_reader</field>
+        <field name="arch" type="xml">
+            <search string="RFID Reader">
+                <filter
+                    name="worksheet_enabled"
+                    string="Worksheet enabled"
+                    domain="[('worksheet_enabled', '=', True)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for RFID readerss -->
+    <record id="mdc_rfid_reader_tree" model="ir.ui.view">
+        <field name="name">mdc.rfid_reader.tree</field>
+        <field name="model">mdc.rfid_reader</field>
+        <field name="arch" type="xml">
+            <tree string="RFID Reader">
+                <field name="name"/>
+                <field name="device_code"/>
+                <field name="worksheet_enabled"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for RFID Readers -->
+    <record id="mdc_rfid_reader_form" model="ir.ui.view">
+        <field name="name">mdc.rfid_reader.form</field>
+        <field name="model">mdc.rfid_reader</field>
+        <field name="arch" type="xml">
+            <form string="RFID Reader">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="gr_rfid_reader_param" string="RFID Reader parameters">
+                        <group>
+                            <field name="device_code"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group name="gr_rfid_reader_data" string="RFID Reader data">
+                        <group>
+                            <field name="tcp_address_ip"/>
+                            <field name="worksheet_enabled"/>
+                        </group>
+                        <group>
+                            <field name="tcp_address_port"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for Out categories -->
+    <record id="mdc_card_categ_tree" model="ir.ui.view">
+        <field name="name">mdc.card_categ.tree</field>
+        <field name="model">mdc.card_categ</field>
+        <field name="arch" type="xml">
+            <tree string="Card Category">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for card_categories -->
+    <record id="mdc_card_categ_form" model="ir.ui.view">
+        <field name="name">mdc.card_categ.form</field>
+        <field name="model">mdc.card_categ</field>
+        <field name="arch" type="xml">
+            <form string="Card Category">
+                <sheet>
+                    <group name="gr_card_categ_data" string="WOut Category">
+                        <group>
+                            <field name="name"/>
+                            <field name="code" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view: default view for Out categories -->
+    <record id="mdc_wout_categ_tree" model="ir.ui.view">
+        <field name="name">mdc.wout_categ.tree</field>
+        <field name="model">mdc.wout_categ</field>
+        <field name="arch" type="xml">
+            <tree string="WOut Category">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for wout_categories -->
+    <record id="mdc_wout_categ_form" model="ir.ui.view">
+        <field name="name">mdc.wout_categ.form</field>
+        <field name="model">mdc.wout_categ</field>
+        <field name="arch" type="xml">
+            <form string="WOut Category">
+                <sheet>
+                    <group name="gr_wout_categ_data" string="WOut Category">
+                        <group>
+                            <field name="name"/>
+                            <field name="code" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>

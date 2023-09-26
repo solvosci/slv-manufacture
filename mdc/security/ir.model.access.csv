@@ -1,0 +1,60 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_mdc_scale,mdc.scale default,model_mdc_scale,,1,0,0,0
+acl_mdc_scale_manager,mdc.scale_manager,model_mdc_scale,group_mdc_manager,1,1,1,1
+acl_mdc_scale_cp,mdc.scale_cp,model_mdc_scale,group_mdc_cp,1,1,0,0
+acl_mdc_workstation,mdc.workstation default,model_mdc_workstation,,1,0,0,0
+acl_mdc_workstation_office_worker,mdc.workstation_office_worker,model_mdc_workstation,group_mdc_office_worker,1,1,1,1
+acl_mdc_workstation_cp,mdc.workstation_cp,model_mdc_workstation,group_mdc_cp,1,1,0,0
+acl_mdc_lot,mdc.lot default,model_mdc_lot,,1,0,0,0
+acl_mdc_lot_office_worker,mdc.lot_office_worker,model_mdc_lot,group_mdc_office_worker,1,1,1,1
+acl_mdc_lot_cp,mdc.lot_cp,model_mdc_lot,group_mdc_cp,1,1,0,0
+acl_mdc_lot_active,mdc.lot_active default,model_mdc_lot_active,,1,0,0,0
+acl_mdc_lot_active_office_worker,mdc.lot_active_office_worker,model_mdc_lot_active,group_mdc_office_worker,1,1,1,1
+acl_mdc_lot_active_cp,mdc.lot_active_cp,model_mdc_lot_active,group_mdc_cp,1,1,0,0
+acl_mdc_worksheet,mdc.worksheet default,model_mdc_worksheet,,1,0,0,0
+acl_mdc_worksheet_manager,mdc.worksheet_manager,model_mdc_worksheet,group_mdc_manager,1,1,1,1
+acl_mdc_worksheet_cp,mdc.worksheet_cp,model_mdc_worksheet,group_mdc_cp,1,1,0,0
+
+acl_mdc_data_win,mdc.data_win default,model_mdc_data_win,,1,0,0,0
+acl_mdc_data_win_manager,mdc.data_win_manager,model_mdc_data_win,group_mdc_manager,1,1,1,1
+acl_mdc_data_win_cp,mdc.data_win_cp,model_mdc_data_win,group_mdc_cp,1,1,1,1
+acl_mdc_data_wout,mdc.data_wout default,model_mdc_data_wout,,1,0,0,0
+acl_mdc_data_wout_manager,mdc.data_wout_manager,model_mdc_data_wout,group_mdc_manager,1,1,1,1
+acl_mdc_data_wout_cp,mdc.data_wout_cp,model_mdc_data_wout,group_mdc_cp,1,1,1,1
+
+acl_mdc_line,mdc.line default,model_mdc_line,,1,0,0,0
+acl_mdc_line_manager,mdc.line_manager,model_mdc_line,group_mdc_manager,1,1,1,1
+acl_mdc_chkpoint,mdc.chkpoint default,model_mdc_chkpoint,,1,0,0,0
+acl_mdc_chkpoint_office_worker,mdc.chkpoint_office_worker,model_mdc_chkpoint,group_mdc_office_worker,1,1,1,1
+acl_mdc_lot_chkpoint,mdc.lot_chkpoint default,model_mdc_lot_chkpoint,,1,0,0,0
+acl_mdc_lot_chkpoint_office_worker,mdc.lot_chkpoint_office_worker,model_mdc_lot_chkpoint,group_mdc_office_worker,1,1,1,0
+acl_mdc_lot_chkpoint_manager,mdc.lot_chkpoint_manager,model_mdc_lot_chkpoint,group_mdc_manager,1,1,1,1
+acl_mdc_card,mdc.card default,model_mdc_card,,1,0,0,0
+acl_mdc_card_office_worker,mdc.card_office_worker,model_mdc_card,group_mdc_office_worker,1,1,1,1
+acl_mdc_card_cp,mdc.card_cp,model_mdc_card,group_mdc_cp,1,1,1,0
+acl_mdc_shift,mdc.shift default,model_mdc_shift,,1,0,0,0
+acl_mdc_shift_manager,mdc.shift_manager,model_mdc_shift,group_mdc_manager,1,1,1,1
+acl_mdc_card_categ,mdc.card_categ default,model_mdc_card_categ,,1,0,0,0
+acl_mdc_card_categ_office_worker,mdc.card_categ_office_worker,model_mdc_card_categ,group_mdc_office_worker,1,1,1,1
+acl_mdc_wout_categ,mdc.wout_categ default,model_mdc_wout_categ,,1,0,0,0
+acl_mdc_wout_categ_manager,mdc.wout_categ_manager,model_mdc_wout_categ,group_mdc_manager,1,1,1,1
+acl_mdc_tare,mdc.tare default,model_mdc_tare,,1,0,0,0
+acl_mdc_tare_office_worker,mdc.tare_office_worker,model_mdc_tare,group_mdc_office_worker,1,1,1,1
+acl_mdc_quality,mdc.quality default,model_mdc_quality,,1,0,0,0
+acl_mdc_quality_office_worker,mdc.quality_office_worker,model_mdc_quality,group_mdc_office_worker,1,1,1,1
+acl_mdc_rfid_reader,mdc.rfid_reader default,model_mdc_rfid_reader,,1,0,0,0
+acl_mdc_rfid_reader_manager,mdc.rfid_reader_manager,model_mdc_rfid_reader,group_mdc_manager,1,1,1,1
+acl_mdc_std,mdc.std default,model_mdc_std,,1,0,0,0
+acl_mdc_std_office_worker,mdc.std_office_worker,model_mdc_std,group_mdc_office_worker,1,1,1,1
+acl_hr_employee_massworksheetopen_wizard_office_worker,mdc.hr_employee_massworksheetopen_wizard_office_worker,model_hr_employee_massworksheetopen_wizard,group_mdc_office_worker,1,1,1,1
+acl_hr_employee_massworksheetclose_wizard_office_worker,mdc.hr_employee_massworksheetclose_wizard_office_worker,model_hr_employee_massworksheetclose_wizard,group_mdc_office_worker,1,1,1,1
+
+acl_hr_employee_cp,hr.employee_cp,model_hr_employee,group_mdc_cp,1,0,0,0
+acl_product_uom_cp,product.uom_cp,product.model_product_uom,group_mdc_cp,1,0,0,0
+
+acl_mdc_config_settings_office_worker,mdc.config.settings_office_worker,model_mdc_config_settings,group_mdc_office_worker,1,1,1,1
+
+acl_mdc_rpt_tracing,mdc.rpt_tracing default,model_mdc_rpt_tracing,,1,0,0,0
+acl_mdc_rpt_manufacturing,mdc.rpt_manufacturing default,model_mdc_rpt_manufacturing,,1,0,0,0
+acl_mdc_rpt_indicators,mdc.rpt_indicators default,model_mdc_rpt_indicators,,1,0,0,0
+acl_mdc_rpt_cumulative,mdc.rpt_cumulative default,model_mdc_rpt_cumulative,,1,0,0,0

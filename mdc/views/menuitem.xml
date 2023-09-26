@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <act_window
+        id="action_mdc_data_wins"
+        name="Data In"
+        context="{'search_default_today':1}"
+        res_model="mdc.data_win"/>
+    <act_window
+        id="action_mdc_data_wouts"
+        name="Data Out"
+        context="{'search_default_today':1}"
+        res_model="mdc.data_wout"/>
+    <act_window
+        id="action_mdc_std"
+        name="Standards"
+        res_model="mdc.std"/>
+    <act_window
+        id="action_mdc_card"
+        name="Cards"
+        res_model="mdc.card"/>
+    <act_window
+        id="action_mdc_card_categ"
+        name="Cards Categories"
+        res_model="mdc.card_categ"/>
+    <act_window
+        id="action_mdc_quality"
+        name="Quality"
+        res_model="mdc.quality"/>
+    <act_window
+        id="action_mdc_tare"
+        name="Tares"
+        res_model="mdc.tare"/>
+    <act_window
+        id="action_mdc_shift"
+        name="Shifts"
+        res_model="mdc.shift"/>
+    <act_window
+        id="action_mdc_line"
+        name="Lines"
+        res_model="mdc.line"/>
+    <act_window
+        id="action_mdc_chkpoint"
+        name="Check Points"
+        res_model="mdc.chkpoint"/>
+    <act_window
+        id="action_mdc_rfid_reader"
+        name="RFID Reades"
+        res_model="mdc.rfid_reader"/>
+    <act_window
+        id="action_mdc_wout_categ"
+        name="Out Category"
+        res_model="mdc.wout_categ"/>
+
+     <!-- Action: Check Points Lots Actives -->
+    <record model="ir.actions.act_window" id="action_mdc_lot_chkpoint">
+        <field name="name">Check Points Lots Actives</field>
+        <field name="res_model">mdc.lot_chkpoint</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="mdc_lot_chkpoint_tree"/>
+        <field name="search_view_id" ref="mdc_lot_chkpoint_search"/>
+        <field name="limit">25</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to register new Check Points Lots Actives.
+          </p><p>
+            You can register Lots Actives to existing Check Points.
+          </p>
+        </field>
+    </record>
+
+    <!-- Action: loads Lots -->
+    <record model="ir.actions.act_window" id="action_mdc_lots">
+        <field name="name">Lots</field>
+        <field name="res_model">mdc.lot</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="mdc_lots_search"/>
+        <field name="context">{"search_default_inforce":1}</field>
+        <field name="limit">25</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to register new lots.
+          </p><p>
+            You can register Lots and assign a product and a customer.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_mdc_lots_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_lots_tree"/>
+        <field name="act_window_id" ref="action_mdc_lots"/>
+    </record>
+    <record id="action_mdc_lots_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="5"/>
+        <field name="view_id" ref="mdc_lots_form"/>
+        <field name="act_window_id" ref="action_mdc_lots"/>
+    </record>
+
+    <!-- Action: loads Active Lots -->
+    <record model="ir.actions.act_window" id="action_mdc_lots_actives">
+        <field name="name">Active Lots</field>
+        <field name="res_model">mdc.lot_active</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('active', '!=', True)]</field>
+        <field name="search_view_id" ref="mdc_lots_actives_search"/>
+        <field name="context">{"search_default_week":1}</field>
+        <field name="limit">25</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to active lots or close lots.
+          </p><p>
+            You can active lots for in a line for each checkpoint.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_mdc_lots_actives_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="6"/>
+        <field name="view_id" ref="mdc_lots_actives_tree"/>
+        <field name="act_window_id" ref="action_mdc_lots_actives"/>
+    </record>
+    <record id="action_mdc_lots_actives_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="7"/>
+        <field name="view_id" ref="mdc_lots_actives_form"/>
+        <field name="act_window_id" ref="action_mdc_lots_actives"/>
+    </record>
+
+
+    <!-- Action: loads Workstation -->
+    <record model="ir.actions.act_window" id="action_mdc_workstations">
+        <field name="name">Workstations</field>
+        <field name="res_model">mdc.workstation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="mdc_workstations_search"/>
+        <field name="limit">99</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create new workstations.
+          </p><p>
+            You can create n workstation by line and shift.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_mdc_workstations_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="8"/>
+        <field name="view_id" ref="mdc_workstations_tree"/>
+        <field name="act_window_id" ref="action_mdc_workstations"/>
+    </record>
+    <record id="action_mdc_workstations_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="9"/>
+        <field name="view_id" ref="mdc_workstations_form"/>
+        <field name="act_window_id" ref="action_mdc_workstations"/>
+    </record>
+
+    <!-- Action: loads Worksheets -->
+    <record model="ir.actions.act_window" id="action_mdc_worksheets">
+        <field name="name">Worksheets</field>
+        <field name="res_model">mdc.worksheet</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="mdc_worksheets_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">99</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create new worksheets.
+          </p><p>
+            You can create n worksheet by line and shift.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_mdc_worksheets_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="8"/>
+        <field name="view_id" ref="mdc_worksheets_tree"/>
+        <field name="act_window_id" ref="action_mdc_worksheets"/>
+    </record>
+    <record id="action_mdc_worksheets_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="9"/>
+        <field name="view_id" ref="mdc_worksheets_form"/>
+        <field name="act_window_id" ref="action_mdc_worksheets"/>
+    </record>
+
+
+    <!-- Action: loads scales -->
+    <record model="ir.actions.act_window" id="action_mdc_scales">
+        <field name="name">Weighing scales</field>
+        <field name="res_model">mdc.scale</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="mdc_scales_search"/>
+        <field name="limit">25</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to register weghing scales.
+          </p><p>
+            You can register and track weighing scales.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_mdc_scales_view_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="11"/>
+        <field name="view_id" ref="mdc_scales_tree"/>
+        <field name="act_window_id" ref="action_mdc_scales"/>
+    </record>
+    <record id="action_mdc_scales_view_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="12"/>
+        <field name="view_id" ref="mdc_scales_form"/>
+        <field name="act_window_id" ref="action_mdc_scales"/>
+    </record>
+
+    <!--
+    <act_window
+        id="action_mdc_config_settings"
+        name="Settings"
+        res_model="mdc.config.settings"/>
+    -->
+
+    <record id="action_mdc_config_settings" model="ir.actions.act_window">
+        <field name="name">MDC settings</field>
+        <field name="res_model">mdc.config.settings</field>
+        <field name="view_id" ref="mdc_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <!-- New action: not present operator employees, ready for worksheet open -->
+    <record id="action_hr_employee_massworksheetopen" model="ir.actions.act_window">
+        <field name="name">Massive Worksheet open</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee</field>
+        <field name="limit">99</field>
+        <field name="domain">[('operator', '=', True), ('present', '=', False)]</field>
+        <field name="search_view_id" ref="mdc.view_hr_employee_filter"/>
+        <field name="view_id" ref="mdc.hr_employee_tree_massworksheetopen"/>
+        <field name="help" type="html">
+            <p>
+                Every operator is already present.
+            </p>
+            <p>
+                When an operator is unable to make his open worksheet, you'll find him here.
+            </p>
+        </field>
+    </record>
+    <!-- New action: present operator employees, ready for worksheet close -->
+    <record id="action_hr_employee_massworksheetclose" model="ir.actions.act_window">
+        <field name="name">Massive Worksheet close</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee</field>
+        <field name="limit">99</field>
+        <field name="domain">[('operator', '=', True), ('present', '=', True)]</field>
+        <field name="search_view_id" ref="mdc.view_hr_employee_filter"/>
+        <field name="view_id" ref="mdc.hr_employee_tree_massworksheetclose"/>
+        <field name="help" type="html">
+            <p>
+                Every operator is no present.
+            </p>
+            <p>
+                When an operator is unable to make his close worksheet, you'll find him here.
+            </p>
+        </field>
+    </record>
+
+     <!-- Action: Card lot assignment -->
+    <record model="ir.actions.act_window" id="action_mdc_card_lotassign">
+        <field name="name">Card lot assignment</field>
+        <field name="res_model">mdc.card</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="sequence" eval="20"/>
+        <!-- FIXME unable to filter by joker card (ref and '%' not working) -->
+        <field name="domain">[('card_categ_id.code', '=', 'PC')]</field>
+        <field name="search_view_id" ref="mdc_card_lot_assign_search"/>
+        <field name="limit">99</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Unable to register new cards in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_chkpoint_lots_actives_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_card_lot_assign_tree"/>
+        <field name="act_window_id" ref="action_mdc_card_lotassign"/>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem
+        id="mdc_menu_root"
+        name="MDC"
+        web_icon="mdc,static/description/icon.png"
+        sequence="7"/>
+
+    <!-- First level menu -->
+    <menuitem id="mdc_menu_operations"
+        name="Operations"
+        parent="mdc_menu_root"
+        groups="group_mdc_office_worker"
+        sequence="10"/>
+
+    <menuitem id="mdc_menu_data"
+        name="Data"
+        parent="mdc_menu_root"
+        groups="group_mdc_office_worker"
+        sequence="15"/>
+
+    <menuitem id="mdc_menu_reporting"
+        name="Reporting"
+        parent="mdc_menu_root"
+        groups="group_mdc_office_worker"
+        sequence="20"/>
+
+    <menuitem id="mdc_menu_master"
+        name="Master Data"
+        parent="mdc_menu_root"
+        groups="group_mdc_office_worker"
+        sequence="25"/>
+
+    <menuitem id="mdc_menu_configuration"
+        name="Configuration"
+        parent="mdc_menu_root"
+        groups="group_mdc_office_worker"
+        sequence="100"/>
+
+    <!-- Operations menu -->
+    <menuitem id="mdc_lot_active_menu"
+        name="Active Lots"
+        action="action_mdc_lot_chkpoint"
+        parent="mdc_menu_operations"
+        sequence="10"/>
+
+    <menuitem id="mdc_lot_menu"
+        name="Lots"
+        action="action_mdc_lots"
+        parent="mdc_menu_operations"
+        sequence="15"/>
+
+    <menuitem id="mdc_workstation_assign_menu"
+        name="Workstation Assign"
+        action="action_mdc_workstations"
+        parent="mdc_menu_operations"
+        sequence="20"/>
+
+    <menuitem id="mdc_historical_lot_active_menu"
+        name="Historical Used Lots"
+        action="action_mdc_lots_actives"
+        parent="mdc_menu_operations"
+        sequence="25"/>
+
+    <menuitem id="mdc_massworksheetopen_menu"
+        name="Massive worksheet open"
+        action="action_hr_employee_massworksheetopen"
+        parent="mdc_menu_operations"
+        sequence="30"/>
+
+    <menuitem id="mdc_massworksheetclose_menu"
+        name="Massive worksheet close"
+        action="action_hr_employee_massworksheetclose"
+        parent="mdc_menu_operations"
+        sequence="35"/>
+
+    <menuitem id="mdc_cardlotassign_menu"
+        name="Card lot assignment"
+        action="action_mdc_card_lotassign"
+        parent="mdc_menu_operations"
+        sequence="40"/>
+
+    <!-- Data menu -->
+    <menuitem id="mdc_worksheet_menu"
+        name="Worksheets"
+        action="action_mdc_worksheets"
+        parent="mdc_menu_data"
+        sequence="15"/>
+
+    <menuitem id="mdc_data_win_menu"
+        name="Data in"
+        action="action_mdc_data_wins"
+        parent="mdc_menu_data"
+        sequence="20"/>
+
+    <menuitem id="mdc_data_wout_menu"
+        name="Data out"
+        action="action_mdc_data_wouts"
+        parent="mdc_menu_data"
+        sequence="25"/>
+
+    <!-- Reporting menu -->
+    <!-- Menu lines definition in a specific report_menuitem.xml -->
+
+    <!-- Master Data menu -->
+    <menuitem id="mdc_std_menu"
+        name="Standards"
+        action="action_mdc_std"
+        parent="mdc_menu_master"
+        sequence="10"/>
+
+    <menuitem id="mdc_product_menu"
+        name="Products"
+        action="product.product_template_action"
+        parent="mdc_menu_master"
+        sequence="15"/>
+
+    <menuitem id="mdc_customer_menu"
+        name="Customers"
+        action="base.action_partner_form"
+        parent="mdc_menu_master"
+        sequence="20"/>
+
+    <menuitem id="mdc_employee_menu"
+        name="Employees"
+        action="hr.open_view_employee_list_my"
+        parent="mdc_menu_master"
+        sequence="25"/>
+
+    <menuitem id="mdc_card_menu"
+        name="Cards"
+        action="action_mdc_card"
+        parent="mdc_menu_master"
+        sequence="30"/>
+
+    <menuitem id="mdc_card_categ_menu"
+        name="Card Categories"
+        action="action_mdc_card_categ"
+        parent="mdc_menu_master"
+        sequence="35"/>
+
+    <menuitem id="mdc_quality_menu"
+        name="Quality"
+        action="action_mdc_quality"
+        parent="mdc_menu_master"
+        sequence="40"/>
+
+    <menuitem id="mdc_tare_menu"
+        name="Tares"
+        action="action_mdc_tare"
+        parent="mdc_menu_master"
+        sequence="45"/>
+
+    <!-- Configuration menu -->
+    <menuitem id="mdc_shift_menu"
+        name="Shift"
+        action="action_mdc_shift"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="10" />
+
+    <menuitem id="mdc_line_menu"
+        name="Lines"
+        action="action_mdc_line"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="15" />
+
+    <menuitem id="mdc_chkpoint_menu"
+        name="Check Points"
+        action="action_mdc_chkpoint"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="20" />
+
+    <menuitem id="mdc_scale_menu"
+        name="Weighing scales"
+        action="action_mdc_scales"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="25" />
+
+    <menuitem id="mdc_rfid_reader_menu"
+        name="RFID Readers"
+        action="action_mdc_rfid_reader"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="30" />
+
+    <menuitem id="mdc_wout_categ_menu"
+        name="Out Categories"
+        action="action_mdc_wout_categ"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="35"/>
+
+    <menuitem id="mdc_config_settings_menu"
+        name="Settings"
+        action="action_mdc_config_settings"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_office_worker"
+        sequence="40"/>
+
+</odoo>
