@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
-import datetime
+# © 2018 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 import logging
 from odoo import api, models, fields, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -189,7 +188,6 @@ class Workstation(models.Model):
             return (ws.id, ws.shift_id.id, ws.line_id.id)
         return (False,False,False)
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         # Modify worksheets for employee changes
@@ -220,11 +218,11 @@ class Card(models.Model):
     ]
 
     name = fields.Integer(
-        'Card_Code',
+        'Card Code',
         required=True)
     card_categ_id = fields.Many2one(
         'mdc.card_categ',
-        string='Card_Categ',
+        string='Card Category',
         required=True)
     employee_id = fields.Many2one(
         'hr.employee',
@@ -243,12 +241,14 @@ class Card(models.Model):
         'Active',
         default=True)
 
-    @api.model
-    def create(self, values):
-        values = self._card_preprocess(values)
-        return super(Card, self).create(values)
+    @api.model_create_multi
+    def create(self, vals_list):
+        new_vals_list = []
+        for values in vals_list:
+            values = self._card_preprocess(values)
+            new_vals_list.append(values)
+        return super().create(new_vals_list)
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         if 'card_categ_id' in values:
@@ -389,7 +389,7 @@ class Shift(models.Model):
         'End',
         required = True)
 
-    @api.multi
+    # TODO apparently unused. If used, remove from_string/strftime if possible
     def get_current_shift(self, dt):
         # get current shift: now between start_time and end_time
         shift = False
@@ -465,9 +465,14 @@ class Tare(models.Model):
     tare = fields.Float(
         'Tare',
         required=True)
+    # TODO workaround for fixed category filtering
+    uom_category_domain_id = fields.Many2one(
+        'uom.category',
+        default=lambda self: self.env.ref("uom.product_uom_categ_kgm")
+    )
     uom_id = fields.Many2one(
-        'product.uom',
-        string = 'Tare Unit')
+        'uom.uom',
+        string='Tare Unit')
     active = fields.Boolean(
         'Active',
         default=True)

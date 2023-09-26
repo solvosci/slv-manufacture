@@ -9,8 +9,8 @@
                 <script language="JavaScript" src="/mdc/static/src/js/jquery-3.3.1.min.js"></script>
             </head>
             <body>
-                <div>MCD CP: <a href="/mdc/cp/list">Home</a> | <a href="/mdc/cp/cardreg">Card registration</a>
-                    | <a href="/mdc/cp/cardlot">Card lot assignment</a>
+                <div>MCD CP: <a href="/mdc/cp/list">Home</a> | <a href="/mdc/cp/cardreg?rfidsimul">Card registration</a>
+                    | <a href="/mdc/cp/cardlot?rfidsimul">Card lot assignment</a>
                 </div>
                 <hr/>
                 List of available checkpoints for RFID simulation:

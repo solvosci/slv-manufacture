@@ -20,10 +20,14 @@
         <field name="arch" type="xml">
             <form string="Quality">
                 <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
                     </div>
                     <group name="gr_quality_data" string="Quality">
                         <group>
@@ -55,22 +59,34 @@
         <field name="arch" type="xml">
             <form string="Tare">
                 <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
                     </div>
                     <group>
-                        <div class="oe_title">
-                            <label for="name"/>
-                            <h1>
+                        <div class="mt-0" colspan="2">
+                            <h2>
                                 <field name="name"/>
-                            </h1>
+                            </h2>
                         </div>
                     </group>
                     <group>
-                        <field name="tare"/>
-                        <field name="uom_id" domain="[('category_id','=',2)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
+                        <group>
+                            <field name="tare"/>
+                        </group>
+                        <group>
+                            <field name="uom_category_domain_id" invisible="1" />
+                            <field
+                                name="uom_id"
+                                domain="[('category_id', '=', uom_category_domain_id)]"
+                                options="{'no_create': 1, 'no_create_edit': 1}"
+                            />
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -107,6 +123,54 @@
             </tree>
         </field>
     </record>
+
+    <!-- Form view: default form for Cards -->
+    <record id="mdc_card_form" model="ir.ui.view">
+        <field name="name">mdc.card.form</field>
+        <field name="model">mdc.card</field>
+        <field name="arch" type="xml">
+            <form string="Cards">
+                <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="card_categ_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                            attrs="{'readonly': [('id', '!=', False)]}"/>
+                    </group>
+                    <group name="gr_card_data" string="Card Assignment">
+                        <group>
+                            <field name="employee_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_O)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_O)d)]}"/>
+                            <field name="lot_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_PC)d)]}"
+                                domain="['&amp;', ('start_date', '&lt;=', context_today().strftime('%Y-%m-%d')),
+                                        '|', ('end_date', '=', False), ('end_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                        </group>
+                        <group>
+                            <field name="workstation_id" options="{'no_create': 1, 'no_create_edit': 1}"
+                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_L)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_L)d)]}"/>
+                        </group>
+                    </group>
+                    <group name="gr_card_status" string="Card Status">
+                        <group>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 
     <!-- Search view: default search for joker card assignation lots -->
     <record id="mdc_card_lot_assign_search" model="ir.ui.view">
@@ -229,11 +293,10 @@
             <form string="Check Point">
                 <sheet>
                     <group>
-                        <div class="oe_title">
-                            <label for="name"/>
-                            <h1>
+                        <div class="mt-0" colspan="2">
+                            <h2>
                                 <field name="name"/>
-                            </h1>
+                            </h2>
                         </div>
                     </group>
                     <group name="gr_chkpoint_param" string="Check point parameters">
@@ -274,6 +337,11 @@
                     string="Worksheet enabled"
                     domain="[('worksheet_enabled', '=', True)]"/>
                 <separator/>
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"/>
+                <separator/>
             </search>
         </field>
     </record>
@@ -283,11 +351,11 @@
         <field name="name">mdc.rfid_reader.tree</field>
         <field name="model">mdc.rfid_reader</field>
         <field name="arch" type="xml">
-            <tree string="RFID Reader">
+            <tree string="RFID Reader" decoration-muted="not active">
                 <field name="name"/>
                 <field name="device_code"/>
                 <field name="worksheet_enabled"/>
-                <field name="active"/>
+                <field name="active" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -299,12 +367,20 @@
         <field name="arch" type="xml">
             <form string="RFID Reader">
                 <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
                     <group>
-                        <div class="oe_title">
-                            <label for="name"/>
-                            <h1>
+                        <div class="mt-0" colspan="2">
+                            <h2>
                                 <field name="name"/>
-                            </h1>
+                            </h2>
                         </div>
                     </group>
                     <group name="gr_rfid_reader_param" string="RFID Reader parameters">
@@ -312,13 +388,12 @@
                             <field name="device_code"/>
                         </group>
                         <group>
-                            <field name="active"/>
                         </group>
                     </group>
                     <group name="gr_rfid_reader_data" string="RFID Reader data">
                         <group>
                             <field name="tcp_address_ip"/>
-                            <field name="worksheet_enabled"/>
+                            <field name="worksheet_enabled" widget="boolean_toggle"/>
                         </group>
                         <group>
                             <field name="tcp_address_port"/>
@@ -348,7 +423,7 @@
         <field name="arch" type="xml">
             <form string="Card Category">
                 <sheet>
-                    <group name="gr_card_categ_data" string="WOut Category">
+                    <group name="gr_card_categ_data">
                         <group>
                             <field name="name"/>
                             <field name="code" attrs="{'readonly': [('id', '!=', False)]}"/>

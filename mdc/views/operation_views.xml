@@ -42,29 +42,23 @@
             <form create="false" string="Active Lot per Check Point and Shift">
                 <sheet>
                     <group>
-                        <div class="oe_title">
-                            <label for="chkpoint_id"/>
-                            <h1>
-                                <field name="chkpoint_id"
-                                   attrs="{'readonly': [('id', '!=', False)]}"
-                                   options="{'no_create': 1, 'no_create_edit': 1}"
-                                />
-                            </h1>
-                            <label for="shift_id"/>
-                            <h1>
-                                <field name="shift_id"
-                                   attrs="{'readonly': [('id', '!=', False)]}"
-                                   options="{'no_create': 1, 'no_create_edit': 1}"
-                                />
-                            </h1>
-                        </div>
-                    </group>
-                    <group>
-                        <field name="current_lot_active_id" context="{'name_extended': True}"
-                                domain="['|', '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','>=',current_date),
-                                              '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','=',False)]"
-                                options="{'no_create': 1, 'no_create_edit': 1}"  />
-                        <field name="start_lot_datetime"/>
+                        <group>
+                            <field name="chkpoint_id"
+                                attrs="{'readonly': [('id', '!=', False)]}"
+                                options="{'no_create': 1, 'no_create_edit': 1}"
+                            />
+                            <field name="shift_id"
+                                attrs="{'readonly': [('id', '!=', False)]}"
+                                options="{'no_create': 1, 'no_create_edit': 1}"
+                            />
+                        </group>
+                        <group>
+                            <field name="current_lot_active_id" context="{'name_extended': True}"
+                                    domain="['|', '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','>=',current_date),
+                                                '&amp;', '&amp;',('start_date','&lt;=',current_date), ('finished','=',False), ('end_date','=',False)]"
+                                    options="{'no_create': 1, 'no_create_edit': 1}"  />
+                            <field name="start_lot_datetime"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -120,17 +114,17 @@
             <form string="Lots">
                 <sheet>
                     <group>
-                        <div class="oe_title">
-                            <h1>
+                        <div class="mt-0" colspan="2">
+                            <h2>
                                 <field name="name"/>
-                            </h1>
+                            </h2>
                         </div>
                     </group>
                     <group name="gr_lot_main_data" string="Lot parameters">
                         <group>
                             <field name="product_id" domain="[('std_count','>',0)]" options="{'no_create': 1, 'no_create_edit': 1}"/>
                             <field name="lot_code"/>
-                            <field name="partner_id" domain="[('customer','=',True), ('parent_id','=',False)]" context="{'search_default_customer':1, 'show_address': 1}" options="{&quot;always_reload&quot;: True}"/>
+                            <field name="partner_id" domain="[('parent_id','=',False)]" context="{'show_address': 1}" options="{&quot;always_reload&quot;: True}"/>
                         </group>
                         <group>
                             <field name="weight"/>
@@ -184,7 +178,6 @@
                         ]"/>
                 <group expand="0" string="Group By">
                     <filter string="Lot" name="groupby_product" domain="[]" context="{'group_by':'lot_id'}"/>
-                    <filter string="Line" name="groupby_partner" domain="[]" context="{'group_by':'line_id'}"/>
                 </group>
             </search>
         </field>
@@ -270,7 +263,6 @@
         <field name="model_id" ref="model_mdc_workstation" />
         <field name="binding_model_id" ref="model_mdc_workstation"/>
         <field name="state">code</field>
-        <field name="multi">True</field>
         <field name="code">
             action=model.massive_deallocate()
         </field>
@@ -347,10 +339,14 @@
         <field name="arch" type="xml">
             <form string="Standards" copy="False">
                 <sheet>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
                     </div>
                     <group>
                         <field name="product_id" options="{'no_create': 1, 'no_create_edit': 1}"/>
@@ -365,49 +361,6 @@
                             <field name="std_yield_sp1"/>
                             <field name="std_yield_sp2" invisible="1"/>
                             <field name="std_yield_sp3" invisible="1"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Form view: default form for Cards -->
-    <record id="mdc_cards_form" model="ir.ui.view">
-        <field name="name">mdc.cards.form</field>
-        <field name="model">mdc.card</field>
-        <field name="arch" type="xml">
-            <form string="Cards">
-                <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
-                    </div>
-                    <group>
-                        <field name="name"/>
-                    </group>
-                    <group>
-                        <field name="card_categ_id" options="{'no_create': 1, 'no_create_edit': 1}"
-                            attrs="{'readonly': [('id', '!=', False)]}"/>
-                    </group>
-                    <group name="gr_card_data" string="Card Assignment">
-                        <group>
-                            <field name="employee_id" options="{'no_create': 1, 'no_create_edit': 1}"
-                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_O)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_O)d)]}"/>
-                            <field name="lot_id" options="{'no_create': 1, 'no_create_edit': 1}"
-                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_PC)d)]}"
-                                domain="['&amp;', ('start_date', '&lt;=', context_today().strftime('%Y-%m-%d')),
-                                        '|', ('end_date', '=', False), ('end_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
-                        </group>
-                        <group>
-                            <field name="workstation_id" options="{'no_create': 1, 'no_create_edit': 1}"
-                                attrs="{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_L)d)], 'required': [('card_categ_id', '=', %(mdc.mdc_card_categ_L)d)]}"/>
-                        </group>
-                    </group>
-                    <group name="gr_card_status" string="Card Status">
-                        <group>
-                            <field name="status"/>
                         </group>
                     </group>
                 </sheet>

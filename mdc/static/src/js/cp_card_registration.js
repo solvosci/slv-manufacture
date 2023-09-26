@@ -99,4 +99,9 @@ $(document).ready(function() {
     /* var ws = */ws_create(ws_event_received, { 'onopen_function': ws_event_open });
     show_info($('#t_ws_rfid_onopen_wait').html(), 'ok');
 
+    // Simulation support
+    if ( $('#ws_simul').val().toLowerCase() === 'true' ) {
+        $('#card_read_input').removeAttr("readonly");
+    }
+
 });

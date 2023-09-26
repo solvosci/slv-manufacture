@@ -5,7 +5,7 @@
             <field name="name">hr.employee.search</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_filter"/>
-            <field name="sequence" eval="18"/>
+            <field name="priority" eval="18"/>
             <field name="arch" type="xml">
                 <xpath expr="//filter[@name='message_needaction']" position="after">
                     <filter string="Operatives" name="operatives" domain="[('operator','=',True)]"/>
@@ -75,7 +75,6 @@
        <record id="act_hr_employee_2_mdc_worksheet" model="ir.actions.act_window">
             <field name="name">Worksheet</field>
             <field name="res_model">mdc.worksheet</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('employee_id', '=', active_id)]</field>
             <field name="context">{
@@ -88,7 +87,7 @@
             <field name="name">hr.employee.form</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
-            <field name="sequence" eval="18"/>
+            <field name="priority" eval="18"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='public']" position="before">
                     <page name="operatives" string="Operative Information">
@@ -100,7 +99,7 @@
                         </group>
                     </page>
                 </xpath>
-                <xpath expr="//button[@class='oe_stat_button']" position="before">
+                <xpath expr="//div[@name='button_box']" position="inside">
                     <button name="%(act_hr_employee_2_mdc_worksheet)d"
                         class="oe_stat_button"
                         icon="fa-book"
@@ -148,10 +147,7 @@
             <field name="name">Massive worksheet open</field>
             <field name="model_id" ref="model_hr_employee" />
             <field name="binding_model_id" ref="model_hr_employee"/>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
             <field name="state">code</field>
-            <field name="multi">True</field>
             <field name="code">
                 action=model.massive_worksheet_open()
             </field>
@@ -199,10 +195,7 @@
             <field name="name">Massive worksheet close</field>
             <field name="model_id" ref="model_hr_employee" />
             <field name="binding_model_id" ref="model_hr_employee"/>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
             <field name="state">code</field>
-            <field name="multi">True</field>
             <field name="code">
                 action=model.massive_worksheet_close()
             </field>

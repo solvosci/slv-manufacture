@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# © 2018 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 {
     'name': "Manufacturing data control (MDC)",
 
@@ -9,14 +10,19 @@
         Manufacturing data control (MDC)
     """,
 
-    'author': "Solvos Consultoría Informática",
-    'website': "http://www.solvos.es",
+    'author': "Solvos",
+    'website': "https://github.com/solvosci/slv-manufacture",
 
     'category': 'Manufacturing',
-    'license': 'LGPL-3',
-    'version': '11.0.1.8.0',
+    'license': 'AGPL-3',
+    'version': '16.0.1.0.0',
 
-    'depends': ['base', 'product', 'hr', 'hr_contract', 'stock', 'report_xlsx', 'base_external_dbsource_mysql'],
+    'depends': [
+        'hr_contract',
+        'stock',
+        'report_xlsx',
+        'base_external_dbsource_sqlite'
+    ],
 
     'data': [
         'security/groups.xml',
@@ -45,8 +51,9 @@
 
     'external_dependencies': {
         'python': [
-            'requests',
-            'websocket'
+            'websocket-client',
         ],
-    }
+    },
+
+    "application": True,
 }

@@ -50,7 +50,7 @@ acl_hr_employee_massworksheetopen_wizard_office_worker,mdc.hr_employee_massworks
 acl_hr_employee_massworksheetclose_wizard_office_worker,mdc.hr_employee_massworksheetclose_wizard_office_worker,model_hr_employee_massworksheetclose_wizard,group_mdc_office_worker,1,1,1,1
 
 acl_hr_employee_cp,hr.employee_cp,model_hr_employee,group_mdc_cp,1,0,0,0
-acl_product_uom_cp,product.uom_cp,product.model_product_uom,group_mdc_cp,1,0,0,0
+acl_uom_uom_cp,product.uom_cp,uom.model_uom_uom,group_mdc_cp,1,0,0,0
 
 acl_mdc_config_settings_office_worker,mdc.config.settings_office_worker,model_mdc_config_settings,group_mdc_office_worker,1,1,1,1
 

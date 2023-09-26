@@ -4,6 +4,7 @@ from odoo import api, fields, models, exceptions, _
 class MdcConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
     _name = 'mdc.config.settings'
+    _description = "MDC Settings"
 
     rfid_server_url = fields.Char('RFID Server URL')
     rfid_server_user = fields.Char('RFID Server User')
@@ -52,7 +53,6 @@ class MdcConfigSettings(models.TransientModel):
         )
         return res
 
-    @api.multi
     def set_values(self):
         super(MdcConfigSettings, self).set_values()
 

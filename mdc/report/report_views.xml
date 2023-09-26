@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-         <report
-            id="tracing_xlsx"
-            model="mdc.rpt_tracing"
-            string="Print to XLSX"
-            report_type="xlsx"
-            name="mdc.rpt_tracing"
-            file="mdc_rpt_tracing"
-            attachment_use="False"
-        />
+        <!-- TODO verify attachment_use=False is by default -->
+        <record id="tracing_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_tracing</field>
+            <field name="report_type">xlsx</field>
+            <field
+                name="report_name"
+            >mdc.rpt_tracing</field>
+            <field
+                name="report_file"
+            >mdc.rpt_tracing</field>
+        </record>
 
         <!-- Search view: default search for Tracing Report -->
         <record id="mdc_rpt_tracing_search" model="ir.ui.view">
@@ -87,15 +90,18 @@
     </data>
 
     <data>
-         <report
-            id="manufacturing_xlsx"
-            model="mdc.rpt_manufacturing"
-            string="Print to XLSX"
-            report_type="xlsx"
-            name="mdc.rpt_manufacturing"
-            file="mdc_rpt_manufacturing"
-            attachment_use="False"
-        />
+        <!-- TODO verify attachment_use=False is by default -->
+        <record id="manufacturing_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_manufacturing</field>
+            <field name="report_type">xlsx</field>
+            <field
+                name="report_name"
+            >mdc.rpt_manufacturing</field>
+            <field
+                name="report_file"
+            >mdc.rpt_manufacturing</field>
+        </record>
 
         <!-- Search view: default search for Manufacturing Report -->
         <record id="mdc_rpt_manufacturing_search" model="ir.ui.view">
@@ -151,15 +157,18 @@
     </data>
 
     <data>
-         <report
-            id="indicators_xlsx"
-            model="mdc.rpt_indicators"
-            string="Print to XLSX"
-            report_type="xlsx"
-            name="mdc.rpt_indicators"
-            file="mdc_rpt_indicators"
-            attachment_use="False"
-        />
+        <!-- TODO verify attachment_use=False is by default -->
+        <record id="indicators_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_indicators</field>
+            <field name="report_type">xlsx</field>
+            <field
+                name="report_name"
+            >mdc.rpt_indicators</field>
+            <field
+                name="report_file"
+            >mdc.rpt_indicators</field>
+        </record>
 
         <!-- Search view: default search for Indicators Report -->
         <record id="mdc_rpt_indicators_search" model="ir.ui.view">
@@ -210,15 +219,18 @@
 
 
     <data>
-         <report
-            id="cumulative_xlsx"
-            model="mdc.rpt_cumulative"
-            string="Print to XLSX"
-            report_type="xlsx"
-            name="mdc.rpt_cumulative"
-            file="mdc_rpt_cumulative"
-            attachment_use="False"
-        />
+        <!-- TODO verify attachment_use=False is by default -->
+        <record id="cumulative_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_cumulative</field>
+            <field name="report_type">xlsx</field>
+            <field
+                name="report_name"
+            >mdc.rpt_cumulative</field>
+            <field
+                name="report_file"
+            >mdc.rpt_cumulative</field>
+        </record>
 
         <!-- Search view: default search for Cumulative Report -->
         <record id="mdc_rpt_cumulative_search" model="ir.ui.view">

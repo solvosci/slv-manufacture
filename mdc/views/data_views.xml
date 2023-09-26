@@ -168,21 +168,12 @@
                         </group>
                     </group>
                     <group name="gr_Data_WIN_Intro_data" string="Capture Data">
+                        <!-- TODO make data bigger, as v11 did -->
                         <group>
-                            <div class="oe_title">
-                                <label for="weight"/>
-                                <h1>
-                                    <field name="weight"/>
-                                </h1>
-                            </div>
+                            <field name="weight"/>
                         </group>
                         <group>
-                            <div class="oe_title">
-                                <label for="card_id"/>
-                                <h1>
-                                    <field name="card_id"/>
-                                </h1>
-                            </div>
+                            <field name="card_id"/>
                         </group>
                     </group>
                     <group name="gr_Data_WIN_Data_OUT" string="Read in Data OUT">
@@ -272,21 +263,12 @@
                         <field name="wout_categ_id"/>
                     </group>
                     <group name="gr_Data_WOUT_Intro_data" string="Capture Data">
+                        <!-- TODO higher fields -->
                         <group>
-                            <div class="oe_title">
-                                <label for="weight"/>
-                                <h1>
-                                    <field name="weight"/>
-                                </h1>
-                            </div>
+                            <field name="weight"/>
                         </group>
                         <group>
-                            <div class="oe_title">
-                                <label for="quality_id"/>
-                                <h1>
-                                    <field name="quality_id"/>
-                                </h1>
-                            </div>
+                            <field name="quality_id"/>
                         </group>
                     </group>
                     <group name="gr_Data_WOUT_Intro_Cards_data" string="Read Cards">

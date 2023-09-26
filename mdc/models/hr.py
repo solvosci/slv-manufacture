@@ -1,18 +1,14 @@
-
-import logging
-
-from addons.l10n_in_hr_payroll.report.report_payroll_advice import payroll_advice_report
+# © 2018 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-import datetime as DT
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
-
+import logging
 _logger = logging.getLogger(__name__)
 
 
-class Employee(models.Model):
-    _inherit = 'hr.employee'
+class HrEmployeeBase(models.AbstractModel):
+    _inherit = "hr.employee.base"
 
     _sql_constraints = [
         ('employee_code_unique', 'UNIQUE(employee_code)',
@@ -26,7 +22,7 @@ class Employee(models.Model):
             code_max_num = int(last_code.employee_code[4:]) + 1
         return 'OPE ' + str(code_max_num).zfill(4)
 
-    operator = fields.Boolean('Is operator', required=True, default=False)
+    operator = fields.Boolean('Is operator', default=False)
     employee_code = fields.Char('Employee code', required=False)
     contract_type_id = fields.Many2one('hr.contract.type', string="Contract Type",
                               default=lambda self: self.env['hr.contract.type'].search([], limit=1))
@@ -69,6 +65,66 @@ class Employee(models.Model):
         compute='_compute_last_physical_worksheet_end_datetime',
         store=True
     )
+    
+
+class Employee(models.Model):
+    _inherit = 'hr.employee'
+
+    # _sql_constraints = [
+    #     ('employee_code_unique', 'UNIQUE(employee_code)',
+    #      _('Employee code must be unique!')),
+    # ]
+
+    # def _default_employee_code(self):
+    #     last_code = self.search([('employee_code', 'like', 'OPE%')], order='employee_code desc', limit=1)
+    #     code_max_num = 1
+    #     if last_code:
+    #         code_max_num = int(last_code.employee_code[4:]) + 1
+    #     return 'OPE ' + str(code_max_num).zfill(4)
+
+    # operator = fields.Boolean('Is operator', default=False)
+    # employee_code = fields.Char('Employee code', required=False)
+    # contract_type_id = fields.Many2one('hr.contract.type', string="Contract Type",
+    #                           default=lambda self: self.env['hr.contract.type'].search([], limit=1))
+    # workstation_id = fields.One2many(
+    #     'mdc.workstation',
+    #     'current_employee_id')
+    # worksheets_count = fields.Integer(compute='_compute_worksheets_count', string='Worksheets')
+    # worksheet_ids = fields.One2many(
+    #     'mdc.worksheet',
+    #     'employee_id')
+    # present = fields.Boolean(
+    #     'Present',
+    #     readonly=True,
+    #     compute='_compute_present',
+    #     store=True)
+    # worksheet_end_datetime = fields.Datetime(
+    #     'Worksheet End Datetime',
+    #     readonly=True,
+    #     compute='_compute_worksheet_data',
+    #     store=True)
+    # worksheet_status_start_datetime = fields.Datetime(
+    #     'Worksheet Status Start Datetime',
+    #     readonly=True,
+    #     compute='_compute_worksheet_data',
+    #     store=True)
+    # worksheet_status_data = fields.Char(
+    #     'Worksheet Status data',
+    #     readonly=True,
+    #     compute='_compute_worksheet_data',
+    #     store=True)
+    # last_physical_worksheet_start_datetime = fields.Datetime(
+    #     'Last physical worksheet start datetime',
+    #     readonly=True,
+    #     compute='_compute_last_physical_worksheet_start_datetime',
+    #     store=True
+    # )
+    # last_physical_worksheet_end_datetime = fields.Datetime(
+    #     'Last physical worksheet end datetime',
+    #     readonly=True,
+    #     compute='_compute_last_physical_worksheet_end_datetime',
+    #     store=True
+    # )
 
     def _compute_worksheets_count(self):
         """
@@ -83,7 +139,6 @@ class Employee(models.Model):
         for employee in self:
             employee.worksheets_count = len(employee.worksheet_ids)
 
-    @api.multi
     @api.depends('worksheet_ids.end_datetime')
     def _compute_present(self):
         """
@@ -99,7 +154,6 @@ class Employee(models.Model):
         for employee in self:
             employee.present = len(employee.worksheet_ids.filtered(lambda r: r.end_datetime is False)) > 0
 
-    @api.multi
     @api.depends('worksheet_ids.end_datetime')
     def _compute_worksheet_data(self):
         # TODO check filtered performance when growing data
@@ -124,7 +178,6 @@ class Employee(models.Model):
             employee.worksheet_status_start_datetime = last_start_datetime
             employee.worksheet_status_data = worksheet_data_status
 
-    @api.multi
     @api.depends('worksheet_ids.end_datetime')
     def _compute_last_physical_worksheet_start_datetime(self):
         for employee in self:
@@ -132,7 +185,6 @@ class Employee(models.Model):
             if physical_open_worksheets:
                 employee.last_physical_worksheet_start_datetime = physical_open_worksheets[-1].physical_start_datetime
 
-    @api.multi
     @api.depends('worksheet_ids.end_datetime')
     def _compute_last_physical_worksheet_end_datetime(self):
         for employee in self:
@@ -140,16 +192,16 @@ class Employee(models.Model):
             if physical_closed_worksheets:
                 employee.last_physical_worksheet_end_datetime = physical_closed_worksheets[-1].physical_end_datetime
 
-    @api.model
-    def create(self, values):
+    @api.model_create_multi
+    def create(self, vals_list):
         _logger.info("[hr.employee] Employee_create")
 
-        if values.get('operator') and not values.get('employee_code'):
-            values['employee_code'] = self._default_employee_code()
+        for values in vals_list:            
+            if values.get('operator') and not values.get('employee_code'):
+                values['employee_code'] = self._default_employee_code()
 
-        return super(Employee, self).create(values)
+        return super().create(vals_list)
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         if 'operator' in values:
@@ -176,7 +228,6 @@ class Employee(models.Model):
         """
         return self.env.user.has_group('mdc.group_mdc_office_worker')
 
-    @api.multi
     def worksheet_open(self, start_datetime, physical_start_datetime=False,
                        physical_open=False, manual_open=False):
         self.ensure_one()
@@ -191,7 +242,6 @@ class Employee(models.Model):
             'manual_open': manual_open,
         })
 
-    @api.multi
     def worksheet_close(self, end_datetime, physical_end_datetime=False,
                         physical_close=False, manual_close=False):
         self.ensure_one()
@@ -222,7 +272,6 @@ class Employee(models.Model):
             'name': 'Massive worksheet open',
             'res_model': 'hr.employee.massworksheetopen.wizard',
             'view_mode': 'form',
-            'view_type': 'form',
             'res_id': new.id,
             'target': 'new',
             'type': 'ir.actions.act_window'
@@ -237,7 +286,6 @@ class Employee(models.Model):
             'name': 'Massive worksheet close',
             'res_model': 'hr.employee.massworksheetclose.wizard',
             'view_mode': 'form',
-            'view_type': 'form',
             'res_id': new.id,
             'target': 'new',
             'type': 'ir.actions.act_window'
@@ -259,11 +307,6 @@ class EmployeeMassWorksheetOpen(models.TransientModel):
     employee_ids = fields.Many2many(
         'hr.employee',
         string='Employees')
-
-    @api.model
-    def create(self, values):
-        # TODO
-        return super(EmployeeMassWorksheetOpen, self).create(values)
 
     def action_save(self):
         self.ensure_one()
@@ -289,11 +332,6 @@ class EmployeeMassWorksheetClose(models.TransientModel):
     employee_ids = fields.Many2many(
         'hr.employee',
         string='Employees')
-
-    @api.model
-    def create(self, values):
-        # TODO
-        return super(EmployeeMassWorksheetClose, self).create(values)
 
     def action_save(self):
         self.ensure_one()

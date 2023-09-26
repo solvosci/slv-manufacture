@@ -30,7 +30,7 @@ class Lot(models.Model):
         #return fields.Datetime.from_string(fields.Datetime.now())
         return fields.Datetime.now()
     def _default_uom(self):
-        return self.env.ref('product.product_uom_kgm')
+        return self.env.ref('uom.product_uom_kgm')
 
     name = fields.Char(
         'MO',
@@ -43,7 +43,7 @@ class Lot(models.Model):
         'Weight',
         required=True)
     w_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         string = 'Weight Unit',
         default=_default_uom)
     partner_id = fields.Many2one(
@@ -181,7 +181,6 @@ class Lot(models.Model):
         except Exception as e:
             _logger.error('[_update_total_gross_weight] %s' % e)
 
-    @api.multi
     @api.depends('name', 'lot_code')
     def _compute_alias_cp(self):
         for lot in self:
@@ -306,7 +305,6 @@ class LotActive(models.Model):
         values['total_hours'] = self._compute_total_hours(values)
         return super(LotActive, self).create(values)
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
 
@@ -749,7 +747,6 @@ class Worksheet(models.Model):
         values['total_hours'] = self._compute_total_hours(values)
         return super(Worksheet, self).create(values)
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         if 'employee_id' in values:
@@ -805,13 +802,11 @@ class Worksheet(models.Model):
                         'without End datetime for employee %s') %
                                     worksheet.employee_id.employee_code)
 
-    @api.multi
     def massive_close(self, wsheets, end_time):
         for item in wsheets:
             item.write({'end_datetime': end_time})
         return
 
-    @api.multi
     def update_employee_worksheets(self, employee_id, new_workstation_id, now):
         # Look for employee open worksheets, and close them
         if not self.user_has_groups('mdc.group_mdc_office_worker'):
@@ -1101,18 +1096,20 @@ class Worksheet(models.Model):
             card = Card.search([('name', '=', data['usrid'])])
             if card:
                 if card.employee_id:
-                    worksheet_datetime = datetime.datetime.utcfromtimestamp(data['devdt']).strftime(DF)
+                    # FIXME verify right UTC management (seems to be wrong)
+                    worksheet_datetime = datetime.datetime.utcfromtimestamp(data['devdt'])
                     # -------------------------------------------------------------------------
                     # Repeated physical worksheets
                     last_physical_worksheet_start_datetime = \
-                        card.employee_id.last_physical_worksheet_start_datetime or ''
+                        card.employee_id.last_physical_worksheet_start_datetime or datetime.datetime.min
                     last_physical_worksheet_end_datetime = \
-                        card.employee_id.last_physical_worksheet_end_datetime or ''
+                        card.employee_id.last_physical_worksheet_end_datetime or datetime.datetime.min
                     last_physical_worksheet_datetime = max(last_physical_worksheet_start_datetime,
                                                            last_physical_worksheet_end_datetime)
                     if last_physical_worksheet_datetime:
-                        td = datetime.datetime.strptime(worksheet_datetime, DF) - \
-                             datetime.datetime.strptime(last_physical_worksheet_datetime, DF)
+                        # td = datetime.datetime.strptime(worksheet_datetime, DF) - \
+                        #      datetime.datetime.strptime(last_physical_worksheet_datetime, DF)
+                        td = worksheet_datetime - last_physical_worksheet_datetime
                         if td.total_seconds() < min_secs_worksheet:
                             _logger.warning('[mdc.worksheet] Skipped worksheet for user %s@%s'
                                             ' because last physical worksheet (%s) was only %f seconds ago < %d'
@@ -1152,19 +1149,33 @@ class Worksheet(models.Model):
             # TODO WARNING how to close connections??
             # with DbSource.conn_open():
             _logger.info('[mdc.worksheet] Connected to database!')
+            # TODO verify SQLAlchemy convention for parameters and library version
+            # query="SELECT devdt, devuid, usrid from {0}"
+            #       " where usrid <> %(notuser)s and evt>=4097 and evt<=4111"
+            #       " and devdt >= %(devdt)s order by devdt".format(table),
+            query = """
+            SELECT devdt, devuid, usrid from {0}
+            where usrid <> :notuser and evt>=4097 and evt<=4111
+            and devdt >= :devdt order by devdt
+            """.format(table)
+            # TODO sqlachemy text() workaround due to < 2.0 usage
+            #      see https://github.com/OCA/server-backend/pull/235
+            import sqlalchemy; query = sqlalchemy.text(query)
             res = DbSource.execute(
-                query="SELECT devdt, devuid, usrid from {0}"
-                      " where usrid <> %(notuser)s and evt>=4097 and evt<=4111"
-                      " and devdt >= %(devdt)s order by devdt".format(table),
-                execute_params={'notuser': '', 'devdt': devdt})
-            _logger.info('[mdc.worksheet] Found %s worksheets with devdt >= %s' % (len(res), devdt))
-            if len(res) > 0:
+                query=query,
+                execute_params={'notuser': '', 'devdt': devdt},
+                metadata=True,
+            )
+            rows = res.get("rows", [])
+            _logger.info('[mdc.worksheet] Found %s worksheets with devdt >= %s' % (len(rows), devdt))
+            if len(rows) > 0:
                 Card = self.env['mdc.card']
                 reader_codes = self.env["mdc.rfid_reader"].get_worksheet_enabled()
                 last_timestamp = None
                 now = fields.Datetime.now()
                 min_secs_worksheet = int(IrConfigParameter.get_param('mdc.rfid_server_min_secs_between_worksheets'))
-                for row in res:
+                for row_raw in rows:
+                    row = {res["cols"][i]: row_raw[i] for i in range(0, len(row_raw))}
                     _logger.info('[mdc.worksheet] Read devdt=%d, devuid=%d, usrid=%s' %
                                  (row['devdt'], row['devuid'], row['usrid']))
                     if str(row["devuid"]) not in reader_codes:
@@ -1238,14 +1249,12 @@ class LotChkPoint(models.Model):
             raise UserError(_('You can´t give a start lot datetime in create mode'))
         return super(LotChkPoint, self).create(values)
 
-    @api.multi
     def unlink(self):
         for r in self:
             if r.current_lot_active_id:
                 raise UserError(_('You must to have no lot assigned to delete this record'))
         return super(LotChkPoint, self).unlink()
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         now = fields.Datetime.now()
@@ -1267,9 +1276,9 @@ class LotChkPoint(models.Model):
             # when change lot and don´t change date we put default date = current_date
             if 'current_lot_active_id' in values \
                 and values['current_lot_active_id'] != self.current_lot_active_id.id \
-                and values['start_lot_datetime'] == self.start_lot_datetime:
+                and fields.Datetime.from_string(values['start_lot_datetime']) == self.start_lot_datetime:
                 values['start_lot_datetime'] = now
-            new_start_lot_datetime = values['start_lot_datetime']
+            new_start_lot_datetime = fields.Datetime.from_string(values['start_lot_datetime'])
             old_start_lot_datetime = self.start_lot_datetime
 
         if new_start_lot_datetime:
