@@ -34,15 +34,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
 -moz-appearance: textfield;
 }
-#container1{
 
-}
-#container2{
-
-}
-#container3{
-
-}
 #jaja{
     display: flex;
     flex-direction: column;
@@ -143,7 +135,7 @@ body > div > div > div > div{
 .checkbox{
     align-items: center;
 }
-#fixedQuantity{
+#fixedQuantity, #pieces{
     text-align: center;
     width: 60%;
     font-size: 20px;
@@ -174,16 +166,19 @@ body > div > div > div > div{
 #container2{
     margin-bottom: 20px;
 }
-#fixedQuantityContainer{
+#fixedQuantityContainer, #piecesContainer{
     width: 54%;
 }
 #fixedPriceValue input{
     font-size: 20px;
 }
-#checkBoxs > div:nth-child(2) > label{
+/* #checkBoxs > div:nth-child(2) > label{
     width: unset;
+} */
+#chkboxPiecesLabel, #chkboxFixedLabel{
+    width: 120px;
 }
-#numpad {
+#numpad, #numpad_pieces {
     display: none;
     position: absolute;
     bottom: 200px;
@@ -199,7 +194,7 @@ body > div > div > div > div{
     font-size: 2em !important;
 }
 
-#numpad button {
+#numpad button, #numpad_pieces button {
     width: 50px;
     height: 50px;
     margin: 2px;
@@ -211,10 +206,10 @@ body > div > div > div > div{
     border-radius: 4px;
     border-style: none;
 }
-#numpad button:last-child {
+#numpad button:last-child, #numpad_pieces button:last-child{
     grid-column-start: 3;
 }
-#del{
+#del, #del_pieces{
     font-size: 3em !important;
 }
 #package{

@@ -61,6 +61,7 @@
                     <group>
                         <field name="weight_quantity" />
                         <field name="quantity" />
+                        <field name="pieces" />
                         <field name="date" />
                     </group>
                     <group>

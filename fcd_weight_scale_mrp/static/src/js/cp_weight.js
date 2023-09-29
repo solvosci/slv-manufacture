@@ -246,11 +246,14 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }
                 if (validation()) {
                     if($("#chkboxFixed").is(':checked')){
-                        jsonSend = JSON.stringify(Object.assign(jsonSend, {"quantity" : $("#fixedQuantity").val()}))
+                        jsonSend["quantity"] = $("#fixedQuantity").val()
                     }
-                    else{
-                        jsonSend = JSON.stringify(jsonSend)
+                    if($("#chkboxPieces").is(':checked') && ($("#pieces").val() != '') && ($("#pieces").val() != '0')){
+                        jsonSend["pieces"] = $("#pieces").val()
+                    }else{
+                        jsonSend["pieces"] = 0
                     }
+                    jsonSend = JSON.stringify(jsonSend)
                     $("#package").attr("disabled", true);
                     $.ajax({
                         url: '/fcd_weight_scale_mrp/packaging',
@@ -679,7 +682,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
 
             var fixedquant = document.getElementById('fixedQuantity');
             var numpad = document.getElementById('numpad');
-            var numpadButtons = $("button.num");
+            var numpadButtons = $("#numpad button.num");
 
             fixedquant.addEventListener('focus', function() {
                 numpad.style.display = 'grid';
@@ -720,7 +723,73 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     checkFixedValue();
                 });
             });
-        
+
+            // Campo de Piezas
+
+            var pieces = document.getElementById('pieces');
+            var numpad_pieces = document.getElementById('numpad_pieces');
+            var numpad_pieces_buttons = $("#numpad_pieces button.num");
+
+            pieces.addEventListener('focus', function() {
+                numpad_pieces.style.display = 'grid';
+            });
+
+            $("*:not(#pieces, #numpad_pieces button, #numpad_pieces, #numpad_pieces i)").on('click', function() {
+                setTimeout(function() {
+                    numpad_pieces.style.display = 'none';
+                }, 100);
+            });
+
+            $("#numpad_pieces").on('click', function(event) {
+                event.stopPropagation(); // detener la propagación del evento de clic
+            });
+
+            $("#pieces").on('click', function(event) {
+                event.stopPropagation(); // detener la propagación del evento de clic
+            });
+
+            $('#pieces').keypress(function(e) {
+                e.preventDefault();
+            });
+
+            $('#del_pieces').on('click', function() {
+                pieces.value = "";
+                $('#chkboxPieces').prop('checked', false);
+            });
+
+            //Checkbox Pieces if false
+            function checkPieces () {
+                if ($('#pieces').val() == "0" ||  $('#pieces').val() == "") {
+                    $('#chkboxPieces').prop('checked', false);
+                }
+                else{
+                    $('#chkboxPieces').prop('checked', true);
+                }
+            };
+
+            $('#chkboxPieces').on('change', function() {
+                if (!$('#chkboxPieces').prop('checked')) {
+                    $("#pieces").val("");
+                }
+            });
+
+            numpad_pieces_buttons.each(function(button) {
+                $(this).on('click', function() {
+                    if ($(this).val() == "." && $("#pieces").val() == "") {
+                        pieces.value += "0" + $(this).val();
+                    }
+                    else{
+                        if ($(this).val() == "." && !$("#pieces").val().includes(".")) {
+                            pieces.value += $(this).val();
+                        }
+                        else if(!($(this).val() == ".")){
+                            pieces.value += $(this).text();
+                        }
+                    }
+                    checkPieces();
+                });
+            });
+
         }
     });
 });
