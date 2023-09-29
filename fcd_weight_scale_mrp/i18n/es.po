@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 07:25+0000\n"
-"PO-Revision-Date: 2023-09-22 09:29+0200\n"
+"POT-Creation-Date: 2023-09-29 10:22+0000\n"
+"PO-Revision-Date: 2023-09-29 12:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"d-block\">NET WEIGHT:</span>"
+msgid "<span class=\"d-block\">NET WEIGHT: </span>"
 msgstr "<span class=\"d-block\">PESO NETO:</span>"
 
 #. module: fcd_weight_scale_mrp
@@ -587,6 +587,11 @@ msgid "Move"
 msgstr "Movimiento"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "NET WEIGHT:"
+msgstr "P. NETO:"
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__name
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__name
@@ -621,6 +626,11 @@ msgid "Output Product"
 msgstr "Producto de Salida"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
+msgid "PIECES:"
+msgstr "PIEZAS:"
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "Package"
 msgstr "Empaquetar"
@@ -646,6 +656,12 @@ msgstr "Proveedor"
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
 msgid "Password"
 msgstr "Contraseña"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__pieces
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid "Pieces"
+msgstr "Piezas"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__price_real_kg

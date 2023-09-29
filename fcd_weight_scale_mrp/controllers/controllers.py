@@ -221,6 +221,7 @@ class WeightScaleCheckPoint(http.Controller):
                 'secondary_uom_id': int(vals['secondary_uom_id']),
                 'date': fields.Datetime.now(),
                 'packaging_date': fields.Datetime.now().strftime('%Y-%m-%d'),
+                'pieces': int(vals['pieces']),
             })
             log_return = []
             if not log_id:

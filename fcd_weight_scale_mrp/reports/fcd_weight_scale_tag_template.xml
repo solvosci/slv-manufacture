@@ -102,9 +102,20 @@
                         </div>
                       </div>
                       <div class="row"> 
-                        <div class="col-6 pt-1" style="border-right: 1px solid black; font-weight: bold;">
-                          <span class="d-block">NET WEIGHT:</span>
-                          <span class="d-block" style="font-size: 32px; font-weight: bold; text-align: right;"><t t-esc="doc.quantity"/><span style="font-size: 12px;">KG</span></span>
+                        <div class="col-6" style="border-right: 1px solid black; font-weight: bold;">
+                          <t t-if="doc.pieces">
+                            <span class="d-block">
+                              PIECES:
+                              <span style="font-size: 18px; padding-left: 4px;">
+                                <t t-esc="doc.pieces"/>
+                              </span>
+                            </span>
+                            <span class="d-block">NET WEIGHT: <span style="font-size: 24px; font-weight: bold; text-align: right;"><t t-esc="doc.quantity"/><span style="font-size: 12px;">KG</span></span></span>
+                          </t>
+                          <t t-else="">
+                            <span class="d-block">NET WEIGHT: </span>
+                            <span class="d-block" style="font-size: 32px; font-weight: bold; text-align: right;"><t t-esc="doc.quantity"/><span style="font-size: 12px;">KG</span></span>
+                          </t>
                         </div>
                         <div class="col-6 pt-1 ">
                           <div class="mb-1">

@@ -161,6 +161,19 @@
                                         <button class="num">0</button>
                                         <button id="del">←</button>
                                     </div>
+                                    <div id="numpad_pieces">
+                                        <button class="num">1</button>
+                                        <button class="num">2</button>
+                                        <button class="num">3</button>
+                                        <button class="num">4</button>
+                                        <button class="num">5</button>
+                                        <button class="num">6</button>
+                                        <button class="num">7</button>
+                                        <button class="num">8</button>
+                                        <button class="num">9</button>
+                                        <button class="num">0</button>
+                                        <button id="del_pieces">←</button>
+                                    </div>
                                     <div class="container-fluid" id="container3">
                                         <div class="row">
                                             <div class="col-4" id="tareButton" style="margin-left: 0px">
@@ -173,8 +186,15 @@
                                                         <label class="form-check-label" for="chkboxLabel"> Unlabeled </label>
                                                     </div>
                                                     <div class="form-check form-switch d-flex checkbox row">
+                                                        <input class="form-check-input" type="checkbox" id="chkboxPieces"/>
+                                                        <label class="form-check-label" for="chkboxPieces" id="chkboxPiecesLabel"> Pieces </label>
+                                                        <div class="input-group" id="piecesContainer">
+                                                            <input id="pieces" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-switch d-flex checkbox row">
                                                         <input class="form-check-input" type="checkbox" id="chkboxFixed"/>
-                                                        <label class="form-check-label" for="flexSwitchCheckDefault2"> Fixed Weight </label>
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault2" id="chkboxFixedLabel"> Fixed Weight </label>
                                                             <div class="input-group" id="fixedQuantityContainer">
                                                                 <input id="fixedQuantity" class="form-control"/>
                                                             </div>

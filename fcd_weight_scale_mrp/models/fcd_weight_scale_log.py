@@ -26,6 +26,7 @@ class FCDWeightScaleLog(models.Model):
     fcd_document_line_id = fields.Many2one('fcd.document.line', related='stock_move_id.fcd_document_line_id', store=True)
     packaging_date = fields.Date()
     expiration_date = fields.Date(compute="_compute_expiration_date", store=True)
+    pieces = fields.Integer()
 
 
     @api.depends("packaging_date")
