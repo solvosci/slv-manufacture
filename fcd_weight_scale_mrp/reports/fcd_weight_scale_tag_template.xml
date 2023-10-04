@@ -3,7 +3,7 @@
 
     <template id="report_tag_document_pdf">
       <t t-set="doc" t-value="doc.with_context({'lang':doc.stock_move_id.partner_id.lang})"/>
-      <div class="page" style="font-size: 9px">
+      <div class="page" style="font-size: 9px; page-break-after: always;">
           <div>
             <div class="row" style="border-bottom: 1px solid black">
                 <div class="col-4" style="border-right: 1px solid black">
