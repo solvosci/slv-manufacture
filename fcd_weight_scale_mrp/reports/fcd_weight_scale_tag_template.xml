@@ -170,8 +170,9 @@
             <div class="row" style="height: 65px; border: 1px solid black; border-top: none; border-left: 1px dashed black">
               <div class="col-12 text-center m-2">
                 <t t-set="barcode" t-value="doc.generate_barcode()"/>
+                <t t-set="barcode_text" t-value="doc.generate_barcode_text()"/>
                 <img t-att-src="'/report/barcode/?type=Code128&amp;value=%s&amp;width=2000&amp;height=40' % (barcode)" style="height: 40px; width: 100%"/>
-                <span class="d-block text-center"><t t-esc="barcode"/></span>
+                <span class="d-block text-center"><t t-esc="barcode_text"/></span>
               </div>
             </div>
           </div>
