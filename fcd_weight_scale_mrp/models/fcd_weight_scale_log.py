@@ -211,10 +211,17 @@ class FCDWeightScaleLog(models.Model):
         )
         return qr_code
 
-    def generate_barcode(self):
-        qty = '{:06.0f}'.format(self.quantity * 100)
+    def generate_barcode_base(self):
         ean13 = self.fcd_document_line_id.purchase_order_line_id.product_id.ean13 if self.fcd_document_line_id.purchase_order_line_id.product_id.ean13 else "0000000000000"
-        date = self.date.strftime("%y%m%d")
+        qty = '{:06.0f}'.format(self.quantity * 100)
         lot = self.fcd_document_line_id.lot_id.name
 
-        return '(01)0%s(3102)%s(17)%s(10)%s' % (ean13, qty, date, lot)
+        return ean13, qty, lot
+
+    def generate_barcode(self):
+        ean13, qty, lot = self.generate_barcode_base()
+        return '02%s\\x1D3102%s\\x1D10%s' % (ean13, qty, lot)
+
+    def generate_barcode_text(self):
+        ean13, qty, lot = self.generate_barcode_base()
+        return '(02)%s(3102)%s(10)%s' % (ean13, qty, lot)
