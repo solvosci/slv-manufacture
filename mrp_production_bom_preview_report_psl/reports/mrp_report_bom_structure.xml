@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="mrp_preview_bom_report" inherit_id="mrp_production_bom_preview_report.mrp_preview_bom_report">
+        <xpath expr="//tbody" position="inside">
+            <t t-foreach="data['mo'].purchase_line_ids" t-as="service">
+                <tr>
+                    <td name="td_product">
+                        <span class="pl-3">→</span>
+                        <a href="#" t-att-data-res-id="service.product_id.id" t-att-data-model="service.product_id._name" class="o_mrp_bom_action">
+                            <t t-esc="service.name"/>
+                        </a>
+                    </td>
+                    <td name="td_qty" class="text-right">
+                        <span t-field="service.qty_received"/>
+                    </td>
+                    <td name="td_uom">
+                        <t t-esc="service.product_uom.name"/>
+                    </td>
+                    <td name="td_total" class="text-right">
+                        <t
+                            t-esc="service.price_subtotal" 
+                            t-options="{'widget': 'monetary', 'decimal_precision': 'Product Unit of Measure', 'display_currency': service.currency_id}"
+                        />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

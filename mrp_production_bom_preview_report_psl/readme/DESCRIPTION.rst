@@ -1,0 +1,1 @@
+Link between mrp_production_bom_preview_report and mrp_purchase_service_link.
