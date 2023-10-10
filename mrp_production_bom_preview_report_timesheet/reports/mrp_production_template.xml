@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_mrp_production_bom_document_pdf" inherit_id="mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf">
+        <xpath expr="//tbody" position="inside">
+            <t t-if="o.sudo().task_id">
+                <t t-set="task_id" t-value="o.sudo().task_id" />
+                <tr>
+                    <td name="td_product">
+                        <t t-esc="task_id.name"/>
+                    </td>
+                    <td name="td_qty" class="text-right">
+                        <span t-field="task_id.effective_hours" t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+                    </td>
+                    <td name="td_uom">
+                        Hours
+                    </td>
+                    <td name="td_total" class="text-right">
+                        <span t-esc="o.total_task_amount()" t-options="{'widget': 'monetary', 'decimal_precision': 'Product Unit of Measure', 'display_currency': o.currency_id}"/>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
