@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_mrp_preview_bom_report" model="ir.actions.client">
+        <field name="name">Structure &amp; Cost</field>
+        <field name="tag">mrp_preview_bom_report</field>
+        <field name="context" eval="{'model': 'report.mrp_production_bom_preview_report.mrp_preview_bom_report'}" />
+    </record>
+
+    <record id="mrp_production_view_form_bom_preview" model="ir.ui.view">
+        <field name="name">mrp.production (BOM Preview Report)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_mrp_production_childs']" position="before">
+
+                <button
+                    name="%(action_mrp_preview_bom_report)d"
+                    type="action"
+                    class="oe_stat_button"
+                    icon="fa-list"
+                    string="Structure &amp; Cost"
+                    groups="base.group_no_one" />
+                </xpath>
+        </field>
+    </record>
+
+</odoo>

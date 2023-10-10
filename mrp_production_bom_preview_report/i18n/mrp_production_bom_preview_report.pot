@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_bom_preview_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-28 12:18+0000\n"
+"PO-Revision-Date: 2023-08-28 12:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+msgid "<strong>Product</strong>"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+msgid "<strong>Production Cost</strong>"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+msgid "<strong>Quantity</strong>"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+msgid "<strong>State</strong>"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_report_mrp_production_bom_preview_report_mrp_preview_bom_report__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_report_mrp_production_bom_preview_report_mrp_preview_bom_report__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_production_bom_preview_report.field_report_mrp_production_bom_preview_report_mrp_preview_bom_report____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+msgid "Manufacture Order #"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+msgid "Manufacture Order Structure &amp; Cost"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+msgid "No data available."
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+#, python-format
+msgid "Product"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#, python-format
+msgid "Production Cost"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.model,name:mrp_production_bom_preview_report.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+#, python-format
+msgid "Quantity"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#, python-format
+msgid "Report BOM"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#, python-format
+msgid "State"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+msgid "State:"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.actions.client,name:mrp_production_bom_preview_report.action_mrp_preview_bom_report
+#: model:ir.actions.report,name:mrp_production_bom_preview_report.action_mrp_production_bom_report_pdf
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_production_view_form_bom_preview
+msgid "Structure & Cost"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#: model:ir.model,name:mrp_production_bom_preview_report.model_report_mrp_production_bom_preview_report_mrp_preview_bom_report
+msgid "Structure Report"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+#, python-format
+msgid "Total Cost"
+msgstr ""
+
+#. module: mrp_production_bom_preview_report
+#. openerp-web
+#: code:addons/mrp_production_bom_preview_report/static/src/xml/mrp_bom_preview.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.mrp_preview_bom_report
+#: model_terms:ir.ui.view,arch_db:mrp_production_bom_preview_report.report_mrp_production_bom_document_pdf
+#, python-format
+msgid "UoM"
+msgstr ""

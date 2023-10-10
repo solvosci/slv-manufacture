@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report 
+        id="action_mrp_production_bom_report_pdf"
+        model="mrp.production"
+        string="Structure &amp; Cost"
+        name="mrp_production_bom_preview_report.report_mrp_production_bom_pdf"
+        file="mrp_production_bom_preview_report.report_mrp_production_bom_pdf"
+        report_type="qweb-pdf"
+        attachment_use="False"
+    />
+
+</odoo>

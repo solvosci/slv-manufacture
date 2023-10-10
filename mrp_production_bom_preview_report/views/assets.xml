@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="pricelist_advanced_frontend" name="MRP Production BOM Preview Report" inherit_id="web.assets_frontend">
+        <xpath expr=".">
+            <script
+                type="application/javascript"
+                src="/mrp_production_bom_preview_report/static/src/js/mrp_preview_bom_report.js"
+            />
+        </xpath>
+    </template>
+    <template id="product_pricelist_price_backend" name="MRP Production BOM Preview Report" inherit_id="web.assets_backend">
+        <xpath expr=".">
+            <script
+                type="application/javascript"
+                src="/mrp_production_bom_preview_report/static/src/js/mrp_preview_bom_report.js"
+            />
+        </xpath>
+    </template>
+</odoo>

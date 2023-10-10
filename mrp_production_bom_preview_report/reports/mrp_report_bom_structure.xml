@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="mrp_preview_bom_report">
+        <div class="container o_mrp_bom_report_page">
+            <t t-if="data.get('mo')">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h1 style="display:inline;">Manufacture Order Structure &amp; Cost</h1>
+                        <h3>
+                            <a href="#" t-if="data['report_type'] == 'html'" t-att-data-res-id="data['mo'].id" t-att-data-model="data['mo']._name" class="o_mrp_bom_action">
+                                <t t-esc="data['mo'].name"/>
+                            </a>
+                            <t t-else="" t-esc="data['mo'].name"/>
+                        </h3>
+                    </div>
+                    <div class="col-lg-3">
+                        <h3>
+                            <span>State: <span t-field="data['mo'].state"/></span>
+                        </h3>
+                    </div>
+                </div>
+                <t t-set="currency" t-value="data['mo'].product_id.currency_id"/>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <table class="o_list_table table table-sm table-hover table-striped o_list_table_ungrouped o_section_and_note_list_view" style="table-layout: fixed;">
+                                <thead>
+                                    <tr class="active">
+                                        <th style="width: 55%;">Product</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th>UoM</th>
+                                        <th class="text-right">Total Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="#" t-att-data-res-id="data['mo'].product_id.id" t-att-data-model="data['mo'].product_id._name" class="o_mrp_bom_action">
+                                                <t t-esc="data['mo'].product_id.name"/>
+                                            </a>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-if="data['mo'].state == 'done'">
+                                                <span t-field="data['mo'].product_qty"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-field="data['mo'].qty_producing"/>
+                                                <span class="ml-1 mr-1">/</span>
+                                                <span t-field="data['mo'].product_qty"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <t t-esc="data['mo'].product_uom_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="data['mo'].total_cost" />
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="data['mo'].get_bom_move_report()" t-as="move">
+                                        <tr>
+                                            <td>
+                                                <span class="pl-3">→</span>
+                                                <a href="#" t-att-data-res-id="move.product_id.id" t-att-data-model="move.product_id._name" class="o_mrp_bom_action">
+                                                    <t t-esc="move.product_id.name"/>
+                                                </a>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-if="data['mo'].state == 'done'">
+                                                    <span t-field="move.quantity"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-field="move.quantity_done"/>
+                                                    <span class="ml-1 mr-1">/</span>
+                                                    <span t-field="move.product_uom_qty"/>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if="data['mo'].state == 'done'">
+                                                    <t t-esc="move.uom_id.name"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-esc="move.product_uom.name"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-if="data['mo'].state == 'done'">
+                                                    <span t-field="move.value"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <t
+                                                        t-esc="move.product_id.standard_price * move.quantity_done"
+                                                        t-options="{'widget': 'monetary', 'decimal_precision': 'Product Unit of Measure', 'display_currency': move.product_id.currency_id}}"
+                                                    />
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <h1 class="text-center">No data available.</h1>
+            </t>
+        </div>
+    </template>
+
+    <template id="report_mrp_production_bom_preview_report_pdf">
+        <t t-call="web.html_container">
+            <t t-call="mrp_production_bom_preview_report.mrp_preview_bom_report"/>
+        </t>
+    </template>
+
+</odoo>
