@@ -7,7 +7,7 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Inventory/Purchase",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["hr_timesheet", "mrp"],
