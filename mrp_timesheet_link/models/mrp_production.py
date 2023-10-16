@@ -48,8 +48,9 @@ class MRPProduction(models.Model):
 
     def action_cancel(self):
         res = super(MRPProduction, self).action_cancel()
-        if self.task_id:
-            self.project_id = False
-            self.task_id.production_id = False
-            self.task_id = False
+        self_sudo = self.sudo()
+        if self_sudo.task_id:
+            self_sudo.project_id = False
+            self_sudo.task_id.production_id = False
+            self_sudo.task_id = False
         return res
