@@ -81,7 +81,7 @@
                                     <t t-else="">
                                         <t
                                             t-esc="move.product_id.standard_price * move.quantity_done"
-                                            t-options="{'widget': 'monetary', 'decimal_precision': 'Product Unit of Measure', 'display_currency': move.product_id.currency_id}}"
+                                            t-options="{'widget': 'monetary', 'decimal_precision': 'Product Unit of Measure', 'display_currency': move.product_id.currency_id}"
                                         />
                                     </t>
                                 </td>
