@@ -3,6 +3,11 @@
 
 from odoo import models, fields, api, _
 from datetime import timedelta
+import subprocess
+import os
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class FCDWeightScaleLog(models.Model):
@@ -225,3 +230,220 @@ class FCDWeightScaleLog(models.Model):
     def generate_barcode_text(self):
         ean13, qty, lot = self.generate_barcode_base()
         return '(02)%s(3102)%s(10)%s' % (ean13, qty, lot)
+
+    def generate_report_tag_zpl(self):
+        tag_fields = {
+            'address': self.produced_partner_id.second_name_fcd,
+            'address2': f'{self.produced_partner_id.phone} {self.produced_partner_id.city} ({self.produced_partner_id.state_id.name})',
+            'shipper_street': self.produced_partner_id.street,
+            'shipper_city': self.produced_partner_id.city,
+            'shipper_street2': self.produced_partner_id.street2,
+            'ship_name': self.fcd_document_line_id.fcd_document_id.ship if self.fcd_document_line_id.fcd_document_id.ship else '',
+            'ship_license_plate': self.fcd_document_line_id.fcd_document_id.ship_license_plate if self.fcd_document_line_id.fcd_document_id.ship_license_plate else '',
+            'sanitary_reg': self.fcd_document_line_id.fcd_document_id.sanity_reg if self.fcd_document_line_id.fcd_document_id.sanity_reg else '',
+            'expiration_date': self.expiration_date.strftime('%d-%m-%Y') if self.expiration_date else '',
+            'packaging_date': self.packaging_date.strftime('%d-%m-%Y') if self.packaging_date else '',
+            'product_name': self.output_product_id.name,
+            'product_scientific_name': self.output_product_id.scientific_name if self.output_product_id.scientific_name else '',
+            'product_fao': self.output_product_id.fao if self.output_product_id.fao else '',
+            'fao_zone': self.fcd_document_line_id.fcd_document_id.fao_zone if self.fcd_document_line_id.fcd_document_id.fao_zone else '',
+            'production_method': self.fcd_document_line_id.fcd_document_id.production_method if self.fcd_document_line_id.fcd_document_id.production_method else '',
+            'pieces': self.pieces,
+            'quantity': self.quantity,
+            'caliber': self.output_product_id.caliber if self.output_product_id.caliber else '',
+            'fishing_gear': self.fcd_document_line_id.fcd_document_id.fishing_gear if self.fcd_document_line_id.fcd_document_id.fishing_gear else '',
+            'fishing_gear2': '',
+            'presentation': self.output_product_id.presentation_id.name if self.output_product_id.presentation_id.name else '',
+            'lot': self.fcd_document_line_id.lot_id.name,
+            'barcode': self.generate_barcode(),
+            'barcode_text': self.generate_barcode_text(),
+            'qr': self.generate_qr()
+        }
+
+        if len(tag_fields['ship_name']) > 23:
+            tag_fields['ship_name'] = f'{tag_fields["ship_name"][0:23]}...'
+
+        if len(tag_fields['product_scientific_name']) > 35:
+            tag_fields['product_scientific_name'] = f'{tag_fields["product_scientific_name"][0:35]}...'
+        if len(tag_fields['fao_zone']) > 64:
+            tag_fields['fao_zone'] = f'{tag_fields["fao_zone"][0:64]}...'
+
+        if len(tag_fields['fishing_gear']) > 29:
+            tag_fields['fishing_gear2'] = tag_fields['fishing_gear'][28::]
+            tag_fields['fishing_gear'] = tag_fields['fishing_gear'][0:28]
+
+        if self.output_product_id.categ_id.get_fcd_type() == 'fish':
+            tag_fields['type'] = _('Contains fish. May contain traces of crustaceans and/or molluscs.')
+        elif self.output_product_id.categ_id.get_fcd_type() == 'crustaceans_sulphites':
+            tag_fields['type'] = _('Contains crustaceans and sulfites. May contain traces of fish and/or molluscs.')
+        elif self.output_product_id.categ_id.get_fcd_type() == 'molluscs':
+            tag_fields['type'] = _('Contains mollusks. May contain traces of fish and/or crustaceans.')
+        else:
+            tag_fields['type'] = ''
+
+        tag_fields['pieces_box'] = ''
+        if tag_fields['pieces']:
+            tag_fields['pieces_box'] = f'''
+                ^FO290,400^A0R,20,20^FDPIEZAS:^FS
+                ^FO275,470^A0R,45,55^FD{tag_fields['pieces']}^FS
+            '''
+
+        content_zpl = f'''
+            ^XA
+
+            ^FX líneas de la etiqueta
+            ^FX ===================================
+
+            ^FX --- Sección Superior Izquierda - líneas horizontales ---
+            ^FO455,15^GB0,370,2^FS
+            ^FO360,15^GB0,370,2^FS
+            ^FO250,15^GB0,370,2^FS
+            ^FX --- Sección Superior separador vertical - izquierda - centro ---
+            ^FO180,385^GB370,0,2^FS
+            ^FX Sección Superior Central - líneas horizontales ---
+            ^FO430,385^GB0,540,2^FS
+            ^FO330,385^GB0,540,2^FS
+            ^FX Sección Superior Central- Pequeña línea vertical ---
+            ^FO180,700^GB150,0,2^FS
+            ^FX --- Sección Superior Izquierda- líneas QR ---
+            ^FO220,925^GB0,300,2^FS
+            ^FO220,925^GB330,0,2^FS
+            ^FX --- Fin Sección Superior - Línea Horizontal ---
+            ^FO180,15^GB0,1210,2^FS
+
+            ^FX --- Sección Inferior Cajas ---
+            ^FO15,15^GB120,1210,2^FS
+            ^FO133,15^GB30,370,2^FS
+            ^FO133,383^GB30,842,2^FS
+
+
+            ^FX Texto y Datos
+            ^FX ===================================
+            ^CI28
+            ^FX --- Título: Empresa y dirección ---
+            ^FO520,25^A0R,28,28^FDCIGURRIA O CAMPO S.L.^FS
+            ^FO490,25^A0R,20,20^FD{tag_fields['address']}^FS
+            ^FO465,25^A0R,20,20^FD{tag_fields['address2']}^FS
+
+            ^FX --- Expedidor ---
+            ^FO420,25^A0R,20,20^FDEXPEDIDOR 1º:^FS
+            ^FO420,155^A0R,20,20^FD{tag_fields['shipper_street']}^FS
+            ^FO395,25^A0R,20,20^FDDIRECCIÓN:^FS
+            ^FO395,125^A0R,20,20^FD{tag_fields['shipper_city']}^FS
+            ^FO370,25^A0R,20,20^FDNº R.S.I.:^FS
+            ^FO370,110^A0R,20,20^FD{tag_fields['shipper_street2']}^FS
+
+            ^FX --- Buque y Sello ---
+            ^FO260,30^GB90,200,2^FS
+            ^FO260,240^GE90,130,2^FS
+            ^FO320,40^A0R,20,20^FDEST.ELAB/BUQUE:^FS
+            ^FX --- Nombre patido en 2 líneas (15 caracteres + 15 caracteres) ---
+            ^FO300,40^A0R,15,15^FD{tag_fields['ship_name']}^FS
+            ^FO280,40^A0R,15,15^FD{tag_fields['ship_license_plate']}^FS
+            ^FO320,300^A0R,15,15^FDES^FS
+            ^FO300,270^A0R,15,15^FD{tag_fields['sanitary_reg']}^FS
+            ^FO280,300^A0R,15,15^FDCE^FS
+
+            ^FX --- Fechas ---
+            ^FO215,25^A0R,20,20^FDF.CADUCIDAD:^FS
+            ^FO215,250^A0R,20,20^FD{tag_fields['expiration_date']}^FS
+            ^FO190,25^A0R,20,20^FDF.ENVASADO:^FS
+            ^FO190,250^A0R,20,20^FD{tag_fields['packaging_date']}^FS
+
+            ^FX --- Denominación comercial del Producto ---
+            ^FO530,400^A0R,20,20^FDDENOMINACIÓN COMERCIAL:^FS
+            ^FO500,400^A0R,25,25^FD{tag_fields['product_name']}^FS
+            ^FO465,400^A0R,20,20^FDNOMBRE CIENTÍFICO:^FS
+            ^FO465,580^A0R,20,20^FD{tag_fields['product_scientific_name']}^FS
+            ^FO440,400^A0R,20,20^FDFAO:^FS
+            ^FO440,440^A0R,20,20^FD{tag_fields['product_fao']}^FS
+
+            ^FX --- Zona y Subzona de Captura ---
+            ^FO400,400^A0R,20,20^FDZONA Y SUBZONA DE CAPTURA:^FS
+            ^FO375,400^A0R,18,18^FD{tag_fields['fao_zone']}^FS
+            ^FO345,400^A0R,20,20^FDMÉTODO DE PRODUCCIÓN:^FS
+            ^FO345,625^A0R,20,20^FD{tag_fields['production_method']}^FS
+
+            ^FX --- PIEZAS Y PESO NETO ---
+            {tag_fields['pieces_box']}
+            ^FO225,400^A0R,20,20^FDPESO NETO (KG):^FS
+            ^FO205,545^A0R,60,70^FD{tag_fields['quantity']}^FS
+
+            ^FX --- Calibre, Arte de Pesca y Presentación ---
+            ^FO300,720^A0R,20,20^FDCALIBRE:^FS
+            ^FO300,800^A0R,20,20^FD{tag_fields['caliber']}^FS
+            ^FO260,720^A0R,20,20^FDARTE DE PESCA:^FS
+            ^FX --- Nombre patido en 2 líneas (15 caracteres + 15 caracteres) ---
+            ^FO240,720^A0R,18,15^FD{tag_fields['fishing_gear']}^FS
+            ^FO220,720^A0R,18,15^FD{tag_fields['fishing_gear2']}^FS
+            ^FO190,720^A0R,20,20^FDPRESENTACIÓN:^FS
+            ^FO190,860^A0R,20,20^FD{tag_fields['presentation']}^FS
+
+            ^FX --- Método de Conservación y Trazas de Pesacado ---
+            ^FO138,30^A0R,20,20^FDMetodo de conservacion entre 0ºC-5ºC^FS
+            ^FO138,400^A0R,20,20^FD{tag_fields['type']}^FS
+
+            ^FX --- LOTE ---
+            ^FO230,960^A0R,20,20^FDLOTE:^FS
+            ^FO230,1040^A0R,25,35^FD{tag_fields['lot']}^FS
+
+            ^FX --- Código QR ---
+            ^FO280,950^BQ,2,3^FD{tag_fields['qr']}^FS
+
+            ^FX --- Código de Barras ---
+            ^FO60,70^BY2,3,10^BCR,60,N,N,N^FD{tag_fields['barcode']}^FS
+            ^FO25,360^A0R,20,30^FD{tag_fields['barcode_text']}^FS
+
+            ^XZ
+        '''
+
+        # Store file
+        content_zpl_bytes = content_zpl.encode('utf-8')
+        file_name = f'tag_{self.id}.zpl'
+
+        parent_folder = (_("/tmp/"))
+        try:
+            os.makedirs(parent_folder)
+        except OSError:
+            # In the case that the folders already exist
+            pass
+        path_tag = '%s%s' % (parent_folder, file_name)
+        with open(path_tag, "wb") as file:
+            file.write(content_zpl_bytes)
+
+        # Send File To FTP
+        comms = [f'''
+            ftp -p -inv {self.checkpoint_id.printer_ip} {self.checkpoint_id.printer_port} <<EOF
+            user itadmin pass
+            put {path_tag} pr1
+            bye
+            EOF
+        ''']
+
+        err = False
+        try:
+            res = subprocess.run(comms, shell=True, capture_output=True, text=True, timeout=5)
+            _logger.warning(res.stderr)
+            if "Login incorrect" in res.stderr:
+                _logger.warning("Error: Login incorrect.")
+                err = {"error": "Login incorrect"}
+            elif "No such file or directory" in res.stderr:
+                _logger.warning("Error: No such file or directory.")
+                err = {"error": "No such file or directory"}
+            elif "No route to host" in res.stderr:
+                _logger.warning("Error: No route to host.")
+                err = {"error": _("Printer Not Conected")}
+        except subprocess.TimeoutExpired:
+            _logger.warning("Error: Printer Not Conected.")
+            err = {"error": _("Printer Not Conected")}
+
+        # Remove file
+        if os.path.exists(path_tag):
+            os.remove(path_tag)
+        else:
+            _logger.warning("File not exist")
+
+        if err:
+            return err
+        else:
+            return {'ret': True}

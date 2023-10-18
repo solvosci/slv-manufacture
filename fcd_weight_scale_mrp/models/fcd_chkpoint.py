@@ -13,6 +13,9 @@ class FCDCheckpoint(models.Model):
     scale_id = fields.Many2one('fcd.weight.scale')
     allowed_ip = fields.Char()
     warehouse_id = fields.Many2one('stock.warehouse')
+    printer_ip = fields.Char()
+    printer_port = fields.Integer(default=21)
+    external_tara_button = fields.Boolean()
 
     def _default_date(self):
         return fields.Datetime.now()

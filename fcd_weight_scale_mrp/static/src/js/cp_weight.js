@@ -55,6 +55,27 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }
             })
 
+            function generate_tag_zpl(log) {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '/fcd_weight_scale_mrp/generate_zpl',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({'log_id': log})
+                    }).done(function (data) {
+                        if (data.result.error){
+                            notifier.alert(data.result.error);
+                        }
+                        else{
+                            notifier.info();
+                        }
+                        resolve(data);
+                    }).fail(function (e) {
+                        console.log(e)
+                    });
+                });
+            };
+
             const globalOptions = {
                 position: "top-right",
                 maxNotifications: 5,
@@ -63,8 +84,9 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 }
             };
             globalOptions.labels = {
-                async: _t("Printing"),
-                info: _t("Printed"),
+                success: $("#txt_translate_success").text(),
+                async: $("#txt_translate_printing").text(),
+                info: $("#txt_translate_printed").text(),
             };
             const notifier = new AWN(globalOptions);
             var myModal = new bootstrap.Modal(document.getElementById('areUSure'))
@@ -233,8 +255,7 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     console.log("End lot - Impossible to connect with Odoo");
                 });
             });
-            $('#package').on('click', function() {
-
+            function action_package(){
                 var jsonSend = {
                     "output_product_id" : $("#productSelect").val(),
                     "input_product_id" : $("#lotSelect").val().split("/")[1],
@@ -263,9 +284,10 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     }).done(function (data) {
                         if (!data.result.error){
                             var result = JSON.parse(data.result);
-                            notifier.success(_t('It has been weighted correctly'))
+                            notifier.success($("#txt_translate_weight_correctly").text())
                             if (!($("#chkboxLabel").is(':checked'))) {
-                                getTag(result[0]['log_id'])
+                                notifier.async(generate_tag_zpl(result[0]['log_id']), resp => False, undefined, $("#txt_translate_wait_printing").text());
+                                // getTag(result[0]['log_id'])
                                 // var tag_print = document.getElementById('tag_print')
                                 // tag_print.setAttribute('src', '/report/pdf/fcd_weight_scale_mrp.report_tag_pdf/' + result[0]['log_id'])
                             }
@@ -312,32 +334,34 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                     });
                 };
                 $("#package").blur();
-            });
-
-            function getTag(log) {
-                // Configurar la solicitud para generar el informe
-                var report_url = '/fcd_weight_scale_mrp/print/' + log;
-
-                // Hacer la solicitud para generar el informe
-                $.ajax({
-                    type: 'GET',
-                    url: report_url,
-                    xhrFields: {
-                        responseType: 'blob'
-                    },
-                }).done(function(response) {
-                    // Convertir la respuesta en un objeto Blob
-                    var blob = new Blob([response], { type: 'application/pdf' });
-
-                    // Crear una URL del objeto Blob
-                    var blob_url = URL.createObjectURL(blob);
-
-                    // Mostrar el informe en un iframe
-                    $('#tag_print').attr('src', blob_url)
-                }).fail(function (e) {
-                    console.log("Error printing")
-                });
             }
+
+            $('#package').on('click', action_package);
+
+            // function getTag(log) {
+            //     // Configurar la solicitud para generar el informe
+            //     var report_url = '/fcd_weight_scale_mrp/print/' + log;
+
+            //     // Hacer la solicitud para generar el informe
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: report_url,
+            //         xhrFields: {
+            //             responseType: 'blob'
+            //         },
+            //     }).done(function(response) {
+            //         // Convertir la respuesta en un objeto Blob
+            //         var blob = new Blob([response], { type: 'application/pdf' });
+
+            //         // Crear una URL del objeto Blob
+            //         var blob_url = URL.createObjectURL(blob);
+
+            //         // Mostrar el informe en un iframe
+            //         $('#tag_print').attr('src', blob_url)
+            //     }).fail(function (e) {
+            //         console.log("Error printing")
+            //     });
+            // }
 
             //Chech if 0
             function checkFixedValue () {
@@ -456,7 +480,11 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
             });
 
             document.body.onkeydown = function(e){
-                if (e.keyCode != 190){
+                // Press "&" to packaging
+                if (e.keyCode == 80) {
+                    console.log('Packaging...');
+                    action_package();
+                }else if (e.keyCode != 190){
                     barcode_text += String.fromCharCode(e.keyCode)
                 }else{
                     console.log("Completo: " + barcode_text)
