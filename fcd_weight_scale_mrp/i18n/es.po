@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-29 10:22+0000\n"
-"PO-Revision-Date: 2023-09-29 12:24+0200\n"
+"POT-Creation-Date: 2023-10-25 07:31+0000\n"
+"PO-Revision-Date: 2023-10-25 09:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -29,6 +29,12 @@ msgid "%s Weighings"
 msgstr "%s Pesadas"
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#, python-format
+msgid "/tmp/"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "12/12/2012 00:00:00"
 msgstr ""
@@ -36,8 +42,8 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid ""
-"<span class=\"col-12 d-block font-weight-bold\" style=\"font-size: 16px\">CIGURRIA O CAMPO S.L</"
-"span>"
+"<span class=\"col-12 d-block font-weight-bold\" style=\"font-size: 16px"
+"\">CIGURRIA O CAMPO S.L</span>"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -62,8 +68,12 @@ msgstr "<span class=\"d-block\">PESO NETO:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"font-weight-bold\" style=\"font-size: 10px\">COMERCIAL DESIGNATION:</span>"
-msgstr "<span class=\"font-weight-bold\" style=\"font-size: 10px\">DENOMINACIÓN COMERCIAL:</span>"
+msgid ""
+"<span class=\"font-weight-bold\" style=\"font-size: 10px\">COMERCIAL "
+"DESIGNATION:</span>"
+msgstr ""
+"<span class=\"font-weight-bold\" style=\"font-size: 10px\">DENOMINACIÓN "
+"COMERCIAL:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -133,42 +143,70 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid ""
 "<span id=\"txt_translate_select_lot\">Select a lot</span>\n"
-"                        <span id=\"txt_translate_select_type_box\">Type of box</span>\n"
-"                        <span id=\"txt_translate_select_product\">Select a product</span>\n"
-"                        <span id=\"txt_translate_select_family\">Family</span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">None product selected</"
+"                        <span id=\"txt_translate_select_type_box\">Type of "
+"box</span>\n"
+"                        <span id=\"txt_translate_select_product\">Select a "
+"product</span>\n"
+"                        <span id=\"txt_translate_select_family\">Family</"
 "span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box\">None box type selected</"
+"                        <span id=\"txt_translate_alert_no_product\">None "
+"product selected</span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box\">None "
+"box type selected</span>\n"
+"                        <span id=\"txt_translate_alert_no_lot\">None lot "
+"selected</span>\n"
+"                        <span id="
+"\"txt_translate_alert_valid_value_fixed_weight_box\">Put some valid value "
+"at Fixed Weight Box</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight"
+"\">Tare value is greater than Weight Value</span>\n"
+"                        <span id=\"txt_translate_alert_connect_scale"
+"\">Invalid Weight</span>\n"
+"                        <span id=\"txt_translate_contact_administrator"
+"\">Unexpected error, please contact with administrator</span>\n"
+"                        <span id=\"txt_translate_lot_finished\">Lot has "
+"been finished</span>\n"
+"                        <span id=\"txt_translate_weight_correctly\">It has "
+"been weighted correctly</span>\n"
+"                        <span id=\"txt_translate_wait_printing\">Wait a "
+"moment, please...</span>\n"
+"                        <span id=\"txt_translate_success\">Success</span>\n"
+"                        <span id=\"txt_translate_printing\">Printing</"
 "span>\n"
-"                        <span id=\"txt_translate_alert_no_lot\">None lot selected</span>\n"
-"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Put some "
-"valid value at Fixed Weight Box</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight\">Tare value is "
-"greater than Weight Value</span>\n"
-"                        <span id=\"txt_translate_alert_connect_scale\">Invalid Weight</span>\n"
-"                        <span id=\"txt_translate_contact_administrator\">Unexpected error, "
-"please contact with administrator</span>\n"
-"                        <span id=\"txt_translate_lot_finished\">Lot has been finished</span>"
+"                        <span id=\"txt_translate_printed\">Printed</span>"
 msgstr ""
 "<span id=\"txt_translate_select_lot\">Seleccione un lote</span>\n"
-"                        <span id=\"txt_translate_select_type_box\">Tipo de caja</span>\n"
-"                        <span id=\"txt_translate_select_product\">Seleccione un producto</"
+"                        <span id=\"txt_translate_select_type_box\">Tipo de "
+"caja</span>\n"
+"                        <span id=\"txt_translate_select_product"
+"\">Seleccione un producto</span>\n"
+"                        <span id=\"txt_translate_select_family\">Familia</"
 "span>\n"
-"                        <span id=\"txt_translate_select_family\">Familia</span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">Ningún producto "
+"                        <span id=\"txt_translate_alert_no_product\">Ningún "
+"producto seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box"
+"\">Ninguno tipo de caja seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote "
 "seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box\">Ninguno tipo de caja "
-"seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote seleccionado</"
+"                        <span id="
+"\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga algún valor "
+"válido en la caja de peso fijo</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight"
+"\">El valor de la tara es mayor que el valor del peso</span>\n"
+"                        <span id=\"txt_translate_alert_connect_scale\">Peso "
+"inválido</span>\n"
+"                        <span id=\"txt_translate_contact_administrator"
+"\">Error inesperado, por favor contacte con el administrador</span>\n"
+"                        <span id=\"txt_translate_lot_finished\">El lote ha "
+"sido terminado</span>\n"
+"                        <span id=\"txt_translate_weight_correctly\">Se ha "
+"pesado correctamente</span>\n"
+"                        <span id=\"txt_translate_wait_printing\">Espere un "
+"momento...</span>\n"
+"                        <span id=\"txt_translate_success\">Hecho</span>\n"
+"                        <span id=\"txt_translate_printing\">Imprimiendo</"
 "span>\n"
-"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga "
-"algún valor válido en la caja de peso fijo</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight\">El valor de la "
-"tara es mayor que el valor del peso</span>\n"
-"                        <span id=\"txt_translate_alert_connect_scale\">Peso inválido</span>\n"
-"                        <span id=\"txt_translate_contact_administrator\">Error inesperado, por "
-"favor contacte con el administrador</span>\n"
-"                        <span id=\"txt_translate_lot_finished\">El lote ha sido terminado</span>"
+"                        <span id=\"txt_translate_printed\">Impreso</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -183,19 +221,29 @@ msgstr "<span>Método de conservación entre 0ºC-5ºC</span>"
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid ""
-"<span>Contains crustaceans and sulfites. May contain traces of fish and/or molluscs.</span>"
+"<span>Contains crustaceans and sulfites. May contain traces of fish and/or "
+"molluscs.</span>"
 msgstr ""
-"<span>Contiene crustáceos y sulfitos. Puede contener trazas de pescado y/o moluscos.</span>"
+"<span>Contiene crustáceos y sulfitos. Puede contener trazas de pescado y/o "
+"moluscos.</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span>Contains fish. May contain traces of crustaceans and/or molluscs.</span>"
-msgstr "<span>Contiene pescado. Puede contener trazas de crustáceos y/o moluscos.</span>"
+msgid ""
+"<span>Contains fish. May contain traces of crustaceans and/or molluscs.</"
+"span>"
+msgstr ""
+"<span>Contiene pescado. Puede contener trazas de crustáceos y/o moluscos.</"
+"span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span>Contains mollusks. May contain traces of fish and/or crustaceans.</span>"
-msgstr "<span>Contiene moluscos. Puede contener trazas de pescado y/o crustáceos.</span>"
+msgid ""
+"<span>Contains mollusks. May contain traces of fish and/or crustaceans.</"
+"span>"
+msgstr ""
+"<span>Contiene moluscos. Puede contener trazas de pescado y/o crustáceos.</"
+"span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -234,8 +282,12 @@ msgstr "IP Permitida"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
-msgid "Are you sure you want to delete the last weighing of this purchase order line?"
-msgstr "¿Está seguro de que desea eliminar la última pesada de esta línea de pedido de compra?"
+msgid ""
+"Are you sure you want to delete the last weighing of this purchase order "
+"line?"
+msgstr ""
+"¿Está seguro de que desea eliminar la última pesada de esta línea de pedido "
+"de compra?"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -314,6 +366,28 @@ msgid "Config Settings"
 msgstr "Opciones de configuración"
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#, python-format
+msgid ""
+"Contains crustaceans and sulfites. May contain traces of fish and/or "
+"molluscs."
+msgstr ""
+"Contiene crustáceos y sulfitos. Puede contener trazas de pescado y/o "
+"moluscos."
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#, python-format
+msgid "Contains fish. May contain traces of crustaceans and/or molluscs."
+msgstr "Contiene pescado. Puede contener trazas de crustáceos y/o moluscos."
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#, python-format
+msgid "Contains mollusks. May contain traces of fish and/or crustaceans."
+msgstr "Contiene moluscos. Puede contener trazas de pescado y/o crustáceos."
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.actions.act_window,help:fcd_weight_scale_mrp.action_fcd_weight_scale_mrp_checkpoint
 msgid "Create your first Chkpoint!"
 msgstr "Crea tu primer Punto de Control!"
@@ -390,6 +464,11 @@ msgstr "Línea de documento"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__expiration_date
 msgid "Expiration Date"
 msgstr "Fecha de caducidad"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__external_tara_button
+msgid "External Tara Button"
+msgstr "Botón tara externo"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
@@ -473,7 +552,7 @@ msgstr "Hora"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_move_line__id
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_stock_production_lot__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__tcp_address_ip
@@ -675,6 +754,22 @@ msgstr "Precio real Kg"
 #, python-format
 msgid "Printed"
 msgstr "Impreso"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_ip
+msgid "Printer Ip"
+msgstr "IP de la impresora"
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#, python-format
+msgid "Printer Not Conected"
+msgstr "Impresora no conectada"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_port
+msgid "Printer Port"
+msgstr "Puerto de la impresora"
 
 #. module: fcd_weight_scale_mrp
 #. openerp-web

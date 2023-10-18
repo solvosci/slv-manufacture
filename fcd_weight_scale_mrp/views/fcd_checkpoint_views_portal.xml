@@ -33,6 +33,11 @@
                         <span id="txt_translate_alert_connect_scale">Invalid Weight</span>
                         <span id="txt_translate_contact_administrator">Unexpected error, please contact with administrator</span>
                         <span id="txt_translate_lot_finished">Lot has been finished</span>
+                        <span id="txt_translate_weight_correctly">It has been weighted correctly</span>
+                        <span id="txt_translate_wait_printing">Wait a moment, please...</span>
+                        <span id="txt_translate_success">Success</span>
+                        <span id="txt_translate_printing">Printing</span>
+                        <span id="txt_translate_printed">Printed</span>
                     </div>
                     <nav class="o_main_navbar" style="height: 60px;">
                         <a class="o_menu_brand" role="button" style="font-size: 30px; padding-top: 6px; height: 100%;">WEIGHT SCALE</a>
@@ -141,9 +146,11 @@
                                                         <span class="input-group-text" id="basic-addon2">KG</span>
                                                     </div>
                                                 </div>
-                                                <div class="row justify-content-center align-items-center">
-                                                    <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
-                                                </div>
+                                                <t t-if="not chkpoint.external_tara_button">
+                                                    <div class="row justify-content-center align-items-center">
+                                                        <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
+                                                    </div>
+                                                </t>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +184,9 @@
                                     <div class="container-fluid" id="container3">
                                         <div class="row">
                                             <div class="col-4" id="tareButton" style="margin-left: 0px">
-                                                <button id="taring" type="button" style="width: 100%;" class="btn btn-outline-secondary">Tare</button>
+                                                <t t-if="not chkpoint.external_tara_button">
+                                                    <button id="taring" type="button" style="width: 100%;" class="btn btn-outline-secondary">Tare</button>
+                                                </t>
                                             </div>
                                             <div class="col-4">
                                                 <div id="checkBoxs">

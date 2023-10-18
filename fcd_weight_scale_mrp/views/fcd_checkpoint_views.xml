@@ -9,6 +9,8 @@
             <field name="scale_id" />
             <field name="allowed_ip" />
             <field name="warehouse_id" />
+            <field name="printer_ip" />
+            <field name="printer_port" />
         </tree>
     </field>
   </record>
@@ -24,6 +26,9 @@
             <field name="scale_id" />
             <field name="allowed_ip" />
             <field name="warehouse_id" />
+            <field name="printer_ip" />
+            <field name="printer_port" />
+            <field name="external_tara_button" />
           </group>
         </sheet>
       </form>

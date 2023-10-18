@@ -232,6 +232,22 @@ class WeightScaleCheckPoint(http.Controller):
             _logger.warning(e)
             return {"error": "Unexpected error, please contact with administrator"}
 
+    @http.route("/fcd_weight_scale_mrp/generate_zpl", type='json', auth='none')
+    def fcd_weight_scale_mrp_generate_zpl(self):
+        cp_user = request.env.ref('fcd_weight_scale_mrp.res_user_fcd_checkpoint_user')
+        vals = dict(request.jsonrequest)
+        try:
+            log_id = request.env['fcd.weight.scale.log'].with_user(cp_user).browse(int(vals['log_id']))
+
+            if not log_id:
+                return {"error": "Weight log couldn't be recorded"}
+
+            ret = log_id.generate_report_tag_zpl()
+            return ret
+        except Exception as e:
+            _logger.warning(e)
+            return {"error": "Unexpected error, in the generation report tag"}
+
     @http.route("/fcd_weight_scale_mrp/endLot", type='json', auth='none')
     def fcd_weight_scale_mrp_end_lot(self):
         cp_user = request.env.ref('fcd_weight_scale_mrp.res_user_fcd_checkpoint_user')
