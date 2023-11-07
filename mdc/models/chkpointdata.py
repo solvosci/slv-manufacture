@@ -71,6 +71,36 @@ class DataWIn(models.Model):
     active = fields.Boolean(
         'Active',
         default=True)
+    keep_going_wout_id = fields.Many2one(
+        'mdc.data_wout',
+        compute='_compute_keep_going_wout_id',
+        inverse='_inverse_keep_going_wout_id',
+        store=True
+    )
+    final_wout_id = fields.Many2one(
+        'mdc.data_wout',
+        compute='_compute_final_wout_id',
+        inverse='_inverse_final_wout_id',
+        store=True
+    )
+
+    @api.depends('final_wout_id')
+    def _compute_final_wout_id(self):
+        for record in self:
+            record.final_wout_id = record.env['mdc.data_wout'].search([('final_wout_of_win_id', '=', record.id)], limit=1)
+    def _inverse_final_wout_id(self):
+        for record in self:
+            if record.wout_id:
+                record.wout_id.final_wout_of_win_id = record
+
+    @api.depends('keep_going_wout_id')
+    def _compute_keep_going_wout_id(self):
+        for record in self:
+            record.keep_going_wout_id = record.env['mdc.data_wout'].search([('keep_going_win_to_wout_id', '=', record.id)], limit=1)
+    def _inverse_keep_going_wout_id(self):
+        for record in self:
+            if record.wout_id:
+                record.wout_id.keep_going_win_to_wout_id = record
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -107,7 +137,6 @@ class DataWIn(models.Model):
         if weight_stability == 'unstable':
             raise UserError(_('Unstable %.2f %s weight was read. Please slide the card one more time') %
                             (weight_value, weight_uom_id.name))
-
         card = self.env['mdc.card'].search([('name', '=', values['card_code'])])
         if not card:
             raise UserError(_("Card #%s not found") % values['card_code'])
@@ -326,6 +355,10 @@ class DataWOut(models.Model):
         'Gross Weight',
         readonly=True,
         default=0)
+    keep_going_win_to_wout_id = fields.Many2one('mdc.data_win', string='WIn')
+
+    final_wout_of_win_id = fields.Many2one('mdc.data_win', string='WIn')
+
 
     @api.onchange('card_ids')
     def _retrieve_workstation_card_data(self):
@@ -347,7 +380,7 @@ class DataWOut(models.Model):
         """
         TODO move to create multi
         """
-        gross_weight = 0.0
+        gross_weight = 0.0  
 
         #retrive all card ids
         card_ids = [] if len(values.get('card_ids')) == 0 else values.get('card_ids')[0][2]
@@ -510,7 +543,6 @@ class DataWOut(models.Model):
         if weight_stability == 'unstable':
             raise UserError(_('Unstable %.2f %s weight was read. Please start passing cards again') %
                             (weight_value, weight_uom_id.name))
-
         cards_id_list = [] if len(values['cards_in']) == 0 else [card['card_id'] for card in values['cards_in']]
         cards_id_list.append(values['card_workstation']['card_id'])
         card_ids = [(6, False, cards_id_list)]
@@ -530,5 +562,3 @@ class DataWOut(models.Model):
             'wout_categ_id': wout_categ_id.id,
             'card_ids': card_ids
         })
-
-
