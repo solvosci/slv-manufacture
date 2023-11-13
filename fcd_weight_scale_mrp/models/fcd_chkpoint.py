@@ -39,4 +39,11 @@ class FCDCheckpoint(models.Model):
             weight_value = weight_value - float(values['tare'])
 
         return {'weight_value': '%.2f' % weight_value}
-            
+
+    def open_virtual_checkpoint(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'name': "Virtual Weight Scale",
+            'url': f'fcd_weight_scale_mrp/{self.id}',
+            'target': 'self',
+        }

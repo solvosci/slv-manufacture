@@ -26,6 +26,11 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                 console.log(user_id.textContent);
             }
 
+            var scale_id = document.getElementById('scale_id')
+            if (scale_id === null){
+                document.getElementById('weight').removeAttribute("disabled");
+            }
+
             var session_id = '';
             $.ajax({
                 type: 'POST',

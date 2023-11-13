@@ -15,6 +15,18 @@
     </field>
   </record>
 
+  <record id="fcd_virtual_checkpoint_tree" model="ir.ui.view">
+    <field name="name">fcd.checkpoint.tree</field>
+    <field name="model">fcd.checkpoint</field>
+    <field eval="100" name="priority"/>
+    <field name="arch" type="xml">
+        <tree string="Virtual Checkpoints">
+            <field name="name" />
+            <button type="object" name="open_virtual_checkpoint" string="Open Weight Scale"/>
+        </tree>
+    </field>
+  </record>
+
   <record id="fcd_checkpoint_form" model="ir.ui.view">
     <field name="name">fcd.checkpoint.form</field>
     <field name="model">fcd.checkpoint</field>

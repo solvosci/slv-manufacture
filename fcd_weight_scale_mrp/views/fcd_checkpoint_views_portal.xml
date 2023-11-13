@@ -65,6 +65,9 @@
                                 <div class="o_not_full oe_button_box" id="header2" style="padding-bottom: 10px; margin-top: 0px;">
                                     <img src="/fcd_weight_scale_mrp/static/src/img/logo.png" class="img" id="cigurria_img" alt="Cigurria" style="height: 75px;"></img>
                                     <h3 id="chkpName" t-esc="chkpoint.name" t-att-value="chkpoint.id"/>
+                                    <t t-if="chkpoint.scale_id">
+                                        <span id="scale_id" t-att-value="chkpoint.scale_id" class="d-none"/>
+                                    </t>
                                     <div class="digital-clock">12/12/2012 00:00:00</div>
                                 </div>
                                 <div class="o_group">
