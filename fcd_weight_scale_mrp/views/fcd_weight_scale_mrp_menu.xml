@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="action_fcd_weight_scale_mrp_virtual_checkpoint" model="ir.actions.act_window">
+        <field name="name">Virtual Weight Scale</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fcd.checkpoint</field>
+        <field name="view_mode">tree</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('fcd_virtual_checkpoint_tree')})]"/>
+        <field name="domain">[('scale_id', '=', False)]</field>
+    </record>
+
     <record id="action_fcd_weight_scale_mrp_checkpoint" model="ir.actions.act_window">
         <field name="name">Checkpoint</field>
         <field name="type">ir.actions.act_window</field>
@@ -37,6 +47,13 @@
             </p>
         </field>
     </record>
+
+    <menuitem
+        id="menu_virtual_checkpoint"
+        name="Virtual Weight Scale"
+        action="action_fcd_weight_scale_mrp_virtual_checkpoint"
+        parent="mrp.menu_mrp_root"
+        sequence="30"/>
 
     <menuitem
         id="menu_scale_production_equipment"
