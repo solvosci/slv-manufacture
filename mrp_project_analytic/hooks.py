@@ -7,7 +7,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook(cr, registry, vals=None):
+def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
     mrps = env["mrp.production"].search([
         ("project_id", "!=", False),
