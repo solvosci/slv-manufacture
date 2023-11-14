@@ -1,13 +1,12 @@
 # © 2022 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See https://www.gnu.org/licenses/lgpl-3.0.html
 
-from odoo import api, models, _
+from odoo import models
 
 
 class ManufactureOrder(models.Model):
     _inherit = "mrp.production"
 
-    @api.multi
     def write(self, values):
         analytic_account_to_change = (
             "state" in values and values["state"] == "done"
