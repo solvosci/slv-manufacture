@@ -296,8 +296,8 @@ class FCDWeightScaleLog(models.Model):
 
             ^FX --- Sección Superior Izquierda - líneas horizontales ---
             ^FO455,15^GB0,370,2^FS
-            ^FO360,15^GB0,370,2^FS
-            ^FO250,15^GB0,370,2^FS
+            ^FO380,15^GB0,370,2^FS
+            ^FO265,15^GB0,370,2^FS
             ^FX --- Sección Superior separador vertical - izquierda - centro ---
             ^FO180,385^GB370,0,2^FS
             ^FX Sección Superior Central - líneas horizontales ---
@@ -330,25 +330,23 @@ class FCDWeightScaleLog(models.Model):
             ^FO420,155^A0R,20,20^FD{tag_fields['shipper_street']}^FS
             ^FO395,25^A0R,20,20^FDDIRECCIÓN:^FS
             ^FO395,125^A0R,20,20^FD{tag_fields['shipper_city']}^FS
-            ^FO370,25^A0R,20,20^FDNº R.S.I.:^FS
-            ^FO370,110^A0R,20,20^FD{tag_fields['shipper_street2']}^FS
 
             ^FX --- Buque y Sello ---
-            ^FO260,30^GB90,200,2^FS
-            ^FO260,240^GE90,130,2^FS
-            ^FO320,40^A0R,20,20^FDEST.ELAB/BUQUE:^FS
+            ^FO280,30^GB90,200,2^FS
+            ^FO280,240^GE90,130,2^FS
+            ^FO340,40^A0R,20,20^FDEST.ELAB/BUQUE:^FS
             ^FX --- Nombre patido en 2 líneas (15 caracteres + 15 caracteres) ---
-            ^FO300,40^A0R,15,15^FD{tag_fields['ship_name']}^FS
-            ^FO280,40^A0R,15,15^FD{tag_fields['ship_license_plate']}^FS
-            ^FO320,300^A0R,15,15^FDES^FS
-            ^FO300,270^A0R,15,15^FD{tag_fields['sanitary_reg']}^FS
-            ^FO280,300^A0R,15,15^FDCE^FS
+            ^FO320,40^A0R,15,15^FD{tag_fields['ship_name']}^FS
+            ^FO300,40^A0R,15,15^FD{tag_fields['ship_license_plate']}^FS
+            ^FO340,300^A0R,15,15^FDES^FS
+            ^FO320,270^A0R,15,15^FD{tag_fields['sanitary_reg']}^FS
+            ^FO300,300^A0R,15,15^FDCE^FS
 
             ^FX --- Fechas ---
-            ^FO215,25^A0R,20,20^FDF.CADUCIDAD:^FS
-            ^FO215,250^A0R,20,20^FD{tag_fields['expiration_date']}^FS
-            ^FO190,25^A0R,20,20^FDF.ENVASADO:^FS
-            ^FO190,250^A0R,20,20^FD{tag_fields['packaging_date']}^FS
+            ^FO230,25^A0R,20,20^FDF.CADUCIDAD:^FS
+            ^FO230,250^A0R,20,20^FD{tag_fields['expiration_date']}^FS
+            ^FO205,25^A0R,20,20^FDF.ENVASADO:^FS
+            ^FO205,250^A0R,20,20^FD{tag_fields['packaging_date']}^FS
 
             ^FX --- Denominación comercial del Producto ---
             ^FO530,400^A0R,20,20^FDDENOMINACIÓN COMERCIAL:^FS
