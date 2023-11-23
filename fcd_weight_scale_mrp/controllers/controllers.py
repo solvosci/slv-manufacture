@@ -201,6 +201,7 @@ class WeightScaleCheckPoint(http.Controller):
                     'weight_value': weightGet["weight_value"],
                 }
         except Exception as e:
+            _logger.warning(e)
             createdJson = {}
             createdJson['error'] = "Scale not connected"
         return createdJson

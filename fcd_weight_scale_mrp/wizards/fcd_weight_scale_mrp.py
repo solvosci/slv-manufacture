@@ -18,16 +18,17 @@ class FCDWeightScaleMRPWizard(models.TransientModel):
             # Create mrp.unbuild for mrp.production
             if log_id.production_id:
                 production_id = log_id.production_id
-                unbuild_id = self.env['mrp.unbuild'].create({
-                    'product_id': production_id.product_id.id,
-                    'product_uom_id': production_id.product_uom_id.id,
-                    'product_qty': production_id.product_qty,
+
+                unbuild = self.env['mrp.unbuild'].new({
                     'lot_id': production_id.lot_producing_id.id,
                     'mo_id': production_id.id,
-                    'company_id': production_id.company_id.id,
-                    'location_id': production_id.location_dest_id.id,
+                    'location_id': production_id.location_src_id.id,
                     'location_dest_id': production_id.location_src_id.id,
+                    'company_id': production_id.company_id.id,
                 })
+                unbuild._onchange_mo_id()
+                vals = unbuild._convert_to_write(unbuild._cache)
+                unbuild_id = self.env['mrp.unbuild'].sudo().create(vals)
                 unbuild_id.action_unbuild()
 
             # Rest quantity od stock move

@@ -149,11 +149,9 @@
                                                         <span class="input-group-text" id="basic-addon2">KG</span>
                                                     </div>
                                                 </div>
-                                                <t t-if="not chkpoint.external_tara_button">
-                                                    <div class="row justify-content-center align-items-center">
-                                                        <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
-                                                    </div>
-                                                </t>
+                                                <div class="row justify-content-center align-items-center">
+                                                    <p id="tareOutput" class="col-6 font-weight-light text-muted"> Tare:  <span id="tareValue">0</span>  KG</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
