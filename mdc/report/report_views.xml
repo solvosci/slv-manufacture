@@ -156,8 +156,8 @@
         </record>
     </data>
 
-    <data>
-        <!-- TODO verify attachment_use=False is by default -->
+    <!-- <data>
+        TODO verify attachment_use=False is by default
         <record id="indicators_xlsx" model="ir.actions.report">
             <field name="name">Print to XLSX</field>
             <field name="model">mdc.rpt_indicators</field>
@@ -170,7 +170,7 @@
             >mdc.rpt_indicators</field>
         </record>
 
-        <!-- Search view: default search for Indicators Report -->
+        Search view: default search for Indicators Report
         <record id="mdc_rpt_indicators_search" model="ir.ui.view">
             <field name="name">mdc.rpt_indicators.search</field>
             <field name="model">mdc.rpt_indicators</field>
@@ -196,7 +196,7 @@
             </field>
         </record>
 
-        <!-- Tree view: default view for Indicators Report -->
+        Tree view: default view for Indicators Report
         <record id="mdc_rpt_indicators_tree" model="ir.ui.view">
             <field name="name">mdc.rpt_indicators.tree</field>
             <field name="model">mdc.rpt_indicators</field>
@@ -215,7 +215,7 @@
                 </tree>
             </field>
         </record>
-    </data>
+    </data> -->
 
 
     <data>

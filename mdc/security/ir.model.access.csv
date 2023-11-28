@@ -56,5 +56,3 @@ acl_mdc_config_settings_office_worker,mdc.config.settings_office_worker,model_md
 
 acl_mdc_rpt_tracing,mdc.rpt_tracing default,model_mdc_rpt_tracing,,1,0,0,0
 acl_mdc_rpt_manufacturing,mdc.rpt_manufacturing default,model_mdc_rpt_manufacturing,,1,0,0,0
-acl_mdc_rpt_indicators,mdc.rpt_indicators default,model_mdc_rpt_indicators,,1,0,0,0
-acl_mdc_rpt_cumulative,mdc.rpt_cumulative default,model_mdc_rpt_cumulative,,1,0,0,0

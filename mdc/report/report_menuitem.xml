@@ -65,7 +65,7 @@
 
 
     <!-- Action: Indicators Report -->
-    <record model="ir.actions.act_window" id="action_mdc_rpt_indicators">
+    <!-- <record model="ir.actions.act_window" id="action_mdc_rpt_indicators">
         <field name="name">Indicators Report</field>
         <field name="res_model">mdc.rpt_indicators</field>
         <field name="view_mode">tree</field>
@@ -79,14 +79,14 @@
             Can't create or update records in this view.
           </p>
         </field>
-    </record>
+    </record> -->
 
-     <record id="action_mdc_rpt_indicators_tree" model="ir.actions.act_window.view">
+     <!-- <record id="action_mdc_rpt_indicators_tree" model="ir.actions.act_window.view">
         <field name="view_mode">tree</field>
         <field name="sequence" eval="4"/>
         <field name="view_id" ref="mdc_rpt_indicators_tree"/>
         <field name="act_window_id" ref="action_mdc_rpt_indicators"/>
-    </record>
+    </record> -->
 
     <!-- Action: Cumulative Report -->
     <record model="ir.actions.act_window" id="action_mdc_rpt_cumulative">
@@ -126,11 +126,11 @@
         parent="mdc_menu_reporting"
         sequence="15"/>
 
-    <menuitem id="mdc_rpt_indicators_menu"
+    <!-- <menuitem id="mdc_rpt_indicators_menu"
         name="Indicators Report"
         action="action_mdc_rpt_indicators"
         parent="mdc_menu_reporting"
-        sequence="20"/>
+        sequence="20"/> -->
 
     <menuitem id="mdc_rpt_cumulative_menu"
         name="Cumulative Report"
