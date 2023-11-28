@@ -240,7 +240,7 @@ class FCDWeightScaleLog(models.Model):
             'shipper_street2': self.produced_partner_id.street2,
             'ship_name': self.fcd_document_line_id.fcd_document_id.ship if self.fcd_document_line_id.fcd_document_id.ship else '',
             'ship_license_plate': self.fcd_document_line_id.fcd_document_id.ship_license_plate if self.fcd_document_line_id.fcd_document_id.ship_license_plate else '',
-            'sanitary_reg': self.fcd_document_line_id.fcd_document_id.sanity_reg if self.fcd_document_line_id.fcd_document_id.sanity_reg else '',
+            'sanitary_reg': self.warehouse_id.partner_id.street2 if self.warehouse_id.partner_id.street2 else '',
             'expiration_date': self.expiration_date.strftime('%d-%m-%Y') if self.expiration_date else '',
             'packaging_date': self.packaging_date.strftime('%d-%m-%Y') if self.packaging_date else '',
             'product_name': self.output_product_id.name,
