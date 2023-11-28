@@ -43,8 +43,7 @@ class DataWIn(models.Model):
         required=True,
         default=_default_date)
     tare = fields.Float(
-        'Tare',
-        required=True)
+        'Tare')
     weight = fields.Float(
         'Weight',
         default=0,
@@ -310,8 +309,7 @@ class DataWOut(models.Model):
         required=True,
         default=_default_date)
     tare = fields.Float(
-        'Tare',
-        required=True)
+        'Tare')
     weight = fields.Float(
         'Weight',
         default=0,

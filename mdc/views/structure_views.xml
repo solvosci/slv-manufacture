@@ -274,7 +274,7 @@
         <field name="name">mdc.chkpoint.tree</field>
         <field name="model">mdc.chkpoint</field>
         <field name="arch" type="xml">
-            <tree string="Check Point" default_order="name">
+            <tree string="Check Point" default_order="line_id,name">
                 <field name="name"/>
                 <field name="chkpoint_categ"/>
                 <field name="line_id"/>
