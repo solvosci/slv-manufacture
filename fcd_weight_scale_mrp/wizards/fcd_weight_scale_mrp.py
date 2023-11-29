@@ -22,7 +22,7 @@ class FCDWeightScaleMRPWizard(models.TransientModel):
                 unbuild = self.env['mrp.unbuild'].new({
                     'lot_id': production_id.lot_producing_id.id,
                     'mo_id': production_id.id,
-                    'location_id': production_id.location_src_id.id,
+                    'location_id': production_id.location_dest_id.id,
                     'location_dest_id': production_id.location_src_id.id,
                     'company_id': production_id.company_id.id,
                 })

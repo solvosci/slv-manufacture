@@ -57,8 +57,8 @@ class FCDWeightScaleLog(models.Model):
         product_id = log_id.output_product_id
         stock_move_id = log_id.stock_move_id
         company_id = self.env.company
-        location_src_id = stock_move_id.location_dest_id
-        location_dest_id = self.env['stock.location'].search([('usage', '=', 'production'), ('company_id', '=', company_id.id)])
+        location_id = stock_move_id.location_dest_id
+        location_production_id = self.env['stock.location'].search([('usage', '=', 'production'), ('company_id', '=', self.env.company.id)])
 
         lot_id = self.env['stock.production.lot'].search([
             ('name', '=', stock_move_id.fcd_document_line_id.lot_id.name),
@@ -79,8 +79,8 @@ class FCDWeightScaleLog(models.Model):
             'product_qty': log_id.quantity,
             'qty_producing': log_id.quantity,
             'qty_produced': log_id.quantity,
-            'location_src_id': location_src_id.id,
-            'location_dest_id': location_dest_id.id,
+            'location_src_id': location_id.id,
+            'location_dest_id': location_id.id,
             'lot_producing_id': lot_id.id
         })
 
@@ -91,8 +91,8 @@ class FCDWeightScaleLog(models.Model):
             'product_uom_qty': log_id.quantity,
             'quantity_done': log_id.quantity,
             'raw_material_production_id': mrp_production_id.id,
-            'location_id': location_src_id.id,
-            'location_dest_id': location_dest_id.id,
+            'location_id': location_id.id,
+            'location_dest_id': location_production_id.id,
         })
 
         mrp_production_id.action_confirm()
@@ -104,8 +104,8 @@ class FCDWeightScaleLog(models.Model):
             'product_uom_qty': log_id.quantity,
             'quantity_done': log_id.quantity,
             'production_id': mrp_production_id.id,
-            'location_id': location_dest_id.id,
-            'location_dest_id': location_src_id.id,
+            'location_id': location_production_id.id,
+            'location_dest_id': location_id.id,
             'state': 'done',
         })
 
