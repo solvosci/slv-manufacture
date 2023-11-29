@@ -33,6 +33,7 @@ acl_mdc_card,mdc.card default,model_mdc_card,,1,0,0,0
 acl_mdc_card_office_worker,mdc.card_office_worker,model_mdc_card,group_mdc_office_worker,1,1,1,1
 acl_mdc_card_cp,mdc.card_cp,model_mdc_card,group_mdc_cp,1,1,1,0
 acl_mdc_shift,mdc.shift default,model_mdc_shift,,1,0,0,0
+acl_mdc_stage,mdc.stage default,model_mdc_stage,,1,1,1,1
 acl_mdc_shift_manager,mdc.shift_manager,model_mdc_shift,group_mdc_manager,1,1,1,1
 acl_mdc_card_categ,mdc.card_categ default,model_mdc_card_categ,,1,0,0,0
 acl_mdc_card_categ_office_worker,mdc.card_categ_office_worker,model_mdc_card_categ,group_mdc_office_worker,1,1,1,1
@@ -56,3 +57,4 @@ acl_mdc_config_settings_office_worker,mdc.config.settings_office_worker,model_md
 
 acl_mdc_rpt_tracing,mdc.rpt_tracing default,model_mdc_rpt_tracing,,1,0,0,0
 acl_mdc_rpt_manufacturing,mdc.rpt_manufacturing default,model_mdc_rpt_manufacturing,,1,0,0,0
+acl_mdc_rpt_cumulative,mdc.rpt_cumulative default,model_mdc_rpt_cumulative,,1,0,0,0

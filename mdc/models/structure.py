@@ -111,6 +111,14 @@ class ChkPoint(models.Model):
         'Shared Off',
         default=False
     )
+    stage_id_input = fields.Many2one(
+        'mdc.stage',
+        string='Stage Input',
+    )
+    stage_id_output = fields.Many2one(
+        'mdc.stage',
+        string='Stage Output',
+    )
 
     @api.depends('lot_ids.current_lot_active_id', 'lot_ids.start_lot_datetime')
     def _compute_chkpoint_lot_active(self):
@@ -422,6 +430,28 @@ class Shift(models.Model):
             'start_datetime': start_datetime.strftime('%Y-%m-%d %H:%M:%S'),
             'end_datetime': end_datetime.strftime('%Y-%m-%d %H:%M:%S')
         }
+
+
+class Stage(models.Model):
+    """
+    Stage
+    """
+    _name = 'mdc.stage'
+    _description = 'Stage'
+
+    name = fields.Char(
+        'Name',
+        required=True)
+    # chkpoint_in_ids = fields.One2many(
+    #     'mdc.chkpoint',
+    #     'stage_id_input',
+    #     string='Checkpoints IN'
+    # )
+    # chkpoint_out_ids = fields.One2many(
+    #     'mdc.chkpoint',
+    #     'stage_id_output',
+    #     string='Checkpoints OUT'
+    # )
 
 
 class CardCateg(models.Model):

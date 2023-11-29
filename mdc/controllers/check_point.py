@@ -116,10 +116,12 @@ class CheckPoint(http.Controller):
         data_out = {
             'ckhpoint_id': chkpoint_id
         }
+        chkpoint_id = request.env["mdc.chkpoint"].with_user(cp_user).browse(data_in['chkpoint_id'])
 
         try:
             DataWIn = request.env['mdc.data_win'].with_user(cp_user)
             datawin = DataWIn.from_cp_create(data_in)
+            datawin.stage_id = chkpoint_id.stage_id_input
             data_out['card_code'] = data_in['card_code']
             data_out['data_win_id'] = datawin.id
             data_out['lotactive'] = datawin.lot_id.alias_cp
@@ -178,12 +180,15 @@ class CheckPoint(http.Controller):
             data_out['w_uom'] = datawout.w_uom_id.name
             if chkpoint_id.chkpoint_categ == 'WOUTTOWIN':
                 # Create new win, and set keep_going_wout_id with old wout (actual)
+                datawout.stage_id = chkpoint_id.stage_id_output
                 DataWin = request.env['mdc.data_win'].with_user(cp_user)
                 new_in_data = {'card_code': data_in['card_in_new']['card_code'], 'chkpoint_id': data_in["chkpoint_id"]}
                 datawin = DataWin.from_cp_create(new_in_data)
+                datawin.stage_id = chkpoint_id.stage_id_input
                 datawin.keep_going_wout_id = datawout.id
             elif chkpoint_id.chkpoint_categ == 'WOUT':
                 # Recover 2 win, and set final wout_id on both
+                datawout.stage_id = chkpoint_id.stage_id_output
                 win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', datawout.id)])
                 old_win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', win_related.keep_going_wout_id.id)])
                 win_related.final_wout_id = datawout.id

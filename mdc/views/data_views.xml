@@ -126,6 +126,7 @@
             <tree string="Data_wins" decoration-danger="active==False" default_order="create_datetime desc">
                 <field name="id" string="#id"/>
                 <field name="line_id"/>
+                <field name="stage_id"/>
                 <field name="lot_id"/>
                 <field name="create_datetime"/>
                 <field name="weight"/>
@@ -158,6 +159,7 @@
                    <group name="gr_Data_WIN_chkpoint_data" string="Check Point Data">
                         <group>
                             <field name="line_id"/>
+                            <field name="stage_id" readonly="True"/>
                             <field name="lot_id"/>
                             <field name="cancel_user_id" readonly="1"/>
                         </group>
@@ -226,6 +228,7 @@
                   decoration-info="shared and wout_shared_id" default_order="create_datetime desc">
                 <field name="id" string="#id"/>
                 <field name="line_id"/>
+                <field name="stage_id"/>
                 <field name="lot_id"/>
                 <field name="create_datetime"/>
                 <field name="weight"/>
@@ -251,6 +254,7 @@
                    <group name="gr_Data_WOUT_chkpoint_data" string="Check Point Data">
                         <group>
                             <field name="line_id"/>
+                            <field name="stage_id" readonly="True"/>
                             <field name="lot_id"/>
                         </group>
                         <group>

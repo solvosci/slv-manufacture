@@ -72,15 +72,16 @@ class DataWIn(models.Model):
         default=True)
     keep_going_wout_id = fields.Many2one(
         'mdc.data_wout',
-        compute='_compute_keep_going_wout_id',
-        inverse='_inverse_keep_going_wout_id',
-        store=True
     )
     final_wout_id = fields.Many2one(
         'mdc.data_wout',
         compute='_compute_final_wout_id',
         inverse='_inverse_final_wout_id',
         store=True
+    )
+    stage_id = fields.Many2one(
+        'mdc.stage',
+        string='Stage',
     )
 
     @api.depends('final_wout_id')
@@ -92,14 +93,6 @@ class DataWIn(models.Model):
             if record.wout_id:
                 record.wout_id.final_wout_of_win_id = record
 
-    @api.depends('keep_going_wout_id')
-    def _compute_keep_going_wout_id(self):
-        for record in self:
-            record.keep_going_wout_id = record.env['mdc.data_wout'].search([('keep_going_win_to_wout_id', '=', record.id)], limit=1)
-    def _inverse_keep_going_wout_id(self):
-        for record in self:
-            if record.wout_id:
-                record.wout_id.keep_going_win_to_wout_id = record
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -353,9 +346,17 @@ class DataWOut(models.Model):
         'Gross Weight',
         readonly=True,
         default=0)
-    keep_going_win_to_wout_id = fields.Many2one('mdc.data_win', string='WIn')
+    keep_going_win_to_wout_id = fields.Many2one(
+        'mdc.data_win', 
+        string='WIn')
+    final_wout_of_win_id = fields.Many2one(
+        'mdc.data_win',
+        string='WIn')
+    stage_id = fields.Many2one(
+        'mdc.stage',
+        string='Stage'
+    )
 
-    final_wout_of_win_id = fields.Many2one('mdc.data_win', string='WIn')
 
 
     @api.onchange('card_ids')

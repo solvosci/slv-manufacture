@@ -136,6 +136,6 @@
         name="Cumulative Report"
         action="action_mdc_rpt_cumulative"
         parent="mdc_menu_reporting"
-        sequence="25"/>
+        sequence="20"/>
 
 </odoo>
