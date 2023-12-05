@@ -315,8 +315,7 @@ class DataWOut(models.Model):
         default=_default_uom)
     quality_id = fields.Many2one(
         'mdc.quality',
-        string='Quality',
-        required=True)
+        string='Quality')
     card_ids = fields.Many2many(
         'mdc.card',
         string='Card')

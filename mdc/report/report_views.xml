@@ -24,6 +24,8 @@
                     <field name="employee_code"/>
                     <field name="employee_name"/>
                     <field name="shift_code"/>
+                    <field name="stage_name"/>
+                    <field name="line_code"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -35,6 +37,7 @@
                         <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
                         <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
                         <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
+                        <filter string="Stage Name" name="groupby_stage" domain="[]" context="{'group_by':'stage_name'}"/>
                     </group>
                 </search>
             </field>
@@ -52,6 +55,8 @@
                     <field name="employee_name" readonly="True"/>
                     <field name="product_id" readonly="True"/>
                     <field name="shift_code" readonly="True"/>
+                    <field name="stage_name" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
                     <field name="gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
                     <field name="sp1_weight" readonly="True"/>
@@ -90,18 +95,16 @@
     </data>
 
     <data>
-        <!-- TODO verify attachment_use=False is by default -->
-        <record id="manufacturing_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
-            <field name="model">mdc.rpt_manufacturing</field>
-            <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_manufacturing</field>
-            <field
-                name="report_file"
-            >mdc.rpt_manufacturing</field>
-        </record>
+    <!-- TODO verify attachment_use=False is by default -->
+    <record id="manufacturing_xlsx" model="ir.actions.report">
+        <field name="name">Print to XLSX</field>
+        <field name="model">mdc.rpt_manufacturing</field>
+        <field name="binding_model_id" ref="mdc.model_mdc_rpt_manufacturing" />
+        <field name="type">ir.actions.report</field>
+        <field name="report_name">mdc.rpt_manufacturing</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_file">mdc_rpt_manufacturing</field>
+    </record>
 
         <!-- Search view: default search for Manufacturing Report -->
         <record id="mdc_rpt_manufacturing_search" model="ir.ui.view">
@@ -114,6 +117,8 @@
                     <field name="contract_name"/>
                     <field name="lot_name"/>
                     <field name="shift_code"/>
+                    <field name="stage_name"/>
+                    <field name="line_code"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -126,6 +131,7 @@
                         <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
                         <filter string="Contract Name" name="groupby_contract" domain="[]" context="{'group_by':'contract_name'}"/>
                         <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
+                        <filter string="Stage Name" name="groupby_stage" domain="[]" context="{'group_by':'stage_name'}"/>
                     </group>
                 </search>
             </field>
@@ -145,6 +151,8 @@
                     <field name="lot_name" readonly="True"/>
                     <field name="product_id" readonly="True"/>
                     <field name="shift_code" readonly="True"/>
+                    <field name="stage_name" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
                     <field name="gross_weight_reference" readonly="True"/>
                     <field name="gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
@@ -241,6 +249,8 @@
                     <field name="employee_code"/>
                     <field name="employee_name"/>
                     <field name="lot_name"/>
+                    <field name="stage_name"/>
+                    <field name="line_code"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -251,6 +261,7 @@
                     <group expand="1" string="Group By">
                         <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
                         <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
+                        <filter string="Stage Name" name="groupby_stage" domain="[]" context="{'group_by':'stage_name'}"/>
                     </group>
                 </search>
             </field>
@@ -266,6 +277,8 @@
                     <field name="employee_code" readonly="True"/>
                     <field name="employee_name" readonly="True"/>
                     <field name="lot_name" readonly="True"/>
+                    <field name="stage_name" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
                     <field name="gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
                     <field name="sp1_weight" readonly="True"/>

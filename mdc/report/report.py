@@ -49,35 +49,39 @@ class RptTracing(models.Model):
     ind_crumbs = fields.Float('IND Crumbs', readonly=True, group_operator='avg')
     ind_quality = fields.Float('IND Quality', readonly=True, group_operator='avg')
     ind_cleaning = fields.Float('IND Cleaning', readonly=True, group_operator='avg')
+    line_code = fields.Char('Line Code')
+    stage_name = fields.Char('Stage Name')
 
     def init(self):
         tools.drop_view_if_exists(self._cr, self._table)
         self._cr.execute("""
                 CREATE view %s as 
                     SELECT mdcdata.id, mdcdata.create_date, mdcdata.lot_name, mdcdata.product_id,
-                        mdcdata.client_name,
-                        mdcdata.employee_code, mdcdata.employee_name, mdcdata.contract_name, mdcdata.employee_date_start, mdcdata.shift_code, 
-                        mdcdata.gross_weight_reference,
-                        mdcdata.gross_weight, mdcdata.product_weight, mdcdata.sp1_weight, 
-                        mdcdata.shared_gross_weight_reference,
-                        mdcdata.shared_gross_weight, mdcdata.shared_product_weight, mdcdata.shared_sp1_weight,
-                        mdcdata.quality,
-                        mdcdata.workstation_name, 
-                        mdcdata.product_boxes, mdcdata.sp1_boxes, 
-                        mdcdata.total_hours, 
-                        mdcdata.std_yield_product, mdcdata.std_speed, mdcdata.std_yield_sp1, mdcdata.std_loss, 
-                        mdcdata.lot_finished,
-                        mdcdata.lot_descrip,
-                        mdcdata.coef_weight_lot,
+                    mdcdata.client_name,
+                    mdcdata.employee_code, mdcdata.employee_name, mdcdata.contract_name, mdcdata.employee_date_start, mdcdata.shift_code, 
+                    mdcdata.gross_weight_reference,
+                    mdcdata.gross_weight, mdcdata.product_weight, mdcdata.sp1_weight, 
+                    mdcdata.shared_gross_weight_reference,
+                    mdcdata.shared_gross_weight, mdcdata.shared_product_weight, mdcdata.shared_sp1_weight,
+                    mdcdata.quality,
+                    mdcdata.workstation_name, 
+                    mdcdata.product_boxes, mdcdata.sp1_boxes, 
+                    mdcdata.total_hours, 
+                    mdcdata.std_yield_product, mdcdata.std_speed, mdcdata.std_yield_sp1, mdcdata.std_loss, 
+                    mdcdata.lot_finished,
+                    mdcdata.lot_descrip,
+                    mdcdata.coef_weight_lot,
+                    mdcdata.stage_name,
+                    mdcdata.line_code,
                         case when coalesce(mdcdata.std_yield_product,0)* mdcdata.gross_weight_reference = 0 then 0 else ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100 end as ind_backs,
                             case when coalesce(mdcdata.total_hours,0)* mdcdata.gross_weight_reference = 0 then 0 else (mdcdata.std_speed / (mdcdata.total_hours * 60 / mdcdata.gross_weight_reference) / 1.15) * 100 end as ind_mo,
                             case when coalesce(mdcdata.std_yield_sp1,0)* mdcdata.gross_weight_reference = 0 then 0 else ((mdcdata.sp1_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_sp1 / 1.15) * 100 end as ind_crumbs,
                             case when (mdcdata.product_weight + mdcdata.shared_product_weight) = 0 then 0 else mdcdata.quality_weight/(mdcdata.product_weight + mdcdata.shared_product_weight/2) end as ind_quality,
                             case when coalesce(mdcdata.std_yield_product,0)* coalesce(mdcdata.total_hours,0)* mdcdata.gross_weight_reference * (mdcdata.product_weight + mdcdata.shared_product_weight) = 0 then 0 else
-                            (0.6 *  ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100) 
+                            (0.6 *  ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100)  
                             + (0.3 * (mdcdata.std_speed / (mdcdata.total_hours * 60 / mdcdata.gross_weight_reference) / 1.15) * 100) 
                             + (0.1 * mdcdata.quality_weight/(mdcdata.product_weight + mdcdata.shared_product_weight/2)) end as ind_cleaning 
-                        FROM (                
+                        FROM (
                             SELECT woutdata.id, woutdata.create_date, lot.name as lot_name, lot.product_id,
                                 coalesce(cli.name,'') as client_name,
                                 emp.employee_code, emp.name as employee_name, contr.name as contract_name, /*emp.medic_exam as*/NULL employee_date_start, shift.shift_code, 
@@ -90,13 +94,14 @@ class RptTracing(models.Model):
                                 wst.name as workstation_name, 
                                 woutdata.product_boxes, woutdata.sp1_boxes, 
                                 lotemp.total_hours, 
-                                lot.std_yield_product, lot.std_speed, lot.std_yield_sp1, lot.std_loss, lot.finished as lot_finished, lot.descrip as lot_descrip,
+                                lot.std_yield_product, lot.std_speed, lot.std_yield_sp1, lot.std_loss, lot.finished as lot_finished, lot.descrip as lot_descrip, stage_name, line_code,
                                 case when (lot.finished and (lot.weight > 0)) then lot.total_gross_weight/lot.weight else 0 end as coef_weight_lot
                                 FROM (
                                     SELECT
                                         MIN(wout.id) as id,
                                         date(wout.create_datetime) as create_date,
                                         wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id,
+                                        stage.name as stage_name, line_table.line_code AS line_code,
                                         sum(case when shwout.id is null then wout.gross_weight else 0 end) as gross_weight,
                                         sum(case when shwout.id is null and woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                                         sum(case when shwout.id is null and woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
@@ -110,29 +115,32 @@ class RptTracing(models.Model):
                                         LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                                         LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                                         LEFT JOIN mdc_data_wout shwout ON shwout.wout_shared_id=wout.id
+                                        LEFT JOIN mdc_stage stage ON stage.id=wout.stage_id
+                                        LEFT JOIN mdc_line line_table ON line_table.id=wout.line_id
                                     WHERE 1=1
                                     GROUP BY 
                                         date(wout.create_datetime),
-                                        wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id
+                                        wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id, wout.stage_id, stage.name, line_code
                                 ) woutdata
-                                LEFT JOIN (SELECT 
-                                        date(ws.start_datetime) as start_date,
-                                        ws.lot_id, ws.employee_id, ws.shift_id, 
-                                        sum(ws.total_hours) as total_hours 
+                                LEFT JOIN (
+                                    SELECT 
+                                            date(ws.start_datetime) as start_date,
+                                            ws.lot_id, ws.employee_id, ws.shift_id,
+                                            sum(ws.total_hours) as total_hours
                                     FROM mdc_worksheet ws
                                     WHERE 1=1
                                     GROUP BY date(ws.start_datetime),
                                         ws.lot_id, ws.employee_id, ws.shift_id
-                                ) lotemp ON lotemp.start_date=woutdata.create_date 
+                                    ) lotemp ON lotemp.start_date=woutdata.create_date 
                                         and lotemp.lot_id=woutdata.lot_id and lotemp.employee_id=woutdata.employee_id 
                                         and lotemp.shift_id=woutdata.shift_id 
-                                LEFT JOIN mdc_lot lot ON lot.id=woutdata.lot_id
-                                LEFT JOIN res_partner cli on cli.id = lot.partner_id
-                                LEFT JOIN hr_employee emp ON emp.id=woutdata.employee_id
-                                LEFT JOIN hr_contract_type contr ON contr.id=emp.contract_type_id
-                                LEFT JOIN mdc_shift shift ON shift.id=woutdata.shift_id
-                                LEFT JOIN mdc_workstation wst ON wst.id=woutdata.workstation_id 
-                            ) mdcdata          
+                                    LEFT JOIN mdc_lot lot ON lot.id=woutdata.lot_id
+                                    LEFT JOIN res_partner cli on cli.id = lot.partner_id
+                                    LEFT JOIN hr_employee emp ON emp.id=woutdata.employee_id
+                                    LEFT JOIN hr_contract_type contr ON contr.id=emp.contract_type_id
+                                    LEFT JOIN mdc_shift shift ON shift.id=woutdata.shift_id
+                                    LEFT JOIN mdc_workstation wst ON wst.id=woutdata.workstation_id
+                                ) mdcdata 
 
             """ % self._table)
 
@@ -203,6 +211,8 @@ class RptManufacturing(models.Model):
     ind_crumbs = fields.Float('IND Crumbs', readonly=True, group_operator='avg')
     ind_quality = fields.Float('IND Quality', readonly=True, group_operator='avg')
     ind_cleaning = fields.Float('IND Cleaning', readonly=True, group_operator='avg')
+    line_code = fields.Char('Line Code')
+    stage_name = fields.Char('Stage Name')
 
     def init(self):
         tools.drop_view_if_exists(self._cr, self._table)
@@ -223,12 +233,14 @@ class RptManufacturing(models.Model):
                     mdcdata.lot_finished,
                     mdcdata.lot_descrip,
                     mdcdata.coef_weight_lot,
+                    mdcdata.stage_name,
+                    mdcdata.line_code,
                     case when coalesce(mdcdata.std_yield_product,0)* mdcdata.gross_weight_reference = 0 then 0 else ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100 end as ind_backs,
                         case when coalesce(mdcdata.total_hours,0)* mdcdata.gross_weight_reference = 0 then 0 else (mdcdata.std_speed / (mdcdata.total_hours * 60 / mdcdata.gross_weight_reference) / 1.15) * 100 end as ind_mo,
                         case when coalesce(mdcdata.std_yield_sp1,0)* mdcdata.gross_weight_reference = 0 then 0 else ((mdcdata.sp1_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_sp1 / 1.15) * 100 end as ind_crumbs,
                         case when (mdcdata.product_weight + mdcdata.shared_product_weight) = 0 then 0 else mdcdata.quality_weight/(mdcdata.product_weight + mdcdata.shared_product_weight/2) end as ind_quality,
                         case when coalesce(mdcdata.std_yield_product,0)* coalesce(mdcdata.total_hours,0)* mdcdata.gross_weight_reference * (mdcdata.product_weight + mdcdata.shared_product_weight) = 0 then 0 else
-                        (0.6 *  ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100) 
+                        (0.6 *  ((mdcdata.product_weight / mdcdata.gross_weight_reference) / mdcdata.std_yield_product/ 1.15) * 100 * 100)  
                         + (0.3 * (mdcdata.std_speed / (mdcdata.total_hours * 60 / mdcdata.gross_weight_reference) / 1.15) * 100) 
                         + (0.1 * mdcdata.quality_weight/(mdcdata.product_weight + mdcdata.shared_product_weight/2)) end as ind_cleaning 
                     FROM (                
@@ -241,9 +253,10 @@ class RptManufacturing(models.Model):
                             woutdata.shared_gross_weight, woutdata.shared_product_weight, woutdata.shared_sp1_weight,
                             case when (woutdata.product_weight + woutdata.shared_product_weight) = 0 then 0 else woutdata.quality_weight/(woutdata.product_weight + woutdata.shared_product_weight/2) end as quality,
                             woutdata.quality_weight,
-                            wst.name as workstation_name, 
+                            wst.name as workstation_name,
+                            stage_name, line_code,
                             woutdata.product_boxes, woutdata.sp1_boxes, 
-                            lotemp.total_hours, 
+                            lotemp.total_hours,
                             lot.std_yield_product, lot.std_speed, lot.std_yield_sp1, lot.std_loss, lot.finished as lot_finished, lot.descrip as lot_descrip,
                             case when (lot.finished and (lot.weight > 0)) then lot.total_gross_weight/lot.weight else 0 end as coef_weight_lot
                             FROM (
@@ -251,6 +264,7 @@ class RptManufacturing(models.Model):
                                     MIN(wout.id) as id,
                                     date(wout.create_datetime) as create_date,
                                     wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id,
+                                    stage.name as stage_name, line_table.line_code AS line_code,
                                     sum(case when shwout.id is null then wout.gross_weight else 0 end) as gross_weight,
                                     sum(case when shwout.id is null and woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                                     sum(case when shwout.id is null and woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
@@ -264,10 +278,12 @@ class RptManufacturing(models.Model):
                                     LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                                     LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                                     LEFT JOIN mdc_data_wout shwout ON shwout.wout_shared_id=wout.id
+                                    LEFT JOIN mdc_stage stage ON stage.id=wout.stage_id
+                                  	LEFT JOIN mdc_line line_table ON line_table.id=wout.line_id
                                 WHERE 1=1
                                 GROUP BY 
                                     date(wout.create_datetime),
-                                    wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id
+                                    wout.lot_id, wout.employee_id, wout.shift_id, wout.workstation_id, wout.stage_id, stage.name, line_code
                             ) woutdata
                             LEFT JOIN (SELECT 
                                     date(ws.start_datetime) as start_date,
@@ -286,8 +302,7 @@ class RptManufacturing(models.Model):
                             LEFT JOIN hr_contract_type contr ON contr.id=emp.contract_type_id
                             LEFT JOIN mdc_shift shift ON shift.id=woutdata.shift_id
                             LEFT JOIN mdc_workstation wst ON wst.id=woutdata.workstation_id 
-                        ) mdcdata          
-            
+                        ) mdcdata     
         """ % self._table)
 
     # --------------- Calculate Grouped Values with Weighted average or complicated dropued formulas
@@ -513,6 +528,8 @@ class RptCumulative(models.Model):
     ind_crumbs = fields.Float('IND Crumbs', readonly=True, group_operator='avg')
     ind_quality = fields.Float('IND Quality', readonly=True, group_operator='avg')
     ind_cleaning = fields.Float('IND Cleaning', readonly=True, group_operator='avg')
+    line_code = fields.Char('Line Code')
+    stage_name = fields.Char('Stage Name')
 
     def init(self):
         tools.drop_view_if_exists(self._cr, self._table)
@@ -527,7 +544,8 @@ class RptCumulative(models.Model):
                     woutdata.product_boxes, woutdata.sp1_boxes,
                     case when woutdata.gross_weight = 0 then 0 else 100*(woutdata.product_weight + woutdata.sp1_weight) / woutdata.gross_weight end as total_yield,
                     lotemp.total_hours, 
-                    lot.std_yield_product, lot.std_speed, lot.std_yield_sp1, 
+                    lot.std_yield_product, lot.std_speed, lot.std_yield_sp1,
+                    stage_name, line_code,
                     case when coalesce(lot.std_yield_product,0)*woutdata.gross_weight = 0 then 0 else (woutdata.product_weight / woutdata.gross_weight) / lot.std_yield_product/ 1.15 end as ind_backs,
                     case when coalesce(lot.std_speed,0)*woutdata.gross_weight = 0 then 0 else (lotemp.total_hours * 60 / woutdata.gross_weight) / lot.std_speed / 1.15 end as ind_mo,
                     case when coalesce(woutdata.sp1_weight,0)*woutdata.gross_weight =0 then 0 else lot.std_yield_sp1 / (woutdata.sp1_weight / woutdata.gross_weight) / 1.15 end as ind_crumbs,
@@ -540,7 +558,8 @@ class RptCumulative(models.Model):
                         SELECT
                             MIN(wout.id) as id,
                             date(wout.create_datetime) as create_date,
-                            wout.lot_id, wout.employee_id, 
+                            wout.lot_id, wout.employee_id,
+                            stage.name as stage_name, line_table.line_code AS line_code,
                             sum(case when shwout.id is null then wout.gross_weight else 0 end) as gross_weight,
                             sum(case when shwout.id is null and woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                             sum(case when shwout.id is null and woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
@@ -554,10 +573,12 @@ class RptCumulative(models.Model):
                             LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                             LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                             LEFT JOIN mdc_data_wout shwout ON shwout.wout_shared_id=wout.id
+                            LEFT JOIN mdc_stage stage ON stage.id=wout.stage_id
+                        	 LEFT JOIN mdc_line line_table ON line_table.id=wout.line_id
                         WHERE 1=1
                         GROUP BY 
                             date(wout.create_datetime),
-                            wout.lot_id, wout.employee_id
+                            wout.lot_id, wout.employee_id, wout.stage_id, stage.name, line_code
                     ) woutdata
                     LEFT JOIN (SELECT 
                             date(ws.start_datetime) as start_date,
@@ -573,7 +594,6 @@ class RptCumulative(models.Model):
                     LEFT JOIN res_partner cli on cli.id = lot.partner_id
                     LEFT JOIN hr_employee emp ON emp.id=woutdata.employee_id
                     LEFT JOIN hr_contract_type contr ON contr.id=emp.contract_type_id
-                           
         """ % self._table)
 
     # --------------- Calculate Grouped Values with Weighted average or complicated dropued formulas

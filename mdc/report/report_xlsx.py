@@ -118,7 +118,7 @@ class ReportRptTracingXlsx(models.AbstractModel):
 
         # write logo
         logo_file_name = False
-        binary_logo = self.env['res.company'].sudo().search([]).logo_web
+        binary_logo = self.env.company.logo_web
         if binary_logo:
             fp = tempfile.NamedTemporaryFile(delete=False)
             fp.write(bytes(base64.b64decode(binary_logo)))
@@ -245,7 +245,7 @@ class ReportRptTracingXlsx(models.AbstractModel):
                 sheet.write(row, 0, obj.workstation_name, f_data)
                 sheet.write(row, 1, obj.employee_code, f_data)
                 sheet.write(row, 2, obj.employee_name, f_data)
-                sheet.write(row, 3, obj.contract_name, f_data)
+                sheet.write(row, 3, obj.contract_name.get(self.env.lang), f_data)
                 wemployee_date_start = ''
                 if obj.employee_date_start:
                     wemployee_date_start = tools.format_date(self.env, obj.employee_date_start)
@@ -255,7 +255,7 @@ class ReportRptTracingXlsx(models.AbstractModel):
                 sheet.write(row, 7, obj.lot_name, f_data)
                 sheet.write(row, 8, obj.product_id.name, f_dataL)
                 variable_attributes = obj.product_id.attribute_line_ids.mapped('attribute_id')
-                variant = obj.product_id.attribute_value_ids._variant_name(variable_attributes)
+                variant = obj.product_id.display_name
                 sheet.write(row, 9, variant, f_dataL)
                 sheet.write(row, 10, obj.client_name, f_dataL)
                 wlot_descrip = ''
@@ -463,7 +463,8 @@ class ReportRptManufacturingXlsx(models.AbstractModel):
 
         # write logo
         logo_file_name = False
-        binary_logo = self.env['res.company'].sudo().search([]).logo_web
+        # binary_logo = self.env.company.logo_web
+        binary_logo = self.env.company.logo_web
         if binary_logo:
             fp = tempfile.NamedTemporaryFile(delete=False)
             fp.write(bytes(base64.b64decode(binary_logo)))
@@ -589,7 +590,7 @@ class ReportRptManufacturingXlsx(models.AbstractModel):
                 sheet.write(row, 0, obj.workstation_name, f_data)
                 sheet.write(row, 1, obj.employee_code, f_data)
                 sheet.write(row, 2, obj.employee_name, f_data)
-                sheet.write(row, 3, obj.contract_name, f_data)
+                sheet.write(row, 3, obj.contract_name.get(self.env.lang), f_data)
                 wemployee_date_start=''
                 if obj.employee_date_start:
                     wemployee_date_start=tools.format_date(self.env, obj.employee_date_start)
@@ -599,7 +600,7 @@ class ReportRptManufacturingXlsx(models.AbstractModel):
                 sheet.write(row, 7, obj.lot_name, f_data)
                 sheet.write(row, 8, obj.product_id.name, f_dataL)
                 variable_attributes = obj.product_id.attribute_line_ids.mapped('attribute_id')
-                variant = obj.product_id.attribute_value_ids._variant_name(variable_attributes)
+                variant = obj.product_id.display_name
                 sheet.write(row, 9, variant, f_dataL)
                 sheet.write(row, 10, obj.client_name, f_dataL)
                 wlot_descrip = ''
@@ -777,7 +778,7 @@ class ReportRptManufacturingXlsx(models.AbstractModel):
 
 #         # write logo
 #         logo_file_name = False
-#         binary_logo = self.env['res.company'].sudo().search([]).logo_web
+#         binary_logo = self.env.company.logo_web
 #         if binary_logo:
 #             fp = tempfile.NamedTemporaryFile(delete=False)
 #             fp.write(bytes(base64.b64decode(binary_logo)))
@@ -1036,7 +1037,7 @@ class ReportRptCumulativeXlsx(models.AbstractModel):
 
         # write logo
         logo_file_name = False
-        binary_logo = self.env['res.company'].sudo().search([]).logo_web
+        binary_logo = self.env.company.logo_web
         if binary_logo:
             fp = tempfile.NamedTemporaryFile(delete=False)
             fp.write(bytes(base64.b64decode(binary_logo)))
