@@ -217,7 +217,8 @@ class FCDWeightScaleLog(models.Model):
         return qr_code
 
     def generate_barcode_base(self):
-        ean13 = self.output_product_id.ean13 if self.output_product_id.ean13 else "0000000000000"
+        # 02 not is a ean13 has 14 characters(ean13 + 0)
+        ean13 = '0%s' % (self.output_product_id.ean13) if self.output_product_id.ean13 else "00000000000000"
         qty = '{:06.0f}'.format(self.quantity * 100)
         lot = self.fcd_document_line_id.lot_id.name
 
