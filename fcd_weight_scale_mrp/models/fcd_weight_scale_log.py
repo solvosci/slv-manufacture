@@ -225,7 +225,8 @@ class FCDWeightScaleLog(models.Model):
 
     def generate_barcode(self):
         ean13, qty, lot = self.generate_barcode_base()
-        return '02%s\\x1D3102%s\\x1D10%s' % (ean13, qty, lot)
+        # chr(29) = \x1D
+        return '02%s%s3102%s%s10%s' % (ean13, chr(29), qty, chr(29), lot)
 
     def generate_barcode_text(self):
         ean13, qty, lot = self.generate_barcode_base()
