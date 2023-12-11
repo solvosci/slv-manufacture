@@ -5,13 +5,11 @@
         <record id="tracing_xlsx" model="ir.actions.report">
             <field name="name">Print to XLSX</field>
             <field name="model">mdc.rpt_tracing</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_tracing" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_tracing</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_tracing</field>
-            <field
-                name="report_file"
-            >mdc.rpt_tracing</field>
+            <field name="report_file">mdc_rpt_tracing</field>
         </record>
 
         <!-- Search view: default search for Tracing Report -->
@@ -95,16 +93,16 @@
     </data>
 
     <data>
-    <!-- TODO verify attachment_use=False is by default -->
-    <record id="manufacturing_xlsx" model="ir.actions.report">
-        <field name="name">Print to XLSX</field>
-        <field name="model">mdc.rpt_manufacturing</field>
-        <field name="binding_model_id" ref="mdc.model_mdc_rpt_manufacturing" />
-        <field name="type">ir.actions.report</field>
-        <field name="report_name">mdc.rpt_manufacturing</field>
-        <field name="report_type">xlsx</field>
-        <field name="report_file">mdc_rpt_manufacturing</field>
-    </record>
+        <!-- TODO verify attachment_use=False is by default -->
+        <record id="manufacturing_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_manufacturing</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_manufacturing" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_manufacturing</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_file">mdc_rpt_manufacturing</field>
+        </record>
 
         <!-- Search view: default search for Manufacturing Report -->
         <record id="mdc_rpt_manufacturing_search" model="ir.ui.view">
@@ -231,13 +229,11 @@
         <record id="cumulative_xlsx" model="ir.actions.report">
             <field name="name">Print to XLSX</field>
             <field name="model">mdc.rpt_cumulative</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_cumulative" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_cumulative</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_cumulative</field>
-            <field
-                name="report_file"
-            >mdc.rpt_cumulative</field>
+            <field name="report_file">mdc_rpt_cumulative</field>
         </record>
 
         <!-- Search view: default search for Cumulative Report -->
