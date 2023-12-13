@@ -224,8 +224,8 @@
     </data> -->
 
 
-    <data>
-        <!-- TODO verify attachment_use=False is by default -->
+    <!-- <data>
+        TODO verify attachment_use=False is by default
         <record id="cumulative_xlsx" model="ir.actions.report">
             <field name="name">Print to XLSX</field>
             <field name="model">mdc.rpt_cumulative</field>
@@ -236,7 +236,7 @@
             <field name="report_file">mdc_rpt_cumulative</field>
         </record>
 
-        <!-- Search view: default search for Cumulative Report -->
+        Search view: default search for Cumulative Report
         <record id="mdc_rpt_cumulative_search" model="ir.ui.view">
             <field name="name">mdc.rpt_cumulative.search</field>
             <field name="model">mdc.rpt_cumulative</field>
@@ -263,7 +263,7 @@
             </field>
         </record>
 
-        <!-- Tree view: default view for Cumulative Report -->
+        Tree view: default view for Cumulative Report
         <record id="mdc_rpt_cumulative_tree" model="ir.ui.view">
             <field name="name">mdc.rpt_cumulative.tree</field>
             <field name="model">mdc.rpt_cumulative</field>
@@ -284,6 +284,6 @@
                 </tree>
             </field>
         </record>
-    </data>
+    </data> -->
 
 </odoo>

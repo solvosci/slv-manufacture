@@ -89,7 +89,7 @@
     </record> -->
 
     <!-- Action: Cumulative Report -->
-    <record model="ir.actions.act_window" id="action_mdc_rpt_cumulative">
+    <!-- <record model="ir.actions.act_window" id="action_mdc_rpt_cumulative">
         <field name="name">Cumulative Report</field>
         <field name="res_model">mdc.rpt_cumulative</field>
         <field name="view_mode">tree</field>
@@ -110,7 +110,7 @@
         <field name="sequence" eval="4"/>
         <field name="view_id" ref="mdc_rpt_cumulative_tree"/>
         <field name="act_window_id" ref="action_mdc_rpt_cumulative"/>
-    </record>
+    </record> -->
 
 
     <!-- Reporting menu -->
@@ -132,10 +132,10 @@
         parent="mdc_menu_reporting"
         sequence="20"/> -->
 
-    <menuitem id="mdc_rpt_cumulative_menu"
+    <!-- <menuitem id="mdc_rpt_cumulative_menu"
         name="Cumulative Report"
         action="action_mdc_rpt_cumulative"
         parent="mdc_menu_reporting"
-        sequence="20"/>
+        sequence="20"/> -->
 
 </odoo>

@@ -46,6 +46,7 @@
                 <div id="translations" style="display: none;">
                     <span id="t_ws_rfid_onopen_wait">Waiting for websocket acceptance...</span>
                     <span id="t_ws_rfid_onopen_ready">Ready for card readings!!!</span>
+                    <span id="select_subproduct">Select a subproduct</span>
                 </div>
 
                 <div class="UpperTitle">
@@ -254,11 +255,11 @@
                                 </div>
                                 <div class="divTableCell" style="display: flex; flex-direction: column; justify-content: space-between; width: 100%;">
                                 <div class="select">
-                                    <div t-if="not subproduct_off">
+                                    <div t-if="not subproduct_off and category != 'WOUTTOWIN'">
                                         <select id="subproducts" style="width: 80%">
                                             <option value="" selected="selected">Select a subproduct...</option>
                                             <t t-foreach="subproducts" t-as="subproduct">
-                                                <option t-attf-value="{{subproduct.id}}">
+                                                <option t-attf-value="{{subproduct.code}}">
                                                     <t t-esc="subproduct.short_name"></t>
                                                 </option>
                                             </t>

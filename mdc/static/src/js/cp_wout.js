@@ -34,7 +34,7 @@ var WoutState = /*(*/function () {
     }
 
     var isCrumbsMode = function () {
-        return $('#crumbs_button').hasClass('enabled');
+        return $('#subproducts').hasClass('enabled');
     }
 
     var isSharedMode = function () {
@@ -49,7 +49,6 @@ var WoutState = /*(*/function () {
         console.log('Checking card category ' + card_data.card_categ_id + '...');
         // 2.- Check data saving
         if ( (card_data.card_categ_id === card_categ_P_id) || (card_data.card_categ_id === card_categ_PC_id) ) {
-            debugger;
             var bProductCard = (card_data.card_categ_id === card_categ_P_id);
             // Product card received
             chkpoint_category = $("#wout_to_win").val();
@@ -97,7 +96,7 @@ var WoutState = /*(*/function () {
                         .format(card_data.card_code)
                 );
             }
-            card_data['win_weight'] = 4;
+            card_data['win_weight'] = 4; // TODO remove;
             if ( bProductCard && !('win_weight' in card_data) ) {
                 // Product card with no data associated
                 throw new Error(
@@ -132,8 +131,10 @@ var WoutState = /*(*/function () {
             if  ( cards_in.length == 2 ) {
                 $('#one_input_button').prop('disabled', true);
             }
-            // - Too late for crumbs mode
-            $('#crumbs_button').prop('disabled', true);
+            // - Too late for crumbs mode //check
+            if ( $('#subproducts')[0].selectedIndex != 0 ) {
+                $('#subproducts').prop('disabled', true);
+            }
 
             $('#lot').html(card_data.win_lot_name);
             if (chkpoint_category === "WOUTTOWIN" && card_workstation){
@@ -217,7 +218,7 @@ var WoutState = /*(*/function () {
                 shared: isSharedMode(),
                 wout_categ_code: (
                     isCrumbsMode() ?
-                    'SP1' : 'P'
+                    $('#subproducts').val() : 'P'
                 )
             })
         }).done(function (data) {
@@ -260,9 +261,11 @@ var WoutState = /*(*/function () {
         card_workstation = null;
         $('#quality_select').val($('#initial_quality_id').val()).change();
         if ( isOneInput() )  switch_enabled($('#one_input_button'), false);
-        if ( isCrumbsMode() )  switch_enabled($('#crumbs_button'), false);
+        if ( isCrumbsMode() ){
+            $('#subproducts').prop('selectedIndex', 0);
+        }
         if ( isSharedMode() )  switch_enabled($('#shared_button'), false);
-        $('#one_input_button,#crumbs_button,#shared_button').prop('disabled', false);
+        $('#one_input_button,#subproducts,#shared_button').prop('disabled', false);
     }
 
     var check_reset_screen = function () {
@@ -330,7 +333,6 @@ read_card_manage = function (card_code) {
                 throw new Error('ERROR retrieving card data: ' + data.result.err);
             }
             else {
-                debugger;
                 woutState.addCard(data.result);
                 return;
             }
@@ -372,16 +374,23 @@ $(document).ready(function() {
     $('#quality_down_button').click(function () {
         quality_edit(-1);
     });
-    $('#one_input_button,#crumbs_button,#shared_button').click(function () {
+    $('#one_input_button,#shared_button').click(function () {
         switch_enabled(this, true);
         save_log({ 'click_id':  this.id, 'chkpoint_id': $('#chkpoint_id').val() })
     });
-    // - Crumbs and shared mode are incompatible
+    $('#subproducts').change(function () {
+        switch_enabled(this, true);
+        save_log({ 'click_id':  this.id, 'chkpoint_id': $('#chkpoint_id').val() })
+    })
+    // - Crumbs and shared mode are incompatible check
     $('#shared_button').click(function () {
-        $('#crumbs_button').prop('disabled', true);
+        $('#subproducts').prop('selectedIndex', 0);
+        $('#subproducts').prop('disabled', true);
     });
-    $('#crumbs_button').click(function () {
-        $('#shared_button').prop('disabled', true);
+    $('#subproducts').change(function () {
+        if (this.selectedIndex != 0){
+            $('#shared_button').prop('disabled', true);
+        }
     });
 
     woutState = WoutState();

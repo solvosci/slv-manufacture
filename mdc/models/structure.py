@@ -175,6 +175,10 @@ class Workstation(models.Model):
         string='Last output lot processed',
         compute='_compute_last_wout_lot'
     )
+    stage_id = fields.Many2one(
+        'mdc.stage',
+        string='Stage',
+    )
 
     def _compute_last_wout_lot(self):
         """
