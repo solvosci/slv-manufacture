@@ -345,6 +345,10 @@ class DataWOut(models.Model):
         'Gross Weight',
         readonly=True,
         default=0)
+    final_gross_weight = fields.Float(
+        'Gross Weight',
+        readonly=True,
+        default=0)
     keep_going_win_to_wout_id = fields.Many2one(
         'mdc.data_win', 
         string='WIn')

@@ -132,9 +132,12 @@ var WoutState = /*(*/function () {
                 $('#one_input_button').prop('disabled', true);
             }
             // - Too late for crumbs mode //check
-            if ( $('#subproducts')[0].selectedIndex != 0 ) {
-                $('#subproducts').prop('disabled', true);
-            }
+            if($('#subproducts').length > 0) {
+                if ( $('#subproducts')[0].selectedIndex != 0 ) {
+                    $('#subproducts').prop('disabled', true);
+                }
+            };
+
 
             $('#lot').html(card_data.win_lot_name);
             if (chkpoint_category === "WOUTTOWIN" && card_workstation){
@@ -262,7 +265,9 @@ var WoutState = /*(*/function () {
         $('#quality_select').val($('#initial_quality_id').val()).change();
         if ( isOneInput() )  switch_enabled($('#one_input_button'), false);
         if ( isCrumbsMode() ){
-            $('#subproducts').prop('selectedIndex', 0);
+            if($('#subproducts').length > 0) {
+                $('#subproducts').prop('selectedIndex', 0);
+            }
         }
         if ( isSharedMode() )  switch_enabled($('#shared_button'), false);
         $('#one_input_button,#subproducts,#shared_button').prop('disabled', false);
@@ -384,8 +389,10 @@ $(document).ready(function() {
     })
     // - Crumbs and shared mode are incompatible check
     $('#shared_button').click(function () {
-        $('#subproducts').prop('selectedIndex', 0);
-        $('#subproducts').prop('disabled', true);
+        if($('#subproducts').length > 0) {
+            $('#subproducts').prop('selectedIndex', 0);
+            $('#subproducts').prop('disabled', true);
+        }
     });
     $('#subproducts').change(function () {
         if (this.selectedIndex != 0){
