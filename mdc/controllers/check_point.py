@@ -2,7 +2,6 @@
 
 import json
 import logging
-import pdb
 from odoo import http, fields, _
 from odoo.exceptions import UserError
 from odoo.http import request
@@ -193,7 +192,7 @@ class CheckPoint(http.Controller):
                 old_win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', win_related.keep_going_wout_id.id)])
                 win_related.final_wout_id = datawout.id
                 old_win_related.final_wout_id = datawout.id
-                datawout.final_gross_weight = sum(old_win_related.mapped('gross_weight'))
+                datawout.final_gross_weight = sum(old_win_related.mapped('weight')) - sum(old_win_related.mapped('tare'))
         except Exception as e:
             data_out['err'] = e
             _logger.error("[cp_wout_save] %s" % e)

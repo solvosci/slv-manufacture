@@ -52,7 +52,7 @@
 
         <data noupdate="1">
             <!-- Check Point -->
-            <record id="mdc_chkpoint_E1" model="mdc.chkpoint">
+            <record id="mdc_chkpoint_01" model="mdc.chkpoint">
                 <field name="name">Line 1. IN</field>
                 <field name="chkpoint_categ">WIN</field>
                 <field name="line_id" ref="mdc_line_1"/>
@@ -60,54 +60,30 @@
                 <field name="scale_id" ref="mdc_scale_1"/>
                 <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
                 <field name="tare_id" ref="mdc_tare_E"/>
+                <field name="stage_id_input" ref="mdc_stage_1"/>
             </record>
-            <record id="mdc_chkpoint_O1" model="mdc.chkpoint">
-                <field name="name">Line 1. OUT</field>
-                <field name="chkpoint_categ">WOUT</field>
+            <record id="mdc_chkpoint_O2" model="mdc.chkpoint">
+                <field name="name">Line 1. OUTIN</field>
+                <field name="chkpoint_categ">WOUTTOWIN</field>
                 <field name="line_id" ref="mdc_line_1"/>
                 <field name="order">2</field>
                 <field name="scale_id" ref="mdc_scale_1"/>
                 <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
                 <field name="tare_id" ref="mdc_tare_O"/>
                 <field name="quality_id" ref="mdc_quality_100"/>
-            </record>
-            <record id="mdc_chkpoint_E2" model="mdc.chkpoint">
-                <field name="name">Line 2. IN</field>
-                <field name="chkpoint_categ">WIN</field>
-                <field name="line_id" ref="mdc_line_2"/>
-                <field name="order">1</field>
-                <field name="scale_id" ref="mdc_scale_1"/>
-                <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
-                <field name="tare_id" ref="mdc_tare_E"/>
-            </record>
-            <record id="mdc_chkpoint_O2" model="mdc.chkpoint">
-                <field name="name">Line 2. OUT</field>
-                <field name="chkpoint_categ">WOUT</field>
-                <field name="line_id" ref="mdc_line_2"/>
-                <field name="order">2</field>
-                <field name="scale_id" ref="mdc_scale_1"/>
-                <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
-                <field name="tare_id" ref="mdc_tare_O"/>
-                <field name="quality_id" ref="mdc_quality_100"/>
-            </record>
-            <record id="mdc_chkpoint_E3" model="mdc.chkpoint">
-                <field name="name">Line 3. IN</field>
-                <field name="chkpoint_categ">WIN</field>
-                <field name="line_id" ref="mdc_line_3"/>
-                <field name="order">1</field>
-                <field name="scale_id" ref="mdc_scale_1"/>
-                <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
-                <field name="tare_id" ref="mdc_tare_E"/>
+                <field name="stage_id_input" ref="mdc_stage_2"/>
+                <field name="stage_id_output" ref="mdc_stage_1"/>
             </record>
             <record id="mdc_chkpoint_O3" model="mdc.chkpoint">
-                <field name="name">Line 3. OUT</field>
+                <field name="name">Line 1. OUT</field>
                 <field name="chkpoint_categ">WOUT</field>
-                <field name="line_id" ref="mdc_line_3"/>
-                <field name="order">2</field>
+                <field name="line_id" ref="mdc_line_1"/>
+                <field name="order">3</field>
                 <field name="scale_id" ref="mdc_scale_1"/>
                 <field name="rfid_reader_id" ref="mdc_rfid_reader_1"/>
                 <field name="tare_id" ref="mdc_tare_O"/>
                 <field name="quality_id" ref="mdc_quality_100"/>
+                <field name="stage_id_output" ref="mdc_stage_2"/>
             </record>
         </data>
 

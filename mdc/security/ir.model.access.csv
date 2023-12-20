@@ -55,5 +55,6 @@ acl_uom_uom_cp,product.uom_cp,uom.model_uom_uom,group_mdc_cp,1,0,0,0
 
 acl_mdc_config_settings_office_worker,mdc.config.settings_office_worker,model_mdc_config_settings,group_mdc_office_worker,1,1,1,1
 
-acl_mdc_rpt_tracing,mdc.rpt_tracing default,model_mdc_rpt_tracing,,1,0,0,0
-acl_mdc_rpt_manufacturing,mdc.rpt_manufacturing default,model_mdc_rpt_manufacturing,,1,0,0,0
+acl_mdc_rpt_stage_manufacturing,mdc.rpt_stage_manufacturing default,model_mdc_rpt_stage_manufacturing,,1,0,0,0
+acl_mdc_rpt_line_manufacturing,mdc.rpt_line_manufacturing default,model_mdc_rpt_line_manufacturing,,1,0,0,0
+acl_mdc_rpt_employee_yield,mdc.rpt_employee_yield default,model_mdc_rpt_employee_yield,,1,0,0,0
