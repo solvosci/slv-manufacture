@@ -86,9 +86,9 @@ class RptStageManufacturing(models.Model):
     # --------------- Calculate Grouped Values with Weighted average or complicated dropued formulas
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None,
-                   orderby=False, lazy=True):
+        orderby=False, lazy=True):
         res = super(RptStageManufacturing, self).read_group(domain, fields, groupby,
-                                                       offset=offset, limit=limit, orderby=orderby, lazy=lazy)
+            offset=offset, limit=limit, orderby=orderby, lazy=lazy)
         # we don´t calculate ind_ fields because they aren´t in tree view
         # group_fields = ['quality', 'ind_backs', 'ind_mo', 'ind_crumbs', 'ind_quality','ind_cleaning']
         group_fields = ['quality']

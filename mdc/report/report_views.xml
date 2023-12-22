@@ -155,13 +155,11 @@
         <record id="employee_yield_xlsx" model="ir.actions.report">
             <field name="name">Print to XLSX</field>
             <field name="model">mdc.rpt_employee_yield</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_employee_yield" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_employee_yield</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_employee_yield</field>
-            <field
-                name="report_file"
-            >mdc.rpt_employee_yield</field>
+            <field name="report_file">mdc_rpt_employee_yield</field>
         </record>
 
         <!-- Search view: default search for Employee Yield Report -->
