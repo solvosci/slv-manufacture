@@ -96,7 +96,6 @@ var WoutState = /*(*/function () {
                         .format(card_data.card_code)
                 );
             }
-            card_data['win_weight'] = 4; // TODO remove;
             if ( bProductCard && !('win_weight' in card_data) ) {
                 // Product card with no data associated
                 throw new Error(

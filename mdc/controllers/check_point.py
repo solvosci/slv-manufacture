@@ -189,7 +189,7 @@ class CheckPoint(http.Controller):
                 # Recover 2 win, and set final wout_id on both
                 datawout.stage_id = chkpoint_id.stage_id_output
                 win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', datawout.id)])
-                old_win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', win_related.keep_going_wout_id.id)])
+                old_win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', 'in', win_related.mapped('keep_going_wout_id.id'))])
                 win_related.final_wout_id = datawout.id
                 old_win_related.final_wout_id = datawout.id
                 datawout.final_gross_weight = sum(old_win_related.mapped('weight')) - sum(old_win_related.mapped('tare'))
