@@ -96,12 +96,14 @@ var WoutState = /*(*/function () {
                         .format(card_data.card_code)
                 );
             }
-            if ( bProductCard && !('win_weight' in card_data) ) {
+            if ((bProductCard && !('win_weight' in card_data)) ) {
                 // Product card with no data associated
-                throw new Error(
-                    $('#t_chkpoint_wout_input_no_input_err').html()
-                        .format(card_data.card_code)
-                );
+                if (!card_workstation) {
+                    throw new Error(
+                        $('#t_chkpoint_wout_input_no_input_err').html()
+                            .format(card_data.card_code)
+                    );
+                }
             }
             var lotId = currentLotId();
             if ( !bProductCard && !('win_lot_id' in card_data) && !lotId ) {
@@ -117,6 +119,14 @@ var WoutState = /*(*/function () {
                     $('#t_chkpoint_wout_input_lot_err').html()
                         .format(card_data.card_code, card_data.win_lot_name)
             );
+            }
+
+            card_codes = cards_in.map(function(card) {return card.card_code;});
+            if (card_codes.includes(card_data['card_code'])){
+                throw new Error(
+                    $('#t_chkpoint_wout_input_repeated_err').html()
+                        .format(card_data.card_code)
+                );
             }
 
             // Product/Joker card is allowed

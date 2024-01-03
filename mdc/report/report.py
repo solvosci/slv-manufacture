@@ -23,7 +23,7 @@ class RptStageManufacturing(models.Model):
     gross_weight = fields.Float('Gross', readonly=True, group_operator='sum')
     product_weight = fields.Float('Backs', readonly=True, group_operator='sum')
     sp1_weight = fields.Float('Crumbs', readonly=True, group_operator='sum')
-    sp2_weight = fields.Float('Crumbs 2', readonly=True, group_operator='sum')
+    sp2_weight = fields.Float('Pieces', readonly=True, group_operator='sum')
     quality_weight = fields.Float('Quality', readonly=True)
     total_hours = fields.Float('Total Hours', readonly=True, group_operator='sum')
 
@@ -47,18 +47,18 @@ class RptStageManufacturing(models.Model):
                             wout.stage_id,
                             wout.workstation_id,
                             wout.employee_id,
+                            qlty.code as quality_weight,
                             sum(wout.gross_weight) as gross_weight,
                             sum(case when woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                             sum(case when woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
-                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight,
-                            sum(case when woutcat.code='P' then qlty.code * (wout.weight-wout.tare) else 0 end) as quality_weight
+                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight
                         FROM mdc_data_wout wout
                             LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                             LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                         WHERE 1=1
                         GROUP BY 
                             date(wout.create_datetime),
-                            wout.lot_id, wout.shift_id, wout.line_id, wout.stage_id, wout.workstation_id, wout.employee_id
+                            wout.lot_id, wout.shift_id, wout.line_id, wout.stage_id, wout.workstation_id, wout.employee_id, quality_weight
                     ) as woutdata 		
                     LEFT JOIN (
                         SELECT 
@@ -118,12 +118,12 @@ class RptLineManufacturing(models.Model):
     create_date = fields.Date('Date', readonly=True)
     lot_name = fields.Char('MO', readonly=True)
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
-    line_code = fields.Char('Line Code')
-    workstation_name = fields.Char('Workstation Name', readonly=True)
+    shift_code = fields.Char('Shift Code', readonly=True)
+    line_code = fields.Char('Line Code', readonly=True)
     final_gross_weight = fields.Float('Final Gross Weight', readonly=True)
     product_weight = fields.Float('Backs', readonly=True, group_operator='sum')
     sp1_weight = fields.Float('Crumbs', readonly=True, group_operator='sum')
-    sp2_weight = fields.Float('Crumbs 2', readonly=True, group_operator='sum')
+    sp2_weight = fields.Float('Pieces', readonly=True, group_operator='sum')
     quality_weight = fields.Float('Quality', readonly=True, group_operator='sum')
     total_hours = fields.Float('Total Hours', readonly=True, group_operator='sum')
 
@@ -132,8 +132,7 @@ class RptLineManufacturing(models.Model):
         self._cr.execute("""
             CREATE view %s as 
                 SELECT woutdata.id, woutdata.create_date, lot.name AS lot_name,
-                    lot.product_id, line.line_code,
-                    wst.name AS workstation_name,
+                    lot.product_id, shift.shift_code, line.line_code,
                     woutdata.final_gross_weight, woutdata.product_weight, woutdata.sp1_weight, woutdata.sp2_weight,
                     woutdata.quality_weight,
                     lotemp.total_hours
@@ -143,19 +142,19 @@ class RptLineManufacturing(models.Model):
                             date(wout.create_datetime) as create_date,
                             wout.lot_id,
                             wout.line_id,
-                            wout.workstation_id,
+                            wout.shift_id,
+                            qlty.code as quality_weight,
                             sum(wout.final_gross_weight) AS final_gross_weight,
                             sum(case when woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                             sum(case when woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
-                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight,
-                            sum(case when woutcat.code='P' then qlty.code * (wout.weight-wout.tare) else 0 end) as quality_weight
+                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight
                         FROM mdc_data_wout wout
                             LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                             LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                         WHERE final_gross_weight != 0
                         GROUP BY 
                             date(wout.create_datetime),
-                            wout.lot_id, wout.line_id, wout.workstation_id, wout.final_gross_weight
+                            wout.lot_id, wout.line_id, wout.final_gross_weight, wout.shift_id, quality_weight
                     ) as woutdata 		
                     LEFT JOIN (
                         SELECT 
@@ -163,7 +162,6 @@ class RptLineManufacturing(models.Model):
                         ws.lot_id,
                         sum(ws.total_hours) as total_hours
                         FROM mdc_worksheet ws
-                        LEFT JOIN mdc_workstation wst ON wst.id=ws.workstation_id
                         WHERE 1=1
                         GROUP BY date(ws.start_datetime),
                         ws.lot_id
@@ -171,7 +169,7 @@ class RptLineManufacturing(models.Model):
                         lotemp.start_date = woutdata.create_date AND lotemp.lot_id = woutdata.lot_id
                     LEFT JOIN mdc_lot lot ON lot.id=woutdata.lot_id
                     LEFT JOIN mdc_line line ON line.id=woutdata.line_id
-                    LEFT JOIN mdc_workstation wst ON wst.id=woutdata.workstation_id
+                    LEFT JOIN mdc_shift shift ON shift.id=woutdata.shift_id
         """ % self._table)
 
     # --------------- Calculate Grouped Values with Weighted average or complicated dropued formulas
@@ -216,7 +214,7 @@ class RptEmployeeYield(models.Model):
     gross_weight = fields.Float('Gross', readonly=True, group_operator='sum')
     product_weight = fields.Float('Backs', readonly=True, group_operator='sum')
     sp1_weight = fields.Float('Crumbs', readonly=True, group_operator='sum')
-    sp2_weight = fields.Float('Crumbs 2', readonly=True, group_operator='sum')
+    sp2_weight = fields.Float('Pieces', readonly=True, group_operator='sum')
     quality_weight = fields.Float('Quality', readonly=True)
     total_hours = fields.Float('Total Hours', readonly=True, group_operator='sum')
 
@@ -238,18 +236,18 @@ class RptEmployeeYield(models.Model):
                             wout.line_id,
                             wout.stage_id,
                             wout.employee_id,
+                            qlty.code as quality_weight,
                             sum(wout.gross_weight) as gross_weight,
                             sum(case when woutcat.code='P' then wout.weight-wout.tare else 0 end) as product_weight,
                             sum(case when woutcat.code='SP1' then wout.weight-wout.tare else 0 end) as sp1_weight,
-                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight,
-                            sum(case when woutcat.code='P' then qlty.code * (wout.weight-wout.tare) else 0 end) as quality_weight
+                            sum(case when woutcat.code='SP2' then wout.weight-wout.tare else 0 end) as sp2_weight
                         FROM mdc_data_wout wout
                             LEFT JOIN mdc_wout_categ woutcat ON woutcat.id=wout.wout_categ_id 
                             LEFT JOIN mdc_quality qlty ON qlty.id=wout.quality_id
                         WHERE 1=1
                         GROUP BY 
                             date(wout.create_datetime),
-                            wout.lot_id, wout.shift_id, wout.line_id, wout.stage_id, wout.employee_id
+                            wout.lot_id, wout.shift_id, wout.line_id, wout.stage_id, wout.employee_id, quality_weight
                     ) as woutdata 		
                     LEFT JOIN (
                         SELECT 
