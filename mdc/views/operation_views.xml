@@ -248,6 +248,7 @@
                 <field name="name"/>
                 <field name="line_id"/>
                 <field name="shift_id"/>
+                <field name="stage_id"/>
                 <field name="current_employee_id"/>
                 <group expand="0" string="Group By">
                     <filter string="shift" name="groupby_product" domain="[]" context="{'group_by':'shift_id'}"/>
@@ -276,6 +277,7 @@
             <tree editable="top" string="Workstations" default_order="name">
                 <field name="shift_id" readonly="True"/>
                 <field name="line_id" readonly="True"/>
+                <field name="stage_id" readonly="True"/>
                 <field name="name" readonly="True"/>
                 <field name="seat" readonly="True"/>
                 <!-- field name="last_wout_lot_id" readonly="True" string="Last lot"/ -->

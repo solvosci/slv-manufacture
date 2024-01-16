@@ -55,6 +55,12 @@
         <field name="res_model">mdc.shift</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <record id="action_mdc_stage" model="ir.actions.act_window">
+        <field name="name">Stage</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mdc.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     <record id="action_mdc_line" model="ir.actions.act_window">
         <field name="name">Lines</field>
         <field name="type">ir.actions.act_window</field>
@@ -476,47 +482,51 @@
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
         sequence="10" />
-
     <menuitem id="mdc_line_menu"
         name="Lines"
         action="action_mdc_line"
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
         sequence="15" />
-
+    <menuitem id="mdc_stage_menu"
+        name="Stages"
+        action="action_mdc_stage"
+        parent="mdc_menu_configuration"
+        groups="group_mdc_manager"
+        sequence="20" />
     <menuitem id="mdc_chkpoint_menu"
         name="Check Points"
         action="action_mdc_chkpoint"
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
-        sequence="20" />
+        sequence="25" />
 
     <menuitem id="mdc_scale_menu"
         name="Weighing scales"
         action="action_mdc_scales"
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
-        sequence="25" />
+        sequence="30" />
 
     <menuitem id="mdc_rfid_reader_menu"
         name="RFID Readers"
         action="action_mdc_rfid_reader"
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
-        sequence="30" />
+        sequence="35" />
 
     <menuitem id="mdc_wout_categ_menu"
         name="Out Categories"
         action="action_mdc_wout_categ"
         parent="mdc_menu_configuration"
         groups="group_mdc_manager"
-        sequence="35"/>
+        sequence="40"/>
 
     <menuitem id="mdc_config_settings_menu"
         name="Settings"
         action="action_mdc_config_settings"
         parent="mdc_menu_configuration"
         groups="group_mdc_office_worker"
-        sequence="40"/>
+        sequence="45"/>
 
 </odoo>
