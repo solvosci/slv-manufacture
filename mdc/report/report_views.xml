@@ -3,7 +3,7 @@
     <data>
         <!-- TODO verify attachment_use=False is by default -->
         <record id="stage_manufacturing_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
+            <field name="name">Stage Manufacturing Report</field>
             <field name="model">mdc.rpt_stage_manufacturing</field>
             <field name="binding_model_id" ref="mdc.model_mdc_rpt_stage_manufacturing" />
             <field name="type">ir.actions.report</field>
@@ -97,7 +97,7 @@
     <data>
         <!-- TODO verify attachment_use=False is by default -->
         <record id="line_manufacturing_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
+            <field name="name">Line Manufacturing Report</field>
             <field name="model">mdc.rpt_line_manufacturing</field>
             <field name="binding_model_id" ref="mdc.model_mdc_rpt_line_manufacturing" />
             <field name="type">ir.actions.report</field>
@@ -153,7 +153,7 @@
     <data>
         <!-- TODO verify attachment_use=False is by default -->
         <record id="employee_yield_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
+            <field name="name">Employee Yield Report</field>
             <field name="model">mdc.rpt_employee_yield</field>
             <field name="binding_model_id" ref="mdc.model_mdc_rpt_employee_yield" />
             <field name="type">ir.actions.report</field>

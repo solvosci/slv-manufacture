@@ -296,7 +296,7 @@ class ReportRptStageManufacturingXlsx(models.AbstractModel):
 
 
             # Final Footer Row ------------------------------------------
-            for numcol in range(0, 21):
+            for numcol in range(0, 20):
                 sheet.write(row + 1, numcol, '', f_footer)
             sheet.write_formula(
                 row + 1, 9, '=SUM(J' + str(header_row + 1) + ':J' + str(row + 1) + ')',
@@ -543,7 +543,7 @@ class ReportRptLineManufacturingXlsx(models.AbstractModel):
             wlot_name = obj.lot_name
 
             # Final Footer Row ------------------------------------------
-            for numcol in range(0, 15):
+            for numcol in range(0, 14):
                 sheet.write(row + 1, numcol, '', f_footer)
             sheet.write_formula(
                 row + 1, 5, '=SUM(F' + str(header_row + 1) + ':F' + str(row + 1) + ')',
@@ -770,7 +770,7 @@ class ReportRptEmployeeYieldXlsx(models.AbstractModel):
 
 
             # Final Footer Row ------------------------------------------
-            for numcol in range(0, 14):
+            for numcol in range(0, 13):
                 sheet.write(row + 1, numcol, '', f_footer)
             sheet.write_formula(            # - Gross Weight
                 row + 1, 7, '=SUM(H' + str(header_row + 1) + ':H' + str(row + 1) + ')',
