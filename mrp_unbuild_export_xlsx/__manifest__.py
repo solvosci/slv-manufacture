@@ -13,6 +13,7 @@
     "depends": [
         "mrp_unbuild_advanced_qc",
         "report_xlsx",
+        "stock_valuation",
     ],
     "data": [
         "reports/reports.xml",

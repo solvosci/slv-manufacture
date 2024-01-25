@@ -21,9 +21,14 @@ class MrpUnbuildXLS(models.AbstractModel):
             sheet.write(0, 0, _('Product'), bold_format)
             sheet.write(0, 1, _('Description'), bold_format)
             sheet.write(0, 2, _('Quantity'), bold_format)
-            sheet.write(1, 0, record.product_id.name)
-            sheet.write(1, 1, record.product_id.default_code)
-            sheet.write(1, 2, record.product_qty)
+            sheet.write(0, 3, _('Price Unit'), bold_format)
+            sheet.write(0, 4, _('Total Price'), bold_format)
+
+            sheet.write(1, 0, record.product_id.name, bold_format)
+            sheet.write(1, 1, record.product_id.default_code, bold_format)
+            sheet.write(1, 2, record.product_qty, bold_format)
+            sheet.write(1, 3, record.produce_line_ids.filtered(lambda x: x.product_id.id == record.product_id.id).stock_valuation_layer_ids.unit_cost, bold_format)
+            sheet.write(1, 4, ('=C2 * D2'), bold_format)
 
             sheet.write(4, 0, _('Reference'), bold_format)
             sheet.write(4, 1, _('Product'), bold_format)
@@ -33,13 +38,13 @@ class MrpUnbuildXLS(models.AbstractModel):
             sheet.write(4, 5, _('Valuation'), bold_format)
 
             y = 5
-            for line in record.bom_quants_total_ids:
+            for move in record.produce_line_ids.filtered(lambda x: x.product_id.id != record.product_id.id):
                 z = y + 1
-                sheet.write(y, 0, line.bom_line_id.product_id.default_code)
-                sheet.write(y, 1, line.bom_line_id.product_id.name)
-                sheet.write(y, 2, line.total_qty)
-                sheet.write_formula(y, 3, ('=C%s * C2' % (z)), percent_format)
-                sheet.write(y, 4, line.bom_line_id.product_id.standard_price)
+                sheet.write(y, 0, move.product_id.default_code)
+                sheet.write(y, 1, move.product_id.name)
+                sheet.write(y, 2, move.quantity_done)
+                sheet.write_formula(y, 3, ('=C%s / C2' % (z)), percent_format)
+                sheet.write(y, 4, ('=C%s * D2' % (z)))
                 sheet.write_formula(y, 5, ('=E%s * C%s' % (z, z)))
                 y += 1
 
