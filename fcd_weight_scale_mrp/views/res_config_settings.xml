@@ -24,6 +24,10 @@
                                         <strong><label string="Password" for="weight_scale_password" class="col-lg-3 o_light_label"/></strong>
                                         <field name="weight_scale_password" password="True" class="oe_inline"/>
                                     </div>
+                                    <div class="row">
+                                        <strong><label string="Limit Kg" for="weight_scale_limit" class="col-lg-3 o_light_label"/></strong>
+                                        <field name="weight_scale_limit" class="oe_inline"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

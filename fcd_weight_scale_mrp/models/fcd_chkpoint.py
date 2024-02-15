@@ -38,6 +38,9 @@ class FCDCheckpoint(models.Model):
         if values.get("tare"):
             weight_value = weight_value - float(values['tare'])
 
+        if weight_value > self.env.company.weight_scale_limit:
+            raise UserError(_("Weight exceeds the limit"))
+
         return {'weight_value': '%.2f' % weight_value}
 
     def open_virtual_checkpoint(self):

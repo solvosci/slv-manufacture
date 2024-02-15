@@ -8,3 +8,4 @@ class ResCompany(models.Model):
 
     weight_scale_username_id = fields.Many2one('res.users',string='Username')
     weight_scale_password = fields.Char(string='Password')
+    weight_scale_limit = fields.Float(string='Maximum kg limit on weight scale', default=200)

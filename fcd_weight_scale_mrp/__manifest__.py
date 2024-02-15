@@ -8,7 +8,7 @@
     'author': "Solvos",
     'website': "http://www.solvos.com",
     'category': 'Weight',
-    'version': '14.0.1.11.7',
+    'version': '14.0.1.12.0',
     'depends': [
         "mrp",
         "fcd_purchase_order",
