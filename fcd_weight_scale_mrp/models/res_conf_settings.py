@@ -13,3 +13,4 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
     )
     weight_scale_password = fields.Char(related='company_id.weight_scale_password', string="Password", readonly=False)
+    weight_scale_limit = fields.Float(related='company_id.weight_scale_limit', string="Kg Limit", readonly=False)
