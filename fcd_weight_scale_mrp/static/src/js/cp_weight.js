@@ -584,7 +584,6 @@ odoo.define('fcd_weight_scale_mrp.custom_js', function(require) {
                             }else{
                                 $("#lotSelect").removeClass("lot_pending_warning");
                             }
-                            window.setTimeout(loctactive_get, 5000);
                         }
                         else{
                             notifier.alert(data.result.error);
