@@ -6,26 +6,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-23 10:37+0000\n"
-"PO-Revision-Date: 2021-09-23 12:40+0200\n"
+"POT-Creation-Date: 2024-03-06 17:44+0000\n"
+"PO-Revision-Date: 2024-03-06 17:44+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
-"Last-Translator: \n"
-"Language: es_ES\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_qc
+#: model:ir.actions.act_window,name:mrp_unbuild_qc.action_qc_inspection_unbuild_all
+msgid "All Inspections"
+msgstr "Todas las inspecciones"
+
+#. module: mrp_unbuild_qc
+#: model:ir.model.fields,field_description:mrp_unbuild_qc.field_mrp_unbuild__created_inspections
+msgid "Created inspections"
+msgstr "Inspecciones creadas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.actions.act_window,name:mrp_unbuild_qc.action_qc_inspection_unbuild_done
+msgid "Done Inspections"
+msgstr "Inspecciones completadas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.model.fields,field_description:mrp_unbuild_qc.field_mrp_unbuild__done_inspections
+msgid "Done inspections"
+msgstr "Inspecciones completadas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.actions.act_window,name:mrp_unbuild_qc.action_qc_inspection_unbuild_failed
+msgid "Failed Inspections"
+msgstr "Inspecciones fallidas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.model.fields,field_description:mrp_unbuild_qc.field_mrp_unbuild__passed_inspections
+msgid "Inspections OK"
+msgstr "Inspecciones correctas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.model.fields,field_description:mrp_unbuild_qc.field_mrp_unbuild__failed_inspections
+msgid "Inspections failed"
+msgstr "Inspecciones fallidas"
+
+#. module: mrp_unbuild_qc
+#: model:ir.actions.act_window,name:mrp_unbuild_qc.action_qc_inspection_unbuild_passed
+msgid "Passed Inspections"
+msgstr "Inspecciones superadas"
 
 #. module: mrp_unbuild_qc
 #: model:ir.model,name:mrp_unbuild_qc.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Movimientos de productos (Línea de movimiento de inventario)"
+msgstr "Movimientos de Producto (Líneas de movimiento)"
 
 #. module: mrp_unbuild_qc
 #: model:ir.model,name:mrp_unbuild_qc.model_qc_inspection
 msgid "Quality control inspection"
-msgstr "Inspección de control de calidad"
+msgstr "Inspección del control de calidad"
 
 #. module: mrp_unbuild_qc
 #: model:ir.model.fields,field_description:mrp_unbuild_qc.field_qc_inspection__unbuild_id
@@ -34,6 +72,16 @@ msgid "Unbuild"
 msgstr "Despiece"
 
 #. module: mrp_unbuild_qc
+#: model:ir.model,name:mrp_unbuild_qc.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Orden de desconstrucción"
+
+#. module: mrp_unbuild_qc
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_qc.qc_inspection_search_view_unbuild_qc
 msgid "With Unbuild Order"
 msgstr "Con ordenes de despiece"
+
+#. module: mrp_unbuild_qc
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_qc.mrp_unbuild_view_form_qc
+msgid "inspections"
+msgstr "inspecciones"
