@@ -24,7 +24,10 @@
         <field name="inherit_id" ref="quality_control_oca.qc_inspection_tree_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='qty']" position="after">
-                <field name="unbuild_id" />
+                <field
+                    name="unbuild_id"
+                    invisible="context.get('hide_unbuild', False)"
+                />
             </xpath>
         </field>
     </record>
@@ -54,5 +57,43 @@
                 />
             </xpath>
         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_qc_inspection_unbuild_all">
+        <field name="name">All Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("unbuild_id", "=", active_id)]</field>
+        <field name="context">{"hide_unbuild": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_unbuild_done">
+        <field name="name">Done Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("unbuild_id", "=", active_id),
+            ("state", "not in", ["draft", "waiting"]),
+        ]</field>
+        <field name="context">{"hide_unbuild": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_unbuild_passed">
+        <field name="name">Passed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("unbuild_id", "=", active_id),
+            ("state", "=", "success"),
+        ]</field>
+        <field name="context">{"hide_unbuild": True}</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_qc_inspection_unbuild_failed">
+        <field name="name">Failed Inspections</field>
+        <field name="res_model">qc.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[
+            ("unbuild_id", "=", active_id),
+            ("state", "=", "failed"),
+        ]</field>
+        <field name="context">{"hide_unbuild": True}</field>
     </record>
 </odoo>
