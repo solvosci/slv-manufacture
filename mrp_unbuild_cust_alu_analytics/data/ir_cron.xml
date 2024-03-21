@@ -1,0 +1,12 @@
+<odoo>
+    <record id="cron" model="ir.cron">
+        <field name="name">Read mrp.unbuild QC inspection from XML</field>
+        <field name="active" eval="False" />
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_mrp_unbuild" />
+        <field name="code">model.read_qc_inspection_xml()</field>
+    </record>
+</odoo>
