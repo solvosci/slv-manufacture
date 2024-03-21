@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="mrp_unbuild_bom_total_percentage_view_tree" model="ir.ui.view">
+            <field name="name">mrp.unbuild.bom.cust.qty.tree (percentage) (mrp_unbuild_cust_alu_analytics)</field>
+            <field name="model">mrp.unbuild.bom.totals</field>
+            <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='expected_qty']" position="after">
+                    <field name="total_qty_percentage" widget="percentage"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
