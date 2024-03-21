@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_mrp_process_form" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.form</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="cmplanta_id"/>
+                            </group>
+                            <group>
+                                <field name="bom_line_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_mrp_process_tree" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.tree</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="cmplanta_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+
+    <!-- Action -->
+    <record id="action_mrp_process" model="ir.actions.act_window">
+        <field name="name">MRP Process</field>
+        <field name="res_model">mrp.unbuild.process.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_mrp_process" name="Process Types" parent="mrp.menu_mrp_configuration" action="action_mrp_process"/>
+
+</odoo>

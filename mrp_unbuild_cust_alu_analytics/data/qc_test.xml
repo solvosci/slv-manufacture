@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- UOM category -->
+        <record model="uom.category" id="product_uom_categ_percentage">
+            <field name="name">%</field>
+        </record>
+
+        <!-- UOM -->
+        <record model="uom.uom" id="product_uom_percentage">
+            <field name="name">%</field>
+            <field name="category_id" ref="product_uom_categ_percentage"></field>
+            <field name="factor" eval="1.0"/>
+            <field name="rounding" eval="0.001"/>
+        </record>
+
+        <!-- TEST -->
+        <record model="qc.test" id="qc_test_1">
+            <field name="name">Analysis</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- TEST QUESTIONS -->
+        <record model="qc.test.question" id="test_line_1">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Si</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_2">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Fe</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_3">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Cu</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_4">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Mn</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_5">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Mg</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_6">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Cr</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_7">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Ni</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_8">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Zn</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_9">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Ti</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_10">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Be</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_11">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Bi</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_12">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Ca</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_12">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Cd</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_13">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Co</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_14">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Ga</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_15">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Li</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_16">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Na</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_17">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">P</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_18">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Pb</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_19">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Sb</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_20">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Sn</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_21">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Sr</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_22">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">V</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_23">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Zr</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_24">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Bg</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+        <record model="qc.test.question" id="test_line_25">
+            <field name="test" ref="qc_test_1"/>
+            <field name="name">Al</field>
+            <field name="type">quantitative</field>
+            <field name="min_value">0</field>
+            <field name="max_value">100</field>
+            <field name="uom_id" ref="product_uom_percentage"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="mrp_unbuild_form_process_type_form_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.form (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="process_type_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="mrp_unbuild_form_process_type_tree_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.tree (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="process_type_id" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_unbuild_form_incidence_ids_analytics" model="ir.ui.view">
+            <field name="name">mrp.unbuild.form (incidence_ids) (analytic_ids) (mrp_unbuild_cust_alu_analytics)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Incidences">
+                        <field name="incidence_ids" context="{'default_incidence_ids': id}" class="oe_editable_tree_only" widget="one2many">
+                            <tree editable="bottom" create="1" edit="1">
+                                <field name="incidence_type_id"/>
+                                <field name="description"/>
+                                <field name="duration" widget="float_time"/>
+                                <field name="machine"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Analytics">
+                        <field name="analytic_ids" class="oe_editable_tree_only">
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
