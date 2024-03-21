@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_unbuild_process_type_user,access_mrp_unbuild_process_type_user,model_mrp_unbuild_process_type,mrp.group_mrp_user,1,0,0,0
+access_mrp_unbuild_process_type_manager,access_mrp_unbuild_process_type_manager,model_mrp_unbuild_process_type,mrp.group_mrp_manager,1,1,1,1
+access_mrp_unbuild_incidence,access_mrp_unbuild_incidence,model_mrp_unbuild_incidence,base.group_user,1,1,1,1
+access_mrp_incidence_type_user,access_mrp_incidence_type_user,model_mrp_incidence_type,mrp.group_mrp_user,1,0,0,0
+access_mrp_incidence_type_manager,access_mrp_incidence_type_manager,model_mrp_incidence_type,mrp.group_mrp_manager,1,1,1,1

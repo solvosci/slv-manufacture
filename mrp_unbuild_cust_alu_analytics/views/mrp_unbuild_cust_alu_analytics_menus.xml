@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_mrp_incidence_type" model="ir.actions.act_window">
+        <field name="name">Incidence Types</field>
+        <field name="res_model">mrp.incidence.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_mrp_incidence" model="ir.actions.act_window">
+        <field name="name">Incidences</field>
+        <field name="res_model">mrp.unbuild.incidence</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem 
+        id="menu_mrp_incidence_type"
+        name="Incidence Types"
+        parent="mrp.menu_mrp_configuration"
+        action="action_mrp_incidence_type"
+        sequence="30"
+    />
+
+    <menuitem 
+        id="menu_mrp_incidence"
+        name="Incidences"
+        parent="mrp.menu_mrp_reporting"
+        action="action_mrp_incidence"
+        sequence="50"
+    />
+
+</odoo>
