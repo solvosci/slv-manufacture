@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="maintenance_equipment_form" model="ir.ui.view">
+            <field name="name">maintenance.equipment (mrp_unbuild_maintenance)</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='owner_user_id']" position="after">
+                    <field name="works_with_unbuild"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
