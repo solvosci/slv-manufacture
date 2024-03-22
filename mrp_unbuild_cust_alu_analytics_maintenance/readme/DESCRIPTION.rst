@@ -1,0 +1,1 @@
+Connect incidences with maintenance_equipment
