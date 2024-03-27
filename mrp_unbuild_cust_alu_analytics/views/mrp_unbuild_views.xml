@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="mrp_unbuild_form_process_type_form_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.form (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="process_type_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="mrp_unbuild_form_process_type_tree_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.tree (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="process_type_id" optional="0"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_unbuild_form_group_shift_mrp_unbuild_workflow" model="ir.ui.view">
+            <field name="name">mrp.unbuild.form (group_shift) (mrp_unbuild_workflow)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <group
+                        name="group_shift"
+                        attrs="{'invisible': [('id','=',False)]}"
+                        string="Shift data"
+                    >
+                        <group>
+                            <field name="shift_start_date" string="Start"/>
+                            <field name="shift_end_date" string="End"/>
+                            <field name="notes"/>
+                        </group>
+                        <group>
+                            <field
+                                name="shift_total_time"
+                                widget="float_time"
+                                string="Shift time"
+                            />
+                            <field
+                                name="shift_break_time"
+                                widget="float_time"
+                                string="Break time"
+                            />
+                            <field
+                                name="shift_stop_time"
+                                widget="float_time"
+                                string="Stop time"
+                            />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//group[@name='group_shift'][2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_unbuild_form_incidence_ids_analytics" model="ir.ui.view">
+            <field name="name">mrp.unbuild.form (incidence_ids) (analytic_ids) (mrp_unbuild_workflow)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Incidences">
+                        <field name="incidence_ids" context="{'default_incidence_ids': id}" class="oe_editable_tree_only" widget="one2many">
+                            <tree editable="bottom" create="1" edit="1">
+                                <field name="code"/>
+                                <field name="description"/>
+                                <field name="duration" widget="float_time"/>
+                                <field name="machine"/>
+                                <field name="criticallity"/>
+                                <field name="stage"/>
+                                <field name="priority"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Analytics">
+                        <field name="analytic_ids" class="oe_editable_tree_only">
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
