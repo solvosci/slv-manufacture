@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="mrp_unbuild_form_incidence_ids_maintenance_equipment" model="ir.ui.view">
+            <field name="name">mrp.unbuild.form (maintenance_equipment) (mrp_unbuild_maintenance)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_incidence_ids_analytics"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page/field[@name='incidence_ids']/tree/field[@name='priority']" position="after">
+                    <field name="maintenance_equipment_id" />
+                </xpath>
+                <xpath expr="//page/field[@name='incidence_ids']/tree/field[@name='machine']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
