@@ -13,9 +13,9 @@ class MrpUnbuild(models.Model):
     _inherit = "mrp.unbuild"
 
     process_type_id = fields.Many2one('mrp.unbuild.process.type', string='Process type')
-    incidence_ids = fields.Many2many(
+    incidence_ids = fields.One2many(
         comodel_name="mrp.unbuild.incidence",
-        relation="mrp_unbuild_incidence_rel",
+        inverse_name="unbuild_id",
         string="Incidences",
     )
     analytic_ids = fields.Many2many(

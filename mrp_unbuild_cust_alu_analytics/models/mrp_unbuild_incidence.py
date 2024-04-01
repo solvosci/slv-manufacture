@@ -27,3 +27,6 @@ class MrpUnbuildIncidence(models.Model):
         ('medium','Medium'),
         ('low','Low'),
     ])
+    unbuild_id = fields.Many2one(
+        comodel_name="mrp.unbuild",
+    )
