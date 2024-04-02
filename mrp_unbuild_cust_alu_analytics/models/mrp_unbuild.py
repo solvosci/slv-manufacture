@@ -1,13 +1,11 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
-# License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
+# License AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.html)
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError
 import os
 from lxml import etree
-from io import StringIO, BytesIO
 import logging
-
 
 class MrpUnbuild(models.Model):
     _inherit = "mrp.unbuild"
@@ -84,25 +82,25 @@ class MrpUnbuild(models.Model):
             try:
                 os.makedirs(folder_path)
                 logger.info(
-                    "Created folder on %s" % (folder_path)
+                    "Created folder on %s", folder_path
                 )
             except OSError as e:
                 logger.critical(
-                    "Can't create folder on %s: %s" % (folder_path, e)
+                    "Can't create folder %s", e
                 )
-                raise UserError(_("Can't create folder on %s: %s" % (folder_path, e)))
+                raise UserError(_("Can't create folder")) from e
 
         if not os.path.exists(processed_folder_path):
             try:
                 os.makedirs(processed_folder_path)
                 logger.info(
-                    "Created folder on %s" % (processed_folder_path)
+                    "Created folder on %s", processed_folder_path
                 )
             except OSError as e:
                 logger.critical(
-                    "Can't create folder on %s: %s" % (processed_folder_path, e)
+                    "Can't create folder %s", e
                 )
-                raise UserError(_("Can't create folder on %s: %s" % (processed_folder_path, e)))
+                raise UserError(_("Can't create folder")) from e
 
         files = os.listdir(folder_path)
         files.remove(processed_folder_path.split("/")[-1])
@@ -110,7 +108,6 @@ class MrpUnbuild(models.Model):
             for file in files:
                 unbuild_id = self.env['mrp.unbuild']
                 unbuild_name = ""
-                all_data = []
                 if file.endswith('.xml'):
                     # Get xml data
                     tree = etree.parse(folder_path + '/' + file)
@@ -155,22 +152,22 @@ class MrpUnbuild(models.Model):
                                         inspection_line.quantitative_value = item[inspection_name] if item[inspection_name] > 0 else item[inspection_name] * -1
                                         break
                                 logger.info(
-                                    "Added Analytics for mrp ubuild: %s" % (unbuild_id.name)
+                                    "Added Analytics for mrp ubuild: %s", unbuild_id.name
                                 )
                                 qc_inspection_id.action_todo()
                                 qc_inspection_id.action_confirm()
                                 logger.info(
-                                    "Confirmed Inspection %s for mrp ubuild: %s" % (qc_inspection_id.name, unbuild_id.name)
+                                    "Confirmed Inspection %s for mrp ubuild: %s", qc_inspection_id.name, unbuild_id.name
                                 )
                             # Move file to processed folder
                             os.rename("%s/%s" % (path, file), os.path.join(processed_folder_path + '/' + file))
                         else:
                             logger.info(
-                                "Unbuild with name: %s, is not done yet" % (unbuild_id.name)
+                                "Unbuild with name: %s, is not done yet", unbuild_id.name
                             )
                     else:
                         logger.info(
-                            "Can't find unbuild with name: <%s>" % (unbuild_name)
+                            "Can't find unbuild with name: <%s>", unbuild_name
                         )
 
 
