@@ -236,6 +236,6 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
             sheet.write(z, 0, _('TOTAL'), subheader_footer_format)
             for i in range(1, y + 1):
                 column = openpyxl.utils.get_column_letter(i + 1)
-                sheet.write_formula(z, i, '=SUMPRODUCT(' + column + '2' + ':' + column + str(z) + ')', float_footer_format)
+                sheet.write_formula(z, i, '=SUMPRODUCT(' + column + '3' + ':' + column + str(z) + ')', float_footer_format)
 
             sheet.set_zoom(100)
