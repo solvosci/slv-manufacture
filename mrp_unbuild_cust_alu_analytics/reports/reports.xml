@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <report
-        id="mrp_unbuild_workflow_report"
+        id="mrp_unbuild_cust_alu_analytics_report"
         model="mrp.unbuild"
         string="Unbuild XLSX"
         report_type="xlsx"
-        name="mrp_unbuild_workflow.mpr_unbuild_xlsx"
-        file="mrp_unbuild_workflow.mpr_unbuild_xlsx"
+        name="mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx"
+        file="mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx"
         attachment_use="False"
     />
 </odoo>

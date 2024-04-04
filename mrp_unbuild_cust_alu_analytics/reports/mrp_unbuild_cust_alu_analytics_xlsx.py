@@ -6,8 +6,8 @@ from datetime import datetime, date
 import openpyxl.utils
 
 
-class MrpUnbuildWorkflow(models.AbstractModel):
-    _name = 'report.mrp_unbuild_workflow.mpr_unbuild_xlsx'
+class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
+    _name = 'report.mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, order):
@@ -215,10 +215,11 @@ class MrpUnbuildWorkflow(models.AbstractModel):
                 sheet.write(z, total_products_and_percentage + 14, _("Yes") if record.analytic_ids else _("No"), string_format)
                 sheet.write(z, 1 + total_products, all_product_total_qty, float_format)
                 j = 0
-                for inspection_line in record.analytic_ids[0].inspection_lines:
-                    j += 1
-                    sheet.write(0, total_products_and_percentage + 14 + j, inspection_line.name, header_format_5)
-                    sheet.write(z, total_products_and_percentage + 14 + j, inspection_line.quantitative_value, float_extend_format)
+                if record.analytic_ids:
+                    for inspection_line in record.analytic_ids[0].inspection_lines:
+                        j += 1
+                        sheet.write(0, total_products_and_percentage + 14 + j, inspection_line.name, header_format_5)
+                        sheet.write(z, total_products_and_percentage + 14 + j, inspection_line.quantitative_value, float_extend_format)
                 y = 1
                 for product in record.bom_quants_total_ids:
                     sheet.write(0, y, product.bom_line_id.product_id.default_code, header_format)

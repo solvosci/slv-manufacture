@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_unbuild_workflow
+# 	* mrp_unbuild_cust_alu_analytics
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 09:22+0000\n"
-"PO-Revision-Date: 2024-03-15 10:32+0100\n"
+"POT-Creation-Date: 2024-04-03 14:52+0000\n"
+"PO-Revision-Date: 2024-04-03 16:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,492 +17,548 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_25
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_25
 msgid "Al"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test,name:mrp_unbuild_workflow.qc_test_1
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test,name:mrp_unbuild_cust_alu_analytics.qc_test_1
+#, fuzzy
 msgid "Analysis"
 msgstr "Análisis"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild__analytic_ids
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_incidence_ids_analytics
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__analytic_ids
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_incidence_ids_analytics
+#, fuzzy, python-format
 msgid "Analytics"
 msgstr "Analíticas"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_10
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_10
 msgid "Be"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_24
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_24
 msgid "Bg"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_11
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_11
 msgid "Bi"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_bom
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_bom
+#, fuzzy
 msgid "Bill of Material"
 msgstr "Lista de materiales"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Break Time"
 msgstr "Tiempo de descanso"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "Break time"
 msgstr "Tiempo de descanso"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__cmplanta_id
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__cmplanta_id
+#, fuzzy
 msgid "CMPlanta ID"
 msgstr "ID CMPlanta"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_12
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#, python-format
+msgid "Can't create folder"
+msgstr "No se pudo crear la carpeta"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_12
 msgid "Cd"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_13
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_13
 msgid "Co"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__code
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__code
+#, fuzzy
 msgid "Code"
 msgstr "Código"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Comments"
 msgstr "Comentarios"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_res_company
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_res_company
+#, fuzzy
 msgid "Companies"
 msgstr "Compañias"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_res_config_settings
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_res_config_settings
+#, fuzzy
 msgid "Config Settings"
 msgstr "Ajustes de configuración"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_6
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_6
 msgid "Cr"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__create_uid
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__create_uid
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_uid
+#, fuzzy
 msgid "Created by"
 msgstr "Creado por"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__create_date
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__create_date
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_date
+#, fuzzy
 msgid "Created on"
 msgstr "Creado en"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__criticallity
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__criticallity
+#, fuzzy
 msgid "Criticallity"
 msgstr "Criticidad"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_3
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_3
 msgid "Cu"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Date"
 msgstr "Fecha"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__description
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__description
+#, fuzzy
 msgid "Description"
 msgstr "Descripción"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__display_name
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__display_name
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx__display_name
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx__display_name
+#, fuzzy
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__duration
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__duration
+#, fuzzy
 msgid "Duration"
 msgstr "Duración"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "End"
 msgstr "Fin"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "End Date"
 msgstr "Fecha fin"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "End Hour"
 msgstr "Hora fin"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_2
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_2
 msgid "Fe"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_14
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_14
 msgid "Ga"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Gross Time"
 msgstr "Tiempo bruto"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__criticallity__high
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__priority__high
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__criticallity__high
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__priority__high
+#, fuzzy
 msgid "High"
 msgstr "Alta"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__id
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__id
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx__id
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx__id
+#, fuzzy
 msgid "ID"
 msgstr "Id."
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__stage__in_progress
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__stage__in_progress
+#, fuzzy
 msgid "In progress"
 msgstr "En progreso"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild__incidence_ids
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_incidence_ids_analytics
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__incidence_ids
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_incidence_ids_analytics
+#, fuzzy
 msgid "Incidences"
 msgstr "Incidencias"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence____last_update
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type____last_update
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx____last_update
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_workflow_mpr_unbuild_xlsx____last_update
+#, fuzzy
 msgid "Last Modified on"
 msgstr "Última Modifiación en"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__write_uid
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__write_uid
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_uid
+#, fuzzy
 msgid "Last Updated by"
 msgstr "Última Actualización por"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__write_date
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__write_date
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_date
+#, fuzzy
 msgid "Last Updated on"
 msgstr "Última Actualización en"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_15
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_15
 msgid "Li"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__bom_line_ids
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__bom_line_ids
+#, fuzzy
 msgid "Lists of Materials"
 msgstr "Lista de materiales"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__criticallity__low
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__priority__low
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__criticallity__low
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__priority__low
+#, fuzzy
 msgid "Low"
 msgstr "Baja"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.actions.act_window,name:mrp_unbuild_workflow.action_mrp_process
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_unbuild_incidence
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_incidence
+msgid "MRP Incidence"
+msgstr "Incidencia MRP"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_process
+#, fuzzy
 msgid "MRP Process"
 msgstr "Proceso MRP"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__machine
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__machine
+#, fuzzy
 msgid "Machine"
 msgstr "Máquina"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__criticallity__medium
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__priority__medium
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__criticallity__medium
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__priority__medium
+#, fuzzy
 msgid "Medium"
 msgstr "Media"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_5
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_5
 msgid "Mg"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_4
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_4
 msgid "Mn"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_16
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_16
 msgid "Na"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_process_type__name
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__name
+#, fuzzy
 msgid "Name"
 msgstr "Nombre"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
 #, fuzzy, python-format
 msgid "Net Time"
 msgstr "Tiempo Neto"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_7
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_7
 msgid "Ni"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
 #, python-format
 msgid "No"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_18
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_18
 msgid "Pb"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__priority
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__priority
+#, fuzzy
 msgid "Priority"
 msgstr "Prioridad"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.ui.menu,name:mrp_unbuild_workflow.menu_mrp_process
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_process
+#, fuzzy
 msgid "Process Types"
 msgstr "Tipos de proceso"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_bom__process_type_id
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild__process_type_id
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_bom__process_type_id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__process_type_id
+#, fuzzy
 msgid "Process type"
 msgstr "Tipo de proceso"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_product_product__process_type_ids
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_product_product__process_type_ids
+#, fuzzy
 msgid "Process types"
 msgstr "Tipos de proceso"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_product_product
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_product_product
+#, fuzzy
 msgid "Product"
 msgstr "Producto"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_unbuild_bom_totals
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_bom_totals
+#, fuzzy
 msgid "Quant Totals for BoM based Unbuild"
 msgstr "Resúmenes de cantidades para LdM basado en Desconstrucción"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_unbuild_bom_quants
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_bom_quants
+#, fuzzy
 msgid "Quants for BoM based Unbuild"
 msgstr "Cantidades para LdM basado en Desconstrucción"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.actions.server,name:mrp_unbuild_workflow.cron_ir_actions_server
-#: model:ir.cron,cron_name:mrp_unbuild_workflow.cron
-#: model:ir.cron,name:mrp_unbuild_workflow.cron
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.server,name:mrp_unbuild_cust_alu_analytics.cron_ir_actions_server
+#: model:ir.cron,cron_name:mrp_unbuild_cust_alu_analytics.cron
+#: model:ir.cron,name:mrp_unbuild_cust_alu_analytics.cron
 msgid "Read mrp.unbuild QC inspection from XML"
-msgstr ""
+msgstr "Leer Inspecciones QC de despieces desde XML"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Rest Break Time"
 msgstr "Resto paradas"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_19
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_19
 msgid "Sb"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "Shift data"
 msgstr "Datos del turno"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "Shift time"
 msgstr "Tiempo del turno"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_1
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_1
 msgid "Si"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_20
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_20
 msgid "Sn"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields.selection,name:mrp_unbuild_workflow.selection__mrp_unbuild_incidence__stage__solved
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__stage__solved
+#, fuzzy
 msgid "Solved"
 msgstr "Resuelto"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_21
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_21
 msgid "Sr"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_incidence__stage
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__stage
+#, fuzzy
 msgid "Stage"
 msgstr "Fase"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "Start"
 msgstr "Comienzo"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Start Date"
 msgstr "Fecha inicio"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Start Hour"
 msgstr "Hora inicio"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_group_shift_mrp_unbuild_workflow
+#, fuzzy
 msgid "Stop time"
 msgstr "Parada"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "TM/h Gross"
 msgstr "TM/h Bruto"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "TM/h Net"
 msgstr "TM/h Neto"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Tags"
 msgstr "Etiquetas"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_9
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_9
 msgid "Ti"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Total"
 msgstr "Total"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_mrp_unbuild_bom_totals__total_qty_percentage
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_bom_totals__total_qty_percentage
+#, fuzzy
 msgid "Total Qty Percentage"
 msgstr "Porcentaje cantidad total"
 
-#. module: mrp_unbuild_workflow
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_workflow.view_unbuild_analytics_res_company
-msgid "Unbuild Analytics"
-msgstr "Analíticas de despieces"
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__unbuild_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.res_config_settings_unbuild_workflow_view_form
+msgid "Unbuild"
+msgstr "Despiece"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_unbuild
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild
+#, fuzzy
 msgid "Unbuild Order"
 msgstr "Orden de deconstrucción"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_mrp_unbuild_process_type
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_process_type
+#, fuzzy
 msgid "Unbuild Process Type"
 msgstr "Tipo de proceso de deconstrucción"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.actions.report,name:mrp_unbuild_workflow.mrp_unbuild_workflow_report
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.report,name:mrp_unbuild_cust_alu_analytics.mrp_unbuild_workflow_report
+#, fuzzy
 msgid "Unbuild XLSX"
 msgstr "Despieces XLSX"
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_res_company__xml_analytic_path
-#: model:ir.model.fields,field_description:mrp_unbuild_workflow.field_res_config_settings__xml_analytic_path
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_res_company__xml_analytic_path
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_res_config_settings__xml_analytic_path
+#, fuzzy
 msgid "XML Analytic Path"
 msgstr "Ruta de las analíticas XML"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/models/mrp_unbuild.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#, fuzzy, python-format
 msgid "XML Analytic Path not defined"
 msgstr "Ruta de las analíticas XML no definida"
 
-#. module: mrp_unbuild_workflow
-#: code:addons/mrp_unbuild_workflow/reports/mrp_unbuild_workflow_xlsx.py:0
-#, python-format
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_workflow_xlsx.py:0
+#, fuzzy, python-format
 msgid "Yes"
 msgstr "Si"
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_8
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_8
 msgid "Zn"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:qc.test.question,name:mrp_unbuild_workflow.test_line_23
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_23
 msgid "Zr"
 msgstr ""
 
-#. module: mrp_unbuild_workflow
-#: model:ir.model,name:mrp_unbuild_workflow.model_report_mrp_unbuild_workflow_mpr_unbuild_xlsx
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_report_mrp_unbuild_workflow_mpr_unbuild_xlsx
 msgid "report.mrp_unbuild_workflow.mpr_unbuild_xlsx"
 msgstr ""

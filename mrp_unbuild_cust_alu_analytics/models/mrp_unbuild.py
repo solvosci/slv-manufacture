@@ -140,7 +140,7 @@ class MrpUnbuild(models.Model):
                                 'name': "Inspection/%s" % (unbuild_id.name),
                                 'unbuild_id': unbuild_id.id,
                                 'object_id': "stock.move,%d" % move_id.id,
-                                'test': self.env.ref('mrp_unbuild_workflow.qc_test_1').id,
+                                'test': self.env.ref('mrp_unbuild_cust_alu_analytics.qc_test_1').id,
                             })
 
                             qc_inspection_id.inspection_lines.unlink()

@@ -24,8 +24,8 @@
             </field>
         </record>
 
-        <record id="mrp_unbuild_form_group_shift_mrp_unbuild_workflow" model="ir.ui.view">
-            <field name="name">mrp.unbuild.form (group_shift) (mrp_unbuild_workflow)</field>
+        <record id="mrp_unbuild_form_group_shift_mrp_unbuild_cust_alu_analytics" model="ir.ui.view">
+            <field name="name">mrp.unbuild.form (group_shift) (mrp_unbuild_cust_alu_analytics)</field>
             <field name="model">mrp.unbuild</field>
             <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"/>
             <field name="arch" type="xml">
@@ -66,7 +66,7 @@
         </record>
 
         <record id="mrp_unbuild_form_incidence_ids_analytics" model="ir.ui.view">
-            <field name="name">mrp.unbuild.form (incidence_ids) (analytic_ids) (mrp_unbuild_workflow)</field>
+            <field name="name">mrp.unbuild.form (incidence_ids) (analytic_ids) (mrp_unbuild_cust_alu_analytics)</field>
             <field name="model">mrp.unbuild</field>
             <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view"/>
             <field name="arch" type="xml">

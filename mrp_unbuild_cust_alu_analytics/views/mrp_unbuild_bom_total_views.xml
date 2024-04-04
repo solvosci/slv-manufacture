@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="mrp_unbuild_bom_total_percentage_view_tree" model="ir.ui.view">
-            <field name="name">mrp.unbuild.bom.cust.qty.tree (percentage) (mrp_unbuild_workflow)</field>
+            <field name="name">mrp.unbuild.bom.cust.qty.tree (percentage) (mrp_unbuild_cust_alu_analytics)</field>
             <field name="model">mrp.unbuild.bom.totals</field>
             <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree"/>
             <field name="arch" type="xml">
