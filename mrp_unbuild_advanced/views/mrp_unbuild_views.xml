@@ -38,7 +38,7 @@
                     options="{'color_field': 'color', 'no_create_edit': True}"
                 />
             </xpath>
-            <xpath expr="sheet" position="inside">
+            <xpath expr="//field[@name='mo_id']/../.." position="after">
                 <group
                     name="group_shift"
                     attrs="{'invisible': [('id','=',False)]}"
