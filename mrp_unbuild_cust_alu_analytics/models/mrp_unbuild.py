@@ -69,12 +69,9 @@ class MrpUnbuild(models.Model):
 
     def read_qc_inspection_xml(self):
         # Find the folder and create if not exists
-        path = self.env.company.xml_analytic_path
+        path = self.env.company.xml_analytic_path   # TODO make it available to multi-company
         logger = logging.getLogger(__name__)
         if not path:
-            logger.critical(
-                "XML Analytic Path not defined"
-            )
             raise UserError(_("XML Analytic Path not defined"))
         folder_path = os.path.join(path)
         processed_folder_path = os.path.join(path, 'processed')
@@ -85,9 +82,6 @@ class MrpUnbuild(models.Model):
                     "Created folder on %s", folder_path
                 )
             except OSError as e:
-                logger.critical(
-                    "Can't create folder %s", e
-                )
                 raise UserError(_("Can't create folder")) from e
 
         if not os.path.exists(processed_folder_path):
@@ -97,9 +91,6 @@ class MrpUnbuild(models.Model):
                     "Created folder on %s", processed_folder_path
                 )
             except OSError as e:
-                logger.critical(
-                    "Can't create folder %s", e
-                )
                 raise UserError(_("Can't create folder")) from e
 
         files = os.listdir(folder_path)
@@ -132,7 +123,7 @@ class MrpUnbuild(models.Model):
                             move_id = False
                             move_line_ids = unbuild_id.produce_line_ids.move_line_ids
                             for move_line in move_line_ids.move_id:
-                                if "Virtual Locations" in move_line.location_dest_id.complete_name:
+                                if move_line.location_dest_id.usage == "production":
                                     move_id = move_line
                                     break
 

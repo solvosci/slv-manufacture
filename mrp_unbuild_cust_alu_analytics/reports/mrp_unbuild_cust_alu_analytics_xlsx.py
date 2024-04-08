@@ -168,7 +168,6 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
         unique_orders = set()
         unique_orders = {(order.product_id, order.process_type_id) for order in order}
         list_unique_orders = []
-        timezone = pytz.timezone(self.env.user.tz)
         for product_id, process_type_id in unique_orders:
             list_unique_orders += [list(filter(lambda x: x.product_id.id == product_id.id and x.process_type_id.id == process_type_id.id, order))]
 
@@ -189,13 +188,13 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
                 sheet.write(0, 0, record.product_id.default_code, header_format)
                 sheet.write(z, 0, record.unbuild_date, datetime_header_format)
                 sheet.write(0, total_products_and_percentage + 2, _('Start Date'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 2, pytz.utc.localize(record.shift_start_date).astimezone(timezone).replace(tzinfo=None) if record.shift_start_date != False else "", datetime_format)
+                sheet.write(z, total_products_and_percentage + 2, fields.Datetime.context_timestamp(self.env.user, record.shift_start_date).replace(tzinfo=None) if record.shift_start_date != False else "", datetime_format)
                 sheet.write(0, total_products_and_percentage + 3, _('End Date'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 3, pytz.utc.localize(record.shift_end_date).astimezone(timezone).replace(tzinfo=None) if record.shift_end_date != False else "", datetime_format)
+                sheet.write(z, total_products_and_percentage + 3, fields.Datetime.context_timestamp(self.env.user, record.shift_end_date).replace(tzinfo=None) if record.shift_end_date != False else "", datetime_format)
                 sheet.write(0, total_products_and_percentage + 4, _('Start Hour'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 4, pytz.utc.localize(record.shift_start_date).astimezone(timezone).replace(tzinfo=None) if record.shift_start_date != False else "", time_format)
+                sheet.write(z, total_products_and_percentage + 4, fields.Datetime.context_timestamp(self.env.user, record.shift_start_date).replace(tzinfo=None) if record.shift_start_date != False else "", time_format)
                 sheet.write(0, total_products_and_percentage + 5, _('End Hour'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 5, pytz.utc.localize(record.shift_end_date).astimezone(timezone).replace(tzinfo=None) if record.shift_end_date != False else "", time_format)
+                sheet.write(z, total_products_and_percentage + 5, fields.Datetime.context_timestamp(self.env.user, record.shift_end_date).replace(tzinfo=None) if record.shift_end_date != False else "", time_format)
                 sheet.write(0, total_products_and_percentage + 6, _('Break Time'), header_format_3)
                 sheet.write(z, total_products_and_percentage + 6, record.shift_break_time * 60 if record.shift_break_time != False else "", int_format)
                 sheet.write(0, total_products_and_percentage + 7, _('Rest Break Time'), header_format_3)
@@ -238,6 +237,6 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
             sheet.write(z, 0, _('TOTAL'), subheader_footer_format)
             for i in range(1, y + 1):
                 column = openpyxl.utils.get_column_letter(i + 1)
-                sheet.write_formula(z, i, '=SUMPRODUCT(' + column + '3' + ':' + column + str(z) + ')', float_footer_format)
+                sheet.write_formula(z, i, '=SUM(' + column + '3' + ':' + column + str(z) + ')', float_footer_format)
 
             sheet.set_zoom(100)
