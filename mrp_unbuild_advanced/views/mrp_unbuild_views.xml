@@ -51,6 +51,10 @@
                     </group>
                     <group>
                         <field
+                            name="scheduled_time"
+                            widget="float_time"
+                        />
+                        <field
                             name="shift_total_time"
                             widget="float_time"
                             string="Shift time"
