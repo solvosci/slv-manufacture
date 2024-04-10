@@ -10,19 +10,26 @@
                 create="true" 
                 delete="false" 
                 decoration-danger="deco_danger == True"
-                >
+                decoration-it="is_product_uom_diff"
+            >
                 <field name="company_id" invisible="1" />
                 <field name="deco_danger" invisible="1" />
                 <field name="check_bom_line" invisible="1" />
                 <field name="unbuild_id" invisible="1" />
                 <field name="bom_line_ids" invisible="1" />
                 <field name="bom_id" invisible="1" />
+                <field name="is_product_uom_diff" invisible="1" />
                 <field name="bom_line_id"
                     domain="[('id', 'not in', bom_line_ids)]" 
                     attrs="{'readonly': ['|',('check_bom_line', '=', True), ('total_qty','>',0)]}"
                 />
                 <field name="total_qty" />
                 <field name="expected_qty" />
+                <field
+                    name="product_uom_id"
+                    string="UoM"
+                    groups="uom.group_uom"
+                />
                 <button name="product_weighing"
                     type="object"
                     icon="fa-refresh"
