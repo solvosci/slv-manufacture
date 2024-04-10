@@ -28,6 +28,15 @@ class MrpUnbuildBoMMixin(models.AbstractModel):
         check_company=True,
         string="Related BoM Line",
     )
+    product_uom_id = fields.Many2one(related="bom_line_id.product_uom_id")
+    is_product_uom_diff = fields.Boolean(
+        compute="_compute_is_product_uom_diff",
+        string="Is Product UoM Different",
+        help="""
+        Technical field that shows if this BoM line has a UoM category
+        different than unbuild product one
+        """,
+    )
     company_id = fields.Many2one(
         comodel_name="res.company",
         related="unbuild_id.company_id",
@@ -41,6 +50,13 @@ class MrpUnbuildBoMMixin(models.AbstractModel):
     bom_line_ids = fields.Many2many(
         related="unbuild_id.bom_line_ids"
     )
+
+    def _compute_is_product_uom_diff(self):
+        uom_diff = self.filtered(
+            lambda x: x.product_uom_id.category_id != x.unbuild_id.product_uom_id.category_id
+        )
+        uom_diff.write({"is_product_uom_diff": True})
+        (self - uom_diff).write({"is_product_uom_diff": False})
 
     def _compute_check_bom_line(self):
         for record in self:
