@@ -11,7 +11,8 @@ class StockMove(models.Model):
     def _check_safe_removal(self):
         super()._check_safe_removal()
         inspections = self.env["qc.inspection"].search([
-            ("unbuild_id", "=", self.unbuild_id.id)
+            ("unbuild_id", "=", self.unbuild_id.id),
+            ("object_id", "!=", False),
         ])
         if inspections:
             raise ValidationError(_(
