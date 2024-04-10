@@ -55,6 +55,11 @@
                 <field name="name" />
                 <field name="departure_date" readonly="1" />
                 <field name="custom_qty" />
+                <field
+                    name="product_uom_id"
+                    string="UoM"
+                    groups="uom.group_uom"
+                />
             </tree>
         </field>
     </record>

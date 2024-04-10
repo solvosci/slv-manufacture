@@ -58,8 +58,21 @@ class MrpUnbuildBoMQuants(models.Model):
     @api.model
     def create(self, vals_list):
         res = super().create(vals_list)
+        res.unbuild_id._update_product_qty_from_bom_totals()
         res.departure_date = fields.datetime.now()
         res.name = ('%s on %s at %s' % (self.env.user.name,
                                         fields.datetime.now().strftime('%d/%m/%Y'),
                                         fields.datetime.now().strftime('%H:%M')))
+        return res
+
+    def write(self, values):
+        res = super().write(values)
+        if "custom_qty" in values:
+            self.unbuild_id._update_product_qty_from_bom_totals()
+        return res
+
+    def unlink(self):
+        unbuild_ids = self.unbuild_id
+        res = super().unlink()
+        unbuild_ids._update_product_qty_from_bom_totals()
         return res

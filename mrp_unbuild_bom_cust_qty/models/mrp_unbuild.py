@@ -124,3 +124,19 @@ class MrpUnbuild(models.Model):
             'unbuild_id': self.id,
             'company_id': self.company_id.id,
         })
+
+    def _update_product_qty_from_bom_totals(self):
+        if not self.env.user.has_group(
+            "mrp_unbuild_bom_cust_qty.group_unbuild_force_exact_qty"
+        ):
+            return
+        for unbuild in self:
+            total_product_qty = sum(
+                item.product_uom_id._compute_quantity(
+                    item.total_qty, unbuild.product_uom_id
+                )
+                for item in unbuild.bom_quants_total_ids.filtered(
+                    lambda x: x.product_uom_id.category_id == unbuild.product_uom_id.category_id
+                )
+            )
+            unbuild.product_qty = total_product_qty if total_product_qty > 0 else 1
