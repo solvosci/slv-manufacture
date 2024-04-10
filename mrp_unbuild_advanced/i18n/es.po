@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 18:32+0000\n"
-"PO-Revision-Date: 2021-11-29 18:32+0000\n"
+"POT-Creation-Date: 2024-04-16 06:59+0000\n"
+"PO-Revision-Date: 2024-04-16 06:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,11 @@ msgstr "Fin"
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__notes
 msgid "Notes"
 msgstr "Observaciones"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__scheduled_time
+msgid "Scheduled Time"
+msgstr "Tiempo programado"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_break_time
@@ -69,7 +74,9 @@ msgstr "Datos del turno"
 #: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
 #, python-format
 msgid "Shift dates must be filled before unbuild action for %s is performed!"
-msgstr "¡Las fechas del turno tienen que estar cubiertas antes ejecutar la acción de despiezar para %s!"
+msgstr ""
+"¡Las fechas del turno tienen que estar cubiertas antes ejecutar la acción de"
+" despiezar para %s!"
 
 #. module: mrp_unbuild_advanced
 #: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
@@ -90,7 +97,7 @@ msgstr "Inicio"
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de Inventario"
+msgstr "Movimiento de existencias"
 
 #. module: mrp_unbuild_advanced
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
@@ -117,7 +124,7 @@ msgstr "Fecha de despiece"
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Orden de Desconstrucción"
+msgstr "Orden de desconstrucción"
 
 #. module: mrp_unbuild_advanced
 #: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
