@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_unbuild_force_exact_qty" model="res.groups">
+        <field name="name">Unbuilds: force quantity unbuilt from BoM quants</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

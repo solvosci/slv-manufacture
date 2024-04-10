@@ -6,14 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 13:15+0000\n"
-"PO-Revision-Date: 2021-11-04 13:15+0000\n"
+"POT-Creation-Date: 2024-04-12 10:14+0000\n"
+"PO-Revision-Date: 2024-04-12 12:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__is_product_uom_diff
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__is_product_uom_diff
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__is_product_uom_diff
+msgid ""
+"\n"
+"        Technical field that shows if this BoM line has a UoM category\n"
+"        different than unbuild product one\n"
+"        "
+msgstr ""
+"\n"
+"        Campo técnico que muestra si la unidad de medida de la línea\n"
+"        de la LdM tiene una categoría es diferente de la del producto del "
+"despiece\n"
+"        "
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__bom_id
@@ -58,7 +76,8 @@ msgstr "Hay cantidades en los totales"
 msgid ""
 "Cannot delete Bom line for %s: please delete first its related quantities"
 msgstr ""
-"No se puede borrar la línea %s: por favor, borre primero las cantidades relacionadas"
+"No se puede borrar la línea %s: por favor, borre primero las cantidades "
+"relacionadas"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__check_bom_line
@@ -73,6 +92,11 @@ msgstr "Comprobación de línea de LdM"
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__company_id
 msgid "Company"
 msgstr "Compañía"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__create_uid
@@ -165,6 +189,13 @@ msgid "Invalid quant for %s: it must be greater than zero!"
 msgstr "Cantidad invalida para %s: ¡debe ser mayor que cero!"
 
 #. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__is_product_uom_diff
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__is_product_uom_diff
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__is_product_uom_diff
+msgid "Is Product UoM Different"
+msgstr "Es diferente la unidad de medida del producto"
+
+#. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals____last_update
@@ -182,6 +213,13 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__product_uom_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__product_uom_id
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__product_uom_id
+msgid "Product Unit of Measure"
+msgstr "Unidad de medida de producto"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_totals
@@ -247,13 +285,56 @@ msgstr "LdM de Desconstrucción"
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Orden de Desconstrucción"
+msgstr "Orden de desconstrucción"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_res_config_settings__group_unbuild_force_exact_qty
+#: model:res.groups,name:mrp_unbuild_bom_cust_qty.group_unbuild_force_exact_qty
+msgid "Unbuilds: force quantity unbuilt from BoM quants"
+msgstr ""
+"Despieces: forzar la cantidad del producto a despiezar a partir de las "
+"cantidades resultantes"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.res_config_settings_view_form
+msgid ""
+"Unbuilds: force quantity unbuilt from BoM quants. When activated, unbuild "
+"product quantity is automatically updated when total BoM quants are added"
+msgstr ""
+"Despieces: forzar la cantidad del producto a despiezar a partir de las "
+"cantidades resultantes. Cuando está activado, la cantidad del producto a "
+"despiezar se actualiza automáticamente cuando se añaden cantidades en los "
+"totales"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__product_uom_id
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__product_uom_id
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_tree
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree
+msgid "UoM"
+msgstr "Ud."
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.res_config_settings_view_form
+msgid ""
+"When activated, unbuild product quantity is automatically updated when total "
+"BoM quants are added"
+msgstr ""
+"Cuando está activado, la cantidad del producto a despiezar se actualiza "
+"automáticamente cuando se añaden cantidades en los totales"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants
 msgid ""
-"When selected, you'll be able to add custom quants for unbuild, and standard"
-" ones are not used"
+"When selected, you'll be able to add custom quants for unbuild, and standard "
+"ones are not used"
 msgstr ""
 "Cuando se selecciona, podrá agregar cantidades para la desconstrucción y no "
 "se utilizarán los estándar"
