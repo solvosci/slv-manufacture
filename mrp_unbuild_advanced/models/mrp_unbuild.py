@@ -31,6 +31,7 @@ class MrpUnbuild(models.Model):
         states={"draft": [("required", False)], "done": [("required", True)]},
     )
     shift_stop_time = fields.Float()
+    scheduled_time = fields.Float(default=8)
 
     notes = fields.Text()
 
@@ -38,6 +39,13 @@ class MrpUnbuild(models.Model):
         string="Tags",
         comodel_name="mrp.tag",
     )
+
+    @api.onchange("shift_start_date", "shift_end_date")
+    def _onchange_shift_start_date_shift_end_date(self):
+        if self.shift_end_date and self.shift_start_date:
+            self.shift_total_time = (self.shift_end_date - self.shift_start_date).total_seconds() / 60 / 60
+        else:
+            self.shift_total_time = 0
 
     @api.constrains("unbuild_date")
     def _check_unbuild_date(self):
