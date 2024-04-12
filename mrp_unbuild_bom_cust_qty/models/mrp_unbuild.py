@@ -101,8 +101,18 @@ class MrpUnbuild(models.Model):
 
     def _generate_produce_moves(self):
         moves = super()._generate_produce_moves()
+        # TODO this is actually an Odoo bug: if a product is e.g. a service a
+        # move is created, and that has no sense. We opt to remove them, that
+        # is possible at this moment, becaause they're in "draft" state
+        moves_to_remove = moves.filtered(
+            lambda x: x.product_id.type not in ["product", "consu"]
+        )
+        moves_to_remove.unlink()
+        moves -= moves_to_remove
         for record in self.bom_quants_total_ids.filtered(lambda x: x.check_bom_line == False):
             product_id = record.bom_line_id.product_id
+            if product_id.type not in ["product", "consu"]:
+                continue
             product_uom_id = record.bom_line_id.product_uom_id
             moves += self._generate_move_from_bom_quants_total(product_id, product_uom_id, record.total_qty)
         return moves
