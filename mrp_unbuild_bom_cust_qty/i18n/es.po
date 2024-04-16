@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 10:14+0000\n"
-"PO-Revision-Date: 2024-04-12 12:20+0200\n"
+"POT-Creation-Date: 2024-04-17 11:19+0000\n"
+"PO-Revision-Date: 2024-04-17 13:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,6 +16,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__action_add_myself_enabled
+msgid ""
+"\n"
+"        Technical field that help us enabling adding unbuild product to\n"
+"        component list\n"
+"        "
+msgstr ""
+"\n"
+"        Campo técnico que nos ayuda a habilitar que se pueda añadir\n"
+"       el producto a despiezar a su propia lista de componentes\n"
+"        "
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__is_product_uom_diff
@@ -32,6 +45,27 @@ msgstr ""
 "        de la LdM tiene una categoría es diferente de la del producto del "
 "despiece\n"
 "        "
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__action_add_myself_enabled
+msgid "Action Add Myself Enabled"
+msgstr "Añadirme a mí mismo habilitado"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants_add_myself
+msgid "Add Main Product To Custom Quants"
+msgstr "Añadir producto principal al Resumen de cantidades"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_form_view
+msgid "Add Main Product to Components"
+msgstr "Añadir producto principal al Resumen de cantidades"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
+#, python-format
+msgid "Auto-generated BoM for inverse product %s unbuild"
+msgstr "LdM generada de forma automática para despieces del producto %s"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__bom_id
@@ -329,6 +363,15 @@ msgid ""
 msgstr ""
 "Cuando está activado, la cantidad del producto a despiezar se actualiza "
 "automáticamente cuando se añaden cantidades en los totales"
+
+#. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants_add_myself
+msgid ""
+"When selected, main product for this unbuild is also added as a final "
+"component"
+msgstr ""
+"Cuando se selecciona, el producto principal se añade también como un "
+"componente final"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants

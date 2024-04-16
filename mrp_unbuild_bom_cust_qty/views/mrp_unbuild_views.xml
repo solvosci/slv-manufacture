@@ -21,14 +21,33 @@
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_validate']" position="after">
+                <field name="action_add_myself_enabled" invisible="1" />
+                <button
+                    name="action_add_myself"
+                    string="Add Main Product to Components"
+                    type="object"
+                    attrs="{'invisible': [('action_add_myself_enabled', '=', False)]}"
+                />
+            </xpath>
             <xpath expr="//group[1]" position="after">
                 <group name="bom_quants">
-                    <field name="bom_quants_has_totals" invisible="1" />
-                    
-                    <field
-                        name="bom_custom_quants"
-                        attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
-                    />
+                    <group>
+                        <field name="bom_quants_has_totals" invisible="1" />
+                        <field
+                            name="bom_custom_quants"
+                            attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="bom_custom_quants_add_myself"
+                            attrs="{
+                                'invisible': [('bom_custom_quants', '=' , False)],
+                                'readonly': [('bom_quants_has_totals', '!=', False)],
+                            }"
+                        />
+                    </group>                    
                 </group>
                 <group></group>
                 <notebook 
