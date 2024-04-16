@@ -17,6 +17,22 @@ class MrpUnbuild(models.Model):
         help="When selected, you'll be able to add custom quants for unbuild,"
         " and standard ones are not used"
     )
+    bom_custom_quants_add_myself = fields.Boolean(
+        string="Add Main Product To Custom Quants",
+        default=False,
+        compute="_compute_bom_custom_quants_add_myself",
+        readonly=False,
+        store=True,
+        help="When selected, main product for this unbuild is also added as"
+        " a final component",
+    )
+    action_add_myself_enabled = fields.Boolean(
+        compute="_compute_action_add_myself_enabled",
+        help="""
+        Technical field that help us enabling adding unbuild product to
+        component list
+        """,
+    )
     bom_quants_ids = fields.One2many(
         comodel_name="mrp.unbuild.bom.quants",
         inverse_name="unbuild_id",
@@ -58,7 +74,12 @@ class MrpUnbuild(models.Model):
     def create(self, values):
         rec = super().create(values)
         if not rec.mo_id:
-            for bom_line in rec.bom_id.bom_line_ids:
+            bom_line_myself = (
+                rec.bom_custom_quants_add_myself
+                and rec._get_bom_line_myself()
+                or self.env["mrp.bom.line"]
+            )
+            for bom_line in (rec.bom_id.bom_line_ids | bom_line_myself):
                 # TODO Review values are not saved
                 rec.bom_quants_total_ids = [(
                     0,
@@ -66,12 +87,63 @@ class MrpUnbuild(models.Model):
                     {'bom_line_id': bom_line.id}
                 )]
         return rec
+    
+    def _get_bom_line_myself(self):
+        bom_line_myself = self.env["mrp.bom.line"].search(
+            [("product_id", "=", self.product_id.id)],
+            limit=1,
+        )
+        if not bom_line_myself:
+            # Convention: create a reverse instrumental BoM with a product in
+            # current selected BoM as main product
+            # TODO this product must exist, but if not?
+            ref_product_id = self.bom_id.bom_line_ids.filtered(
+                lambda x: x.product_id.type == "product"
+            )
+            if ref_product_id:
+                ref_product_id = ref_product_id[0]
+            else:
+                raise ValidationError(_(
+                    "Please select a non-empty BoM for this unbuild and try again"
+                ))
+            bom_myself = self.env["mrp.bom"].create({
+                "sequence": 99,
+                "product_tmpl_id": ref_product_id.product_tmpl_id.id,
+                "code": _("Auto-generated BoM for inverse product %s unbuild") % self.product_id.display_name,
+                "type": "normal",
+                "company_id": self.company_id.id,
+                "product_qty": 1.0,
+                "product_uom_id": ref_product_id.product_uom_id.id,
+                "bom_line_ids": [(0, 0, {
+                    "product_id": self.product_id.id,
+                    "product_qty": 1.0,
+                    "product_uom_id": self.product_uom_id.id,
+                })],
+            })
+            bom_line_myself = bom_myself.bom_line_ids
+        return bom_line_myself
+
 
     @api.depends("mo_id")
     def _compute_bom_quants_standard(self):
         # TODO set again value when mo_id unset?
         for record in self.filtered("mo_id"):
             record.bom_custom_quants = False
+
+    @api.depends("bom_custom_quants")
+    def _compute_bom_custom_quants_add_myself(self):
+        for record in self.filtered(lambda x: not x.bom_custom_quants):
+            record.bom_custom_quants_add_myself = False
+
+    def _compute_action_add_myself_enabled(self):
+        for record in self:
+            record.action_add_myself_enabled = (
+                record.state == "draft"
+                and record.bom_custom_quants
+                and not record.bom_quants_total_ids.filtered(
+                    lambda x: x.bom_line_id.product_id == record.product_id
+                )
+            )
 
     def action_validate(self):
         self.ensure_one()
@@ -90,6 +162,15 @@ class MrpUnbuild(models.Model):
                     " or unset expected quantity for them"
                 ) % error_totals)
         return super().action_validate()
+    
+    def action_add_myself(self):
+        self.ensure_one()
+        self.bom_quants_total_ids = [(
+            0,
+            0,
+            {"bom_line_id": self._get_bom_line_myself().id}
+        )]
+        self.bom_custom_quants_add_myself = True
 
     def _generate_move_from_bom_line(self, product, product_uom, quantity, bom_line_id=False, byproduct_id=False):
         # Default BoM line quantity is overwritten by custom ones
