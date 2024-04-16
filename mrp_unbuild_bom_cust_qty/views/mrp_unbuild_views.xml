@@ -23,12 +23,22 @@
         <field name="arch" type="xml">
             <xpath expr="//group[1]" position="after">
                 <group name="bom_quants">
-                    <field name="bom_quants_has_totals" invisible="1" />
-                    
-                    <field
-                        name="bom_custom_quants"
-                        attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
-                    />
+                    <group>
+                        <field name="bom_quants_has_totals" invisible="1" />
+                        <field
+                            name="bom_custom_quants"
+                            attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="bom_custom_quants_add_myself"
+                            attrs="{
+                                'invisible': [('bom_custom_quants', '=' , False)],
+                                'readonly': [('bom_quants_has_totals', '!=', False)],
+                            }"
+                        />
+                    </group>                    
                 </group>
                 <group></group>
                 <notebook 
