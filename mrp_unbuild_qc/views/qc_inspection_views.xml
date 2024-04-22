@@ -14,6 +14,11 @@
             </xpath>
             <xpath expr="//field[@name='qty']" position="after">
                 <field name="unbuild_id" />
+                <field
+                    name="rel_unbuild_product_id"
+                    string="Rel. Unbuild Prod."
+                    attrs="{'invisible': [('unbuild_id', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
@@ -29,6 +34,12 @@
                     invisible="context.get('hide_unbuild', False)"
                 />
             </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field
+                    name="rel_unbuild_product_id"
+                    string="Rel. Unbuild Prod."
+                />
+            </xpath>
         </field>
     </record>
 
@@ -39,6 +50,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="unbuild_id" />
+                <field name="rel_unbuild_product_id" />
             </xpath>
             <xpath expr="//filter[@name='incorrect']" position="after">
                 <separator/>
@@ -54,6 +66,12 @@
                     name="group_by_unbuild_id"
                     domain="[]"
                     context="{'group_by': 'unbuild_id'}"
+                />
+                <filter
+                    string="Rel. Unbuild Prod."
+                    name="group_by_rel_unbuild_product_id"
+                    domain="[]"
+                    context="{'group_by': 'rel_unbuild_product_id'}"
                 />
             </xpath>
         </field>
