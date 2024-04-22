@@ -11,6 +11,23 @@ class QcInspection(models.Model):
         comodel_name="mrp.unbuild",
         readonly=True,
     )
+    rel_unbuild_product_id = fields.Many2one(
+        comodel_name="product.product",
+        compute="_compute_rel_unbuild_product_id",
+        store=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        string="Related unbuild product",
+    )
+
+    @api.depends("unbuild_id", "object_id")
+    def _compute_rel_unbuild_product_id(self):
+        for inspection in self.filtered(lambda x: (
+            x.unbuild_id
+            and x.object_id
+            and x.object_id._name == "stock.move"
+        )):
+            inspection.rel_unbuild_product_id = inspection.object_id.product_id
 
     @api.depends("unbuild_id")
     def _compute_product_id(self):

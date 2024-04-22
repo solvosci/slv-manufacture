@@ -6,14 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-06 17:44+0000\n"
-"PO-Revision-Date: 2024-03-06 17:44+0000\n"
+"POT-Creation-Date: 2024-04-22 14:24+0000\n"
+"PO-Revision-Date: 2024-04-22 16:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_unbuild_qc
 #: model:ir.actions.act_window,name:mrp_unbuild_qc.action_qc_inspection_unbuild_all
@@ -64,6 +66,18 @@ msgstr "Movimientos de Producto (Líneas de movimiento)"
 #: model:ir.model,name:mrp_unbuild_qc.model_qc_inspection
 msgid "Quality control inspection"
 msgstr "Inspección del control de calidad"
+
+#. module: mrp_unbuild_qc
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_qc.qc_inspection_form_view_unbuild_qc
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_qc.qc_inspection_search_view_unbuild_qc
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_qc.qc_inspection_tree_view_unbuild_qc
+msgid "Rel. Unbuild Prod."
+msgstr "Prod. rel. despiece"
+
+#. module: mrp_unbuild_qc
+#: model:ir.model.fields,field_description:mrp_unbuild_qc.field_qc_inspection__rel_unbuild_product_id
+msgid "Related unbuild product"
+msgstr "Producto relacionado del despiece"
 
 #. module: mrp_unbuild_qc
 #: model:ir.model.fields,field_description:mrp_unbuild_qc.field_qc_inspection__unbuild_id
