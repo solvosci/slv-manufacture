@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <!-- Calendar View -->
+        <record id="mrp_unbuild_calendar_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.calendar.view</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="arch" type="xml">
+                <calendar date_start="unbuild_date" string="Unbuild Orders" >
+                    <field name="name"/>
+                    <!-- <field name="process_type_id"/> -->
+                    <field name="product_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form,calendar</field>
+        </record>
+    </data>
+</odoo>
