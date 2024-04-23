@@ -13,8 +13,10 @@
             </field>
         </record>
 
+        
         <!-- Action -->
         <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
+            <!-- <field name="view_mode">tree,kanban,form</field> -->
             <field name="view_mode">tree,kanban,form,calendar</field>
         </record>
     </data>

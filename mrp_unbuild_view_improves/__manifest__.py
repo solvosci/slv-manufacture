@@ -1,5 +1,5 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
-# License AGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 {
     "name": "MRP Unbuild View Improves",
     "summary": """
