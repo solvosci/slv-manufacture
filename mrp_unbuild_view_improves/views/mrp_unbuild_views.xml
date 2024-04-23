@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <calendar date_start="unbuild_date" string="Unbuild Orders" >
                     <field name="name"/>
-                    <!-- <field name="process_type_id"/> -->
+                    <field name="bom_code"/>
                     <field name="product_id"/>
                 </calendar>
             </field>
