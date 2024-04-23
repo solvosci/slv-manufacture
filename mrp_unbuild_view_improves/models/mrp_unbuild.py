@@ -10,6 +10,5 @@ class MrpUnbuild(models.Model):
 
     bom_code = fields.Char(
         string="Bom Code",
-        readonly=True,
         related="bom_id.code",
     )
