@@ -1,8 +1,7 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
-from odoo import _, api, models, fields
-from odoo.exceptions import ValidationError
+from odoo import models, fields
 
 
 class MrpUnbuild(models.Model):
