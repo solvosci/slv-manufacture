@@ -80,6 +80,9 @@
         <field name="model">mrp.unbuild</field>
         <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="unbuild_date" optional="hide"/>
+            </xpath>
             <field name="state" position="after">
                 <field
                     name="tag_ids"
@@ -101,6 +104,13 @@
             <field name="mo_id" position="after">
                 <field name="tag_ids" />
             </field>
+            <xpath expr="//filter[@name='done']" position="after">
+                <separator />
+                <filter name="unbuild_date" string="Unbuild Date" date="unbuild_date"/>
+            </xpath>
+            <xpath expr="//group/filter[@name='mogroup']" position="after">
+                <filter string="Unbuild Date" name="groupby_unbuild_date" context="{'group_by': 'unbuild_date'}"/>
+            </xpath>
         </field>
     </record>
 
@@ -117,9 +127,11 @@
     </record>
 
     <!-- Replace: <field name="view_mode">tree,kanban,form</field> -->
+    <!-- Add new context default draft unbuilds -->
     <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
         <field name="view_mode">tree,kanban,form,calendar</field>
         <field name="context">{
+            'search_default_draft': 1,
             'mrp_unbuild_calendar': True
         }</field>
     </record>
