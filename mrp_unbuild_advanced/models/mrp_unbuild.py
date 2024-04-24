@@ -39,6 +39,17 @@ class MrpUnbuild(models.Model):
         string="Tags",
         comodel_name="mrp.tag",
     )
+    bom_code = fields.Char(
+        string="Bom Code",
+        related="bom_id.code",
+    )
+
+    def _compute_display_name(self):
+        if self.env.context.get('mrp_unbuild_calendar'):
+            for record in self:
+                record.display_name = '%s // %s // %s' % (record.name, record.bom_code or '', record.product_id.name)
+        else:
+            super()._compute_display_name()
 
     @api.onchange("shift_start_date", "shift_end_date")
     def _onchange_shift_start_date_shift_end_date(self):
