@@ -103,4 +103,25 @@
             </field>
         </field>
     </record>
+
+    <record id="mrp_unbuild_calendar_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.calendar</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="arch" type="xml">
+            <calendar date_start="unbuild_date" date_delay="scheduled_time" quick_add="False" color="product_id" string="Unbuild Orders">
+                <field name="name"/>
+                <field name="bom_code"/>
+                <field name="product_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Replace: <field name="view_mode">tree,kanban,form</field> -->
+    <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="context">{
+            'mrp_unbuild_calendar': True
+        }</field>
+    </record>
+
 </odoo>
