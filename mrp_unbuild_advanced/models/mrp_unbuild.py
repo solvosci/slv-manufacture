@@ -47,11 +47,6 @@ class MrpUnbuild(models.Model):
         else:
             self.shift_total_time = 0
 
-    @api.constrains("unbuild_date")
-    def _check_unbuild_date(self):
-        if self.unbuild_date > fields.Datetime.now():
-            raise ValidationError(_("Unbuild date cannot be in the future!"))
-
     @api.constrains("shift_start_date", "shift_end_date")
     def _check_shift_dates(self):
         if self.shift_start_date and self.shift_end_date and (
@@ -68,6 +63,8 @@ class MrpUnbuild(models.Model):
                     "Shift dates must be filled before"
                     " unbuild action for %s is performed!"
                 ) % unbuild.name)
+            if unbuild.unbuild_date > fields.Datetime.now():
+                raise ValidationError(_("Unbuild date cannot be in the future before unbuild action!"))
         return super().action_validate()
 
     def action_unbuild(self):
