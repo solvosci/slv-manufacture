@@ -6,14 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-16 06:59+0000\n"
-"PO-Revision-Date: 2024-04-16 06:59+0000\n"
+"POT-Creation-Date: 2024-04-23 16:03+0000\n"
+"PO-Revision-Date: 2024-04-23 18:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: mrp_unbuild_advanced
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_manager
@@ -124,10 +126,10 @@ msgstr "Fecha de despiece"
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Orden de desconstrucción"
+msgstr "Orden de deconstrucción"
 
 #. module: mrp_unbuild_advanced
 #: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
 #, python-format
-msgid "Unbuild date cannot be in the future!"
-msgstr "¡La fecha de de despiece no puede ser futura!"
+msgid "Unbuild date cannot be in the future before unbuild action!"
+msgstr "¡La fecha de despiece no puede ser futura antes de ejecutar la acción de despiezar!"
