@@ -3,6 +3,7 @@
 
 from odoo import fields, models, _
 import openpyxl.utils
+from datetime import datetime
 
 
 class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
@@ -17,6 +18,7 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, order):
         #Add styles and formats
+        #region
         header_format = workbook.add_format(
             {
                 'bold': True,
@@ -166,6 +168,7 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
                 'border': 1
             }
         )
+        #endregion
 
 
         # Get unique combination of product_id process_type_id
@@ -204,9 +207,9 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
                 sheet.write(0, total_products_and_percentage + 6, _('End Hour'), header_format_3)
                 sheet.write(z, total_products_and_percentage + 6, fields.Datetime.context_timestamp(self.env.user, record.shift_end_date).replace(tzinfo=None) if record.shift_end_date != False else "", time_format)
                 sheet.write(0, total_products_and_percentage + 7, _('Break Time'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 7, record.shift_break_time * 60 if record.shift_break_time != False else "", int_format)
+                sheet.write(z, total_products_and_percentage + 7, '{0:02.0f}:{1:02.0f}'.format(*divmod(record.shift_break_time * 60, 60)) if record.shift_break_time != False else "", time_format)
                 sheet.write(0, total_products_and_percentage + 8, _('Rest Break Time'), header_format_3)
-                sheet.write(z, total_products_and_percentage + 8, record.shift_stop_time * 60 if record.shift_stop_time != False else "", int_format)
+                sheet.write(z, total_products_and_percentage + 8, '{0:02.0f}:{1:02.0f}'.format(*divmod(record.shift_stop_time * 60, 60)) if record.shift_stop_time != False else "", time_format)
                 sheet.write(0, total_products_and_percentage + 9, _('Scheduled Time'), header_format_3)
                 sheet.write(z, total_products_and_percentage + 9, record.scheduled_time if record.scheduled_time != False else "", float_format)
                 sheet.write(0, total_products_and_percentage + 10, _('Gross Time'), header_format_3)
