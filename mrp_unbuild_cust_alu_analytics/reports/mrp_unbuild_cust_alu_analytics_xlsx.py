@@ -185,8 +185,9 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
             total_products = 0
             z = 2 # each unbuild_id
             for record in unique_list:  #TODO split this loop in 2 loops, for the header and for the body
-                all_product_total_qty = sum(record.bom_quants_total_ids.mapped("total_qty"))
                 total_products = len(record.bom_quants_total_ids) if len(record.bom_quants_total_ids) > total_products else total_products
+            for record in unique_list:
+                all_product_total_qty = record._get_product_qty_from_bom_totals()
                 total_products_and_percentage = int(total_products * 2)
                 sheet.write(1, 0, _('Date'), subheader_format)
                 sheet.write(0, 1, _('Unbuilds'), header_format)
