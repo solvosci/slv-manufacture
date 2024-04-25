@@ -101,6 +101,8 @@ class MrpUnbuild(models.Model):
                         if attr['children'][0]['text'] == 'Proceso':
                             unbuild_id = unbuild_id.search([('name', '=', attr['children'][1]['text'])])
                             unbuild_name = attr['children'][1]['text']
+                        if attr['children'][0]['text'] == 'Código Material':
+                            rel_unbuild_product_name = attr['children'][1]['text']
                     for analytic in data['children'][0]['children'][2]['children'][0]['children'][1]['children']:
                         for element in analytic['children']:
                             if element['attributes']:
@@ -111,10 +113,14 @@ class MrpUnbuild(models.Model):
 
                     #Process xml data
                     if unbuild_id:
+                        if rel_unbuild_product_name:
+                            rel_unbuild_product_id = unbuild_id.bom_line_ids.product_id.filtered(lambda x: x.default_code == rel_unbuild_product_name)
+                            rel_unbuild_product_id = rel_unbuild_product_id[0].id if rel_unbuild_product_id else False
                         qc_inspection_id = self.env['qc.inspection'].create({
                             'name': "Inspection/%s" % (unbuild_id.name),
                             'unbuild_id': unbuild_id.id,
                             'test': self.env.ref('mrp_unbuild_cust_alu_analytics.qc_test_1').id,
+                            'rel_unbuild_product_id': rel_unbuild_product_id,
                         })
 
                         qc_inspection_id.inspection_lines.unlink()
