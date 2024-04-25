@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_bom_tree_view_stock_valuation_mrp" model="ir.ui.view">
+        <field name="name">mrp.bom.tree.view (in stock_valuation_mrp)</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='bom_product_template_attribute_value_ids']" position="after">
+                <field name="no_manufacture_unbuild_valuation" widget="boolean_toggle"></field>
+            </xpath>
+        </field>
+    </record>
+</odoo>
