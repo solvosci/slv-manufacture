@@ -7,6 +7,11 @@ class MrpUnbuildProcessType(models.Model):
     _name = "mrp.unbuild.process.type"
     _description = 'Unbuild Process Type'
 
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        default=lambda self: self.env.company,
+        index=True
+    )
     name = fields.Char(string='Name', required=True)
     cmplanta_id = fields.Char(string='CMPlanta ID')
     bom_line_ids = fields.One2many(
