@@ -14,6 +14,7 @@
                             </group>
                             <group>
                                 <field name="bom_line_ids" widget="many2many_tags"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                             </group>
                         </group>
                     </sheet>
@@ -29,6 +30,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="cmplanta_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
