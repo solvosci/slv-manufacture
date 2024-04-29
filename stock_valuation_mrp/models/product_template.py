@@ -6,31 +6,83 @@ from odoo import models, fields, api
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    cost_management_residue = fields.Boolean(
+    has_waste_cost_mgmt = fields.Boolean(
         string='Has cost management residue',
         default=False,
         tracking=True,
-        compute='_compute_cost_management_residue',
-        inverse='_set_cost_management_residue',
+        compute='_compute_has_waste_cost_mgmt',
+        inverse='_set_has_waste_cost_mgmt',
         store=True,
+        readonly=False,
         help="""
         When enabled, operations from/to this warehouse will be covered,
         such as internal transfers, incomings, productions, etc.
         """,
     )
+    residue_pricelist_mgmt = fields.Many2one(
+        comodel_name='product.pricelist',
+        string='Pricelist for management residue',
+        default=False,
+        tracking=True,
+        compute='_compute_residue_pricelist_mgmt',
+        inverse='_set_residue_pricelist_mgmt',
+        store=True,
+        readonly=False,
+        help="""
+        Pricelist used for cost management residue
+        """,
+    )
 
-    @api.depends("cost_management_residue", "warehouse_valuation")
-    def _compute_cost_management_residue(self):
+    def _compute_has_waste_cost_mgmt(self):
         unique_variants = self.filtered(lambda template: len(template.product_variant_ids) == 1)
         for template in unique_variants:
             if template.warehouse_valuation:
-                template.cost_management_residue = template.product_variant_ids.cost_management_residue
+                template.has_waste_cost_mgmt = template.product_variant_ids.has_waste_cost_mgmt
             else:
-                template.cost_management_residue = False
+                template.has_waste_cost_mgmt = False
         for template in (self - unique_variants):
-            template.cost_management_residue = False
+            template.has_waste_cost_mgmt = False
 
-    def _set_cost_management_residue(self):
+    def _set_has_waste_cost_mgmt(self):
         for template in self:
             if len(template.product_variant_ids) == 1:
-                template.product_variant_ids.cost_management_residue = template.cost_management_residue
+                template.product_variant_ids.has_waste_cost_mgmt = template.has_waste_cost_mgmt
+
+    def _compute_residue_pricelist_mgmt(self):
+        unique_variants = self.filtered(lambda template: len(template.product_variant_ids) == 1)
+        for template in unique_variants:
+            if template.residue_pricelist_mgmt:
+                template.residue_pricelist_mgmt = template.product_variant_ids.residue_pricelist_mgmt
+            else:
+                template.residue_pricelist_mgmt = False
+        for template in (self - unique_variants):
+            template.residue_pricelist_mgmt = False
+
+    def _set_residue_pricelist_mgmt(self):
+        for template in self:
+            if len(template.product_variant_ids) == 1:
+                template.product_variant_ids.residue_pricelist_mgmt = template.residue_pricelist_mgmt
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        categ_ids = self.env["product.category"].browse(
+            [values["categ_id"] for values in vals_list]
+        )
+        templates = super().create(vals_list)
+        for template, vals in zip(templates, vals_list):
+            related_vals = {}
+            if vals.get("has_waste_cost_mgmt"):
+                related_vals["has_waste_cost_mgmt"] = vals["has_waste_cost_mgmt"]
+            else:
+                categ_id = categ_ids.filtered(lambda x: x.id == vals["categ_id"])
+                if categ_id.warehouse_valuation:
+                    related_vals["has_waste_cost_mgmt"] = True
+            if related_vals:
+                template.write(related_vals)
+        return templates
+
+    @api.onchange("has_waste_cost_mgmt")
+    def _onchange_has_waste_cost_mgmt(self):
+        for template in self:
+            if not template.has_waste_cost_mgmt:
+                template.residue_pricelist_mgmt = False

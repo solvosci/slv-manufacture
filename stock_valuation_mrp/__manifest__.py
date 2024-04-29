@@ -16,7 +16,7 @@
         "views/mrp_bom_views.xml",
         "views/mrp_bom_line_views.xml",
         "views/product_template_views.xml",
-        # "views/product_product_views.xml"
+        "views/product_product_views.xml"
     ],
     'installable': True,
 }
