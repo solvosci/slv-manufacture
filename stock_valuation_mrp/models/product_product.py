@@ -43,16 +43,10 @@ class ProductProduct(models.Model):
             product.residue_pricelist_mgmt = False # Same as above
 
     def write(self, values):
-        if "categ_id" in values and "has_waste_cost_mgmt" not in values:
-            new_categ = self.env["product.category"].browse(values["categ_id"])
-            values["has_waste_cost_mgmt"] = False
-        if "categ_id" in values and "residue_pricelist_mgmt" not in values:
-            new_categ = self.env["product.category"].browse(values["categ_id"])
-            values["residue_pricelist_mgmt"] = False
         return super().write(values)
 
-    @api.onchange("has_waste_cost_mgmt")
-    def _onchange_has_waste_cost_mgmt(self):
-        for product in self:
-            if not product.has_waste_cost_mgmt:
-                product.residue_pricelist_mgmt = False
+    # @api.onchange("has_waste_cost_mgmt")
+    # def _onchange_has_waste_cost_mgmt(self):
+    #     for product in self:
+    #         if not product.has_waste_cost_mgmt:
+    #             product.residue_pricelist_mgmt = False

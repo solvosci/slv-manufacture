@@ -16,7 +16,12 @@
                 <field
                     name="residue_pricelist_mgmt"
                     attrs="{
-                        'invisible': [('has_waste_cost_mgmt','=',False),],
+                        'invisible': 
+                        [
+                            '|',
+                                ('has_waste_cost_mgmt','=',False),
+                                ('warehouse_valuation','=',False)
+                        ],
                         'required': [('has_waste_cost_mgmt','=',True),
                     ]}"
                 />

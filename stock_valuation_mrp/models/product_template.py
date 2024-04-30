@@ -65,18 +65,13 @@ class ProductTemplate(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        categ_ids = self.env["product.category"].browse(
-            [values["categ_id"] for values in vals_list]
-        )
         templates = super().create(vals_list)
         for template, vals in zip(templates, vals_list):
             related_vals = {}
             if vals.get("has_waste_cost_mgmt"):
                 related_vals["has_waste_cost_mgmt"] = vals["has_waste_cost_mgmt"]
-            else:
-                categ_id = categ_ids.filtered(lambda x: x.id == vals["categ_id"])
-                if categ_id.warehouse_valuation:
-                    related_vals["has_waste_cost_mgmt"] = True
+            if vals.get("residue_pricelist_mgmt"):
+                related_vals["residue_pricelist_mgmt"] = False
             if related_vals:
                 template.write(related_vals)
         return templates

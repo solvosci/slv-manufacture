@@ -5,8 +5,11 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='bom_product_template_attribute_value_ids']" position="after">
-                <field name="no_manufacture_unbuild_valuation" widget="boolean_toggle"></field>
+            <xpath 
+                expr="//field[@name='bom_line_ids']/tree/field[@name='bom_product_template_attribute_value_ids']"
+                position="after"
+            >
+                <field name="no_manufacture_unbuild_valuation" string="No valuation" widget="boolean_toggle"></field>
             </xpath>
         </field>
     </record>
