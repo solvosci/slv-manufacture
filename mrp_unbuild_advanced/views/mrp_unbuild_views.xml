@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="mrp_unbuild_form_view_manager" model="ir.ui.view">
-        <field name="name">
-            mrp.unbuild.form manager (in mrp_unbuild_advanced)
-        </field>
-        <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
-        <field name="groups_id" eval="[(4,ref('stock.group_stock_manager'))]"/>
-        <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_validate']" position="after">
-                <button
-                    name="action_back_draft"
-                    string="Back to draft"
-                    type="object"
-                    states="done"
-                    class="oe_highlight"
-                />
-            </xpath>
-            <xpath expr="//field[@name='product_id']" position="before">
-                <field name="unbuild_date"/>
-            </xpath>
-        </field>
-    </record>
 
     <record id="mrp_unbuild_form_view_user" model="ir.ui.view">
         <field name="name">
@@ -71,6 +49,37 @@
                         />
                     </group>
                 </group>
+            </xpath>
+            <xpath expr="//button[@name='action_validate']" position="after">
+                <button
+                    name="action_back_draft"
+                    string="Back to draft"
+                    type="object"
+                    states="done"
+                    class="oe_highlight"
+                    invisible="1"
+                />
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="unbuild_date" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_form_view_manager" model="ir.ui.view">
+        <field name="name">
+            mrp.unbuild.form manager (in mrp_unbuild_advanced)
+        </field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"/>
+        <!-- TODO: Change group to mrp manager -->
+        <field name="groups_id" eval="[(4,ref('stock.group_stock_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_back_draft']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='unbuild_date']" position="attributes">
+                <attribute name="readonly">0</attribute>
             </xpath>
         </field>
     </record>
