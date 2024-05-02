@@ -19,13 +19,13 @@ class ProductTemplate(models.Model):
         such as internal transfers, incomings, productions, etc.
         """,
     )
-    residue_pricelist_mgmt = fields.Many2one(
+    waste_mgmt_pricelist_id = fields.Many2one(
         comodel_name='product.pricelist',
         string='Pricelist for management residue',
         default=False,
         tracking=True,
-        compute='_compute_residue_pricelist_mgmt',
-        inverse='_set_residue_pricelist_mgmt',
+        compute='_compute_waste_mgmt_pricelist_id',
+        inverse='_set_waste_mgmt_pricelist_id',
         store=True,
         readonly=False,
         help="""
@@ -48,20 +48,20 @@ class ProductTemplate(models.Model):
             if len(template.product_variant_ids) == 1:
                 template.product_variant_ids.has_waste_cost_mgmt = template.has_waste_cost_mgmt
 
-    def _compute_residue_pricelist_mgmt(self):
+    def _compute_waste_mgmt_pricelist_id(self):
         unique_variants = self.filtered(lambda template: len(template.product_variant_ids) == 1)
         for template in unique_variants:
-            if template.residue_pricelist_mgmt:
-                template.residue_pricelist_mgmt = template.product_variant_ids.residue_pricelist_mgmt
+            if template.waste_mgmt_pricelist_id:
+                template.waste_mgmt_pricelist_id = template.product_variant_ids.waste_mgmt_pricelist_id
             else:
-                template.residue_pricelist_mgmt = False
+                template.waste_mgmt_pricelist_id = False
         for template in (self - unique_variants):
-            template.residue_pricelist_mgmt = False
+            template.waste_mgmt_pricelist_id = False
 
-    def _set_residue_pricelist_mgmt(self):
+    def _set_waste_mgmt_pricelist_id(self):
         for template in self:
             if len(template.product_variant_ids) == 1:
-                template.product_variant_ids.residue_pricelist_mgmt = template.residue_pricelist_mgmt
+                template.product_variant_ids.waste_mgmt_pricelist_id = template.waste_mgmt_pricelist_id
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -70,8 +70,8 @@ class ProductTemplate(models.Model):
             related_vals = {}
             if vals.get("has_waste_cost_mgmt"):
                 related_vals["has_waste_cost_mgmt"] = vals["has_waste_cost_mgmt"]
-            if vals.get("residue_pricelist_mgmt"):
-                related_vals["residue_pricelist_mgmt"] = False
+            if vals.get("waste_mgmt_pricelist_id"):
+                related_vals["waste_mgmt_pricelist_id"] = vals("waste_mgmt_pricelist_id")
             if related_vals:
                 template.write(related_vals)
         return templates
@@ -80,4 +80,4 @@ class ProductTemplate(models.Model):
     def _onchange_has_waste_cost_mgmt(self):
         for template in self:
             if not template.has_waste_cost_mgmt:
-                template.residue_pricelist_mgmt = False
+                template.waste_mgmt_pricelist_id = False

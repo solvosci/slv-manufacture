@@ -14,7 +14,7 @@
                     ]}"
                 />
                 <field
-                    name="residue_pricelist_mgmt"
+                    name="waste_mgmt_pricelist_id"
                     attrs="{
                         'invisible': [('has_waste_cost_mgmt','=',False),],
                         'required': [('has_waste_cost_mgmt','=',True),

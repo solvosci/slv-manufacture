@@ -9,7 +9,7 @@
                 expr="//field[@name='bom_line_ids']/tree/field[@name='bom_product_template_attribute_value_ids']"
                 position="after"
             >
-                <field name="no_manufacture_unbuild_valuation" string="No valuation" widget="boolean_toggle"></field>
+                <field name="disabled_mrp_unbuild_valuation" string="No valuation" widget="boolean_toggle"></field>
             </xpath>
         </field>
     </record>

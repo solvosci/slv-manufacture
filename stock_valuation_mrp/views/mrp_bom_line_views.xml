@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_line_view_form"/>
         <field name="arch" type="xml">
             <field name="bom_product_template_attribute_value_ids" position="after">
-                <field name="no_manufacture_unbuild_valuation" widget="boolean_toggle"></field>
+                <field name="disabled_mrp_unbuild_valuation" widget="boolean_toggle"></field>
             </field>
         </field>
     </record>

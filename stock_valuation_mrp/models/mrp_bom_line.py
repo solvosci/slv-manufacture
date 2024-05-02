@@ -6,7 +6,7 @@ from odoo import models, fields
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
-    no_manufacture_unbuild_valuation = fields.Boolean(
-        string='No valuation for manufacturing/unbuild',
+    disabled_mrp_unbuild_valuation = fields.Boolean(
+        string='Disabled for manufacturing/unbuild',
         default=False
     )
