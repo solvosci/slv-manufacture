@@ -127,7 +127,7 @@
         <field name="name">mrp.unbuild.calendar</field>
         <field name="model">mrp.unbuild</field>
         <field name="arch" type="xml">
-            <calendar date_start="unbuild_date" date_delay="scheduled_time" quick_add="False" color="product_id" string="Unbuild Orders">
+            <calendar date_start="shift_start_date" date_delay="scheduled_time" quick_add="False" color="product_id" string="Unbuild Orders">
                 <field name="name"/>
                 <field name="bom_code"/>
                 <field name="product_id"/>
