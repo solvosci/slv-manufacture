@@ -58,6 +58,11 @@ class MrpUnbuild(models.Model):
         else:
             self.shift_total_time = 0
 
+    @api.constrains("unbuild_date")
+    def _constrains_shift_start_date(self):
+        if not self.shift_start_date:
+            self.shift_start_date = self.unbuild_date
+
     @api.constrains("shift_end_date")
     def _constrains_shift_end_date(self):
         if self.shift_end_date:
