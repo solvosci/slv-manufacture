@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_bom_total_view_tree" model="ir.ui.view">
+        <field name="name">mrp.unbuild.bom.totals.view.tree (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.unbuild.bom.totals</field>
+        <field
+            name="inherit_id"
+            ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="bom_line_id" position="after">
+                <field
+                    name="disabled_mrp_unbuild_valuation_readonly"
+                    invisible="1"
+                />
+                <field                
+                    name="disabled_mrp_unbuild_valuation"
+                    string="Dis. Val."
+                    optional="hide"
+                    attrs="{'readonly': [('disabled_mrp_unbuild_valuation_readonly', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

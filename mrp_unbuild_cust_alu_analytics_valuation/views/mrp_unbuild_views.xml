@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_form_view_user" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form user mrp_unbuild_advanced (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.unbuild</field>
+        <field
+            name="inherit_id"
+            ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="cost_data"
+                    string="Cost data"
+                    groups="account.group_account_invoice"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                >
+                    <group>
+                        <group>
+                            <field name="currency_id" invisible="1" />
+                            <label
+                                for="cost_wo_extra_total"
+                                string="Original product cost"
+                            />
+                            <div class="o_row" style="font-weight: bold;">
+                                <field
+                                    name="cost_wo_extra_total"
+                                    widget="monetary"                                    
+                                />
+                                (<field
+                                    name="cost_wo_extra_total_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_waste"
+                                string="Extra cost - Waste"
+                            />
+                            <div class="o_row" style="font-weight: bold;">
+                                <field
+                                    name="cost_extra_waste"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_waste_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <field
+                                name="shift_effective_time"
+                                widget="float_time"
+                            />
+                            <label
+                                for="cost_extra_process_type"
+                                string="Extra cost - Process Type"
+                            />
+                            <div class="o_row" style="font-weight: bold;">
+                                <field
+                                    name="cost_extra_process_type"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_process_type_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_manpower"
+                                string="* Manpower"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_manpower"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_manpower_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_energy"
+                                string="* Energy"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_energy"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_energy_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_amortization"
+                                string="* Amortization"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_amortization"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_amortization_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_repair_maintenance_mgmt"
+                                string="* Rep/Main. Mgmt."
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_repair_maintenance_mgmt"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_repair_maintenance_mgmt_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_consumable"
+                                string="* Consumables"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_consumable"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_consumable_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <label
+                                for="cost_extra_pt_maquila"
+                                string="* Maquilas"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_maquila"
+                                    widget="monetary"
+                                />
+                                (<field
+                                    name="cost_extra_pt_maquila_unit"
+                                    widget="monetary"
+                                    style="font-style: italic;"
+                                />)
+                            </div>
+                            <field
+                                name="cost_extra_total"
+                                widget="monetary"
+                                string="Extra cost - Total"
+                                style="font-weight: bold;"
+                            />
+                        </group>
+                        <group>
+                            <label
+                                for="cost_product_qty"
+                                string="Components quantity"
+                            />
+                            <div class="o_row">
+                                <field name="cost_product_qty" digits="[12,3]"/>
+                                <field
+                                    name="product_uom_id"
+                                    options="{'no_open': True, 'no_create': True}"
+                                    groups="uom.group_uom"
+                                />
+                            </div>
+                            <field
+                                name="cost_product_perf"
+                                widget="percentage"
+                                string="Performance"
+                            />
+                            <field
+                                name="cost_unit_price"
+                                widget="monetary"
+                                string="Unit price"
+                            />
+                            <field
+                                name="cost_total"
+                                widget="monetary"
+                                string="Total"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>    
+</odoo>
