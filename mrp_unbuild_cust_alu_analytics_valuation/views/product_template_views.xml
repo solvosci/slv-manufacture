@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_stock_valuation_mrp" model="ir.ui.view">
+        <field name="name">product.template.form.view (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field 
+                    name="has_waste_cost_mgmt"
+                    attrs="{'invisible': [
+                        ('warehouse_valuation','=',False),
+                    ]}"
+                />
+                <field
+                    name="waste_mgmt_pricelist_id"
+                    attrs="{
+                        'invisible': 
+                        [
+                            '|',
+                                ('has_waste_cost_mgmt','=',False),
+                                ('warehouse_valuation','=',False)
+                        ],
+                        'required': [('has_waste_cost_mgmt','=',True),
+                    ]}"
+                />
+                <!-- TODO add domain based on product, maybe dynamic domain -->
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,485 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_cust_alu_analytics_valuation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-01 14:38+0000\n"
+"PO-Revision-Date: 2024-10-01 14:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__waste_mgmt_pricelist_id
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_template__waste_mgmt_pricelist_id
+msgid ""
+"\n"
+"        Pricelist used for cost management residue\n"
+"        "
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_template__has_waste_cost_mgmt
+msgid ""
+"\n"
+"        When enabled, operations from/to this warehouse will be covered,\n"
+"        such as internal transfers, incomings, productions, etc.\n"
+"        "
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__has_waste_cost_mgmt
+msgid ""
+"\n"
+"        When enabled, product residue will be covered with cost management\n"
+"        "
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Amortization"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Consumables"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Energy"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Manpower"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Maquilas"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Rep/Main. Mgmt."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Amortization"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_amortization
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_amortization
+#, python-format
+msgid "Amortization unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
+#, python-format
+msgid "Cannot activate a pricelist with a linked unbuild process type!"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
+#, python-format
+msgid "Cannot delete a pricelist with a linked unbuild process type!"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_product_qty
+msgid "Components cost product quantity"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Components quantity"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_unit_price
+msgid "Components unit cost price"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_consumable
+#, python-format
+msgid "Consumable unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Consumables"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_consumable
+msgid "Consumables unit cost (by unit)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Cost data"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.product_pricelist_view
+msgid "Costs Hist. Items"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_product_perf
+msgid "Costs Unbuild Performance"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Costs per hour"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Costs per unit"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__currency_id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_bom_total_view_tree
+msgid "Dis. Val."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_bom_totals__disabled_mrp_unbuild_valuation_readonly
+msgid "Disabled Mrp Unbuild Valuation Readonly"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_bom_line__disabled_mrp_unbuild_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_bom_totals__disabled_mrp_unbuild_valuation
+msgid "Disabled for manufacturing/unbuild valuation"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Energy"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_energy
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_energy
+#, python-format
+msgid "Energy unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Extra cost - Process Type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Extra cost - Total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Extra cost - Waste"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__has_waste_cost_mgmt
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_template__has_waste_cost_mgmt
+msgid "Has cost management residue"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Manpower"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_manpower
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_manpower
+#, python-format
+msgid "Manpower unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_maquila
+#, python-format
+msgid "Maquila unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Maquilas"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_maquila
+msgid "Maquilas unit cost (by unit)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_tree_view_stock_valuation_mrp
+msgid "No valuation"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Original product cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Performance"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__waste_mgmt_pricelist_id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_template__waste_mgmt_pricelist_id
+msgid "Pricelist for management residue"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.product_pricelist_view
+msgid "Process Type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.constraint,message:mrp_unbuild_cust_alu_analytics_valuation.constraint_product_pricelist_unbuild_process_type_unique
+msgid "Process type and cost type must unique by company!"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_history_average_price
+msgid "Product Average Price by Warehouse and Date"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild_bom_totals
+msgid "Quant Totals for BoM based Unbuild"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.product_pricelist_view
+msgid "Related Cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Repair/Maintenance"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_repair_maintenance_mgmt
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_repair_maintenance_mgmt
+#, python-format
+msgid "Repair/Maintenance management unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__shift_effective_time
+msgid "Shift Effective Time"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild_process_type
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_pricelist__unbuild_process_type_id
+msgid "Unbuild Process Type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_pricelist__unbuild_process_type_cost
+msgid "Unbuild Process Type Cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.product_pricelist_view
+msgid "Unbuild Process Type Data"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics_valuation.action_product_pricelist_item
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.product_pricelist_item_tree_view
+msgid "Unbuild Process Type Price History Items"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_process_type
+msgid "Unbuild extra cost - process type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_repair_maintenance_mgmt
+msgid "Unbuild extra cost - process type (Repair/Maintenance management)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_repair_maintenance_mgmt_unit
+msgid ""
+"Unbuild extra cost - process type (Repair/Maintenance management) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_amortization
+msgid "Unbuild extra cost - process type (amortization)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_amortization_unit
+msgid "Unbuild extra cost - process type (amortization) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_consumable
+msgid "Unbuild extra cost - process type (consumables)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_consumable_unit
+msgid "Unbuild extra cost - process type (consumables) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_energy
+msgid "Unbuild extra cost - process type (energy)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_energy_unit
+msgid "Unbuild extra cost - process type (energy) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower
+msgid "Unbuild extra cost - process type (manpower)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower_unit
+msgid "Unbuild extra cost - process type (manpower) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_maquila
+msgid "Unbuild extra cost - process type (maquilas)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_maquila_unit
+msgid "Unbuild extra cost - process type (maquilas) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_process_type_unit
+msgid "Unbuild extra cost - process type (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_total
+msgid "Unbuild extra cost - total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_waste
+msgid "Unbuild extra cost - waste"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_waste_unit
+msgid "Unbuild extra cost - waste (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_total
+msgid "Unbuild total cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_wo_extra_total
+msgid "Unbuild w/o extra cost - total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_wo_extra_total_unit
+msgid "Unbuild w/o extra cost - total (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Unit"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_pricelist_ids
+#, python-format
+msgid "Unit Costs History"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Unit price"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_uom_id
+msgid "UoM for unit costs (by unit)"
+msgstr ""

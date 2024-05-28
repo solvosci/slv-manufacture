@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_bom_line_form_view_stock_valuation_mrp" model="ir.ui.view">
+        <field name="name">mrp.bom.line.form.view (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.bom.line</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_line_view_form"/>
+        <field name="arch" type="xml">
+            <field name="bom_product_template_attribute_value_ids" position="after">
+                <field name="disabled_mrp_unbuild_valuation" widget="boolean_toggle"></field>
+            </field>
+        </field>
+    </record>
+</odoo>
