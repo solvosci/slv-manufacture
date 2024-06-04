@@ -37,14 +37,4 @@
 
     </data>
 
-    <!-- Action -->
-    <record id="action_mrp_process" model="ir.actions.act_window">
-        <field name="name">MRP Process</field>
-        <field name="res_model">mrp.unbuild.process.type</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <!-- Menu Item -->
-    <menuitem id="menu_mrp_process" name="Process Types" parent="mrp.menu_mrp_configuration" action="action_mrp_process"/>
-
 </odoo>

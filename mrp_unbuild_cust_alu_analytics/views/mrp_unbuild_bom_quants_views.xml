@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="mrp_unbuild_bom_quants_view_form_extended_only_save" model="ir.ui.view">
+            <field name="name">mrp.unbuild.bom.quants.view.form (extended) (only save)</field>
+            <field name="model">mrp.unbuild.bom.quants</field>
+            <field name="inherit_id" ref="mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_extended"/>
+            <field name="arch" type="xml">
+                <xpath expr="//footer/button[@name='save_and_new']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//footer/button[@name='save_and_close']" position="attributes">
+                    <attribute name="string">Save</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

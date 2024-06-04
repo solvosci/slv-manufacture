@@ -7,7 +7,8 @@ class MrpUnbuildIncidence(models.Model):
     _name = "mrp.unbuild.incidence"
     _description = 'MRP Incidence'
 
-    description = fields.Char()
+    name = fields.Char(compute='_compute_name')
+    detail = fields.Char()
     duration = fields.Float(required=True)
     machine = fields.Char()
     state = fields.Selection([
@@ -18,9 +19,22 @@ class MrpUnbuildIncidence(models.Model):
         comodel_name="mrp.unbuild",
     )
     incidence_type_id = fields.Many2one(
-        comodel_name='mrp.incidence.type'
+        comodel_name='mrp.incidence.type',
+        string='Type'
     )
     unbuild_date = fields.Datetime(
         related='unbuild_id.unbuild_date',
         store=True
     )
+    incidence_description_id = fields.Many2one(
+        comodel_name='mrp.incidence.description',
+        inverse_name='incidence_type_id',
+        string='Description'
+    )
+
+    def _compute_name(self):
+        for record in self:
+            record.name = '%s - %s' % (
+                record.incidence_type_id.name,
+                record.incidence_description_id.name
+            )

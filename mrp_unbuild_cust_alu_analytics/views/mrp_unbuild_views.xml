@@ -1,5 +1,6 @@
 <odoo>
     <data>
+
         <!-- Form View -->
         <record id="mrp_unbuild_form_process_type_form_view" model="ir.ui.view">
             <field name="name">mrp.unbuild.view.form (process_id)</field>
@@ -8,6 +9,20 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='product_id']" position="before">
                     <field name="process_type_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="mrp_unbuild_form_process_type_kanban_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.kanban (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_kanban_view_shift_dates"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='btn_action_tablet']" position="after">
+                    <div class="col-6 text-right" style="margin:auto;">
+                        <span><b><field name="process_type_id"/></b></span>
+                    </div>
                 </xpath>
             </field>
         </record>
@@ -24,6 +39,7 @@
             </field>
         </record>
 
+        <!-- Add incidences and analytics -->
         <record id="mrp_unbuild_form_incidence_ids_analytics" model="ir.ui.view">
             <field name="name">mrp.unbuild.form (incidence_ids) (analytic_ids) (mrp_unbuild_cust_alu_analytics)</field>
             <field name="model">mrp.unbuild</field>
@@ -34,7 +50,8 @@
                         <field name="incidence_ids" context="{'default_incidence_ids': id}" class="oe_editable_tree_only" widget="one2many">
                             <tree editable="bottom" create="1" edit="1">
                                 <field name="incidence_type_id"/>
-                                <field name="description"/>
+                                <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]"/>
+                                <field name="detail"/>
                                 <field name="duration" widget="float_time"/>
                                 <field name="machine"/>
                                 <field name="state"/>
@@ -48,5 +65,43 @@
                 </xpath>
             </field>
         </record>
+
+        <!-- Action Tree, Form tablet Views -->
+        <record id="action_incidences_tree_form_reduced_view" model="ir.actions.act_window">
+            <field name="name">Incidences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.unbuild.incidence</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('unbuild_id', '=', active_id)]</field>
+            <field name="context">{'default_unbuild_id': active_id}</field>
+            <!-- TODO make a better custom view assignment -->
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('mrp_unbuild_cust_alu_analytics.mrp_unbuild_incidence_process_type_tree_reduced_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('mrp_unbuild_cust_alu_analytics.mrp_unbuild_incidence_process_type_form_reduced_view')})]"/>
+        </record>
+
+        <!-- Inherit Form Tablet View -->
+        <record id="mrp_unbuild_form_process_type_form_tablet_view" model="ir.ui.view">
+            <field name="name">mrp.unbuild.view.form tablet (process_id)</field>
+            <field name="model">mrp.unbuild</field>
+            <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_tablet"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="process_type_id" nolabel="1" readonly="1"/> | 
+                </xpath>
+                <xpath expr="//button[@name='action_materials_tree_reduced_view']/.." position="after">
+                    <group>
+                        <button
+                            class="btn btn-primary incidence_button"
+                            name="%(action_incidences_tree_form_reduced_view)d"
+                            type="action"
+                            style="font-size:3em">
+                            INCIDENCES
+                        </button>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_mrp_incidence_description_form" model="ir.ui.view">
+            <field name="name">mrp.incidence.description.form</field>
+            <field name="model">mrp.incidence.description</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="Incidence Description" nolabel="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="incidence_type_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_mrp_incidence_description_tree" model="ir.ui.view">
+            <field name="name">mrp.incidence.description.tree</field>
+            <field name="model">mrp.incidence.description</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="incidence_type_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
