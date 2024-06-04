@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-11 14:52+0000\n"
-"PO-Revision-Date: 2024-04-11 14:52+0000\n"
+"POT-Creation-Date: 2024-06-03 12:46+0000\n"
+"PO-Revision-Date: 2024-06-03 12:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,6 +67,7 @@ msgstr ""
 #. module: mrp_unbuild_cust_alu_analytics
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #, python-format
 msgid "Can't create folder"
 msgstr ""
@@ -82,6 +83,7 @@ msgid "Co"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__code
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__code
 msgid "Code"
 msgstr ""
@@ -98,6 +100,11 @@ msgid "Companies"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__company_id
+msgid "Company"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -108,6 +115,7 @@ msgid "Cr"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__create_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__create_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_uid
@@ -115,6 +123,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__create_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__create_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_date
@@ -133,11 +142,17 @@ msgid "Date"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
-#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__description
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_description_id
 msgid "Description"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__detail
+msgid "Detail"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__display_name
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__display_name
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__display_name
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__display_name
@@ -189,11 +204,17 @@ msgid "Group by..."
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__id
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__id
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__id
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__id
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_cust_alu_analytics_mpr_unbuild_xlsx__id
 msgid "ID"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_process_type_form_tablet_view
+msgid "INCIDENCES"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
@@ -213,7 +234,12 @@ msgid "Incidence Count"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
-#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_description_form
+msgid "Incidence Description"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__incidence_type_id
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
 msgid "Incidence Type"
 msgstr ""
@@ -226,6 +252,7 @@ msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_incidence_type.py:0
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_incidences_tree_form_reduced_view
 #: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_incidence
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__incidence_ids
 #: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_incidence
@@ -236,6 +263,13 @@ msgid "Incidences"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_incidence_description
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_incidence_description
+msgid "Incidences Description"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence____last_update
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type____last_update
@@ -244,6 +278,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__write_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__write_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_uid
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_uid
@@ -251,6 +286,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__write_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__write_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_date
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_date
@@ -298,7 +334,9 @@ msgid "Na"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__name
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__name
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__name
 msgid "Name"
 msgstr ""
@@ -357,11 +395,6 @@ msgid "Quant Totals for BoM based Unbuild"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
-#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_bom_quants
-msgid "Quants for BoM based Unbuild"
-msgstr ""
-
-#. module: mrp_unbuild_cust_alu_analytics
 #: model:ir.actions.server,name:mrp_unbuild_cust_alu_analytics.cron_ir_actions_server
 #: model:ir.cron,cron_name:mrp_unbuild_cust_alu_analytics.cron
 #: model:ir.cron,name:mrp_unbuild_cust_alu_analytics.cron
@@ -375,6 +408,11 @@ msgid "Rest Break Time"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_bom_quants_view_form_extended_only_save
+msgid "Save"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
 #: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_19
 msgid "Sb"
 msgstr ""
@@ -383,6 +421,11 @@ msgstr ""
 #: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
 #, python-format
 msgid "Scheduled Time"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__shift_stop_time
+msgid "Shift Stop Time"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
@@ -470,6 +513,11 @@ msgid "Total Qty Percentage"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_type_id
+msgid "Type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__unbuild_id
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.res_config_settings_unbuild_workflow_view_form
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
@@ -511,6 +559,7 @@ msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #, python-format
 msgid "XML Analytic Path not defined"
 msgstr ""
@@ -529,6 +578,11 @@ msgstr ""
 #. module: mrp_unbuild_cust_alu_analytics
 #: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_23
 msgid "Zr"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_incidence_description
+msgid "mrp.incidence.description"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics

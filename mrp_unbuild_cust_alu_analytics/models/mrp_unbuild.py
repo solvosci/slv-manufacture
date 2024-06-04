@@ -22,6 +22,7 @@ class MrpUnbuild(models.Model):
         string="Analytics",
         copy=False
     )
+    shift_stop_time = fields.Float(compute="_compute_shift_stop_time", store=True)
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
@@ -56,6 +57,14 @@ class MrpUnbuild(models.Model):
                 ("process_type_ids", "=", record.process_type_id.id),
             ]
         return {"domain": {"bom_id": domain_bom_id, "product_id": domain_product_id}}
+
+    @api.depends('incidence_ids', 'incidence_ids.duration')
+    def _compute_shift_stop_time(self):
+        for record in self:
+            if record.incidence_ids:
+                record.shift_stop_time = sum(record.incidence_ids.mapped('duration'))
+            else:
+                record.shift_stop_time = 0
 
     def _read_qc_inspection_xml(self):
         logger = logging.getLogger(__name__)

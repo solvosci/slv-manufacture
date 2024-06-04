@@ -13,12 +13,40 @@
         <field name="view_mode">tree</field>
     </record>
 
+    <record id="action_mrp_incidence_description" model="ir.actions.act_window">
+        <field name="name">Incidences Description</field>
+        <field name="res_model">mrp.incidence.description</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_mrp_process" model="ir.actions.act_window">
+        <field name="name">MRP Process</field>
+        <field name="res_model">mrp.unbuild.process.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <menuitem 
         id="menu_mrp_incidence_type"
         name="Incidence Types"
         parent="mrp.menu_mrp_configuration"
         action="action_mrp_incidence_type"
         sequence="30"
+    />
+
+    <menuitem
+        id="menu_mrp_incidence_description"
+        name="Incidences Description"
+        parent="mrp.menu_mrp_configuration"
+        action="action_mrp_incidence_description"
+        sequence="35"
+    />
+
+    <menuitem
+        id="menu_mrp_process"
+        name="Process Types"
+        parent="mrp.menu_mrp_configuration"
+        action="action_mrp_process"
+        sequence="40"
     />
 
     <menuitem 

@@ -9,7 +9,8 @@
                 <field name="unbuild_id"/>
                 <field name="unbuild_date"/>
                 <field name="incidence_type_id"/>
-                <field name="description"/>
+                <field name="incidence_description_id"/>
+                <field name="detail"/>
                 <field name="duration" widget="float_time"/>
                 <field name="machine"/>
                 <field name="state"/>
@@ -23,7 +24,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="incidence_type_id"/>
-                <field name="description"/>
+                <field name="detail"/>
                 <group expand="0" string="Filters">
                     <filter name="in_progress" string="In progress" domain="[('state', '=', 'in_progress')]"/>
                     <filter name="solved" string="Solved" domain="[('state', '=', 'solved')]"/>
@@ -36,6 +37,46 @@
                     <filter string="Unbuild Date" name="groupby_unbuild_date" context="{'group_by': 'unbuild_date'}"/>
                 </group>
             </search>
+        </field>
+    </record>
+
+    <!-- Tree View Tablet -->
+    <record id="mrp_unbuild_incidence_process_type_tree_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.view.tree (process_id)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <tree class="tablet_font_size">
+                <field name="incidence_type_id"/>
+                <field name="incidence_description_id"/>
+                <field name="detail"/>
+                <field name="duration" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View Tablet -->
+    <record id="mrp_unbuild_incidence_process_type_form_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.view.form (process_id)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <form class="tablet_font_size">
+                <group>
+                    <group>
+                        <field name="incidence_type_id"/>
+                        <field name="duration" widget="float_time"/>
+                    </group>
+                    <group>
+                        <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]"/>
+                        <field name="state"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="machine"/>
+                    <field name="detail"/>
+                </group>
+            </form>
         </field>
     </record>
 
