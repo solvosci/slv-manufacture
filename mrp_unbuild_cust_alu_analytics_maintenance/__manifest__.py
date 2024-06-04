@@ -5,7 +5,7 @@
     "summary": """
         Connect incidences with maintenance_equipment
     """,
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.1.1",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "author": "Solvos",
@@ -15,6 +15,7 @@
         "mrp_unbuild_cust_alu_analytics"
     ],
     "data": [
+        "security/mrp_unbuild_cust_alu_analytics_maintenance_security.xml",
         "views/mrp_unbuild_views.xml",
         "views/maintenance_equipment_views.xml",
         "views/mrp_unbuild_incidence_views.xml",
