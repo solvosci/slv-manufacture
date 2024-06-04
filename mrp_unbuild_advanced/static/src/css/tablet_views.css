@@ -1,0 +1,18 @@
+.tablet_font_size {
+    font-size: 1.9rem;
+}
+.tablet_font_size div.o_horizontal_separator {
+    font-size: 1.9em !important;
+}
+.tablet_font_size > div > table > thead > tr > th{
+    border-left-width: 3px !important;
+}
+.tablet_font_size div label {
+    font-size: 1.9rem !important;
+}
+.tablet_font_size table label {
+    font-size: 1.9rem !important;
+}
+div.tablet_font_size > div:nth-child(3) > table > tbody > tr > td {
+    text-align: center !important;
+}

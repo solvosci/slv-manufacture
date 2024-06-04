@@ -120,3 +120,33 @@ class MrpUnbuild(models.Model):
         moves._unlink_previous_stuff()
         moves.unlink()
         self.state = "draft"
+
+    def action_open_tablet_unbuild_form_view(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'mrp.unbuild',
+            'view_mode': 'form',
+            'view_id': self.env.ref("mrp_unbuild_advanced.mrp_unbuild_form_view_tablet").id,
+            'res_id': self.id,
+        }
+
+    def action_materials_tree_reduced_view(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Materials'),
+            'res_model': 'mrp.unbuild.bom.totals',
+            'view_mode': 'tree',
+            'view_id': self.env.ref("mrp_unbuild_advanced.mrp_unbuild_bom_totals_reduced_view").id,
+            'domain': [('unbuild_id', '=', self.id)],
+        }
+
+    @api.model
+    def create(self, values):
+        if self.user_has_groups('mrp_unbuild_advanced.group_mrp_unbuild_tablet'):
+            raise ValidationError(_('A tablet user cant perform this action!'))
+        return super(MrpUnbuild, self).create(values)
+
+    def unlink(self):
+        if self.user_has_groups('mrp_unbuild_advanced.group_mrp_unbuild_tablet'):
+            raise ValidationError(_('A tablet user cant perform this action!'))
+        return super(MrpUnbuild, self).unlink()

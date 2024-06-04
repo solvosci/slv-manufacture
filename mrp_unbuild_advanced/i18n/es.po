@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-02 08:32+0000\n"
-"PO-Revision-Date: 2024-05-02 08:32+0000\n"
+"POT-Creation-Date: 2024-06-04 07:08+0000\n"
+"PO-Revision-Date: 2024-06-04 07:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,79 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#, python-format
+msgid "A tablet user cant perform this action!"
+msgstr "¡Un usuario de tablet no puede realizar esta acción!"
+
+#. module: mrp_unbuild_advanced
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "Back to draft"
-msgstr "Cambiar a borrador"
+msgstr "Convertir a Borrador"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__bom_code
 msgid "Bom Code"
-msgstr "Código LdM"
+msgstr "Código BOM"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "Break time"
-msgstr "Descanso"
+msgstr "Tiempo de descanso"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_bom_totals_reduced_view
+msgid "CORRECT"
+msgstr "CORREGIR"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_kanban_view_shift_dates
+msgid "Custom form view"
+msgstr "Vista formulario Personalizada"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_bom_quants_reduced_view
+msgid "DELETE"
+msgstr "ELIMINAR"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "End"
 msgstr "Fin"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_kanban_view_shift_dates
+msgid "From:"
+msgstr "Desde:"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
+msgid "MATERIALS"
+msgstr "MATERIALES"
+
+#. module: mrp_unbuild_advanced
+#: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
+#, python-format
+msgid "Materials"
+msgstr "Materiales"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.actions.act_window,name:mrp_unbuild_advanced.action_mrp_unbuild_kanban_view_tablet
+msgid "Mrp Unbuilds"
+msgstr "Despieces "
+
+#. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__notes
 msgid "Notes"
 msgstr "Observaciones"
+
+#. module: mrp_unbuild_advanced
+#: model:ir.model,name:mrp_unbuild_advanced.model_mrp_unbuild_bom_totals
+msgid "Quant Totals for BoM based Unbuild"
+msgstr "Resúmenes de cantidades para LdM basado en Desconstrucción"
 
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__scheduled_time
@@ -68,7 +118,7 @@ msgstr "Total paradas técnicas"
 #. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__shift_total_time
 msgid "Shift Total Time"
-msgstr "Tiempo total del turno"
+msgstr "Tiempo real"
 
 #. module: mrp_unbuild_advanced
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
@@ -90,11 +140,13 @@ msgid "Shift end date must be older than start date!"
 msgstr "¡La fecha fin debe de ser mayor que la fecha inicio!"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "Shift time"
-msgstr "Tiempo del turno"
+msgstr "Tiempo real"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "Start"
 msgstr "Inicio"
@@ -102,9 +154,10 @@ msgstr "Inicio"
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de existencias"
+msgstr "Movimiento de Inventario"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_user
 msgid "Stop time"
 msgstr "Total paradas técnicas"
@@ -122,6 +175,11 @@ msgstr ""
 "despiece se complete"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_kanban_view_shift_dates
+msgid "To:"
+msgstr "Hasta:"
+
+#. module: mrp_unbuild_advanced
 #: model:ir.model.fields,field_description:mrp_unbuild_advanced.field_mrp_unbuild__unbuild_date
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_search_view
 msgid "Unbuild Date"
@@ -130,15 +188,38 @@ msgstr "Fecha de despiece"
 #. module: mrp_unbuild_advanced
 #: model:ir.model,name:mrp_unbuild_advanced.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Orden de despiece"
+msgstr "Orden de deconstrucción"
 
 #. module: mrp_unbuild_advanced
+#: model:ir.ui.menu,name:mrp_unbuild_advanced.menu_mrp_unbuild_kanban_view_tablet
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_calendar_view
 msgid "Unbuild Orders"
 msgstr "Ordenes de despiece"
 
 #. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
+msgid "Unbuild Product"
+msgstr "Producto de despiece"
+
+#. module: mrp_unbuild_advanced
 #: code:addons/mrp_unbuild_advanced/models/mrp_unbuild.py:0
 #, python-format
 msgid "Unbuild date cannot be in the future before unbuild action!"
-msgstr "¡La fecha de despiece no puede ser futura antes de ejecutar la acción de despiezar!"
+msgstr ""
+"¡La fecha de despiece no puede ser futura antes de ejecutar la acción de "
+"despiezar!"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_form_view_tablet
+msgid "Unbuild order"
+msgstr "Orden de despiece"
+
+#. module: mrp_unbuild_advanced
+#: model:res.groups,name:mrp_unbuild_advanced.group_mrp_unbuild_tablet
+msgid "Unbuild user on tablet"
+msgstr "Usuario de despieces en tablet"
+
+#. module: mrp_unbuild_advanced
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_bom_totals_reduced_view
+msgid "WEIGHT"
+msgstr "PESO"
