@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_unbuild_incidence_process_type_form_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.incidence.form.inherit</field>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.mrp_unbuild_incidence_process_type_form_reduced_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='machine']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='machine']" position="after">
+                <field name="maintenance_equipment_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
