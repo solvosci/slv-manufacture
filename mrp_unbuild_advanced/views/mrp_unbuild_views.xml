@@ -84,6 +84,67 @@
         </field>
     </record>
 
+    <record id="mrp_unbuild_form_view_tablet" model="ir.ui.view">
+        <field name="name">
+            mrp.unbuild.form tablet (in mrp_unbuild_advanced)
+        </field>
+        <field name="priority">100</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="arch" type="xml">
+            <form string="Unbuild order" class="tablet_font_size">
+                <div class="oe_title">
+                    <field name="company_id" invisible="1"/>
+                    <h1><field name="product_id" placeholder="Unbuild Product" nolabel="1" readonly="1"/></h1>
+                </div>
+                <group
+                    name="group_shift"
+                >
+                    <group>
+                        <field name="state" invisible="1"/>
+                        <field name="shift_start_date" string="Start"/>
+                        <field name="shift_end_date" string="End"/>
+                        <field name="notes"/>
+                    </group>
+                    <group>
+                        <field
+                            name="scheduled_time"
+                            widget="float_time"
+                            readonly="1"
+                        />
+                        <field
+                            name="shift_total_time"
+                            widget="float_time"
+                            string="Shift time"
+                            readonly="1"
+                        />
+                        <field
+                            name="shift_break_time"
+                            widget="float_time"
+                            string="Break time"
+                        />
+                        <field
+                            name="shift_stop_time"
+                            widget="float_time"
+                            string="Stop time"
+                            readonly="1"
+                        />
+                    </group>
+                </group>
+                <group>
+                    <group style="{'text-align':'center'}">
+                        <button
+                            class="btn btn-primary material_button"
+                            name="action_materials_tree_reduced_view"
+                            type="object"
+                            style="font-size:3em">
+                            MATERIALS
+                        </button>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
     <record id="mrp_unbuild_tree_view" model="ir.ui.view">
         <field name="name">mrp.unbuild.tree (in mrp_unbuild_advanced)</field>
         <field name="model">mrp.unbuild</field>
@@ -135,8 +196,46 @@
         </field>
     </record>
 
+    <record id="mrp_unbuild_kanban_view_shift_dates" model="ir.ui.view">
+        <field name="name">mrp.unbuild.kanban (Shift dates)</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_kanban_record_top']" position="after">
+                <field name="state" invisible="1"/>
+                <div class="row">
+                    <div name="btn_action_tablet" class="col-6 text-center">
+                        <button 
+                            string="Custom form view"
+                            name="action_open_tablet_unbuild_form_view"
+                            type="object"
+                            style="background-image: url(/mrp_unbuild_advanced/static/description/icon_tablet.png); display: block; width:70px; height:70px; background-size: cover;"
+                        />
+                    </div>
+                    <!-- attrs="{'invisible': [('user', '!=', '')]}" Invisible if user is not operario-->
+                </div>
+                <div class="row">
+                    <div class="col-3 text-left">
+                        <span><label>From:</label></span>
+                    </div>
+                    <div class="col-9 text-right">
+                        <span><field name="shift_start_date"/></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-left">
+                        <span><label>To:</label></span>
+                    </div>
+                    <div class="col-9 text-right">
+                        <span><field name="shift_end_date"/></span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Replace: <field name="view_mode">tree,kanban,form</field> -->
-    <!-- Add new context default draft unbuilds -->
+    <!-- Add new context default draft unbuilds --> 
     <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
         <field name="view_mode">tree,kanban,form,calendar</field>
         <field name="context">{
@@ -144,5 +243,21 @@
             'mrp_unbuild_calendar': True
         }</field>
     </record>
+
+    <record id="action_mrp_unbuild_kanban_view_tablet" model="ir.actions.act_window">
+        <field name="name">Mrp Unbuilds</field>
+        <field name="res_model">mrp.unbuild</field>
+        <field name="view_mode">kanban</field>
+        <field name="context">{
+            'search_default_draft': 1
+        }</field>
+    </record>
+
+    <menuitem
+        id="menu_mrp_unbuild_kanban_view_tablet"
+        name="Unbuild Orders"
+        web_icon="mrp_unbuild_advanced,static/description/icon_tablet.png"
+        action="action_mrp_unbuild_kanban_view_tablet"
+    />
 
 </odoo>

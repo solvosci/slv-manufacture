@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!-- Add our custom css to backend assets -->
+        <template id="assets_backend" name="mrp_unbuild_advanced assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/mrp_unbuild_advanced/static/src/css/tablet_views.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

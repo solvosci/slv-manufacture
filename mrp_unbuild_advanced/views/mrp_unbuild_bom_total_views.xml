@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_unbuild_bom_quants_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.bom.quants.view.tree (from mrp_unbuild_advanced)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.bom.quants</field>
+        <field name="arch" type="xml">
+            <tree class="tablet_font_size">
+                <field name="bom_line_id" />
+                <field name="custom_qty" />
+                <field name="product_uom_id" />
+                <button name="unlink"
+                    class="btn btn-danger"
+                    type="object"
+                    string="DELETE"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View Tablet -->
+    <record id="mrp_unbuild_bom_totals_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.bom.totals.view.tree (from mrp_unbuild_advanced)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.bom.totals</field>
+        <field name="arch" type="xml">
+            <tree class="tablet_font_size">
+                <field name="deco_danger" invisible="1"/>
+                <field name="bom_line_id"/>
+                <field name="total_qty"/>
+                <button name="product_weighing"
+                    class="btn btn-success"
+                    type="object"
+                    string="WEIGHT"
+                />
+                <button name="action_mrp_unbuild_bom_quants_views"
+                    class="btn btn-warning"
+                    type="object"
+                    string="CORRECT"
+                    context="{'bom_line_id': bom_line_id}"
+                />
+            </tree>
+        </field>
+    </record>
+    
+</odoo>
