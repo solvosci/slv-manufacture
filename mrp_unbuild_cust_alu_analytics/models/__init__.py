@@ -8,3 +8,4 @@ from . import res_config_settings
 from . import qc_test
 from . import mrp_incidence_type
 from . import mrp_incidence_description
+from . import qc_inspection_lines

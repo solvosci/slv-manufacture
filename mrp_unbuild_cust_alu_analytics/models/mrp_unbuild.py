@@ -115,10 +115,15 @@ class MrpUnbuild(models.Model):
                     for analytic in data['children'][0]['children'][2]['children'][0]['children'][1]['children']:
                         for element in analytic['children']:
                             if element['attributes']:
-                                if element['attributes']['StatType'] == 'Mean':
-                                    analytics.append({
-                                        analytic['attributes']['ElementName']: float(element['children'][0]['text'])
-                                    })
+                                if element['attributes']['StatType'] == 'Reported':
+                                    if element['attributes']['CalibrationStatus'] == 'UnderRange':
+                                        analytics.append({
+                                            analytic['attributes']['ElementName']: "<" + element['children'][0]['text']
+                                        })
+                                    else:
+                                        analytics.append({
+                                            analytic['attributes']['ElementName']: element['children'][0]['text']
+                                        })
 
                     #Process xml data
                     if unbuild_id:
@@ -138,7 +143,10 @@ class MrpUnbuild(models.Model):
                             inspection_name = inspection_line.name
                             for item in analytics:
                                 if inspection_name in item:
-                                    inspection_line.quantitative_value = item[inspection_name] if item[inspection_name] > 0 else item[inspection_name] * -1
+                                    if item[inspection_name][0] == '<':
+                                        inspection_line.minor = True
+                                        item[inspection_name] = item[inspection_name].split("<")[1]
+                                    inspection_line.quantitative_value = float(item[inspection_name]) if float(item[inspection_name]) > 0 else float(item[inspection_name]) * -1
                                     break
                             logger.info(
                                 "Added Analytics for mrp ubuild: %s", unbuild_id.name
