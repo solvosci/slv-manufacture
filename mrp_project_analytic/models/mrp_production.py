@@ -31,3 +31,22 @@ class ManufactureOrder(models.Model):
                     self.sudo().project_id.analytic_account_id.id or False
                 ),
             })
+
+    def mark_analytic_mrp_from_child(self):
+        child_productions = self._get_children()
+        child_products = child_productions.mapped('product_id')
+        raw_material_moves = self.move_raw_ids.filtered(
+            lambda x: x.state == "done" and x.product_id in child_products
+        )
+        aml_ids = raw_material_moves.sudo().mapped('account_move_ids.line_ids')
+        
+        if aml_ids:
+            debit_aml_ids = aml_ids.filtered(lambda x: x.debit > 0)
+            debit_aml_ids.write({
+                "analytic_mrp_from_child": True,
+            })
+    
+    def button_mark_done(self):
+        res = super().button_mark_done()
+        self.mark_analytic_mrp_from_child()
+        return res
