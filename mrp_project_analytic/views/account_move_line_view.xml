@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_move_line_form_view" model="ir.ui.view">
+        <field name="name">account.move.line.form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_tag_ids']" position="after">
+                <field name="analytic_mrp_from_child" widget="boolean_toggle" groups="analytic.group_analytic_accounting"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
