@@ -65,6 +65,16 @@ class MrpUnbuild(models.Model):
                 record.shift_stop_time = sum(record.incidence_ids.mapped('duration'))
             else:
                 record.shift_stop_time = 0
+                
+    def action_materials_tree_reduced_view(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Materials'),
+            'res_model': 'mrp.unbuild.bom.totals',
+            'view_mode': 'tree',
+            'view_id': self.env.ref("mrp_unbuild_cust_alu_analytics.mrp_unbuild_bom_totals_reduced_view").id,
+            'domain': [('unbuild_id', '=', self.id)],
+        }
 
     def _read_qc_inspection_xml(self):
         logger = logging.getLogger(__name__)
