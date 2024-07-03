@@ -18,6 +18,7 @@
         "views/mrp_bom_views.xml",
         "views/mrp_bom_line_views.xml",
         "views/mrp_unbuild_process_type_views.xml",
+        "views/mrp_unbuild_bom_totals_views.xml",
         "views/mrp_unbuild_views.xml",
     ],
     'installable': True,

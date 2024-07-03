@@ -7,6 +7,6 @@ class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
 
     disabled_mrp_unbuild_valuation = fields.Boolean(
-        string='Disabled for manufacturing/unbuild',
+        string='Disabled for manufacturing/unbuild valuation',
         default=False
     )

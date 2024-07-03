@@ -9,7 +9,7 @@ class MrpUnbuildProcessType(models.Model):
     cost_hr_manpower = fields.Monetary(
         "Manpower unit cost",
         currency_field='currency_id',
-        default=0.0,
+        default=0.0,        
     )
     cost_hr_energy = fields.Monetary(
         "Energy unit cost",
@@ -31,3 +31,12 @@ class MrpUnbuildProcessType(models.Model):
         related='company_id.currency_id',
         readonly=True
     )
+
+    def _get_costs(self, total_time):
+        self.ensure_one()
+        return total_time * (
+            self.cost_hr_manpower
+            + self.cost_hr_energy
+            + self.cost_hr_amortization
+            + self.cost_hr_repair_maintenance_mgmt
+        )
