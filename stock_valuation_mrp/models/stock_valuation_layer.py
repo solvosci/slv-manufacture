@@ -119,12 +119,33 @@ class StockValuationLayer(models.Model):
                     unbuild_product = move_id.unbuild_id.product_id
 
                     # vals["unit_cost"] = unbuild_product.standard_price_warehouse_ids.filtered(lambda x: x.warehouse_id.id == vals.get("warehouse_id")).average_price
+                    # <VAL2.0>
+                    # - Teniendo calculado el extra, obtener nuevo precio valoración corregido
+                    # - Y la cantidad será la cantidad o bien 0, dependiendo de la naturaleza del producto 
+                    # Código antiguo
+                    # vals["unit_cost"] = PHAP_sudo.get_price(
+                    #     unbuild_product,
+                    #     move_id.unbuild_id.location_id.get_warehouse(),
+                    #     dt=date
+                    # )
+                    # vals["value"] = vals.get("unit_cost") * vals.get("quantity")
                     vals["unit_cost"] = PHAP_sudo.get_price(
                         unbuild_product,
                         move_id.unbuild_id.location_id.get_warehouse(),
                         dt=date
                     )
-                    vals["value"] = vals.get("unit_cost") * vals.get("quantity")
+                    # TODO BAD COMPARISON (an unbuild could have as produced product itself)!!!
+                    #      Replace with quantity < 0 comparison
+                    # TODO float_compare
+                    # if unbuild_product == move_id.product_id:
+                    if vals.get("quantity", 0.0) < 0.0:
+                        vals["value"] = vals.get("unit_cost") * vals.get("quantity")
+                    else:
+                        ub_quantity = move_id._compute_unbuild_svl_quantity(vals.get("quantity"))
+                        # vals["unit_cost"] = ub_quantity and move_id.unbuild_id.cost_unit_price or 0.0
+                        vals["unit_cost"] = ub_quantity and move_id._compute_unbuild_svl_unit_cost(vals["unit_cost"]) or 0.0
+                        vals["value"] = vals["unit_cost"] * vals.get("quantity", 0.0)
+                    # </VAL2.0>
 
                     # unbuild_move = move_id.unbuild_id.produce_line_ids.filtered(lambda x: x.warehouse_id.id is False)
                     # if move_id != unbuild_move:
