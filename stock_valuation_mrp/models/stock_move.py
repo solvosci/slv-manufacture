@@ -63,6 +63,14 @@ class StockMove(models.Model):
         # TODO divide by zero, is it possible?
         return total_amount / total_qtys
 
+    def _compute_unbuild_svl_unit_cost(self, phap_price):
+        # Override by other modules
+        return phap_price
+
+    def _compute_unbuild_svl_quantity(self, quantity):
+        # Override by other modules
+        return quantity
+
     def _unlink_previous_stuff(self):
         """
         When an unbuild is undone (moved to "draft" state again), stock moves
