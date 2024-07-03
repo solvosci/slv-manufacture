@@ -12,7 +12,13 @@
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp_unbuild_cust_alu_analytics", "stock_valuation_mrp"],
     "data": [
+        "views/product_template_views.xml",
+        "views/product_product_views.xml",
+        "views/mrp_unbuild_views.xml",
+        "views/mrp_bom_views.xml",
+        "views/mrp_bom_line_views.xml",
         "views/mrp_unbuild_process_type_views.xml",
+        "views/mrp_unbuild_views.xml",
     ],
     'installable': True,
 }

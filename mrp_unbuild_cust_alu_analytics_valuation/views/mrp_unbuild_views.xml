@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_unbuild_form_view_user" model="ir.ui.view">
+        <field name="name">mrp.unbuild.form user mrp_unbuild_advanced (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.unbuild</field>
+        <field
+            name="inherit_id"
+            ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"
+        />
+        <field name="arch" type="xml">
+            <!-- TODO temporary location, better move to a notebook? -->
+            <xpath expr="//group[@name='group_shift']" position="after">
+                <group
+                    name="group_costs"
+                    groups="account.group_account_invoice"
+                    attrs="{'invisible': [('state', '=', 'draft')]}"
+                    string="Cost data"
+                >
+                    <group>
+                        <field name="currency_id" invisible="1" />
+                        <field
+                            name="cost_extra_waste"
+                            widget="monetary"
+                            string="Extra cost - Waste"
+                        />
+                        <field
+                            name="cost_extra_total"
+                            widget="monetary"
+                            string="Extra cost - Total"
+                        />
+                    </group>
+                    <group>
+                        <label
+                            for="cost_product_qty"
+                            string="Components quantity"
+                        />
+                        <div class="o_row">
+                            <field name="cost_product_qty" digits="[12,3]"/>
+                            <field
+                                name="product_uom_id"
+                                options="{'no_open': True, 'no_create': True}"
+                                groups="uom.group_uom"
+                            />
+                        </div>                    
+                        <field
+                            name="cost_unit_price"
+                            widget="monetary"
+                            string="Unit price"
+                        />
+                        <field
+                            name="cost_total"
+                            widget="monetary"
+                            string="Total"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>    
+</odoo>
