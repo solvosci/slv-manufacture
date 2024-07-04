@@ -8,7 +8,7 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "13.0.2.11.0",
+    "version": "13.0.2.11.1",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp_tag", "stock_move_action_done_custdate"],
@@ -16,7 +16,6 @@
         "views/assets.xml",
         "security/mrp_unbuild_advanced_security.xml",
         "views/mrp_unbuild_views.xml",
-        "views/mrp_unbuild_bom_total_views.xml",
     ],
     'installable': True,
 }

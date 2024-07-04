@@ -89,15 +89,26 @@
                 <xpath expr="//field[@name='product_id']" position="before">
                     <field name="process_type_id" nolabel="1" readonly="1"/> | 
                 </xpath>
-                <xpath expr="//button[@name='action_materials_tree_reduced_view']/.." position="after">
+                <xpath expr="//group[@name='group_shift']" position="after">
                     <group>
-                        <button
-                            class="btn btn-primary incidence_button"
-                            name="%(action_incidences_tree_form_reduced_view)d"
-                            type="action"
-                            style="font-size:3em">
-                            INCIDENCES
-                        </button>
+                        <group>
+                            <button
+                                class="btn btn-primary incidence_button"
+                                name="%(action_incidences_tree_form_reduced_view)d"
+                                type="action"
+                                style="font-size:3em">
+                                INCIDENCES
+                            </button>
+                        </group>
+                        <group style="{'text-align':'center'}">
+                            <button
+                                class="btn btn-primary material_button"
+                                name="action_materials_tree_reduced_view"
+                                type="object"
+                                style="font-size:3em">
+                                MATERIALS
+                            </button>
+                        </group>
                     </group>
                 </xpath>
             </field>
