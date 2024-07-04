@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-24 17:44+0000\n"
-"PO-Revision-Date: 2023-03-24 17:44+0000\n"
+"POT-Creation-Date: 2024-07-05 07:14+0000\n"
+"PO-Revision-Date: 2024-07-05 07:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,26 +64,6 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:0
-#, python-format
-msgid ""
-"Sequence code is mandatory.\n"
-"Please write a code greater than 0"
-msgstr ""
-"El código de secuencia es obligatorio.\n"
-"Por favor, escriba un código superior a 0"
-
-#. module: mrp_project
-#: code:addons/mrp_project/models/mrp_production.py:0
-#, python-format
-msgid ""
-"The manufacture order with same project sequence already exists in the "
-"project"
-msgstr ""
-"La orden de fabricación con la misma secuencia de proyecto existe "
-"actualmente para el proyecto seleccionado"
-
-#. module: mrp_project
 #: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_search
 msgid "With Project"
 msgstr "Con Proyecto"
@@ -92,4 +72,3 @@ msgstr "Con Proyecto"
 #: model_terms:ir.ui.view,arch_db:mrp_project.mrp_production_search
 msgid "Without Project"
 msgstr "Sin Proyecto"
-

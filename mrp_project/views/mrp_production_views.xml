@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <field name="user_id" position="after">
                 <field name="project_id" />
-                <field name="project_sequence" attrs="{'invisible':[('project_id', '=', False)], 'required':[('project_id', '!=', False)]}" />
+                <field name="project_sequence" attrs="{'invisible':[('project_id', '=', False)]}" />
             </field>
         </field>
     </record>

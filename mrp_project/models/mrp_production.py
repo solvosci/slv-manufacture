@@ -16,13 +16,3 @@ class ManufactureOrder(models.Model):
         if not self.project_id:
             self.project_sequence = 0
 
-    @api.constrains("project_id", "project_sequence")
-    def _check_project_values(self):
-        self.ensure_one()
-        if self.project_id and self.project_sequence <= 0:
-            raise ValidationError(_('Sequence code is mandatory.\nPlease write a code greater than 0'))
-        if self.project_id.manufacture_ids.filtered(
-            lambda x: x.project_sequence == self.project_sequence
-            and x.id != self.id
-        ):
-            raise ValidationError(_('The manufacture order with same project sequence already exists in the project'))
