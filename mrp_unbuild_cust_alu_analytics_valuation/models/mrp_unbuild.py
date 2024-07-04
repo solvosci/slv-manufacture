@@ -75,32 +75,32 @@ class MrpUnbuild(models.Model):
             self.cost_extra_waste + self.cost_extra_process_type
         )
 
+        self.cost_product_qty = self._get_cost_product_qty()
+
+        # PHAP_sudo = self.env["product.history.average.price"]
+        # # TODO pending unbuild_date must be filled. Replaces
+        # #      stock_move_action_done_custdate in mrp_unbuild_advanced passing date mechanism
+        # # e.g. 250 €/t
+        # product_price = PHAP_sudo.get_price(
+        #     self.product_id,
+        #     self.location_id.get_warehouse(),
+        #     dt=self.unbuild_date
+        # )
+        # # e.g. (250 €/t) * 3 t = 750,00 €
+        # self.cost_wo_extra_total = product_price * self.product_qty
+        self._update_wo_extra_total()
+
+    def _update_wo_extra_total(self):
+        self.ensure_one()
+        # TODO si sudo() finally required
         PHAP_sudo = self.env["product.history.average.price"]
-        # TODO pending unbuild_date must be filled. Replaces
-        #      stock_move_action_done_custdate in mrp_unbuild_advanced passing date mechanism
-        # e.g. 250 €/t
         product_price = PHAP_sudo.get_price(
             self.product_id,
             self.location_id.get_warehouse(),
             dt=self.unbuild_date
         )
-        self.cost_product_qty = self._get_cost_product_qty()
         # e.g. (250 €/t) * 3 t = 750,00 €
         self.cost_wo_extra_total = product_price * self.product_qty
-        # # e.g. 750 +  120 = 870,00 €
-        # total_cost = self.cost_wo_extra_total + self.cost_extra_total
-        # # e.g. 870,00 € / 3 t = 290,00 €/t
-        # unit_cost = total_cost / self.product_qty
-        # self.write({
-        #     "cost_unit_price": unit_cost,
-        #     "cost_extra": self.cost_extra_total,
-        #     "cost_total": total_cost,
-        # })
-        # (self - unbuild_cost).write({
-        #     "cost_unit_price": 0.0,
-        #     "cost_extra": 0.0,
-        #     "cost_total": 0.0,
-        # })
 
     @api.depends("cost_product_qty", "cost_wo_extra_total", "cost_extra_total")
     def _compute_cost_fields(self):
