@@ -1,7 +1,7 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 {
-    "name": "Add new standart hourly cost fields",
+    "name": "Mrp Unbuild Cust Alu Analytics - valuation link",
     "summary": """
         Link Mrp Unbuild Cust Alu Analytics to Stock Valuation MRP
     """,

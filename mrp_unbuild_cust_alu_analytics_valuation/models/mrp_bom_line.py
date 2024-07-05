@@ -10,3 +10,11 @@ class MrpBomLine(models.Model):
         string='Disabled for manufacturing/unbuild valuation',
         default=False
     )
+
+    def _get_mrp_unbuild_valuation_to_disable(self):
+        self.ensure_one()
+        return (
+            self.disabled_mrp_unbuild_valuation
+            or self.product_id.has_waste_cost_mgmt
+            or self.product_id.type not in ["product", "consu"]
+        )

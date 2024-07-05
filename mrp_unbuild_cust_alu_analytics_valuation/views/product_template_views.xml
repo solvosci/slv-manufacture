@@ -8,7 +8,6 @@
             <field name="barcode" position="after">
                 <field 
                     name="has_waste_cost_mgmt"
-                    widget="boolean_toggle"
                     attrs="{'invisible': [
                         ('warehouse_valuation','=',False),
                     ]}"
