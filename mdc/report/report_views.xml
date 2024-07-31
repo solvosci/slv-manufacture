@@ -2,28 +2,28 @@
 <odoo>
     <data>
         <!-- TODO verify attachment_use=False is by default -->
-        <record id="tracing_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
-            <field name="model">mdc.rpt_tracing</field>
+        <record id="stage_manufacturing_xlsx" model="ir.actions.report">
+            <field name="name">Stage Manufacturing Report</field>
+            <field name="model">mdc.rpt_stage_manufacturing</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_stage_manufacturing" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_stage_manufacturing</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_tracing</field>
-            <field
-                name="report_file"
-            >mdc.rpt_tracing</field>
+            <field name="report_file">mdc_rpt_stage_manufacturing</field>
         </record>
 
-        <!-- Search view: default search for Tracing Report -->
-        <record id="mdc_rpt_tracing_search" model="ir.ui.view">
-            <field name="name">mdc.rpt_tracing.search</field>
-            <field name="model">mdc.rpt_tracing</field>
+        <!-- Search view: default search for Stage Manufacturing -->
+        <record id="mdc_rpt_stage_manufacturing_search" model="ir.ui.view">
+            <field name="name">mdc.rpt_stage_manufacturing.search</field>
+            <field name="model">mdc.rpt_stage_manufacturing</field>
             <field name="arch" type="xml">
-                <search string="Tracing Report">
+                <search string="stage Manufacturing Report">
                     <field name="lot_name"/>
                     <field name="employee_code"/>
                     <field name="employee_name"/>
                     <field name="shift_code"/>
+                    <field name="stage_name"/>
+                    <field name="line_code"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -35,36 +35,41 @@
                         <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
                         <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
                         <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
+                        <filter string="Stage Name" name="groupby_stage" domain="[]" context="{'group_by':'stage_name'}"/>
                     </group>
                 </search>
             </field>
         </record>
 
-        <!-- Tree view: default view for Tracing Report -->
-        <record id="mdc_rpt_tracing_tree" model="ir.ui.view">
-            <field name="name">mdc.rpt_tracing.tree</field>
-            <field name="model">mdc.rpt_tracing</field>
+        <!-- Tree view: default view for Stage Manufacturing Report -->
+        <record id="mdc_rpt_stage_manufacturing_tree" model="ir.ui.view">
+            <field name="name">mdc.rpt_stage_manufacturing.tree</field>
+            <field name="model">mdc.rpt_stage_manufacturing</field>
             <field name="arch" type="xml">
-                <tree editable="top" create="false" delete="false" string="Tracing Report">
+                <tree editable="top" create="false" delete="false" string="Stage Manufacturing Report">
                     <field name="create_date" readonly="True"/>
                     <field name="lot_name" readonly="True"/>
-                    <field name="employee_code" readonly="True"/>
-                    <field name="employee_name" readonly="True"/>
                     <field name="product_id" readonly="True"/>
                     <field name="shift_code" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
+                    <field name="stage_name" readonly="True"/>
+                    <field name="workstation_name" readonly="True"/>
+                    <field name="employee_code" readonly="True"/>
+                    <field name="employee_name" readonly="True"/>
                     <field name="gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
                     <field name="sp1_weight" readonly="True"/>
-                    <field name="quality" readonly="True"/>
+                    <field name="sp2_weight" readonly="True"/>
+                    <field name="quality_weight" readonly="True"/>
                     <field name="total_hours" readonly="True"/>
                 </tree>
             </field>
         </record>
 
-        <!-- Graph view: default view for Tracing Report -->
-        <record id="mdc_rpt_tracing_graph" model="ir.ui.view">
-            <field name="name">mdc.rpt_tracing.graph</field>
-            <field name="model">mdc.rpt_tracing</field>
+        <!-- Graph view: default view for Stage Manufacturing Report -->
+        <record id="mdc_rpt_stage_manufacturing_graph" model="ir.ui.view">
+            <field name="name">mdc.rpt_stage_manufacturing.graph</field>
+            <field name="model">mdc.rpt_stage_manufacturing</field>
             <field name="arch" type="xml">
                 <graph string="Employee evolution">
                     <field name="employee_name" type="row"/>
@@ -73,10 +78,10 @@
             </field>
         </record>
 
-        <!-- Pivot view: default view for Tracing Report -->
-        <record id="mdc_rpt_tracing_pivot" model="ir.ui.view">
-            <field name="name">mdc.rpt_tracing.pivot</field>
-            <field name="model">mdc.rpt_tracing</field>
+        <!-- Pivot view: default view for Stage Manufacturing Report -->
+        <record id="mdc_rpt_stage_manufacturing_pivot" model="ir.ui.view">
+            <field name="name">mdc.rpt_stage_manufacturing.pivot</field>
+            <field name="model">mdc.rpt_stage_manufacturing</field>
             <field name="arch" type="xml">
                 <pivot string="Employee evolution">
                     <field name="employee_name" type="row"/>
@@ -91,29 +96,24 @@
 
     <data>
         <!-- TODO verify attachment_use=False is by default -->
-        <record id="manufacturing_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
-            <field name="model">mdc.rpt_manufacturing</field>
+        <record id="line_manufacturing_xlsx" model="ir.actions.report">
+            <field name="name">Line Manufacturing Report</field>
+            <field name="model">mdc.rpt_line_manufacturing</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_line_manufacturing" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_line_manufacturing</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_manufacturing</field>
-            <field
-                name="report_file"
-            >mdc.rpt_manufacturing</field>
+            <field name="report_file">mdc_rpt_line_manufacturing</field>
         </record>
 
-        <!-- Search view: default search for Manufacturing Report -->
-        <record id="mdc_rpt_manufacturing_search" model="ir.ui.view">
-            <field name="name">mdc.rpt_manufacturing.search</field>
-            <field name="model">mdc.rpt_manufacturing</field>
+        <!-- Search view: default search for Line Manufacturing Report -->
+        <record id="mdc_rpt_line_manufacturing_search" model="ir.ui.view">
+            <field name="name">mdc.rpt_line_manufacturing.search</field>
+            <field name="model">mdc.rpt_line_manufacturing</field>
             <field name="arch" type="xml">
-                <search string="Manufacturing Report">
-                    <field name="employee_code"/>
-                    <field name="employee_name"/>
-                    <field name="contract_name"/>
+                <search string="Line Manufacturing Report">
                     <field name="lot_name"/>
-                    <field name="shift_code"/>
+                    <field name="line_code"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -123,33 +123,27 @@
                         ]"/>
                     <group expand="1" string="Group By">
                         <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
-                        <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
-                        <filter string="Contract Name" name="groupby_contract" domain="[]" context="{'group_by':'contract_name'}"/>
-                        <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
                     </group>
                 </search>
             </field>
         </record>
 
-        <!-- Tree view: default view for Manufacturing Report -->
-        <record id="mdc_rpt_manufacturing_tree" model="ir.ui.view">
-            <field name="name">mdc.rpt_manufacturing.tree</field>
-            <field name="model">mdc.rpt_manufacturing</field>
+        <!-- Tree view: default view for Line Manufacturing Report -->
+        <record id="mdc_rpt_line_manufacturing_tree" model="ir.ui.view">
+            <field name="name">mdc.rpt_line_manufacturing.tree</field>
+            <field name="model">mdc.rpt_line_manufacturing</field>
             <field name="arch" type="xml">
-                <tree editable="top" create="false" delete="false" string="Manufacturing Report">
+                <tree editable="top" create="false" delete="false" string="Line Manufacturing Report">
                     <field name="create_date" readonly="True"/>
-                    <field name="workstation_name" readonly="True"/>
-                    <field name="employee_code" readonly="True"/>
-                    <field name="employee_name" readonly="True"/>
-                    <field name="contract_name" readonly="True"/>
                     <field name="lot_name" readonly="True"/>
                     <field name="product_id" readonly="True"/>
                     <field name="shift_code" readonly="True"/>
-                    <field name="gross_weight_reference" readonly="True"/>
-                    <field name="gross_weight" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
+                    <field name="final_gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
                     <field name="sp1_weight" readonly="True"/>
-                    <field name="quality" readonly="True"/>
+                    <field name="sp2_weight" readonly="True"/>
+                    <field name="quality_weight" readonly="True"/>
                     <field name="total_hours" readonly="True"/>
                 </tree>
             </field>
@@ -158,28 +152,25 @@
 
     <data>
         <!-- TODO verify attachment_use=False is by default -->
-        <record id="indicators_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
-            <field name="model">mdc.rpt_indicators</field>
+        <record id="employee_yield_xlsx" model="ir.actions.report">
+            <field name="name">Employee Yield Report</field>
+            <field name="model">mdc.rpt_employee_yield</field>
+            <field name="binding_model_id" ref="mdc.model_mdc_rpt_employee_yield" />
+            <field name="type">ir.actions.report</field>
+            <field name="report_name">mdc.rpt_employee_yield</field>
             <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_indicators</field>
-            <field
-                name="report_file"
-            >mdc.rpt_indicators</field>
+            <field name="report_file">mdc_rpt_employee_yield</field>
         </record>
 
-        <!-- Search view: default search for Indicators Report -->
-        <record id="mdc_rpt_indicators_search" model="ir.ui.view">
-            <field name="name">mdc.rpt_indicators.search</field>
-            <field name="model">mdc.rpt_indicators</field>
+        <!-- Search view: default search for Employee Yield Report -->
+        <record id="mdc_rpt_employee_yield_search" model="ir.ui.view">
+            <field name="name">mdc.rpt_employee_yield.search</field>
+            <field name="model">mdc.rpt_employee_yield</field>
             <field name="arch" type="xml">
-                <search string="Indicators Report">
+                <search string="Employee Yield Report">
                     <field name="employee_code"/>
                     <field name="employee_name"/>
                     <field name="shift_code"/>
-                    <field name="lot_name"/>
                     <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
                     <filter name="week" string="This Week"
                         domain="[
@@ -188,7 +179,6 @@
                             ('create_date', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
                         ]"/>
                     <group expand="1" string="Group By">
-                        <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
                         <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
                         <filter string="Shift Code" name="groupby_shift" domain="[]" context="{'group_by':'shift_code'}"/>
                     </group>
@@ -196,81 +186,24 @@
             </field>
         </record>
 
-        <!-- Tree view: default view for Indicators Report -->
-        <record id="mdc_rpt_indicators_tree" model="ir.ui.view">
-            <field name="name">mdc.rpt_indicators.tree</field>
-            <field name="model">mdc.rpt_indicators</field>
+        <!-- Tree view: default view for Employee Yield Report -->
+        <record id="mdc_rpt_employee_yield_tree" model="ir.ui.view">
+            <field name="name">mdc.rpt_employee_yield.tree</field>
+            <field name="model">mdc.rpt_employee_yield</field>
             <field name="arch" type="xml">
-                <tree editable="top" create="false" delete="false" string="Indicators Report">
+                <tree editable="top" create="false" delete="false" string="Employee Yield Report">
                     <field name="create_date" readonly="True"/>
                     <field name="employee_code" readonly="True"/>
                     <field name="employee_name" readonly="True"/>
                     <field name="shift_code" readonly="True"/>
-                    <field name="lot_name" readonly="True"/>
-                    <field name="ind_backs" readonly="True"/>
-                    <field name="ind_mo" readonly="True"/>
-                    <field name="ind_crumbs" readonly="True"/>
-                    <field name="ind_quality" readonly="True"/>
-                    <field name="ind_cleaning" readonly="True"/>
-                </tree>
-            </field>
-        </record>
-    </data>
-
-
-    <data>
-        <!-- TODO verify attachment_use=False is by default -->
-        <record id="cumulative_xlsx" model="ir.actions.report">
-            <field name="name">Print to XLSX</field>
-            <field name="model">mdc.rpt_cumulative</field>
-            <field name="report_type">xlsx</field>
-            <field
-                name="report_name"
-            >mdc.rpt_cumulative</field>
-            <field
-                name="report_file"
-            >mdc.rpt_cumulative</field>
-        </record>
-
-        <!-- Search view: default search for Cumulative Report -->
-        <record id="mdc_rpt_cumulative_search" model="ir.ui.view">
-            <field name="name">mdc.rpt_cumulative.search</field>
-            <field name="model">mdc.rpt_cumulative</field>
-            <field name="arch" type="xml">
-                <search string="Cumulative Report">
-                    <field name="employee_code"/>
-                    <field name="employee_name"/>
-                    <field name="lot_name"/>
-                    <filter name="today" string="Today" domain="[('create_date', '&gt;=', current_date)]"/>
-                    <filter name="week" string="This Week"
-                        domain="[
-                            '&amp;',
-                            ('create_date', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
-                            ('create_date', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
-                        ]"/>
-                    <group expand="1" string="Group By">
-                        <filter string="Lot Name" name="groupby_lot_name" domain="[]" context="{'group_by':'lot_name'}"/>
-                        <filter string="Employee Code" name="groupby_employee" domain="[]" context="{'group_by':'employee_code'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
-
-        <!-- Tree view: default view for Cumulative Report -->
-        <record id="mdc_rpt_cumulative_tree" model="ir.ui.view">
-            <field name="name">mdc.rpt_cumulative.tree</field>
-            <field name="model">mdc.rpt_cumulative</field>
-            <field name="arch" type="xml">
-                <tree editable="top" create="false" delete="false" string="Cumulative Report">
-                    <field name="create_date" readonly="True"/>
-                    <field name="employee_code" readonly="True"/>
-                    <field name="employee_name" readonly="True"/>
-                    <field name="lot_name" readonly="True"/>
+                    <field name="line_code" readonly="True"/>
+                    <field name="stage_name" readonly="True"/>
+                    <field name="product_id" readonly="True"/>
                     <field name="gross_weight" readonly="True"/>
                     <field name="product_weight" readonly="True"/>
                     <field name="sp1_weight" readonly="True"/>
-                    <field name="quality" readonly="True"/>
-                    <field name="total_yield" readonly="True"/>
+                    <field name="sp2_weight" readonly="True"/>
+                    <field name="quality_weight" readonly="True"/>
                     <field name="total_hours" readonly="True"/>
                 </tree>
             </field>

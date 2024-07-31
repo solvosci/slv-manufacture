@@ -1,5 +1,5 @@
 <odoo>
-  <data>
+<data>
 
     <!-- Tree view: default view for quality -->
     <record id="mdc_quality_tree" model="ir.ui.view">
@@ -239,6 +239,36 @@
         </field>
     </record>
 
+    <!-- Tree view: default view for Stages -->
+    <record id="mdc_stage_tree" model="ir.ui.view">
+        <field name="name">mdc.stage.tree</field>
+        <field name="model">mdc.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stage">
+                <field name="id"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view: default form for Stages -->
+    <record id="mdc_stage_form" model="ir.ui.view">
+        <field name="name">mdc.stage.form</field>
+        <field name="model">mdc.stage</field>
+        <field name="arch" type="xml">
+            <form string="Stage">
+                <sheet>
+                    <group name="gr_stage_data" string="Stage data">
+                        <group>
+                            <field name="id"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <!-- Tree view: default view for lines -->
     <record id="mdc_line_tree" model="ir.ui.view">
         <field name="name">mdc.line.tree</field>
@@ -274,7 +304,7 @@
         <field name="name">mdc.chkpoint.tree</field>
         <field name="model">mdc.chkpoint</field>
         <field name="arch" type="xml">
-            <tree string="Check Point">
+            <tree string="Check Point" default_order="line_id,order">
                 <field name="name"/>
                 <field name="chkpoint_categ"/>
                 <field name="line_id"/>
@@ -315,6 +345,13 @@
                         <group>
                             <field name="tare_id"/>
                             <field name="quality_id"/>
+                            <field name="stage_id_input"/>
+                            <field name="stage_id_output"/>
+                        </group>
+                        <group>
+                            <field name="shared_off" widget="boolean_toggle"/>
+                            <field name="quality_off" widget="boolean_toggle"/>
+                            <field name="subproduct_off" widget="boolean_toggle"/>
                         </group>
                     </group>
                     <group name="gr_chkpoint_current_lot" string="Check point current lot">
@@ -442,6 +479,8 @@
             <tree string="WOut Category">
                 <field name="name"/>
                 <field name="code"/>
+                <field name="short_name"/>
+                <field name="subproduct"/>
             </tree>
         </field>
     </record>
@@ -457,6 +496,8 @@
                         <group>
                             <field name="name"/>
                             <field name="code" attrs="{'readonly': [('id', '!=', False)]}"/>
+                            <field name="short_name"/>
+                            <field name="subproduct"/>
                         </group>
                     </group>
                 </sheet>

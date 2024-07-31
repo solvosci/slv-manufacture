@@ -17,6 +17,7 @@ class BaseStructure(models.AbstractModel):
         return [
             ('WIN', _('Input')),
             ('WOUT', _('Output')),
+            ('WOUTTOWIN', _('Output to Input')),
     ]
 
     def _get_card_status_selection(self):
@@ -98,6 +99,26 @@ class ChkPoint(models.Model):
     lot_ids = fields.One2many(
         'mdc.lot_chkpoint',
         'chkpoint_id')
+    quality_off = fields.Boolean(
+        'Quality Off',
+        default=False
+    )
+    subproduct_off = fields.Boolean(
+        'Subproduct Off',
+        default=False
+    )
+    shared_off = fields.Boolean(
+        'Shared Off',
+        default=False
+    )
+    stage_id_input = fields.Many2one(
+        'mdc.stage',
+        string='Stage Input',
+    )
+    stage_id_output = fields.Many2one(
+        'mdc.stage',
+        string='Stage Output',
+    )
 
     @api.depends('lot_ids.current_lot_active_id', 'lot_ids.start_lot_datetime')
     def _compute_chkpoint_lot_active(self):
@@ -153,6 +174,10 @@ class Workstation(models.Model):
         'mdc.lot',
         string='Last output lot processed',
         compute='_compute_last_wout_lot'
+    )
+    stage_id = fields.Many2one(
+        'mdc.stage',
+        string='Stage',
     )
 
     def _compute_last_wout_lot(self):
@@ -311,7 +336,6 @@ class Card(models.Model):
         card = self.search([('name', '=', card_code)])
         if not card:
             raise UserError(_('Card #%s not found') % card_code)
-
         data_out['card_id'] = card.id
         data_out['card_categ_id'] = card.card_categ_id.id
         if card.card_categ_id.id == self.env.ref('mdc.mdc_card_categ_P').id:
@@ -412,6 +436,28 @@ class Shift(models.Model):
         }
 
 
+class Stage(models.Model):
+    """
+    Stage
+    """
+    _name = 'mdc.stage'
+    _description = 'Stage'
+
+    name = fields.Char(
+        'Name',
+        required=True)
+    # chkpoint_in_ids = fields.One2many(
+    #     'mdc.chkpoint',
+    #     'stage_id_input',
+    #     string='Checkpoints IN'
+    # )
+    # chkpoint_out_ids = fields.One2many(
+    #     'mdc.chkpoint',
+    #     'stage_id_output',
+    #     string='Checkpoints OUT'
+    # )
+
+
 class CardCateg(models.Model):
     """
     Card Categories
@@ -450,6 +496,14 @@ class WOutCateg(models.Model):
     code = fields.Char(
         'Code',
         required=True)
+    short_name = fields.Char(
+        'Short Name',
+        required=True,
+    )
+    subproduct = fields.Boolean(
+        'Subproduct',
+        default=False
+    )
 
 
 class Tare(models.Model):

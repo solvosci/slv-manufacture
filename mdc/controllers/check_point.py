@@ -115,10 +115,12 @@ class CheckPoint(http.Controller):
         data_out = {
             'ckhpoint_id': chkpoint_id
         }
+        chkpoint_id = request.env["mdc.chkpoint"].with_user(cp_user).browse(data_in['chkpoint_id'])
 
         try:
             DataWIn = request.env['mdc.data_win'].with_user(cp_user)
             datawin = DataWIn.from_cp_create(data_in)
+            datawin.stage_id = chkpoint_id.stage_id_input
             data_out['card_code'] = data_in['card_code']
             data_out['data_win_id'] = datawin.id
             data_out['lotactive'] = datawin.lot_id.alias_cp
@@ -139,6 +141,7 @@ class CheckPoint(http.Controller):
             client_ip = self._get_client_ip()
             self._check_client(checkpoint=chkpoints, client_ip=client_ip, simul=ws_session_data['simul'])
             qualities = request.env['mdc.quality'].with_user(cp_user).search([], order='code')
+            subproducts = request.env['mdc.wout_categ'].with_user(cp_user).search([('subproduct', '=', True)], order='short_name')
             return request.render(
                 'mdc.chkpoint_wout',
                 {'title': chkpoints[0].name, 'chkpoints': chkpoints, 'qualities': qualities,
@@ -146,7 +149,12 @@ class CheckPoint(http.Controller):
                  'card_categ_P_id': request.env.ref('mdc.mdc_card_categ_P').id,
                  'card_categ_L_id': request.env.ref('mdc.mdc_card_categ_L').id,
                  'card_categ_PC_id': request.env.ref('mdc.mdc_card_categ_PC').id,
-                 'client_ip': client_ip
+                 'shared_off': chkpoints[0].shared_off,
+                 'quality_off': chkpoints[0].quality_off,
+                 'subproduct_off': chkpoints[0].subproduct_off,
+                 'client_ip': client_ip,
+                 'subproducts': subproducts,
+                 'category': chkpoints[0].chkpoint_categ
                  }
             )
         except Exception as e:
@@ -157,11 +165,11 @@ class CheckPoint(http.Controller):
     def cp_wout_save(self, chkpoint_id):
         cp_user = self._get_cp_user_and_lang_context(request)
         data_in = json.loads(request.httprequest.data)
-        data_in['chkpoint_id'] = chkpoint_id
+        chkpoint_id = request.env['mdc.chkpoint'].with_user(cp_user).browse(chkpoint_id)
+        data_in['chkpoint_id'] = chkpoint_id.id
         data_out = {
-            'ckhpoint_id': chkpoint_id
+            'ckhpoint_id': chkpoint_id.id
         }
-
         try:
             DataWOut = request.env['mdc.data_wout'].with_user(cp_user)
             datawout = DataWOut.from_cp_create(data_in)
@@ -169,6 +177,22 @@ class CheckPoint(http.Controller):
             data_out['lot'] = datawout.lot_id.name
             data_out['weight'] = '{0:.2f}'.format(datawout.weight)
             data_out['w_uom'] = datawout.w_uom_id.name
+            if chkpoint_id.chkpoint_categ == 'WOUTTOWIN':
+                # Create new win, and set keep_going_wout_id with old wout (actual)
+                datawout.stage_id = chkpoint_id.stage_id_output
+                DataWin = request.env['mdc.data_win'].with_user(cp_user)
+                new_in_data = {'card_code': data_in['card_in_new']['card_code'], 'chkpoint_id': data_in["chkpoint_id"]}
+                datawin = DataWin.from_cp_create(new_in_data)
+                datawin.stage_id = chkpoint_id.stage_id_input
+                datawin.keep_going_wout_id = datawout.id
+            elif chkpoint_id.chkpoint_categ == 'WOUT':
+                # Recover 2 win, and set final wout_id on both
+                datawout.stage_id = chkpoint_id.stage_id_output
+                win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', '=', datawout.id)])
+                old_win_related = request.env['mdc.data_win'].with_user(cp_user).search([('wout_id', 'in', win_related.mapped('keep_going_wout_id.id'))])
+                win_related.final_wout_id = datawout.id
+                old_win_related.final_wout_id = datawout.id
+                datawout.final_gross_weight = sum(old_win_related.mapped('weight')) - sum(old_win_related.mapped('tare'))
         except Exception as e:
             data_out['err'] = e
             _logger.error("[cp_wout_save] %s" % e)

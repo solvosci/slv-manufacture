@@ -16,7 +16,8 @@
                 List of available checkpoints for RFID simulation:
                 <ul>
                     <li t-foreach="chkpoints" t-as="chkpoint">
-                        <a t-attf-href="/mdc/cp/{{chkpoint.chkpoint_categ.lower()}}/{{chkpoint.id}}?rfidsimul">
+                        <!-- <a t-attf-href="/mdc/cp/{{chkpoint.chkpoint_categ.lower()}}/{{chkpoint.id}}?rfidsimul"> -->
+                        <a t-attf-href="/mdc/cp/{{'wout' if chkpoint.chkpoint_categ.lower() == 'wouttowin' else chkpoint.chkpoint_categ.lower()}}/{{chkpoint.id}}?rfidsimul">
                             <t t-esc="chkpoint.name"></t>
                         </a>
                     </li>
@@ -39,11 +40,13 @@
                     <input type="hidden" id="ws_session_id" t-attf-value="{{ws_session_data['session_id']}}"/>
                     <input type="hidden" id="ws_wsapi_url" t-attf-value="{{ws_session_data['wsapi_url']}}"/>
                     <input type="hidden" id="ws_simul" t-attf-value="{{ws_session_data['simul']}}"/>
+                    <input type="hidden" id="wout_to_win" t-attf-value="{{category}}"/>
                 </div>
 
                 <div id="translations" style="display: none;">
                     <span id="t_ws_rfid_onopen_wait">Waiting for websocket acceptance...</span>
                     <span id="t_ws_rfid_onopen_ready">Ready for card readings!!!</span>
+                    <span id="select_subproduct">Select a subproduct</span>
                 </div>
 
                 <div class="UpperTitle">
@@ -142,16 +145,20 @@
         <xpath expr="//div[@id='translations']" position="inside">
             <span id="t_chkpoint_wout_jc_description">Joker card</span>
             <span id="t_chkpoint_wout_input_workstation_expected_err">Card #{0} not valid. Workstation card is expected</span>
+            <span id="t_chkpoint_wout_input_product_expected_err">Card #{0} not valid. Product card is expected</span>
+            <span id="t_chkpoint_wout_input_win_expected_err">Card #{0} not valid. New win card is expected</span>
             <span id="t_chkpoint_wout_input_repeated_err">Card #{0} was already read!</span>
             <span id="t_chkpoint_wout_input_no_input_err">Card #{0} not valid, there is no input associated!</span>
             <span id="t_chkpoint_wout_jc_no_lot_err">Joker card #{0} not valid, there is no lot associated. First slide a product card</span>
             <span id="t_chkpoint_wout_input_lot_err">Card read #{0} belongs to a different lot ({1}) than the current one</span>
             <span id="t_chkpoint_wout_input_one_input_already_selected_err">Product card #{0} not valid. One input mode is selected!</span>
             <span id="t_chkpoint_wout_input_jc_added">Added product/joker card Card #{0}</span>
+            <span id="t_chkpoint_wout_input_jc_added_new_input">Readed new In card Card #{0}</span>
             <span id="t_chkpoint_wout_workstation_input_expected_err">Card #{0} not valid. Product card is expected</span>
             <span id="t_chkpoint_wout_workstation_no_workstation_err">Card #{0} not valid, there is no workstation associated!</span>
             <span id="t_chkpoint_wout_invalid_card_err">Card #{0} not valid</span>
             <span id="t_chkpoint_wout_save_ok">Weight saved successfully</span>
+            <span id="t_chkpoint_wout_readed_ok">Line card readed #{0}, please introduce the new Product card</span>
             <span id="t_chkpoint_wout_save_err">ERROR saving data: {0}</span>
             <span id="t_chkpoint_wout_save_err_unknown">ERROR saving data (unknown)</span>
         </xpath>
@@ -159,8 +166,8 @@
             <div class="divTable">
                 <div class="divTableBody">
                     <div class="divTableRow">
-                        <div class="divTableCell" style="width: 70%">
-                            <div class="divTable">
+                        <div class="divTableCell">
+                            <div class="divTable" style="display: flex">
                                 <div class="divTableBody">
                                     <div class="divTableRow" id="rfid_simul_data" style="display: none;">
                                         <div class="divTableCell label">
@@ -223,29 +230,53 @@
                                             <input id="last_quality" type="text" size="10" readonly="readonly"
                                                    class="centered"  style="font-size: 2em"/>
                                         </div>
+                                        <div t-if="not quality_off" style="display: flex; position: absolute;">
+                                            <select id="quality_select">
+                                                <!-- option value="" selected="selected">Select a quality...</option -->
+                                                <optgroup>
+                                                    <t t-foreach="qualities" t-as="quality">
+                                                        <option t-attf-value="{{quality.id}}">
+                                                            <t t-esc="quality.name"></t>
+                                                        </option>
+                                                    </t>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div t-if="category == 'WOUTTOWIN'" class="divTableRow">
+                                        <div class="divTableCell label">
+                                            New card read
+                                        </div>
+                                        <div class="divTableCell">
+                                            <input id="new_card_read" type="text" size="10"
+                                            class="centered" style="font-size: 2em"/>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="divTableCell" style="display: flex; flex-direction: column; justify-content: space-between; width: 100%;">
+                                <div class="select">
+                                    <div t-if="not subproduct_off and category != 'WOUTTOWIN'">
+                                        <select id="subproducts" style="width: 80%">
+                                            <option value="" selected="selected">Select a subproduct...</option>
+                                            <t t-foreach="subproducts" t-as="subproduct">
+                                                <option t-attf-value="{{subproduct.code}}">
+                                                    <t t-esc="subproduct.short_name"></t>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="buttons" style="display: flex; flex-direction: column; align-items: end;">
+                                    <div t-if="not shared_off">
+                                        <button type="button" id="shared_button" class="disabled"></button>
+                                    </div>
+                                    <div style="display: flex; align-self: flex-end;">
+                                        <button type="button" id="one_input_button" class="disabled"></button>
+                                    </div>
+                                </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="divTableCell centered">
-                            <button type="button" id="quality_up_button"></button>
-                            <select id="quality_select">
-                                <!-- option value="" selected="selected">Select a quality...</option -->
-                                <optgroup>
-                                    <t t-foreach="qualities" t-as="quality">
-                                        <option t-attf-value="{{quality.id}}">
-                                            <t t-esc="quality.name"></t>
-                                        </option>
-                                    </t>
-                                </optgroup>
-                            </select>
-                            <button type="button" id="quality_down_button"></button>
-                            <br/>
-                            <button type="button" id="shared_button" class="disabled"></button>
-                            <br/>
-                            <button type="button" id="crumbs_button" class="disabled"></button>
-                            <br/>
-                            <button type="button" id="one_input_button" class="disabled"></button>
                         </div>
                     </div>
                 </div>

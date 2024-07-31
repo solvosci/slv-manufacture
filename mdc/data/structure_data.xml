@@ -5,18 +5,22 @@
         <record id="mdc_wout_categ_P" model="mdc.wout_categ">
             <field name="name">Producto</field>
             <field name="code">P</field>
+            <field name="short_name">Product</field>
         </record>
         <record id="mdc_wout_categ_SP1" model="mdc.wout_categ">
             <field name="name">Subproducto 1</field>
             <field name="code">SP1</field>
+            <field name="short_name">Subproduct 1</field>
         </record>
         <record id="mdc_wout_categ_SP2" model="mdc.wout_categ">
             <field name="name">Subproducto 2</field>
             <field name="code">SP2</field>
+            <field name="short_name">Subproduct 2</field>
         </record>
         <record id="mdc_wout_categ_SP3" model="mdc.wout_categ">
             <field name="name">Subproducto 3</field>
             <field name="code">SP3</field>
+            <field name="short_name">Subproduct 3</field>
         </record>
 
         <!-- Card Categories -->
@@ -78,5 +82,14 @@
             <field name="start_time">14</field>
             <field name="end_time">22</field>
         </record>
+
+        <!-- Stages -->
+        <record id="mdc_stage_1" model="mdc.stage" forcecreate="false">
+            <field name="name">PREVCLEAN</field>
+        </record>
+        <record id="mdc_stage_2" model="mdc.stage" forcecreate="false">
+            <field name="name">CLEAN</field>
+        </record>
+
     </data>
 </odoo>
