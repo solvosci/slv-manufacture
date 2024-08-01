@@ -151,9 +151,21 @@ class MrpUnbuild(models.Model):
                         # Move file to processed folder
                         os.rename("%s/%s" % (path, file), os.path.join(processed_folder_path + '/' + file))
                     else:
-                        logger.error(
-                            "Can't find unbuild with name: <%s>", unbuild_name
-                        )
+                        # When unbuild is not found, there are two possibilities:
+                        # - No name found => it's a test analytic, so it should
+                        #   be marked as processed, like a right one
+                        # - Incorrect unbuild name => it should be kept as
+                        #   unprocessed, so external users can check it and fix the problem
+                        # TODO os.rename reuse => move to a function
+                        if not unbuild_name:
+                            os.rename("%s/%s" % (path, file), os.path.join(processed_folder_path + '/' + file))
+                            logger.warning(
+                                "Analytic file <%s> with no unbuild name moved to processed folder", file
+                            )
+                        else:
+                            logger.error(
+                                "Can't find unbuild with name: <%s>", unbuild_name
+                            )
 
 
     def get_element_and_children_data(self, element):
