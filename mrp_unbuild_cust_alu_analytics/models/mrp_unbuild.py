@@ -27,7 +27,7 @@ class MrpUnbuild(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         if self.product_id and self.process_type_id:
-            self.bom_id = self.product_id.product_tmpl_id.bom_ids.filtered(lambda r: r.process_type_id == self.process_type_id)
+            self.bom_id = self.product_id.product_tmpl_id.bom_ids.filtered(lambda r: r.process_type_id == self.process_type_id)[0]
         else:
             super(MrpUnbuild, self)._onchange_product_id()
 
