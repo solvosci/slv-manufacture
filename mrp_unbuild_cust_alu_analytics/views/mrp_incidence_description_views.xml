@@ -7,6 +7,8 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_title">
                             <h1><field name="name" placeholder="Incidence Description" nolabel="1"/></h1>
                         </div>
@@ -15,7 +17,7 @@
                                 <field name="code"/>
                             </group>
                             <group>
-                                <field name="incidence_type_id"/>
+                                <field name="incidence_type_id" required="1"/>
                             </group>
                         </group>
                     </sheet>
@@ -36,6 +38,21 @@
             </field>
         </record>
 
+        <record id="mrp_incidence_description_view_search" model="ir.ui.view">
+            <field name="name">mrp_incidence_description.search</field>
+            <field name="model">mrp.incidence.description</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" />
+                    <field name="code" />
+                    <separator/>
+                    <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Type" name="type" context="{'group_by':'incidence_type_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
     </data>
 
 </odoo>
