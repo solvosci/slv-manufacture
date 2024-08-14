@@ -64,12 +64,12 @@
             <form class="tablet_font_size">
                 <group>
                     <group>
-                        <field name="incidence_type_id"/>
+                        <field name="incidence_type_id" required="1"/>
                         <field name="duration" widget="float_time"/>
                     </group>
                     <group>
-                        <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]"/>
-                        <field name="state"/>
+                        <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]" required="1"/>
+                        <field name="state" required="1"/>
                     </group>
                 </group>
                 <group>

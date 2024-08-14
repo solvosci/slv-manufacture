@@ -3,13 +3,15 @@
 
 from odoo import fields, models
 
+
 class MrpIncidenceDescription(models.Model):
     _name = "mrp.incidence.description"
     _description = 'mrp.incidence.description'
 
-    name = fields.Char()
+    name = fields.Char(required=True)
     code = fields.Char()
     incidence_type_id = fields.Many2one(
         comodel_name="mrp.incidence.type",
         string="Incidence Type",
     )
+    active = fields.Boolean(default=True)

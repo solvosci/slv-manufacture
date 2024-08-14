@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-03 12:47+0000\n"
-"PO-Revision-Date: 2024-06-03 12:47+0000\n"
+"POT-Creation-Date: 2024-08-19 09:07+0000\n"
+"PO-Revision-Date: 2024-08-19 09:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__active
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__active
+msgid "Active"
+msgstr "Activo"
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_25
@@ -32,6 +38,14 @@ msgstr "Análisis"
 #, python-format
 msgid "Analytics"
 msgstr "Analíticas"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_type_view_search
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_description_form
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_type_form
+msgid "Archived"
+msgstr "Archivado"
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_10
@@ -65,7 +79,6 @@ msgid "CMPlanta ID"
 msgstr "ID CMPlanta"
 
 #. module: mrp_unbuild_cust_alu_analytics
-#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #, python-format
@@ -197,6 +210,11 @@ msgstr ""
 #, python-format
 msgid "Gross Time"
 msgstr "Tiempo bruto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
+msgid "Group By"
+msgstr "Agrupar por"
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
@@ -516,6 +534,7 @@ msgstr "Porcentaje cantidad total"
 
 #. module: mrp_unbuild_cust_alu_analytics
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
 msgid "Type"
 msgstr "Tipo"
 
@@ -560,7 +579,6 @@ msgid "XML Analytic Path"
 msgstr "Ruta de las analíticas XML"
 
 #. module: mrp_unbuild_cust_alu_analytics
-#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
 #, python-format
 msgid "XML Analytic Path not defined"

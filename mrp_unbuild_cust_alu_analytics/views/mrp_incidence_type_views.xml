@@ -7,6 +7,8 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <div class="oe_button_box" name="button_box">
                         <button type="object" name="action_view_incidence" class="oe_stat_button" icon="fa-wrench" attrs="{'invisible': [('incidence_count', '=', 0)]}">
                             <field name="incidence_count" widget="statinfo" string="Incidences"/>
@@ -36,5 +38,18 @@
             </tree>
         </field>
     </record>
+
+    <record id="mrp_incidence_type_view_search" model="ir.ui.view">
+            <field name="name">mrp.incidence.type.search</field>
+            <field name="model">mrp.incidence.type</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" />
+                    <field name="code" />
+                    <separator/>
+                    <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
 
 </odoo>
