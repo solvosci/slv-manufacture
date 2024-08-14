@@ -49,12 +49,12 @@
                     <page string="Incidences">
                         <field name="incidence_ids" context="{'default_incidence_ids': id}" class="oe_editable_tree_only" widget="one2many">
                             <tree editable="bottom" create="1" edit="1">
-                                <field name="incidence_type_id"/>
-                                <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]"/>
+                                <field name="incidence_type_id" required="1"/>
+                                <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]" required="1"/>
                                 <field name="detail"/>
                                 <field name="duration" widget="float_time"/>
                                 <field name="machine"/>
-                                <field name="state"/>
+                                <field name="state" required="1"/>
                             </tree>
                         </field>
                     </page>
