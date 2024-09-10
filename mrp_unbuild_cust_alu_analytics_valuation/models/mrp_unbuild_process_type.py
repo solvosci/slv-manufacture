@@ -32,11 +32,34 @@ class MrpUnbuildProcessType(models.Model):
         readonly=True
     )
 
-    def _get_costs(self, total_time):
+    cost_unit_uom_id = fields.Many2one(
+        comodel_name="uom.uom",
+        domain=[("measure_type", "=", "weight")],
+        required=True,
+        default=lambda self: self.env.ref("uom.product_uom_ton"),
+        string="UoM for unit costs (by unit)",
+    )
+    cost_unit_consumable = fields.Monetary(
+        string="Consumables unit cost (by unit)",
+    )
+    cost_unit_maquila = fields.Monetary(
+        string="Maquilas unit cost (by unit)",
+    )
+
+    def _get_costs(self, production_id):
         self.ensure_one()
-        return total_time * (
-            self.cost_hr_manpower
-            + self.cost_hr_energy
-            + self.cost_hr_amortization
-            + self.cost_hr_repair_maintenance_mgmt
+        return (
+            production_id.shift_effective_time * (
+                self.cost_hr_manpower
+                + self.cost_hr_energy
+                + self.cost_hr_amortization
+                + self.cost_hr_repair_maintenance_mgmt
+            )
+        ) + (
+            production_id.product_uom_id._compute_quantity(
+                production_id.product_qty, self.cost_unit_uom_id
+            ) * (
+                self.cost_unit_consumable
+                + self.cost_unit_maquila
+            )
         )

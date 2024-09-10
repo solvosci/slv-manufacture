@@ -150,7 +150,7 @@ class MrpUnbuild(models.Model):
         self.ensure_one()
         return (
             self.process_type_id
-            and self.process_type_id._get_costs(self.shift_effective_time)
+            and self.process_type_id._get_costs(self)
             or 0.0
         )
 

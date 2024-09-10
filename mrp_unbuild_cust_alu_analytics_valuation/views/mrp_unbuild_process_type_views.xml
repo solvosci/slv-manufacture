@@ -7,17 +7,48 @@
             <field name="groups_id" eval="[(4,ref('mrp.group_mrp_manager'))]"/>
             <field name="arch" type="xml">
                 <xpath expr="//group" position="inside">
-                        <group name="costs" string="Costs">
-                            <group>
-                                <field name="cost_hr_manpower" class="oe_inline" optional="show"/>
-                                <field name="cost_hr_energy" class="oe_inline" optional="show"/>
-                            </group>
-                            <group>
-                                <field name="cost_hr_amortization" class="oe_inline" optional="show"/>
-                                <field name="cost_hr_repair_maintenance_mgmt" class="oe_inline" optional="show"/>
-                            </group>
-                            <field name="currency_id" invisible="1"/>
+                    <group name="costs_hr" string="Costs per hour">
+                        <group>
+                            <field
+                                name="cost_hr_manpower"
+                                string="Manpower"
+                            />
+                            <field
+                                name="cost_hr_energy"
+                                string="Energy"
+                            />
                         </group>
+                        <group>
+                            <field
+                                name="cost_hr_amortization"
+                                string="Amortization"
+                            />
+                            <field
+                                name="cost_hr_repair_maintenance_mgmt"
+                                string="Repair/Maintenance"
+                            />
+                        </group>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                    <group name="costs_unit" string="Costs per unit">
+                        <group>
+                            <field
+                                name="cost_unit_uom_id"
+                                string="Unit"
+                                groups="uom.group_uom"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="cost_unit_consumable"
+                                string="Consumables"
+                            />
+                            <field
+                                name="cost_unit_maquila"
+                                string="Maquilas"
+                            />
+                        </group>
+                    </group>
                 </xpath>
             </field>
         </record>
@@ -29,10 +60,13 @@
             <field name="groups_id" eval="[(4,ref('mrp.group_mrp_manager'))]"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='company_id']" position="after">
-                    <field name="cost_hr_manpower" class="oe_inline" optional="show"/>
-                    <field name="cost_hr_energy" class="oe_inline" optional="show"/>
-                    <field name="cost_hr_amortization" class="oe_inline" optional="show"/>
-                    <field name="cost_hr_repair_maintenance_mgmt" class="oe_inline" optional="show"/>
+                    <field name="cost_hr_manpower" optional="show"/>
+                    <field name="cost_hr_energy" optional="show"/>
+                    <field name="cost_hr_amortization" optional="show"/>
+                    <field name="cost_hr_repair_maintenance_mgmt" optional="show"/>
+                    <field name="cost_unit_uom_id" optional="show"/>
+                    <field name="cost_unit_consumable" optional="show"/>
+                    <field name="cost_unit_maquila" optional="show"/>
                     <field name="currency_id" invisible="1"/>
                 </xpath>
             </field>
