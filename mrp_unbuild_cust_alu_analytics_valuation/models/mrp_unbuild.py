@@ -2,6 +2,7 @@
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import api, models, fields
+from odoo.tools.float_utils import float_compare
 
 
 class MrpUnbuild(models.Model):
@@ -38,6 +39,10 @@ class MrpUnbuild(models.Model):
         string="Components cost product quantity",
         readonly=True,
         copy=False,
+    )
+    cost_product_perf = fields.Float(
+        string="Costs Unbuild Performance",
+        compute="_compute_cost_product_perf",
     )
     cost_unit_price = fields.Monetary(
         compute="_compute_cost_fields",
@@ -101,6 +106,20 @@ class MrpUnbuild(models.Model):
         )
         # e.g. (250 €/t) * 3 t = 750,00 €
         self.cost_wo_extra_total = product_price * self.product_qty
+
+    def _compute_cost_product_perf(self):
+        mrp_perf = self.filtered(
+            lambda x: float_compare(
+                x.product_qty,
+                0.0,
+                precision_rounding=x.product_uom_id.rounding or 0.001
+            ) == 1
+        )
+        for mrp in mrp_perf:
+            mrp.cost_product_perf = (
+                mrp.cost_product_qty / mrp.product_qty
+            )
+        (self - mrp_perf).write({"cost_product_perf": 0.0})
 
     @api.depends("cost_product_qty", "cost_wo_extra_total", "cost_extra_total")
     def _compute_cost_fields(self):

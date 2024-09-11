@@ -55,7 +55,12 @@
                                     options="{'no_open': True, 'no_create': True}"
                                     groups="uom.group_uom"
                                 />
-                            </div>                    
+                            </div>
+                            <field
+                                name="cost_product_perf"
+                                widget="percentage"
+                                string="Performance"
+                            />
                             <field
                                 name="cost_unit_price"
                                 widget="monetary"
