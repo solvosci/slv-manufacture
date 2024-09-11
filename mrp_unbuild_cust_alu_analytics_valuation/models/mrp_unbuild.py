@@ -20,10 +20,72 @@ class MrpUnbuild(models.Model):
         readonly=True,
         copy=False,
     )
+    cost_extra_waste_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - waste (unitary)",
+    )
+    cost_extra_pt_manpower = fields.Monetary(
+        string="Unbuild extra cost - process type (manpower)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_manpower_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (manpower) (unitary)",
+    )
+    cost_extra_pt_energy = fields.Monetary(
+        string="Unbuild extra cost - process type (energy)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_energy_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (energy) (unitary)",
+    )
+    cost_extra_pt_amortization = fields.Monetary(
+        string="Unbuild extra cost - process type (amortization)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_amortization_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (amortization) (unitary)",
+    )
+    cost_extra_pt_repair_maintenance_mgmt = fields.Monetary(
+        string="Unbuild extra cost - process type (Repair/Maintenance management)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_repair_maintenance_mgmt_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (Repair/Maintenance management) (unitary)",
+    )
+    cost_extra_pt_consumable = fields.Monetary(
+        string="Unbuild extra cost - process type (consumables)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_consumable_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (consumables) (unitary)",
+    )
+    cost_extra_pt_maquila = fields.Monetary(
+        string="Unbuild extra cost - process type (maquilas)",
+        readonly=True,
+        copy=False,
+    )
+    cost_extra_pt_maquila_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (maquilas) (unitary)",
+    )
     cost_extra_process_type = fields.Monetary(
         string="Unbuild extra cost - process type",
         readonly=True,
         copy=False,
+    )
+    cost_extra_process_type_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (unitary)",
     )
     cost_extra_total = fields.Monetary(
         string="Unbuild extra cost - total",
@@ -34,6 +96,10 @@ class MrpUnbuild(models.Model):
         string="Unbuild w/o extra cost - total",
         readonly=True,
         copy=False,
+    )
+    cost_wo_extra_total_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild w/o extra cost - total (unitary)",
     )
     cost_product_qty = fields.Float(
         string="Components cost product quantity",
@@ -60,6 +126,7 @@ class MrpUnbuild(models.Model):
         return super().action_unbuild()
     
     def action_back_draft(self):
+        # TODO set other cost_extra_process_type and cost_extra_pt_* to 0.0
         self.write({
             "cost_extra_waste": 0.0,
             "cost_extra_total": 0.0,
@@ -73,7 +140,7 @@ class MrpUnbuild(models.Model):
             return
         self.cost_extra_waste = self._get_cost_extra_waste()
         self.shift_effective_time = self._get_shift_effective_time()
-        self.cost_extra_process_type = self._get_cost_extra_process_type()
+        self._set_cost_extra_process_type()
 
         # e.g. 120 €
         self.cost_extra_total = (
@@ -141,6 +208,39 @@ class MrpUnbuild(models.Model):
             "cost_total": 0.0,
         })
 
+    def _compute_cost_unitary_fields(self):
+        mrp_unitary = self.filtered(
+            lambda x: float_compare(
+                x.cost_product_qty,
+                0.0,
+                precision_rounding=x.product_uom_id.rounding or 0.001
+            ) == 1
+        )
+        for mrp in mrp_unitary:
+            qty = mrp.cost_product_qty
+            mrp.write({
+                "cost_wo_extra_total_unit": mrp.cost_wo_extra_total / qty,
+                "cost_extra_waste_unit": mrp.cost_extra_waste / qty,
+                "cost_extra_process_type_unit": mrp.cost_extra_process_type / qty,
+                "cost_extra_pt_manpower_unit": mrp.cost_extra_pt_manpower / qty,
+                "cost_extra_pt_energy_unit": mrp.cost_extra_pt_energy / qty,
+                "cost_extra_pt_amortization_unit": mrp.cost_extra_pt_amortization / qty,
+                "cost_extra_pt_repair_maintenance_mgmt_unit": mrp.cost_extra_pt_repair_maintenance_mgmt / qty,
+                "cost_extra_pt_consumable_unit": mrp.cost_extra_pt_consumable / qty,
+                "cost_extra_pt_maquila_unit": mrp.cost_extra_pt_maquila / qty,
+            })
+        (self - mrp_unitary).write({
+            "cost_wo_extra_total_unit": 0.0,
+            "cost_extra_waste_unit": 0.0,
+            "cost_extra_process_type_unit": 0.0,
+            "cost_extra_pt_manpower_unit": 0.0,
+            "cost_extra_pt_energy_unit": 0.0,
+            "cost_extra_pt_amortization_unit": 0.0,
+            "cost_extra_pt_repair_maintenance_mgmt_unit": 0.0,
+            "cost_extra_pt_consumable_unit": 0.0,
+            "cost_extra_pt_maquila_unit": 0.0,
+        })
+
     def _get_cost_extra_waste(self):
         self.ensure_one()
         cost_waste = 0.0
@@ -165,13 +265,12 @@ class MrpUnbuild(models.Model):
             self.shift_total_time - self.shift_break_time - self.shift_stop_time
         )
 
-    def _get_cost_extra_process_type(self):
+    def _set_cost_extra_process_type(self):
         self.ensure_one()
-        return (
-            self.process_type_id
-            and self.process_type_id._get_costs(self)
-            or 0.0
-        )
+        if not self.process_type_id:
+            # TODO set other cost_extra_pt_* to 0.0
+            self.cost_extra_process_type = 0.0
+        self.write(self.process_type_id._get_costs(self))
 
     def _get_cost_product_qty(self):
         self.ensure_one()

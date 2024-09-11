@@ -48,18 +48,20 @@ class MrpUnbuildProcessType(models.Model):
 
     def _get_costs(self, production_id):
         self.ensure_one()
-        return (
-            production_id.shift_effective_time * (
-                self.cost_hr_manpower
-                + self.cost_hr_energy
-                + self.cost_hr_amortization
-                + self.cost_hr_repair_maintenance_mgmt
-            )
-        ) + (
-            production_id.product_uom_id._compute_quantity(
-                production_id.product_qty, self.cost_unit_uom_id
-            ) * (
-                self.cost_unit_consumable
-                + self.cost_unit_maquila
-            )
+        et = production_id.shift_effective_time
+        qty = production_id.product_uom_id._compute_quantity(
+            production_id.product_qty, self.cost_unit_uom_id
         )
+        costs = {
+            "cost_extra_pt_manpower": et * self.cost_hr_manpower,
+            "cost_extra_pt_energy": et * self.cost_hr_energy,
+            "cost_extra_pt_amortization": et * self.cost_hr_amortization,
+            "cost_extra_pt_repair_maintenance_mgmt": et * self.cost_hr_repair_maintenance_mgmt,
+            "cost_extra_pt_consumable": qty * self.cost_unit_consumable,
+            "cost_extra_pt_maquila": qty * self.cost_unit_maquila,
+        }
+        costs.update({
+            "cost_extra_process_type": sum(costs[k] for k in costs.keys())
+        })
+
+        return costs
