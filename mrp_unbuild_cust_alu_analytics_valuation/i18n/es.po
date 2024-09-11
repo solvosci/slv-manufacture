@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 12:32+0000\n"
-"PO-Revision-Date: 2024-07-05 14:45+0200\n"
+"POT-Creation-Date: 2024-09-11 16:47+0000\n"
+"PO-Revision-Date: 2024-09-11 18:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -50,6 +50,41 @@ msgstr ""
 "        "
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Amortization"
+msgstr "* Amortización"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Consumables"
+msgstr "* Consumibles"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Energy"
+msgstr "* Energía"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Manpower"
+msgstr "* Mano de obra"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Maquilas"
+msgstr "* Maquilas"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Rep/Main. Mgmt."
+msgstr "* Rep./Mtto."
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Amortization"
+msgstr "Amortización"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_amortization
 msgid "Amortization unit cost"
 msgstr "Coste unitario de amortización"
@@ -75,20 +110,40 @@ msgid "Components unit cost price"
 msgstr "Precio unitario de coste de componentes"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Consumables"
+msgstr "Consumibles"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_consumable
+msgid "Consumables unit cost (by unit)"
+msgstr "Cost. unitario de consumibles (por unidad)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Cost data"
 msgstr "Datos de costes"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_product_perf
+msgid "Costs Unbuild Performance"
+msgstr "Rendimiento de costes del despiece"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
-msgid "Costs"
-msgstr "Costes"
+msgid "Costs per hour"
+msgstr "Costes por hora"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Costs per unit"
+msgstr "Costes por unidad"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__currency_id
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moneda"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_bom_total_view_tree
@@ -105,6 +160,11 @@ msgstr "Deshabilitado para despieces"
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_bom_totals__disabled_mrp_unbuild_valuation
 msgid "Disabled for manufacturing/unbuild valuation"
 msgstr "Deshabilitado para valoración en fabricación/despieces"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Energy"
+msgstr "Energía"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_energy
@@ -133,9 +193,24 @@ msgid "Has cost management residue"
 msgstr "Tiene coste de gestión de residuo"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Manpower"
+msgstr "Mano de obra"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_manpower
 msgid "Manpower unit cost"
 msgstr "Coste unitario de mano de obra"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Maquilas"
+msgstr "Maquilas"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_maquila
+msgid "Maquilas unit cost (by unit)"
+msgstr "Coste unitario de maquilas (por unidad)"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_tree_view_stock_valuation_mrp
@@ -146,6 +221,11 @@ msgstr "No valora"
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Original product cost"
 msgstr "Coste original del producto"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "Performance"
+msgstr "Rendimiento"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__waste_mgmt_pricelist_id
@@ -174,6 +254,11 @@ msgid "Quant Totals for BoM based Unbuild"
 msgstr "Resúmenes de cantidades para LdM basado en Desconstrucción"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Repair/Maintenance"
+msgstr "Reparación/mantenimiento"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_repair_maintenance_mgmt
 msgid "Repair/Maintenance management unit cost"
 msgstr "Coste unitario de reparación/mantenimiento"
@@ -196,7 +281,7 @@ msgstr "Total"
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Orden de despiece"
+msgstr "örden de desconstrucción"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild_process_type
@@ -209,6 +294,71 @@ msgid "Unbuild extra cost - process type"
 msgstr "Coste extra de despiece - tipo de proceso"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_repair_maintenance_mgmt
+msgid "Unbuild extra cost - process type (Repair/Maintenance management)"
+msgstr "Coste extra de despiece - tipo de proceso (Reparación/mantenimiento)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_repair_maintenance_mgmt_unit
+msgid "Unbuild extra cost - process type (Repair/Maintenance management) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (Reparación/mantenimiento) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_amortization
+msgid "Unbuild extra cost - process type (amortization)"
+msgstr "Coste extra de despiece - tipo de proceso (amortización)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_amortization_unit
+msgid "Unbuild extra cost - process type (amortization) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_consumable
+msgid "Unbuild extra cost - process type (consumables)"
+msgstr "Coste extra de despiece - tipo de proceso (consumibles)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_consumable_unit
+msgid "Unbuild extra cost - process type (consumables) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (consumibles) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_energy
+msgid "Unbuild extra cost - process type (energy)"
+msgstr "Coste extra de despiece - tipo de proceso (energía)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_energy_unit
+msgid "Unbuild extra cost - process type (energy) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (energía) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower
+msgid "Unbuild extra cost - process type (manpower)"
+msgstr "Coste extra de despiece - tipo de proceso (mano de obra)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower_unit
+msgid "Unbuild extra cost - process type (manpower) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (mano de obra) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_maquila
+msgid "Unbuild extra cost - process type (maquilas)"
+msgstr "Coste extra de despiece - tipo de proceso (maquilas)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_maquila_unit
+msgid "Unbuild extra cost - process type (maquilas) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (maquilas) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_process_type_unit
+msgid "Unbuild extra cost - process type (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_total
 msgid "Unbuild extra cost - total"
 msgstr "Coste extra de despiece - total"
@@ -217,6 +367,11 @@ msgstr "Coste extra de despiece - total"
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_waste
 msgid "Unbuild extra cost - waste"
 msgstr "Coste extra de despiece - residuo"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_waste_unit
+msgid "Unbuild extra cost - waste (unitary)"
+msgstr "Coste extra de despiece - residuo (unitario)"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_total
@@ -229,6 +384,21 @@ msgid "Unbuild w/o extra cost - total"
 msgstr "Coste no extra de despiece - total"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_wo_extra_total_unit
+msgid "Unbuild w/o extra cost - total (unitary)"
+msgstr "Coste no extra de despiece - total (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Unit price"
 msgstr "Precio unitario"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_uom_id
+msgid "UoM for unit costs (by unit)"
+msgstr "UdM para costes unitarios (por unidad)"
