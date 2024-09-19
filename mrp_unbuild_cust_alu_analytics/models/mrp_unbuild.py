@@ -187,3 +187,7 @@ class MrpUnbuild(models.Model):
             child_data = self.get_element_and_children_data(child)
             data['children'].append(child_data)
         return data
+
+    def send_notification_email(self):
+        if self.process_type_id and self.process_type_id.send_notification:
+            super(MrpUnbuild, self).send_notification_email()
