@@ -11,6 +11,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="cmplanta_id"/>
+                                <field name="send_notification" widget="boolean_toggle"/>
                             </group>
                             <group>
                                 <field name="bom_line_ids" widget="many2many_tags"/>
@@ -31,6 +32,7 @@
                     <field name="name"/>
                     <field name="cmplanta_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="send_notification" widget="boolean_toggle" optional="show"/>
                 </tree>
             </field>
         </record>
