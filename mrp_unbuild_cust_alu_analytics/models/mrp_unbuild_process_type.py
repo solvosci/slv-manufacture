@@ -19,3 +19,4 @@ class MrpUnbuildProcessType(models.Model):
         inverse_name='process_type_id',
         string='Lists of Materials'
     )
+    send_notification = fields.Boolean(string="Send notification when unbuild is completed", default=False)
