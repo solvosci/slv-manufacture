@@ -1,5 +1,6 @@
 from . import product_template
 from . import product_product
+from . import product_pricelist
 from . import mrp_bom_line
 from . import mrp_unbuild_bom_totals
 from . import mrp_unbuild

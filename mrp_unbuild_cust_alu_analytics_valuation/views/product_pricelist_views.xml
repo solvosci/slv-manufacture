@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">product.pricelist</field>
+        <field
+            name="inherit_id"
+            ref="product.product_pricelist_view"
+        />
+        <field name="arch" type="xml">
+            <widget name="web_ribbon" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="action_view_costs_pricelist_items"
+                        type="object"
+                        icon="fa-dollar"
+                        string="Costs Hist. Items"
+                        attrs="{
+                            'invisible': [('unbuild_process_type_id', '=', False)],
+                        }"
+                    />
+                </div>
+            </widget>
+            <page name="pricelist_rules" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [('unbuild_process_type_id', '!=', False)],
+                }</attribute>
+            </page>
+            <page name="pricelist_config" position="before">
+                <page
+                    name="unbuild_process_type_data"
+                    string="Unbuild Process Type Data"
+                    groups="mrp.group_mrp_manager"
+                >
+                    <group>
+                        <group>
+                            <field
+                                name="unbuild_process_type_id"
+                                string="Process Type"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="unbuild_process_type_cost"
+                                string="Related Cost"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

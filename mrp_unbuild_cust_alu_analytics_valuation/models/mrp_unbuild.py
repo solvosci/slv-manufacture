@@ -254,8 +254,7 @@ class MrpUnbuild(models.Model):
                 price, rule_id = pricelist.get_product_price_rule(
                     product, total.total_qty, False, date=self.unbuild_date
                 )
-            # TODO unit management (ensure BoM UoM and product default UoM;
-            #      otherwise, make quantity conversion before obtaining cost)
+            # TODO total_qty for each total must be computed by product_uom_id
             cost_waste += total.total_qty * price
         return cost_waste
 
@@ -275,6 +274,7 @@ class MrpUnbuild(models.Model):
     def _get_cost_product_qty(self):
         self.ensure_one()
         # TODO disabled_mrp_unbuild_valuation inherited mark instead of BoM mark
+        # TODO total_qty for each total must be computed by product_uom_id
         return sum(
             self.bom_quants_total_ids.filtered(lambda x: (
                 not x.bom_line_id.product_id.has_waste_cost_mgmt

@@ -14,6 +14,8 @@
     "data": [
         "views/product_template_views.xml",
         "views/product_product_views.xml",
+        "views/product_pricelist_views.xml",
+        "views/product_pricelist_item_views.xml",
         "views/mrp_unbuild_views.xml",
         "views/mrp_bom_views.xml",
         "views/mrp_bom_line_views.xml",
@@ -21,5 +23,6 @@
         "views/mrp_unbuild_bom_totals_views.xml",
         "views/mrp_unbuild_views.xml",
     ],
+    "post_init_hook": "post_init_hook",
     'installable': True,
 }

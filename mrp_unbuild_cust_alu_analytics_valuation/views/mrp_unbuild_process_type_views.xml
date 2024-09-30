@@ -6,6 +6,15 @@
             <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.view_mrp_process_form"/>
             <field name="groups_id" eval="[(4,ref('mrp.group_mrp_manager'))]"/>
             <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button
+                        name="action_view_costs_pricelist_items"
+                        type="object"
+                        icon="fa-dollar"
+                        string="Costs Hist. Items"
+                        attrs="{'invisible': [('id', '=', False)]}"
+                    />
+                </xpath>
                 <xpath expr="//group" position="inside">
                     <group name="costs_hr" string="Costs per hour">
                         <group>
