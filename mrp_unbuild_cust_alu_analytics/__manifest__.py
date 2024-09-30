@@ -7,7 +7,7 @@
     """,
     "author": "Solvos",
     "license": "AGPL-3",
-    "version": "13.0.1.7.0",
+    "version": "13.0.1.8.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp_unbuild_advanced", "mrp_unbuild_bom_cust_qty", "report_xlsx", "mrp_unbuild_qc", "mrp_unbuild_bom_cust_qty", "mrp_unbuild_done_message"],
