@@ -5,6 +5,7 @@ from odoo import fields, models
 
 class MrpUnbuildProcessType(models.Model):
     _name = "mrp.unbuild.process.type"
+    _inherit = ["mail.thread.cc", "mail.activity.mixin"]
     _description = 'Unbuild Process Type'
 
     company_id = fields.Many2one(
