@@ -250,12 +250,14 @@ class MrpUnbuild(models.Model):
             product = total.bom_line_id.product_id
             pricelist = product.waste_mgmt_pricelist_id
             price = 0.0
+            total_qty = total.product_uom_id._compute_quantity(
+                total.total_qty, product.uom_id
+            )
             if pricelist:
                 price, rule_id = pricelist.get_product_price_rule(
-                    product, total.total_qty, False, date=self.unbuild_date
+                    product, total_qty, False, date=self.unbuild_date
                 )
-            # TODO total_qty for each total must be computed by product_uom_id
-            cost_waste += total.total_qty * price
+            cost_waste += total_qty * price
         return cost_waste
 
     def _get_shift_effective_time(self):
@@ -274,11 +276,14 @@ class MrpUnbuild(models.Model):
     def _get_cost_product_qty(self):
         self.ensure_one()
         # TODO disabled_mrp_unbuild_valuation inherited mark instead of BoM mark
-        # TODO total_qty for each total must be computed by product_uom_id
+        quant_totals_ids = self.bom_quants_total_ids.filtered(lambda x: (
+            not x.bom_line_id.product_id.has_waste_cost_mgmt
+            # and not x.bom_line_id.disabled_mrp_unbuild_valuation
+            and not x.disabled_mrp_unbuild_valuation
+        ))
         return sum(
-            self.bom_quants_total_ids.filtered(lambda x: (
-                not x.bom_line_id.product_id.has_waste_cost_mgmt
-                # and not x.bom_line_id.disabled_mrp_unbuild_valuation
-                and not x.disabled_mrp_unbuild_valuation
-            )).mapped("total_qty")
+            qt.product_uom_id._compute_quantity(
+                qt.total_qty, self.product_uom_id
+            )
+            for qt in quant_totals_ids
         )
