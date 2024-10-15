@@ -1,7 +1,8 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
-from odoo import api, models, fields
+from odoo import _, api, models, fields
+from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare
 
 
@@ -120,8 +121,38 @@ class MrpUnbuild(models.Model):
         string="Unbuild total cost",
         compute_sudo=True,
     )
+    
+    valuation_mo_id = fields.Many2one(
+        comodel_name="mrp.production",
+        string="Original MO for Valuation",
+        help="""
+        For valuation purposes, this MO is used as reference, when filled.
+        """,
+    )
+
+    @api.constrains("valuation_mo_id")
+    def _check_valuation_mo_id(self):
+        for unbuild in self.filtered(lambda x: x.valuation_mo_id):
+            # TODO mo.location_dest_id == ub.location_id protection
+            if unbuild.valuation_mo_id.product_id != unbuild.product_id:
+                raise ValidationError(_("Original MO for Valuation must be for the same product"))
+            if unbuild.valuation_mo_id.state != "done":
+                raise ValidationError(_("Original MO for Valuation must be done"))
+            ub_ids = self.search([
+                ("valuation_mo_id", "=", unbuild.valuation_mo_id.id),
+            ]) - unbuild
+            if ub_ids:
+                raise ValidationError(
+                    _("Cannot use %s as original MO for Valuation because it was already used in %s")
+                    % (unbuild.valuation_mo_id.name, ub_ids.name)
+                )
 
     def action_unbuild(self):
+        if (
+            self.valuation_mo_id
+            and self.valuation_mo_id.date_planned_finished.date() > self.unbuild_date.date()
+        ):
+            raise ValidationError(_("Original MO for Valuation cannot be finished after unbuild date!"))
         self.sudo()._save_cost_fields()
         return super().action_unbuild()
     
@@ -164,13 +195,25 @@ class MrpUnbuild(models.Model):
 
     def _update_wo_extra_total(self):
         self.ensure_one()
-        # TODO si sudo() finally required
-        PHAP_sudo = self.env["product.history.average.price"]
-        product_price = PHAP_sudo.get_price(
-            self.product_id,
-            self.location_id.get_warehouse(),
-            dt=self.unbuild_date
-        )
+        product_price = 0.0
+        if self.valuation_mo_id:
+            # It should be only one produced move and one valuation layer
+            svl_ids = self.valuation_mo_id.move_finished_ids.sudo().stock_valuation_layer_ids
+            if svl_ids:
+                product_price = svl_ids[0].unit_cost
+            else:
+                raise ValidationError(
+                    _("No Stock Valuation Layer for MO %s produced moves")
+                    % self.valuation_mo_id.name
+                )
+        else:            
+            # TODO si sudo() finally required
+            PHAP_sudo = self.env["product.history.average.price"]
+            product_price = PHAP_sudo.get_price(
+                self.product_id,
+                self.location_id.get_warehouse(),
+                dt=self.unbuild_date
+            )
         # e.g. (250 €/t) * 3 t = 750,00 €
         self.cost_wo_extra_total = product_price * self.product_qty
 

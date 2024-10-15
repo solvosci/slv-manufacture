@@ -8,6 +8,19 @@
             ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"
         />
         <field name="arch" type="xml">
+            <!-- TODO should be moved to mrp_unbuild_bom_cust_qty -->
+            <xpath expr="//field[@name='mo_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mo_id']" position="after">
+                <field
+                    name="valuation_mo_id"
+                    attrs="{'readonly': [('state', '=', 'done')]}"
+                    domain="[('product_id', '=', product_id), ('state', '=', 'done'), ('location_dest_id', '=', location_id)]"
+                    options="{'no_create': True}"
+                    string="Val. Production"                    
+                />
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page
                     name="cost_data"
@@ -196,6 +209,39 @@
                     </group>
                 </page>
             </xpath>
+        </field>
+    </record>    
+
+    <record id="mrp_unbuild_tree_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.tree (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.unbuild</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_unbuild_tree_view"
+        />
+        <field name="arch" type="xml">
+            <!-- TODO should be moved to mrp_unbuild_bom_cust_qty -->
+            <field name="mo_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="mo_id" position="after">
+                <field name="valuation_mo_id" string="Val. Production" />
+            </field>            
+        </field>
+    </record>    
+
+    <record id="mrp_unbuild_search_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.search (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">mrp.unbuild</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_unbuild_search_view"
+        />
+        <field name="arch" type="xml">
+            <!-- TODO should be moved to mrp_unbuild_bom_cust_qty -->
+            <field name="mo_id" position="after">
+                <field name="valuation_mo_id" string="Val. Production" />
+            </field>            
         </field>
     </record>    
 </odoo>
