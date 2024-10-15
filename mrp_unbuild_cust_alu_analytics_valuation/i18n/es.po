@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:45+0000\n"
-"PO-Revision-Date: 2024-10-01 16:59+0200\n"
+"POT-Creation-Date: 2024-10-16 15:57+0000\n"
+"PO-Revision-Date: 2024-10-16 17:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__valuation_mo_id
+msgid ""
+"\n"
+"        For valuation purposes, this MO is used as reference, when filled.\n"
+"        "
+msgstr ""
+"\n"
+"        Para cuestiones de valoración, se usa esta OF como referencia, si "
+"está cubierta.\n"
+"        "
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__waste_mgmt_pricelist_id
@@ -42,8 +54,7 @@ msgstr ""
 #: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_product_product__has_waste_cost_mgmt
 msgid ""
 "\n"
-"        When enabled, product residue will be covered with cost "
-"management\n"
+"        When enabled, product residue will be covered with cost management\n"
 "        "
 msgstr ""
 "\n"
@@ -112,8 +123,16 @@ msgstr ""
 #, python-format
 msgid "Cannot delete a pricelist with a linked unbuild process type!"
 msgstr ""
-"¡No se puede elminar una tarifa vinculada a un tipo de proceso de "
-"despieces!"
+"¡No se puede elminar una tarifa vinculada a un tipo de proceso de despieces!"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
+#, python-format
+msgid ""
+"Cannot use %s as original MO for Valuation because it was already used in %s"
+msgstr ""
+"No se puede usar %s como OF original para valoración porque ya se está "
+"usando para %s"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_product_qty
@@ -260,9 +279,42 @@ msgid "Maquilas unit cost (by unit)"
 msgstr "Coste unitario de maquilas (por unidad)"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
+#, python-format
+msgid "No Stock Valuation Layer for MO %s produced moves"
+msgstr ""
+"No se han encontrado capas de valoración de inventario para los movimientos "
+"de producto terminado para la OF %s"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_tree_view_stock_valuation_mrp
 msgid "No valuation"
 msgstr "No valora"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__valuation_mo_id
+msgid "Original MO for Valuation"
+msgstr "OF original para valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
+#, python-format
+msgid "Original MO for Valuation cannot be finished after unbuild date!"
+msgstr ""
+"¡La OF original para valoración no puede haber finalizado después de la "
+"fecha del despiece1"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
+#, python-format
+msgid "Original MO for Valuation must be done"
+msgstr "La OF original para valoración debe estar finalizada"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
+#, python-format
+msgid "Original MO for Valuation must be for the same product"
+msgstr "La OF original para valoración debe ser del mismo producto"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
@@ -499,3 +551,10 @@ msgstr "Precio unitario"
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_uom_id
 msgid "UoM for unit costs (by unit)"
 msgstr "UdM para costes unitarios (por unidad)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_search_view
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_tree_view
+msgid "Val. Production"
+msgstr "Fabr. valoración"
