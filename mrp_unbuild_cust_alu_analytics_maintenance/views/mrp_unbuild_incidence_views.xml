@@ -15,4 +15,35 @@
         </field>
     </record>
 
+    <record id="mrp_unbuild_incidence_tree_inherit_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.incidence.tree.inherit</field>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.view_mrp_incidence_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='machine']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='machine']" position="after">
+                <field name="maintenance_equipment_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_unbuild_incidence_search_inherit_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.incidence.search.inherit</field>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='detail']" position="after">
+                <field name="maintenance_equipment_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='unbuild_date']" position="before">
+                <filter string="With Machine" name="machine_filter"  domain="[('maintenance_equipment_id', '!=', False)]"/>
+            </xpath>
+            <xpath expr="//filter[@name='groupby_unbuild_date']" position="before">
+                <filter string="Machine" name="groupby_equipment" context="{'group_by': 'maintenance_equipment_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

@@ -6,61 +6,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 10:54+0000\n"
-"PO-Revision-Date: 2024-04-04 12:55+0200\n"
+"POT-Creation-Date: 2024-10-23 07:45+0000\n"
+"PO-Revision-Date: 2024-10-23 09:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics_maintenance.model_mrp_unbuild_incidence
-#, fuzzy
 msgid "MRP Incidence"
 msgstr "Incidencia MRP"
+
+#. module: mrp_unbuild_cust_alu_analytics_maintenance
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_maintenance.mrp_unbuild_incidence_search_inherit_view
+msgid "Machine"
+msgstr "Máquina"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics_maintenance.model_maintenance_equipment
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_maintenance.field_mrp_unbuild_incidence__maintenance_equipment_id
 msgid "Maintenance Equipment"
-msgstr "Equipo de mantenimiento"
+msgstr "Máquina"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_maintenance.maintenance_equipment_works_with_unbuild_search
-#, fuzzy
 msgid "Not Work with unbuild"
 msgstr "No trabaja con despieces"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics_maintenance.action_total_unbuilds
-#, fuzzy
 msgid "Total Unbuilds"
 msgstr "Total de despieces"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_maintenance.field_maintenance_equipment__unbuild_count
-#, fuzzy
 msgid "Unbuild Incidences"
 msgstr "Incidencias de despieces"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_maintenance.maintenance_equipment_total_unbuilds_form
-#, fuzzy
 msgid "Unbuilds"
 msgstr "Despieces"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_maintenance.mrp_unbuild_incidence_search_inherit_view
+msgid "With Machine"
+msgstr "Con máquina"
+
+#. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_maintenance.field_maintenance_equipment__works_with_unbuild
-#, fuzzy
 msgid "Works with Unbuild"
 msgstr "Trabaja con despieces"
 
 #. module: mrp_unbuild_cust_alu_analytics_maintenance
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_maintenance.maintenance_equipment_works_with_unbuild_search
-#, fuzzy
 msgid "Works with unbuild"
 msgstr "Trabaja con despieces"
