@@ -145,8 +145,8 @@ class MrpUnbuildProcessType(models.Model):
         costs = {
             "cost_extra_pt_manpower": et * self._get_cost(production_id, "cost_hr_manpower"),
             "cost_extra_pt_energy": et * self._get_cost(production_id, "cost_hr_energy"),
-            "cost_extra_pt_amortization": et * self._get_cost(production_id, "cost_hr_amortization"),
-            "cost_extra_pt_repair_maintenance_mgmt": et * self._get_cost(production_id, "cost_hr_repair_maintenance_mgmt"),
+            "cost_extra_pt_amortization": qty * self._get_cost(production_id, "cost_hr_amortization"),
+            "cost_extra_pt_repair_maintenance_mgmt": qty * self._get_cost(production_id, "cost_hr_repair_maintenance_mgmt"),
             "cost_extra_pt_consumable": qty * self._get_cost(production_id, "cost_unit_consumable"),
             "cost_extra_pt_maquila": qty * self._get_cost(production_id, "cost_unit_maquila"),
         }
