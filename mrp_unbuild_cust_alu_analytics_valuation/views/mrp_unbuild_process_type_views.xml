@@ -22,19 +22,11 @@
                                 name="cost_hr_manpower"
                                 string="Manpower"
                             />
-                            <field
-                                name="cost_hr_energy"
-                                string="Energy"
-                            />
                         </group>
                         <group>
                             <field
-                                name="cost_hr_amortization"
-                                string="Amortization"
-                            />
-                            <field
-                                name="cost_hr_repair_maintenance_mgmt"
-                                string="Repair/Maintenance"
+                                name="cost_hr_energy"
+                                string="Energy"
                             />
                         </group>
                         <field name="currency_id" invisible="1"/>
@@ -48,6 +40,14 @@
                             />
                         </group>
                         <group>
+                            <field
+                                name="cost_hr_amortization"
+                                string="Amortization"
+                            />
+                            <field
+                                name="cost_hr_repair_maintenance_mgmt"
+                                string="Repair/Maintenance"
+                            />
                             <field
                                 name="cost_unit_consumable"
                                 string="Consumables"
