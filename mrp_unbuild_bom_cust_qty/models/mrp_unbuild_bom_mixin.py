@@ -28,6 +28,7 @@ class MrpUnbuildBoMMixin(models.AbstractModel):
         check_company=True,
         string="Related BoM Line",
     )
+    product_id = fields.Many2one(related="bom_line_id.product_id")
     product_uom_id = fields.Many2one(related="bom_line_id.product_uom_id")
     is_product_uom_diff = fields.Boolean(
         compute="_compute_is_product_uom_diff",

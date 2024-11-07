@@ -27,6 +27,10 @@ class MrpUnbuildBoMTotals(models.Model):
     deco_danger = fields.Boolean(
         compute="_compute_deco_danger"
     )
+    bom_quant_ids = fields.Many2many(
+        comodel_name="mrp.unbuild.bom.quants",
+        compute="_compute_bom_quant_ids",
+    )
 
     @api.depends("unbuild_id.product_qty",
                 # "unbuild_id.bom_id.bom_line_ids.product_qty",
@@ -58,8 +62,13 @@ class MrpUnbuildBoMTotals(models.Model):
     def _compute_total_qty(self):
         for record in self:
             record.total_qty = 0
+            # TODO replace with new field record.bom_quant_ids
             for bom_quant in record.unbuild_id.bom_quants_ids.filtered(lambda x: x.bom_line_id.id == record.bom_line_id.id):
                 record.total_qty += bom_quant.custom_qty
+
+    def _compute_bom_quant_ids(self):
+        for record in self:
+            record.bom_quant_ids = record.unbuild_id.bom_quants_ids.filtered(lambda x: x.bom_line_id.id == record.bom_line_id.id)
 
     def product_weighing(self):
         self.ensure_one()
