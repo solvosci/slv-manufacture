@@ -3,6 +3,13 @@
 
 from odoo import _, api, models, fields
 from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
+from odoo.tools import float_round
+
+MESSAGE = (
+    "Some of your components are tracked, you have to specify "
+    "a manufacturing order in order to retrieve the correct components."
+)
 
 
 class MrpUnbuild(models.Model):
@@ -163,6 +170,95 @@ class MrpUnbuild(models.Model):
                 ) % error_totals)
         return super().action_validate()
     
+    def action_unbuild(self):
+        """ We need to catch raise behavior when tracked products
+            are unbuild without an original manufacturing order and
+            go on with another workflow with
+            _bypass_tracked_product_without_mo()
+
+            Copied from https://github.com/OCA/manufacture/blob/13.0/mrp_unbuild_tracked_raw_material/models/unbuild.py
+        """
+        try:
+            res = super().action_unbuild()
+        except UserError as err:
+            # Unbuild is impossible because of MESSAGE
+            # original condition of this raise is :
+            # any(produce_move.has_tracking != 'none'
+            # and not self.mo_id for produce_move in produce_moves)
+            if hasattr(err, "name") and err.name == _(MESSAGE):
+                return self._bypass_tracked_product_without_mo()
+            # Here is the Odoo native raise
+            raise err
+        return res    
+    
+    def _bypass_tracked_product_without_mo(self):
+        consume_moves = self.env["stock.move"].search(
+            [("consume_unbuild_id", "=", self.id)]
+        )
+        produce_moves = self.env["stock.move"].search([("unbuild_id", "=", self.id)])
+        finished_moves = consume_moves.filtered(lambda m: m.product_id == self.product_id)
+        consume_moves -= finished_moves
+
+        """
+        Fully copied from https://github.com/odoo/odoo/blob/4cc086d330b73514fbc64a7fcf22d8a7a9f1b691/addons/mrp/models/mrp_unbuild.py#L150-L199
+        """
+        if any(consume_move.has_tracking != 'none' and not self.mo_id for consume_move in consume_moves):
+            raise UserError(_('Some of your byproducts are tracked, you have to specify a manufacturing order in order to retrieve the correct byproducts.'))
+
+        for finished_move in finished_moves:
+            if finished_move.has_tracking != 'none':
+                self.env['stock.move.line'].create({
+                    'move_id': finished_move.id,
+                    'lot_id': self.lot_id.id,
+                    'qty_done': finished_move.product_uom_qty,
+                    'product_id': finished_move.product_id.id,
+                    'product_uom_id': finished_move.product_uom.id,
+                    'location_id': finished_move.location_id.id,
+                    'location_dest_id': finished_move.location_dest_id.id,
+                })
+            else:
+                finished_move.quantity_done = finished_move.product_uom_qty
+
+        # TODO: Will fail if user do more than one unbuild with lot on the same MO. Need to check what other unbuild has aready took
+        for move in produce_moves | consume_moves:
+            if move.has_tracking != 'none':
+                """ TODO this should be covered in 
+                     * _generate_move_from_bom_line()
+                     * and _generate_move_from_bom_quants_total()
+                     * OR _generate_produce_moves()
+                """
+                pass
+                # original_move = move in produce_moves and self.mo_id.move_raw_ids or self.mo_id.move_finished_ids
+                # original_move = original_move.filtered(lambda m: m.product_id == move.product_id)
+                # needed_quantity = move.product_uom_qty
+                # moves_lines = original_move.mapped('move_line_ids')
+                # if move in produce_moves and self.lot_id:
+                #     moves_lines = moves_lines.filtered(lambda ml: self.lot_id in ml.lot_produced_ids)
+                # for move_line in moves_lines:
+                #     # Iterate over all move_lines until we unbuilded the correct quantity.
+                #     taken_quantity = min(needed_quantity, move_line.qty_done)
+                #     if taken_quantity:
+                #         self.env['stock.move.line'].create({
+                #             'move_id': move.id,
+                #             'lot_id': move_line.lot_id.id,
+                #             'qty_done': taken_quantity,
+                #             'product_id': move.product_id.id,
+                #             'product_uom_id': move_line.product_uom_id.id,
+                #             'location_id': move.location_id.id,
+                #             'location_dest_id': move.location_dest_id.id,
+                #         })
+                #         needed_quantity -= taken_quantity
+            else:
+                move.quantity_done = float_round(move.product_uom_qty, precision_rounding=move.product_uom.rounding)
+
+        finished_moves._action_done()
+        consume_moves._action_done()
+        produce_moves._action_done()
+        produced_move_line_ids = produce_moves.mapped('move_line_ids').filtered(lambda ml: ml.qty_done > 0)
+        consume_moves.mapped('move_line_ids').write({'produce_line_ids': [(6, 0, produced_move_line_ids.ids)]})
+
+        return self.write({'state': 'done'})        
+    
     def action_add_myself(self):
         self.ensure_one()
         self.bom_quants_total_ids = [(
@@ -172,13 +268,37 @@ class MrpUnbuild(models.Model):
         )]
         self.bom_custom_quants_add_myself = True
 
+    def _prepare_move_line_with_lot(self, move, bom_quant_id):
+        return {
+            "move_id": move.id,
+            "lot_id": bom_quant_id.lot_id.id,
+            "qty_done": bom_quant_id.custom_qty,
+            "product_id": move.product_id.id,
+            "product_uom_id": move.product_uom.id,
+            "location_id": move.location_id.id,
+            "location_dest_id": move.location_dest_id.id,
+        }
+
     def _generate_move_from_bom_line(self, product, product_uom, quantity, bom_line_id=False, byproduct_id=False):
         # Default BoM line quantity is overwritten by custom ones
+        bom_quant_ids = False
         if self.bom_custom_quants and bom_line_id:
             bom_line_obj = self.bom_quants_total_ids.filtered(lambda x: x.bom_line_id.id == bom_line_id)
             quantity = bom_line_obj.total_qty
+            bom_quant_ids = bom_line_obj.bom_quant_ids
 
-        return super()._generate_move_from_bom_line(product, product_uom, quantity, bom_line_id=bom_line_id, byproduct_id=byproduct_id)
+        move = super()._generate_move_from_bom_line(product, product_uom, quantity, bom_line_id=bom_line_id, byproduct_id=byproduct_id)
+
+        if self.bom_custom_quants and bom_line_id and product.tracking != "none" and not all(bom_quant_ids.mapped("has_lot")):
+            raise UserError(_("You have to specify a lot for %s") % product.name)
+
+        if bom_quant_ids and product.tracking != "none":
+            for bom_quant_id in bom_quant_ids:
+                self.env["stock.move.line"].create(
+                    self._prepare_move_line_with_lot(move, bom_quant_id)
+                )
+
+        return move
 
     def _generate_produce_moves(self):
         moves = super()._generate_produce_moves()
@@ -194,15 +314,18 @@ class MrpUnbuild(models.Model):
             product_id = record.bom_line_id.product_id
             if product_id.type not in ["product", "consu"]:
                 continue
-            product_uom_id = record.bom_line_id.product_uom_id
-            moves += self._generate_move_from_bom_quants_total(product_id, product_uom_id, record.total_qty)
+            moves += self._generate_move_from_bom_quants_total(record)
         return moves
 
-    def _generate_move_from_bom_quants_total(self, product, product_uom, quantity):
+    def _generate_move_from_bom_quants_total(self, quant_total):
+        product = quant_total.bom_line_id.product_id
+        product_uom = quant_total.bom_line_id.product_uom_id
+        quantity = quant_total.total_qty
+
         location_id = product.property_stock_production or self.location_id
         location_dest_id = self.location_dest_id or product.with_context(force_company=self.company_id.id).property_stock_production
         warehouse = location_dest_id.get_warehouse()
-        return self.env['stock.move'].create({
+        move = self.env['stock.move'].create({
             'name': self.name,
             'date': self.create_date,
             'product_id': product.id,
@@ -215,6 +338,17 @@ class MrpUnbuild(models.Model):
             'unbuild_id': self.id,
             'company_id': self.company_id.id,
         })
+
+        bom_quant_ids = quant_total.bom_quant_ids
+        if product.tracking != "none" and not all(bom_quant_ids.mapped("has_lot")):
+            raise UserError(_("You have to specify a lot for %s") % product.name)
+        if bom_quant_ids and product.tracking != "none":
+            for bom_quant_id in bom_quant_ids:
+                self.env["stock.move.line"].create(
+                    self._prepare_move_line_with_lot(move, bom_quant_id)                
+                )
+
+        return move
 
     def _update_product_qty_from_bom_totals(self):
         if not self.env.user.has_group(

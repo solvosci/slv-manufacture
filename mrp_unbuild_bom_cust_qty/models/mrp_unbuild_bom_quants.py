@@ -15,9 +15,30 @@ class MrpUnbuildBoMQuants(models.Model):
         digits='Product Unit of Measure',
         required=True,
     )
+    lot_id = fields.Many2one(
+        comodel_name="stock.production.lot",
+    )
+    has_lot = fields.Boolean(
+        compute="_compute_has_lot",
+    )
+    lot_required = fields.Boolean(
+        compute="_compute_lot_required",
+    )
     departure_date = fields.Datetime(
         readonly=True
     )
+
+    @api.depends("lot_id")
+    def _compute_has_lot(self):
+        for record in self:
+            record.has_lot = bool(record.lot_id)
+
+    @api.depends("bom_line_id")
+    def _compute_lot_required(self):
+        for record in self:
+            record.lot_required = (
+                record.bom_line_id.product_id.tracking != "none"
+            )
 
     @api.constrains("custom_qty")
     def _check_custom_qty(self):
