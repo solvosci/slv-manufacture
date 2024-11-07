@@ -7,10 +7,11 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "13.0.2.2.0",
+    "version": "13.0.3.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp"],
+    "excludes": ["mrp_unbuild_tracked_raw_material"],
     "data": [
         "security/mrp_unbuild_bom_cust_qty_security.xml",
         "security/ir.model.access.csv",
