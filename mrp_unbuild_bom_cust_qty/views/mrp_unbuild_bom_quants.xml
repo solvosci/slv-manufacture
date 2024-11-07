@@ -18,6 +18,29 @@
                         nolabel="1"
                         style="font-size: 200%;"
                     /> 
+                    <field name="product_id" invisible="1" />
+                    <field name="lot_required" invisible="1" />
+                    <!-- TODO div for only one invisible attr -->
+                    <label
+                        for="lot_id"
+                        style="font-size: 200%;"
+                        attrs="{
+                            'invisible': [('lot_required', '=', False)],
+                        }"
+                        groups="stock.group_production_lot"
+                    />
+                    <field
+                        name="lot_id"
+                        nolabel="1"
+                        style="font-size: 200%;"
+                        domain="[('product_id', '=', product_id)]"
+                        attrs="{
+                            'invisible': [('lot_required', '=', False)],
+                            'required': [('lot_required', '=', True)],
+                        }"
+                        options="{'no_create_edit': True}"
+                        groups="stock.group_production_lot"
+                    /> 
                 </group>
             </form>
         </field>
@@ -54,6 +77,11 @@
                 <field name="bom_line_id" readonly="1" />
                 <field name="name" />
                 <field name="departure_date" readonly="1" />
+                <field
+                    name="lot_id"
+                    optional="show"
+                    groups="stock.group_production_lot"
+                />
                 <field name="custom_qty" />
                 <field
                     name="product_uom_id"
