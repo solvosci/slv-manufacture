@@ -1,1 +1,1 @@
-Only allow to cancel productions to responsible manufacturing users
+Generalize deny access to buttons to Non-Managers

@@ -12,6 +12,27 @@
             <xpath expr="//button[@name='action_cancel'][2]" position="attributes">
                 <attribute name="groups">mrp.group_mrp_manager</attribute>
             </xpath>
+            <xpath expr="//button[@name='button_mark_done']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][2]" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][3]" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][4]" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
         </field>
     </record>
 
