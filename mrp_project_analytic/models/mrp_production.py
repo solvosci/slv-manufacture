@@ -32,14 +32,19 @@ class ManufactureOrder(models.Model):
                 ),
             })
 
-    def mark_analytic_mrp_from_child(self):
+    def _prepare_mark_account_move_ids(self):
         child_productions = self._get_children()
         child_products = child_productions.mapped('product_id')
         raw_material_moves = self.move_raw_ids.filtered(
             lambda x: x.state == "done" and x.product_id in child_products
         )
         aml_ids = raw_material_moves.sudo().mapped('account_move_ids.line_ids')
-        
+
+        return aml_ids
+
+    def mark_analytic_mrp_from_child(self):
+        aml_ids = self._prepare_mark_account_move_ids()
+
         if aml_ids:
             debit_aml_ids = aml_ids.filtered(lambda x: x.debit > 0)
             debit_aml_ids.write({
