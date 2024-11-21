@@ -1,1 +1,2 @@
-Generalize deny access to buttons to Non-Managers
+- Generalize deny access to buttons to Non-Managers
+- Add confirmation when canceling a production
