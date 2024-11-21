@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="confirm">Are you sure you want to cancel manufacturing?</attribute>
                 <attribute name="groups">mrp.group_mrp_manager</attribute>
             </xpath>
             <xpath expr="//button[@name='action_cancel'][2]" position="attributes">
