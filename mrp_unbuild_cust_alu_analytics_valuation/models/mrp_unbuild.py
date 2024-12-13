@@ -252,6 +252,7 @@ class MrpUnbuild(models.Model):
         })
 
     def _compute_cost_unitary_fields(self):
+        self = self.sudo()
         mrp_unitary = self.filtered(
             lambda x: float_compare(
                 x.cost_product_qty,
