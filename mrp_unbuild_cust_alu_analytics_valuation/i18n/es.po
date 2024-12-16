@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-16 15:57+0000\n"
-"PO-Revision-Date: 2024-10-16 17:58+0200\n"
+"POT-Creation-Date: 2024-12-16 17:52+0000\n"
+"PO-Revision-Date: 2024-12-16 18:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__valuation_mo_id
@@ -167,6 +167,11 @@ msgid "Consumables unit cost (by unit)"
 msgstr "Cost. unitario de consumibles (por unidad)"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Cost"
+msgstr "Coste"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Cost data"
 msgstr "Datos de costes"
@@ -249,6 +254,16 @@ msgid "Has cost management residue"
 msgstr "Tiene coste de gestión de residuo"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Income"
+msgstr "Ingreso"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Involved UBs"
+msgstr "Despieces involucrados"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
 msgid "Manpower"
 msgstr "Mano de obra"
@@ -277,6 +292,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_maquila
 msgid "Maquilas unit cost (by unit)"
 msgstr "Coste unitario de maquilas (por unidad)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Margin"
+msgstr "Margen"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
@@ -399,6 +419,11 @@ msgstr "Movimiento de existencias"
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Total"
 msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_mrp_unbuild
@@ -558,3 +583,38 @@ msgstr "UdM para costes unitarios (por unidad)"
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_tree_view
 msgid "Val. Production"
 msgstr "Fabr. valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_cost
+msgid "Valuation Cost"
+msgstr "Coste de la valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_currency_id
+msgid "Valuation Currency"
+msgstr "Moneda de la valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Valuation Data"
+msgstr "Datos de valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_income
+msgid "Valuation Income"
+msgstr "Ingreso de la valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_unbuild_ids
+msgid "Valuation Involved Unbuilds"
+msgstr "Despieces involucrados en la valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_margin
+msgid "Valuation Margin"
+msgstr "Margen de la valoración"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_margin_pct
+msgid "Valuation Margin %"
+msgstr "Margen (%) de la valoración"

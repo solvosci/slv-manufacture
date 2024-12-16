@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form (in mrp_unbuild_cust_alu_analytics_valuation)</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="valuation_data"
+                    string="Valuation Data"
+                    groups="account.group_account_invoice"
+                    attrs="{
+                        'invisible': [
+                            '|',
+                                ('state', '!=', 'done'),
+                                ('picking_type_code', '!=', 'outgoing'),
+                        ],
+                    }"
+                >
+                    <group>
+                        <group>
+                            <field name="val_currency_id" invisible="1" />
+                            <field
+                                name="val_cost"
+                                widget="monetary"
+                                string="Cost"
+                            />
+                            <field
+                                name="val_income"
+                                widget="monetary"
+                                string="Income"
+                            />
+                            <field
+                                name="val_unbuild_ids"
+                                string="Involved UBs"
+                                widget="many2many_tags"
+                                attrs="{'invisible': [('val_unbuild_ids', '=', [])]}"
+                                groups="mrp.group_mrp_user"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="val_margin"
+                                widget="monetary"
+                                string="Margin"
+                            />
+                            <field
+                                name="val_margin_pct"
+                                string="(%)"
+                                widget="percentage"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>    
+</odoo>
