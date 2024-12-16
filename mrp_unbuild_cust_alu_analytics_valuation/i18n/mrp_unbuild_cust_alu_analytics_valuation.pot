@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-16 15:58+0000\n"
-"PO-Revision-Date: 2024-10-16 15:58+0000\n"
+"POT-Creation-Date: 2024-12-16 17:52+0000\n"
+"PO-Revision-Date: 2024-12-16 17:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -149,6 +149,11 @@ msgid "Consumables unit cost (by unit)"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Cost data"
 msgstr ""
@@ -231,6 +236,16 @@ msgid "Has cost management residue"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Income"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Involved UBs"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
 msgid "Manpower"
 msgstr ""
@@ -258,6 +273,11 @@ msgstr ""
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_maquila
 msgid "Maquilas unit cost (by unit)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Margin"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
@@ -376,6 +396,11 @@ msgstr ""
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "Total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_stock_picking
+msgid "Transfer"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
@@ -533,4 +558,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_search_view
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_tree_view
 msgid "Val. Production"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_cost
+msgid "Valuation Cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_currency_id
+msgid "Valuation Currency"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.view_picking_form
+msgid "Valuation Data"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_income
+msgid "Valuation Income"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_unbuild_ids
+msgid "Valuation Involved Unbuilds"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_margin
+msgid "Valuation Margin"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_stock_picking__val_margin_pct
+msgid "Valuation Margin %"
 msgstr ""
