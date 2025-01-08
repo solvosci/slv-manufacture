@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form (in mrp_stock_product_sn_reservation)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <field name="bom_id" position="after">
+                <field name="sn_locked_invisible" invisible="1" />
+                <field
+                    name="sn_locked"
+                    widget="boolean_toggle"
+                    attrs="{'invisible': [('sn_locked_invisible', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_filter" model="ir.ui.view">
+        <field name="name">mrp.production.select (in stock_product_sn_reservation)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <filter name="planning_issues" position="after">
+                <separator />
+                <filter
+                    name="sn_locked"
+                    string="S/Ns locked"
+                    domain="[('sn_locked', '=', True), ('state', 'in', ['confirmed', 'progress'])]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

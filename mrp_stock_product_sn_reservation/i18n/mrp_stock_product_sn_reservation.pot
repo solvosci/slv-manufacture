@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_stock_product_sn_reservation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-08 16:06+0000\n"
+"PO-Revision-Date: 2025-01-08 16:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_stock_product_sn_reservation
+#: model:ir.model.fields,help:mrp_stock_product_sn_reservation.field_mrp_production__sn_locked
+msgid "Indicates if S/Ns are locked for this document"
+msgstr ""
+
+#. module: mrp_stock_product_sn_reservation
+#: model:ir.model,name:mrp_stock_product_sn_reservation.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: mrp_stock_product_sn_reservation
+#: model:ir.model,name:mrp_stock_product_sn_reservation.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_stock_product_sn_reservation
+#: model:ir.model.fields,field_description:mrp_stock_product_sn_reservation.field_mrp_production__sn_locked
+msgid "S/N Locked"
+msgstr ""
+
+#. module: mrp_stock_product_sn_reservation
+#: model:ir.model.fields,field_description:mrp_stock_product_sn_reservation.field_mrp_production__sn_locked_invisible
+msgid "S/N Locked is invisible"
+msgstr ""
+
+#. module: mrp_stock_product_sn_reservation
+#: model_terms:ir.ui.view,arch_db:mrp_stock_product_sn_reservation.view_mrp_production_filter
+msgid "S/Ns locked"
+msgstr ""
