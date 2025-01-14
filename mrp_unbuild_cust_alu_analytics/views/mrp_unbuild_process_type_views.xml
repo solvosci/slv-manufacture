@@ -7,6 +7,8 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_button_box" name="button_box">
                         </div>
                         <group>
@@ -35,7 +37,8 @@
             <field name="name">mrp.unbuild.process.type.tree</field>
             <field name="model">mrp.unbuild.process.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree decoration-muted="active == False">
+                    <field name="active" invisible="1"/>
                     <field name="name"/>
                     <field name="cmplanta_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
@@ -44,6 +47,17 @@
             </field>
         </record>
 
+        <record id="view_mrp_process_search" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.search</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" />
+                    <separator/>
+                    <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
     </data>
 
 </odoo>

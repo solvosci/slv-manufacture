@@ -21,3 +21,4 @@ class MrpUnbuildProcessType(models.Model):
         string='Lists of Materials'
     )
     send_notification = fields.Boolean(string="Send notification when unbuild is completed", default=False)
+    active = fields.Boolean(default=True)
