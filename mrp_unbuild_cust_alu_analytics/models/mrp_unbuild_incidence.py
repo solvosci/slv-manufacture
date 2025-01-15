@@ -6,6 +6,7 @@ from odoo import fields, models
 class MrpUnbuildIncidence(models.Model):
     _name = "mrp.unbuild.incidence"
     _description = 'MRP Incidence'
+    _order = "start_incidence desc"
 
     name = fields.Char(compute='_compute_name')
     detail = fields.Char()
@@ -30,6 +31,9 @@ class MrpUnbuildIncidence(models.Model):
         comodel_name='mrp.incidence.description',
         inverse_name='incidence_type_id',
         string='Description'
+    )
+    start_incidence = fields.Datetime(
+        string='Start Incidence',
     )
 
     def _compute_name(self):
