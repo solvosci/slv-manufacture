@@ -6,6 +6,7 @@
         <field name="model">mrp.unbuild.incidence</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="start_incidence" />
                 <field name="unbuild_id"/>
                 <field name="unbuild_date"/>
                 <field name="incidence_type_id"/>
@@ -29,12 +30,14 @@
                     <filter name="in_progress" string="In progress" domain="[('state', '=', 'in_progress')]"/>
                     <filter name="solved" string="Solved" domain="[('state', '=', 'solved')]"/>
                     <filter name="unbuild_date" string="Unbuild Date" date="unbuild_date"/>
+                    <filter name="start_incidence" string="Start Incidence" date="start_incidence"/>
                 </group>
                 <group expand="0" string="Group by...">
                     <filter string="Unbuild" name="groupby_unbuild_id" context="{'group_by': 'unbuild_id'}"/>
                     <filter string="Incidence Type" name="groupby_incidence_type_id" context="{'group_by': 'incidence_type_id'}"/>
                     <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
                     <filter string="Unbuild Date" name="groupby_unbuild_date" context="{'group_by': 'unbuild_date'}"/>
+                    <filter string="Start Incidence" name="groupby_start_incidence" context="{'group_by': 'start_incidence'}"/>
                 </group>
             </search>
         </field>
@@ -47,6 +50,7 @@
         <field name="model">mrp.unbuild.incidence</field>
         <field name="arch" type="xml">
             <tree class="tablet_font_size">
+                <field name="start_incidence"/>
                 <field name="incidence_type_id"/>
                 <field name="incidence_description_id"/>
                 <field name="detail"/>
@@ -65,6 +69,7 @@
                 <group>
                     <group>
                         <field name="incidence_type_id" required="1"/>
+                        <field name="start_incidence" required="1"/>
                         <field name="duration" widget="float_time"/>
                     </group>
                     <group>
