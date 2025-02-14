@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_production_form" model="ir.ui.view">
+        <field name="name">mrp.production.form (in mrp_product_document_link)</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page 
+                string="Product Documents" 
+                name="poduct_documents" 
+                attrs="{'invisible': [('product_document_urls', '=', '')]}">
+                    <field name="product_document_urls" readonly="1" widget="html"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
