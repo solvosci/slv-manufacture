@@ -1,0 +1,1 @@
+Implements record weight data and generates a PDF or HTML report for displaying the collected information.

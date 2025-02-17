@@ -1,0 +1,54 @@
+<odoo>
+    <record id="weight_report_paperform" model="report.paperformat">
+        <field name="name">Weight Record Report</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_mdc_weight_report_pdf" model="ir.actions.report">
+        <field name="name">Weight Record Report PDF</field>
+        <field name="model">mdc.weight.record.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="paperformat_id" ref="mdc_weight_mgmt.weight_report_paperform" />
+        <field name="report_name">mdc_weight_mgmt.mdc_weight_template</field>
+        <field name="print_report_name">
+            'Weight Report %s %s - %s %s' % (
+            object.date_from.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_from), round((object.shift_id.hour_from % 1) *
+            60)),
+            object.date_to.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_to), round((object.shift_id.hour_to % 1) * 60))
+            )
+        </field>
+        <field name="report_file">mdc_weight_mgmt.mdc_weight_template</field>
+        <field name="binding_model_id" ref="model_mdc_weight_record_report_wizard" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_mdc_weight_report_html" model="ir.actions.report">
+        <field name="name">Weight Record Report HTML</field>
+        <field name="model">mdc.weight.record.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="paperformat_id" ref="mdc_weight_mgmt.weight_report_paperform" />
+        <field name="report_name">mdc_weight_mgmt.mdc_weight_template</field>
+        <field name="print_report_name">
+            'Weight Report %s %s - %s %s' % (
+            object.date_from.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_from), round((object.shift_id.hour_from % 1) *
+            60)),
+            object.date_to.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_to), round((object.shift_id.hour_to % 1) * 60))
+            )
+        </field>
+        <field name="report_file">mdc_weight_mgmt.mdc_weight_template</field>
+        <field name="binding_model_id" ref="model_mdc_weight_record_report_wizard" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
