@@ -1,0 +1,124 @@
+<odoo>
+    <record id="action_mdc_weight_record" model="ir.actions.act_window">
+        <field name="name">Weight Records</field>
+        <field name="res_model">mdc.weight.record</field>
+        <field name="view_mode">tree,form,kanban,pivot</field>
+        <field name="context">{'search_default_weight_today': 1}</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <record id="action_mdc_weight_products" model="ir.actions.act_window">
+        <field name="name">Weight Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'product_categ_default_id' : True}</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <record id="action_mdc_weight_equipments" model="ir.actions.act_window">
+        <field name="name">Weight Equipments</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'equipment_category_default_id' : True}</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <record id="action_weight_report_wizard" model="ir.actions.act_window">
+        <field name="name">Weight Report</field>
+        <field name="res_model">mdc.weight.record.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_mdc_weight_record_report_wizard_form" />
+        <field name="type">ir.actions.act_window</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_weight_shift" model="ir.actions.act_window">
+        <field name="name">Shifts</field>
+        <field name="res_model">mdc.weight.shift</field>
+        <field name="view_mode">tree,form</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <record id="action_mdc_weight_settings" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module' : 'mdc_weight_mgmt', 'bin_size': False}</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+
+    <menuitem
+        id="menu_mdc_weight"
+        name="Weight Management"
+        action="action_mdc_weight_record"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_records"
+        name="Weight Records"
+        parent="menu_mdc_weight"
+        sequence="5"
+        action="action_mdc_weight_record"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_data"
+        name="Principal Data"
+        parent="menu_mdc_weight"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_products"
+        name="Products"
+        parent="menu_mdc_weight_data"
+        sequence="15"
+        action="action_mdc_weight_products"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_equipments"
+        name="Equipments"
+        parent="menu_mdc_weight_data"
+        sequence="20"
+        action="action_mdc_weight_equipments"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_reports"
+        name="Reports"
+        parent="menu_mdc_weight"
+        sequence="25"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_report_wizard"
+        name="Weight Record Report"
+        parent="menu_mdc_weight_reports"
+        sequence="30"
+        action="action_weight_report_wizard"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_config"
+        name="Configuration"
+        parent="menu_mdc_weight"
+        sequence="35"
+        groups="group_mdc_weight_mgmt_responsible" />
+
+    <menuitem
+        id="menu_mdc_weight_settings"
+        name="Settings"
+        parent="menu_mdc_weight_config"
+        sequence="40"
+        action="action_mdc_weight_settings"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_shifts"
+        name="Shifts"
+        parent="menu_mdc_weight_config"
+        sequence="45"
+        action="action_weight_shift" />
+
+</odoo>

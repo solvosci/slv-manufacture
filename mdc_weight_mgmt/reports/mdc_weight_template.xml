@@ -1,0 +1,400 @@
+<odoo>
+    <template id="mdc_weight_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="equipments" t-value="o.mdc_weight_record_ids.mapped('equipment_id')" />
+                <t t-foreach="equipments" t-as="equipment">
+                    <t t-set="lines"
+                        t-value="o.mdc_weight_record_ids.filtered(lambda r: r.equipment_id.id == equipment.id)" />
+                    <t t-set="products" t-value="lines.mapped('product_id')" />
+                    <t t-set="equipment_total_weight_nom_qty" t-value="0" />
+                    <t t-set="equipment_total_period_min" t-value="0" />
+                    <t t-set="equipment_total_unit_totals" t-value="0" />
+                    <t t-set="equipment_total_unit_x_min_avg" t-value="0" />
+                    <t t-set="equipment_total_unit_ok" t-value="0" />
+                    <t t-set="equipment_total_unit_ok_pct_avg" t-value="0" />
+                    <t t-set="equipment_total_weight_ok_tot_qty" t-value="0" />
+                    <t t-set="equipment_total_weight_ok_dec_qty" t-value="0" />
+                    <t t-set="equipment_total_weight_ok_avg_qty" t-value="0" />
+                    <t t-set="equipment_total_exceed_pct_avg" t-value="0" />
+                    <t t-set="equipment_total_unit_reject_exceed" t-value="0" />
+                    <t t-set="equipment_total_unit_reject_low" t-value="0" />
+                    <t t-set="equipment_total_unit_reject_total" t-value="0" />
+                    <t t-set="equipment_total_unit_reject_pct_avg" t-value="0" />
+                    <div class="page" style="page-break-after: always;">
+                        <div class="header text-left">
+                            <div class="d-flex" style="border-bottom:3px solid black;">
+                                <h4 class="col-10 text-left;">
+                                    <strong>TOTAL PRODUCTION</strong>
+                                </h4>
+                                <div class="col-2 text-right;">
+                                    <img
+                                        t-if="o.company_id.logo"
+                                        t-att-src="image_data_uri(o.company_id.logo)"
+                                        style="max-height: 45px;"
+                                    />
+                                </div>
+                            </div>
+                            <div class="text-left">
+                                <div style="font-size: 10px;">
+                                    <strong>Date:</strong> <span
+                                        t-field="o.date_from"
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /> <span
+                                        t-field="o.shift_id.hour_from"
+                                        t-options="{'widget': 'float_time'}" /> - <span
+                                        t-field="o.date_to"
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /> <span
+                                        t-field="o.shift_id.hour_to"
+                                        t-options="{'widget': 'float_time'}" />
+                                </div>
+                                <t t-if="o.equipment_id">
+                                    <div style="font-size: 10px;">
+                                        <strong>Line:</strong>
+                                        <span t-field="o.equipment_id.name" />
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div style="font-size: 10px;">
+                                        <strong>Line:</strong>
+                                        <span t-field="equipment.name" />
+                                    </div>
+                                </t>
+                                <t t-if="o.product_id">
+                                    <div style="font-size: 10px;">
+                                        <strong>Product:</strong>
+                                        <span t-field="o.product_id.name" />
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <table style="margin-top: 10px; width: 100%; font-size: 10px;">
+                            <thead style="color: indigo; border-bottom: 2px solid black;">
+                                <tr>
+                                    <th>Cod.</th>
+                                    <t t-if="not o.product_id">
+                                        <th>Product</th>
+                                    </t>
+                                    <th>Nom. Weight (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Decl. Weight (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Period (min)</th>
+                                    <th>Total Uds.</th>
+                                    <th>Uds/min</th>
+                                    <th>Uds. Acc.</th>
+                                    <th>Uds. Acc.(%)</th>
+                                    <th>Total Acc. Weight(<span
+                                            t-field="o.mdc_weight_record_ids[0].weight_total_uom" />
+                                        )</th>
+                                    <th>Total Acc. Declared(<span
+                                            t-field="o.mdc_weight_record_ids[0].weight_total_uom" />
+                                        )</th>
+                                    <th>Avg Accepted (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Overweight (%)</th>
+                                    <th>Ud. Over.</th>
+                                    <th>Ud. Unde.</th>
+                                    <th>Total Reject.</th>
+                                    <th>Reject. (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="products" t-as="product">
+                                    <t t-set="mdc_weight_record_ids"
+                                        t-value="sorted(o.mdc_weight_record_ids.filtered(lambda r: r.product_id.id == product.id and r.equipment_id.id == equipment.id), key=lambda r: r.start)" />
+                                    <t t-set="total_period_min" t-value="0" />
+                                    <t t-set="total_unit_totals" t-value="0" />
+                                    <t t-set="total_unit_x_min_avg" t-value="0" />
+                                    <t t-set="total_unit_ok" t-value="0" />
+                                    <t t-set="total_unit_ok_pct_avg" t-value="0" />
+                                    <t t-set="total_weight_ok_tot_qty" t-value="0" />
+                                    <t t-set="total_weight_ok_dec_qty" t-value="0" />
+                                    <t t-set="total_weight_ok_avg_qty" t-value="0" />
+                                    <t t-set="total_exceed_pct_avg" t-value="0" />
+                                    <t t-set="total_unit_reject_exceed" t-value="0" />
+                                    <t t-set="total_unit_reject_low" t-value="0" />
+                                    <t t-set="total_unit_reject_total" t-value="0" />
+                                    <t t-set="total_unit_reject_pct_avg" t-value="0" />
+                                    <t t-set="total_equipmment_products" t-value="len(products)" />
+                                    <t t-foreach="mdc_weight_record_ids" t-as="record">
+                                        <tr style="text-align: center; border-top: 1px solid black;">
+                                            <td style="text-align: left;">
+                                                <span t-field="record.product_id.code" />
+                                            </td>
+                                            <td style="text-align: center; padding: 3px;">
+                                                <span t-field="record.product_id.name" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.weight_nom_qty" />
+                                            </td>
+                                            <td>
+                                                <t t-if="record.weight_dec_qty">
+                                                    <span t-field="record.weight_dec_qty" />
+                                                </t>
+                                            </td>
+                                            <td style="text-align: left; padding: 3px;">
+                                                <span
+                                                    t-field="record.start"
+                                                    t-options='{"widget": "datetime","format": "HH:mm"}'
+                                                />
+                                            </td>
+                                            <td style="text-align: left; padding: 3px;">
+                                                <span
+                                                    t-field="record.end"
+                                                    t-options='{"widget": "datetime","format": "HH:mm"}'
+                                                />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.period_min"
+                                                    t-options="{'widget': 'float', 'precision': 0}" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_total" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_x_min"
+                                                    t-options="{'widget': 'float', 'precision': 0}" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_ok" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_ok_pct"
+                                                    t-options="{'widget': 'float', 'precision': 2}" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.weight_ok_tot_qty" />
+                                            </td>
+                                            <td>
+                                                <t t-if="record.weight_ok_dec_qty">
+                                                    <span t-field="record.weight_ok_dec_qty"
+                                                        t-options="{'widget': 'float', 'precision': 1}" />
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <span t-field="record.weight_ok_avg_qty"
+                                                    t-options="{'widget': 'float', 'precision': 1}" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.exceed_pct"
+                                                    t-options="{'widget': 'float', 'precision': 2}" />
+                                            </td>
+                                            <td>
+                                                <t t-if="record.unit_reject_exceed">
+                                                    <span t-field="record.unit_reject_exceed" />
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if="record.unit_reject_low">
+                                                    <span t-field="record.unit_reject_low" />
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_reject_total" />
+                                            </td>
+                                            <td>
+                                                <span t-field="record.unit_reject_pct"
+                                                    t-options="{'widget': 'float', 'precision': 2}" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-set="total_period_min"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'period_min')" />
+                                    <t t-set="total_unit_totals"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'unit_total')" />
+                                    <t t-set="total_unit_ok"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'unit_ok')" />
+                                    <t t-set="total_weight_ok_tot_qty"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'weight_ok_tot_qty')" />
+                                    <t t-set="total_weight_ok_dec_qty"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'weight_ok_dec_qty')" />
+                                    <t t-set="total_unit_reject_exceed"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'unit_reject_exceed')" />
+                                    <t t-set="total_unit_reject_low"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'unit_reject_low')" />
+                                    <t t-set="total_unit_reject_total"
+                                        t-value="o.sum_total(mdc_weight_record_ids, 'unit_reject_total')" />
+                                    <t t-set="total_unit_x_min_avg"
+                                        t-value="o.total_avg(total_unit_totals, total_period_min)" />
+                                    <t t-set="total_unit_ok_pct_avg"
+                                        t-value="o.total_pct_avg(total_unit_ok, total_unit_totals)" />
+                                    <t t-set="total_weight_ok_avg_qty"
+                                        t-value="o.total_avg(total_weight_ok_tot_qty, total_unit_ok)*1000" />
+                                    <t t-set="total_exceed_pct_avg"
+                                        t-value="o.total_pct_avg((total_weight_ok_avg_qty - record.weight_nom_qty),record.weight_nom_qty)" />
+                                    <t t-if="total_unit_reject_total">
+                                        <t t-set="total_unit_reject_pct_avg"
+                                            t-value="o.total_pct_avg(total_unit_reject_total, total_unit_totals)" />
+                                    </t>
+                                    <tr
+                                        style="text-align: center; font-weight: bold; border-top: 1px solid black;">
+                                        <td>Total</td>
+                                        <td style="text-align: center; padding: 3px;">
+                                            <span t-field="product.name" />
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <span t-esc="total_period_min"
+                                                t-options="{'widget': 'float', 'precision': 0}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_totals" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_x_min_avg"
+                                                t-options="{'widget': 'float', 'precision': 0}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_ok" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_ok_pct_avg"
+                                                t-options="{'widget': 'float', 'precision': 2}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_weight_ok_tot_qty"
+                                                t-options="{'widget': 'float', 'precision': 1}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_weight_ok_dec_qty"
+                                                t-options="{'widget': 'float', 'precision': 1}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_weight_ok_avg_qty"
+                                                t-options="{'widget': 'float', 'precision': 1}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_exceed_pct_avg"
+                                                t-options="{'widget': 'float', 'precision': 2}" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_reject_exceed" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_reject_low" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_reject_total" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_unit_reject_pct_avg"
+                                                t-options="{'widget': 'float', 'precision': 2}" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-set="equipment_total_weight_nom_qty"
+                                    t-value="o.total_weight_nom(lines)" />
+                                <t t-set="equipment_total_period_min"
+                                    t-value="o.sum_total(lines,'period_min')" />
+                                <t t-set="equipment_total_unit_totals"
+                                    t-value="o.sum_total(lines,'unit_total')" />
+                                <t t-set="equipment_total_unit_ok"
+                                    t-value="o.sum_total(lines,'unit_ok')" />
+                                <t t-set="equipment_total_unit_x_min_avg"
+                                    t-value="o.total_avg(equipment_total_unit_totals,equipment_total_period_min)" />
+                                <t t-set="equipment_total_weight_ok_tot_qty"
+                                    t-value="o.sum_total(lines,'weight_ok_tot_qty')" />
+                                <t t-set="equipment_total_weight_ok_dec_qty"
+                                    t-value="o.sum_total(lines,'weight_ok_dec_qty')" />
+                                <t t-set="equipment_total_unit_reject_exceed"
+                                    t-value="o.sum_total(lines,'unit_reject_exceed')" />
+                                <t t-set="equipment_total_unit_reject_low"
+                                    t-value="o.sum_total(lines,'unit_reject_low')" />
+                                <t t-set="equipment_total_unit_reject_total"
+                                    t-value="o.sum_total(lines,'unit_reject_total')" />
+                                <t t-set="equipment_total_unit_ok_pct_avg"
+                                    t-value="o.total_pct_avg(equipment_total_unit_ok, equipment_total_unit_totals)" />
+                                <t t-set="equipment_total_weight_ok_avg_qty"
+                                    t-value="o.total_avg(equipment_total_weight_ok_tot_qty, equipment_total_unit_ok) * 1000" />
+                                <t t-set="equipment_total_exceed_pct_avg"
+                                    t-value="o.total_pct_avg((equipment_total_weight_ok_avg_qty - equipment_total_weight_nom_qty),equipment_total_weight_nom_qty)" />
+                                <t t-if="equipment_total_unit_reject_total">
+                                    <t t-set="equipment_total_unit_reject_pct_avg"
+                                        t-value="o.total_pct_avg(equipment_total_unit_reject_total,equipment_total_unit_totals)" />
+                                </t>
+                                <tr
+                                    style="text-align: center; font-weight: bold; border-top: 1px solid black; padding: 3px;">
+                                    <td>Total</td>
+                                    <td style="text-align: center;">
+                                        <span t-field="equipment.name" />
+                                    </td>
+                                    <td>
+                                        <span
+                                            t-esc="equipment_total_weight_nom_qty"
+                                            t-options="{'widget': 'float', 'precision': 1}"
+                                        />
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <span t-esc="equipment_total_period_min"
+                                            t-options="{'widget': 'float', 'precision': 0}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_totals" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_x_min_avg"
+                                            t-options="{'widget': 'float', 'precision': 0}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_ok" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_ok_pct_avg"
+                                            t-options="{'widget': 'float', 'precision': 2}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_weight_ok_tot_qty"
+                                            t-options="{'widget': 'float', 'precision': 1}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_weight_ok_dec_qty"
+                                            t-options="{'widget': 'float', 'precision': 1}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_weight_ok_avg_qty"
+                                            t-options="{'widget': 'float', 'precision': 1}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_exceed_pct_avg"
+                                            t-options="{'widget': 'float', 'precision': 2}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_reject_exceed" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_reject_low" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_reject_total" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="equipment_total_unit_reject_pct_avg"
+                                            t-options="{'widget': 'float', 'precision': 2}" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer d-flex" style="border-top: 2px solid black">
+                            <div t-if="report_type == 'pdf'" class="text-muted col-10"
+                                style="text-align: center; font-size: 10px;"> Page <span
+                                    class="page" />
+                            </div>
+                            <div t-if="report_type == 'pdf'" class="col-2"
+                                style="text-align: right; font-size: 10px;">
+                                <span
+                                    t-field="o.create_date"
+                                    t-options="{'widget': 'datetime','format': 'dd-MM-yyyy HH:mm'}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_mdc_weight_record_report_wizard_form" model="ir.ui.view">
+        <field name="name">mdc.weight.record.report.wizard.form</field>
+        <field name="model">mdc.weight.record.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Weight Record Report">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                    <group>
+                        <field name="shift_id" />
+                        <field name="equipment_id" />
+                        <field name="product_id" optional="show" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_mdc_weight_report_html" string="View (HTML)" type="object"
+                        class="oe_highlight" />
+                    <button name="action_mdc_weight_report_pdf" string="Generate PDF" type="object"
+                        class="oe_highlight" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

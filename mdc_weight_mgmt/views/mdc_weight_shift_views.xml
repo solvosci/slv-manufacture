@@ -1,0 +1,47 @@
+<odoo>
+
+    <record id="view_mdc_weight_shift_form" model="ir.ui.view">
+        <field name="name">mdc.weight.shift.form</field>
+        <field name="model">mdc.weight.shift</field>
+        <field name="arch" type="xml">
+            <form string="Weight Shift">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="company_id" />
+                        <field name="hour_from" widget="float_time" />
+                        <field name="hour_to" widget="float_time" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mdc_weight_shift_tree" model="ir.ui.view">
+        <field name="name">mdc.weight.shift.tree</field>
+        <field name="model">mdc.weight.shift</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="hour_from" widget="float_time" />
+                <field name="hour_to" widget="float_time" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mdc_weight_shift_search" model="ir.ui.view">
+        <field name="name">mdc.weight.shift.search</field>
+        <field name="model">mdc.weight.shift</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <separator />
+                <filter name="active" string="Active" domain="[('active', '=', 'True')]" />
+                <separator />
+            </search>
+        </field>
+    </record>
+</odoo>

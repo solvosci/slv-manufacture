@@ -1,0 +1,126 @@
+<odoo>
+    <record id="view_weight_record_tree" model="ir.ui.view">
+        <field name="name">mdc.weight.record.tree</field>
+        <field name="model">mdc.weight.record</field>
+        <field name="arch" type="xml">
+            <tree default_order="start desc">
+                <field name="product_id" />
+                <field name="equipment_id" optional="hide" />
+                <field name="start" optional="show" />
+                <field name="end" optional="show" />
+                <field name="unit_total" optional="hide" />
+                <field name="unit_ok" />
+                <field name="unit_ok_pct" />
+                <field name="unit_reject_total" />
+                <field name="exceed_pct" />
+                <field name="weight_ok_avg_qty" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_weight_record_form" model="ir.ui.view">
+        <field name="name">mdc.weight.record.form</field>
+        <field name="model">mdc.weight.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <div class="o row">
+                            <h2>
+                                <field name="name" />
+                            </h2>
+                            <field name="company_id" readonly="1" />
+                        </div>
+                    </header>
+                    <group>
+                        <group string="Product Information">
+                            <field name="product_id" placeholder="Product" />
+                            <field name="equipment_id" placeholder="Equipment" />
+                            <field name="start" placeholder="Start Time" />
+                            <field name="end" placeholder="End Time" />
+                            <field name="period_min" string="Period (min)" />
+                        </group>
+                        <group string="Weight Information">
+                            <field name="weight_uom" placeholder="Unit of Measure" />
+                            <field name="weight_total_uom" placeholder="Unit of Measure " />
+                            <field name="weight_nom_qty" placeholder="Nominal Weight" />
+                            <field name="weight_dec_qty" placeholder="Declarated Weight" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Unit Information">
+                            <group>
+                                <field name="unit_total" />
+                                <field name="unit_reject_exceed" />
+                                <field name="unit_reject_low" />
+                                <field name="unit_ok" />
+                            </group>
+                            <group>
+                                <field name="unit_x_min" />
+                                <field name="unit_reject_total" />
+                                <field name="unit_reject_pct" />
+                                <field name="unit_ok_pct" />
+                            </group>
+                        </group>
+                        <group string="Weight acceptance information">
+                            <field name="weight_ok_tot_qty" />
+                            <field name="weight_ok_dec_qty" />
+                            <field name="weight_ok_avg_qty" />
+                            <field name="exceed_pct" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_weight_record_search" model="ir.ui.view">
+        <field name="name">mdc.weight.record.search</field>
+        <field name="model">mdc.weight.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" />
+                <field name="equipment_id" />
+                <field name="start" />
+                <field name="end" />
+                <field name="company_id" />
+                <separator />
+                <filter
+                    name="weight_today"
+                    string="Weight Today"
+                    domain="[('start', '>=', (context_today()))]"
+                />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="equipment_groupby"
+                        string="Equipment"
+                        context="{'group_by': 'equipment_id'}"
+                    />
+                    <filter
+                        name="product_groupby"
+                        string="Product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_weight_record_pivot" model="ir.ui.view">
+        <field name="name">mdc.weight.record.pivot</field>
+        <field name="model">mdc.weight.record</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="equipment_id" type="row" />
+                <field name="product_id" type="row" />
+                <field name="company_id" type="row" />
+                <field name="start" type="row" />
+                <field name="unit_ok" type="measure" />
+                <field name="unit_reject_total" type="measure" />
+                <field name="unit_reject_exceed" type="measure" />
+                <field name="unit_reject_low" type="measure" />
+                <field name="weight_ok_tot_qty" type="measure" />
+            </pivot>
+        </field>
+    </record>
+</odoo>
