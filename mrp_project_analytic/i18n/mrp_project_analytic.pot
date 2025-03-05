@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-11 07:46+0000\n"
-"PO-Revision-Date: 2024-06-11 07:46+0000\n"
+"POT-Creation-Date: 2025-03-05 11:35+0000\n"
+"PO-Revision-Date: 2025-03-05 11:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,11 @@ msgid "Analytic Mrp From Child"
 msgstr ""
 
 #. module: mrp_project_analytic
+#: model:ir.model.fields,field_description:mrp_project_analytic.field_account_move_line__analytic_mrp_unbuilt
+msgid "Analytic Mrp Unbuilded"
+msgstr ""
+
+#. module: mrp_project_analytic
 #: model:ir.model,name:mrp_project_analytic.model_account_move_line
 msgid "Journal Item"
 msgstr ""
@@ -28,4 +33,9 @@ msgstr ""
 #. module: mrp_project_analytic
 #: model:ir.model,name:mrp_project_analytic.model_mrp_production
 msgid "Production Order"
+msgstr ""
+
+#. module: mrp_project_analytic
+#: model:ir.model,name:mrp_project_analytic.model_mrp_unbuild
+msgid "Unbuild Order"
 msgstr ""
