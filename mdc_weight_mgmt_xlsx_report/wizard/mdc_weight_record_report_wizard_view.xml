@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_mdc_weight_record_report_wizard_form" model="ir.ui.view">
+        <field name="name">mdc.weight.record.report.wizard.form (in mdc_weight_mgmt_xlsx_report)</field>
+        <field name="model">mdc.weight.record.report.wizard</field>
+        <field name="inherit_id" ref="mdc_weight_mgmt.view_mdc_weight_record_report_wizard_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_mdc_weight_report_pdf']" position="after">
+                <button
+                    name="action_mdc_weight_report_xlsx"
+                    string="Generate XLSX"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
