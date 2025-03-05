@@ -8,3 +8,4 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     analytic_mrp_from_child = fields.Boolean(readonly=True)
+    analytic_mrp_unbuilt = fields.Boolean()
