@@ -1,0 +1,28 @@
+<odoo>
+    <report
+        id="weight_record_xlsx_report"
+        string="Weight Record XLSX"
+        model="mdc.weight.record.report.wizard"
+        report_type="xlsx"
+        name="mdc_weight_mgmt.mdc_weight_report_xlsx"
+        file="Weight_Record_XLSX"
+    />
+
+    <record id="action_mdc_weight_report_xlsx" model="ir.actions.report">
+        <field name="name">Weight Report</field>
+        <field name="model">mdc.weight.record.report.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">mdc_weight_mgmt_xlsx_report.mdc_weight</field>
+        <field name="print_report_name">
+            'Weight Report %s %s - %s %s' % (
+            object.date_from.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_from), round((object.shift_id.hour_from % 1) *
+            60)),
+            object.date_to.strftime('%d-%m-%Y'),
+            "%02d:%02d" % (int(object.shift_id.hour_to), round((object.shift_id.hour_to % 1) * 60))
+            )
+        </field>
+        <field name="binding_model_id" ref="mdc_weight_mgmt.model_mdc_weight_record_report_wizard" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
