@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='analytic_tag_ids']" position="after">
                 <field name="analytic_mrp_from_child" widget="boolean_toggle" groups="analytic.group_analytic_accounting"/>
-                <field name="analytic_mrp_unbuilt" widget="boolean_toggle" groups="analytic.group_analytic_accounting"/>
+                <field name="analytic_mrp_unbuilt" widget="boolean_toggle" groups="analytic.group_analytic_accounting" readonly="1"/>
             </xpath>
 
         </field>
