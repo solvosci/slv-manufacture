@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form (in mrp_production_undo)</field>
+        <field name="model">mrp.production</field>
+        <field
+            name="inherit_id"
+            ref="mrp.mrp_production_form_view"
+        />
+        <field name="arch" type="xml">
+            <button name="button_unreserve" position="after">
+                <button
+                    name="action_back_to_draft"
+                    type="object"
+                    icon="fa-undo"
+                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                    confirm="This action will undo every inventory move and update stock. Are you sure?"
+                    string="Back to Draft"
+                    groups="mrp_production_undo.group_mrp_production_undo"                    
+                />
+            </button>
+        </field>
+    </record>    
+</odoo>
