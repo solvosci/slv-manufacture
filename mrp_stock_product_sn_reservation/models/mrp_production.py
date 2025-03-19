@@ -11,7 +11,7 @@ class MrpProduction(models.Model):
     def _compute_sn_locked_invisible(self):
         super()._compute_sn_locked_invisible()
         locked_inv_mrp_ids = self.filtered(
-            lambda x: x.state not in ["confirmed", "progress"]
+            lambda x: x.state not in ["confirmed", "progress", "to_close"]
         )
         locked_inv_mrp_ids.update({"sn_locked_invisible": True})
         (self - locked_inv_mrp_ids).update({"sn_locked_invisible": False})
