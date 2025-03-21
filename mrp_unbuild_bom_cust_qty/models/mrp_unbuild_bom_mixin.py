@@ -1,7 +1,7 @@
 # © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3.0 (http://www.gnu.org/licenses/lgpl-3.0.html)
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class MrpUnbuildBoMMixin(models.AbstractModel):
@@ -59,6 +59,7 @@ class MrpUnbuildBoMMixin(models.AbstractModel):
         uom_diff.write({"is_product_uom_diff": True})
         (self - uom_diff).write({"is_product_uom_diff": False})
 
+    @api.depends("bom_id", "bom_line_id.bom_id")
     def _compute_check_bom_line(self):
         for record in self:
             if record.bom_line_id.bom_id == record.bom_id:
