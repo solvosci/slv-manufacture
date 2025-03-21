@@ -66,6 +66,7 @@ class MrpUnbuildBoMTotals(models.Model):
             for bom_quant in record.unbuild_id.bom_quants_ids.filtered(lambda x: x.bom_line_id.id == record.bom_line_id.id):
                 record.total_qty += bom_quant.custom_qty
 
+    @api.depends("bom_line_id", "unbuild_id.bom_quants_ids.bom_line_id")
     def _compute_bom_quant_ids(self):
         for record in self:
             record.bom_quant_ids = record.unbuild_id.bom_quants_ids.filtered(lambda x: x.bom_line_id.id == record.bom_line_id.id)
