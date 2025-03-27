@@ -15,6 +15,8 @@ class FCDCheckpoint(models.Model):
     warehouse_id = fields.Many2one('stock.warehouse')
     printer_ip = fields.Char()
     printer_port = fields.Integer(default=21)
+    printer_user = fields.Char(required=True)
+    printer_pass = fields.Char(required=True)
     external_tara_button = fields.Boolean()
 
     def _default_date(self):
