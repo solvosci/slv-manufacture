@@ -414,7 +414,7 @@ class FCDWeightScaleLog(models.Model):
         # Send File To FTP
         comms = [f'''
             ftp -p -inv {self.checkpoint_id.printer_ip} {self.checkpoint_id.printer_port} <<EOF
-            user itadmin pass
+            user {self.checkpoint_id.printer_user} {self.checkpoint_id.printer_pass}
             put {path_tag} pr1
             bye
             EOF
