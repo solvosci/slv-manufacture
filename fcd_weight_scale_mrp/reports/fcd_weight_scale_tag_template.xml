@@ -2,7 +2,6 @@
 <odoo>
 
     <template id="report_tag_document_pdf">
-      <t t-set="doc" t-value="doc.with_context({'lang':doc.stock_move_id.partner_id.lang})"/>
       <div class="page" style="font-size: 9px; page-break-after: always;">
           <div>
             <div class="row" style="border-bottom: 1px solid black">
@@ -73,16 +72,22 @@
                       <div class="row">
                         <div class="col-12">
                           <span class="font-weight-bold" style="font-size: 10px">COMERCIAL DESIGNATION:</span>
-                          <span class="d-block font-weight-bold" style="font-size: 11px"><t t-esc="doc.output_product_id.name"/></span>
+                          <span class="d-block font-weight-bold" style="font-size: 11px"><t t-esc="doc.output_product_id.official_commercial_name"/></span>
                         </div>
                       </div>
                       <div class="row" style="border-bottom: 1px solid black">
                         <div class="col-12 mt-1 mb-1">
-                          <span class="font-weight-bold">SCIENTIFIC NAME:</span> 
+                          <span class="font-weight-bold">SCIENTIFIC NAME:</span>
                           <t t-esc="doc.output_product_id.scientific_name"/>
-                          <span class="d-block">
-                            <span class="font-weight-bold">FAO:</span>
-                            <t t-esc="doc.output_product_id.fao"/>
+                          <span class="row">
+                            <div class="col-6">
+                              <span class="font-weight-bold">FAO:</span>
+                              <span t-field="doc.output_product_id.fao"/>
+                            </div>
+                            <div class="col-6" t-if="doc.output_product_id.origin_country_id">
+                              <span class="font-weight-bold">ORIGIN COUNTRY:</span>
+                              <span t-field="doc.output_product_id.origin_country_id"/>
+                            </div>
                           </span>
                         </div>
                       </div>
