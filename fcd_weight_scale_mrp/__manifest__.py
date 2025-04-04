@@ -8,11 +8,12 @@
     'author': "Solvos",
     'website': "http://www.solvos.com",
     'category': 'Weight',
-    'version': '14.0.1.13.0',
+    'version': '14.0.1.14.0',
     'depends': [
         "mrp",
         "fcd_purchase_order",
         "purchase_order_action_confirm_multi",
+        "product_harmonized_system",
     ],
     'data': [
         'security/ir.model.access.csv',

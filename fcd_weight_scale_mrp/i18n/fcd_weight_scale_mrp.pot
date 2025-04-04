@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 12:32+0000\n"
-"PO-Revision-Date: 2023-11-13 12:32+0000\n"
+"POT-Creation-Date: 2025-04-04 12:44+0000\n"
+"PO-Revision-Date: 2025-04-04 12:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,6 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
-#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
-#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #, python-format
 msgid "%s Weighings"
 msgstr ""
@@ -37,6 +35,38 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid "12/12/2012 00:00:00"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"familySelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Family</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"lotSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Select a lot</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"productSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Select a product</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"typeBoxSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Type of box</option>\n"
+"                                                </select>"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -100,7 +130,7 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"font-weight-bold\">Nº R.S.I:</span>"
+msgid "<span class=\"font-weight-bold\">ORIGIN COUNTRY:</span>"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -248,25 +278,17 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot create another secondary unit of measure with factor 0.00 !"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot delete secondary unit of measure with factor 0.00 !"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
-#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot edit secondary unit of measure with factor 0.00 !"
@@ -285,8 +307,6 @@ msgid "Checkpoint"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Checkpoint #%s not found"
@@ -374,11 +394,6 @@ msgid "Date"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Default select example"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
 msgid "Define the user that will be used to work with the weight scale"
 msgstr ""
@@ -418,11 +433,6 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__external_tara_button
 msgid "External Tara Button"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Family"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -520,11 +530,8 @@ msgid "Input Product"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "It has been weighted correctly"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__weight_scale_limit
+msgid "Kg Limit"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -586,6 +593,11 @@ msgid "Last weight value"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Limit Kg"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__log_ids
 #: model:ir.ui.menu,name:fcd_weight_scale_mrp.menu_log
 msgid "Log"
@@ -604,6 +616,11 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_production_lot
 msgid "Lot/Serial"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__weight_scale_limit
+msgid "Maximum kg limit on weight scale"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -629,8 +646,6 @@ msgid "Name"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "New scale"
@@ -707,11 +722,8 @@ msgid "Price Real Kg"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "Printed"
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_checkpoint_form
+msgid "Printer"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -727,16 +739,18 @@ msgid "Printer Not Conected"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_pass
+msgid "Printer Pass"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_port
 msgid "Printer Port"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "Printing"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_user
+msgid "Printer User"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -847,8 +861,6 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Scale not defined"
 msgstr ""
@@ -867,16 +879,6 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__secondary_uom_id
 msgid "Secondary Uom"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Select a lot"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Select a product"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -907,15 +909,11 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
-#: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
-#: code:addons/fcd_weight_scale_mrp/wizards/fcd_weight_scale_mrp.py:0
 #, python-format
 msgid "There is no record of weighing in this order line"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
 #, python-format
 msgid "Timed out on weighing scale"
@@ -932,18 +930,11 @@ msgid "Today"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Type of box"
-msgstr ""
-
-#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__fcd_weight_scale__last_weight_stability__unknown
 msgid "Unknown"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "Unknown data format. Data received: %s"
@@ -960,8 +951,6 @@ msgid "Unstable"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
-#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale.py:0
 #, python-format
 msgid "Unsupported weighing protocol (%s)"
@@ -987,8 +976,6 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
-#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
-#: code:addons/fcd_weight_scale_mrp/models/purchase_order_line.py:0
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.view_fcd_weight_scale_mrp_wizard
 #, python-format
 msgid "WARNING!!"
@@ -1001,8 +988,6 @@ msgstr ""
 
 #. module: fcd_weight_scale_mrp
 #. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
 #, python-format
 msgid "Wait a moment, please..."
@@ -1058,6 +1043,12 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__weight_uom_id
 msgid "Weight Unit"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
+#, python-format
+msgid "Weight exceeds the limit"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp

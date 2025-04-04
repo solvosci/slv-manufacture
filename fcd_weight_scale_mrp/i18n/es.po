@@ -6,16 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 12:37+0000\n"
-"PO-Revision-Date: 2023-11-13 13:38+0100\n"
+"POT-Creation-Date: 2025-04-04 12:45+0000\n"
+"PO-Revision-Date: 2025-04-04 12:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.1.1\n"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__fcd_weight_scale__scale_protocol__$
@@ -40,10 +38,42 @@ msgid "12/12/2012 00:00:00"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"familySelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Family</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"lotSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Select a lot</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"productSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Select a product</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
+msgid ""
+"<select id=\"typeBoxSelect\" class=\"form-select\" aria-label=\"Default select example\">\n"
+"                                                    <option>Type of box</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid ""
-"<span class=\"col-12 d-block font-weight-bold\" style=\"font-size: 16px"
-"\">CIGURRIA O CAMPO S.L</span>"
+"<span class=\"col-12 d-block font-weight-bold\" style=\"font-size: "
+"16px\">CIGURRIA O CAMPO S.L</span>"
 msgstr ""
 
 #. module: fcd_weight_scale_mrp
@@ -102,8 +132,8 @@ msgstr "<span class=\"font-weight-bold\">MÉTODO DE PRODUCCIÓN:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
-msgid "<span class=\"font-weight-bold\">Nº R.S.I:</span>"
-msgstr ""
+msgid "<span class=\"font-weight-bold\">ORIGIN COUNTRY:</span>"
+msgstr "<span class=\"font-weight-bold\">PAÍS ORIGEN:</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -143,69 +173,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
 msgid ""
 "<span id=\"txt_translate_select_lot\">Select a lot</span>\n"
-"                        <span id=\"txt_translate_select_type_box\">Type of "
-"box</span>\n"
-"                        <span id=\"txt_translate_select_product\">Select a "
-"product</span>\n"
-"                        <span id=\"txt_translate_select_family\">Family</"
-"span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">None "
-"product selected</span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box\">None "
-"box type selected</span>\n"
-"                        <span id=\"txt_translate_alert_no_lot\">None lot "
-"selected</span>\n"
-"                        <span id="
-"\"txt_translate_alert_valid_value_fixed_weight_box\">Put some valid value "
-"at Fixed Weight Box</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight"
-"\">Tare value is greater than Weight Value</span>\n"
-"                        <span id=\"txt_translate_alert_connect_scale"
-"\">Invalid Weight</span>\n"
-"                        <span id=\"txt_translate_contact_administrator"
-"\">Unexpected error, please contact with administrator</span>\n"
-"                        <span id=\"txt_translate_lot_finished\">Lot has "
-"been finished</span>\n"
-"                        <span id=\"txt_translate_weight_correctly\">It has "
-"been weighted correctly</span>\n"
-"                        <span id=\"txt_translate_wait_printing\">Wait a "
-"moment, please...</span>\n"
+"                        <span id=\"txt_translate_select_type_box\">Type of box</span>\n"
+"                        <span id=\"txt_translate_select_product\">Select a product</span>\n"
+"                        <span id=\"txt_translate_select_family\">Family</span>\n"
+"                        <span id=\"txt_translate_alert_no_product\">None product selected</span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box\">None box type selected</span>\n"
+"                        <span id=\"txt_translate_alert_no_lot\">None lot selected</span>\n"
+"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Put some valid value at Fixed Weight Box</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight\">Tare value is greater than Weight Value</span>\n"
+"                        <span id=\"txt_translate_alert_connect_scale\">Invalid Weight</span>\n"
+"                        <span id=\"txt_translate_contact_administrator\">Unexpected error, please contact with administrator</span>\n"
+"                        <span id=\"txt_translate_lot_finished\">Lot has been finished</span>\n"
+"                        <span id=\"txt_translate_weight_correctly\">It has been weighted correctly</span>\n"
+"                        <span id=\"txt_translate_wait_printing\">Wait a moment, please...</span>\n"
 "                        <span id=\"txt_translate_success\">Success</span>\n"
-"                        <span id=\"txt_translate_printing\">Printing</"
-"span>\n"
+"                        <span id=\"txt_translate_printing\">Printing</span>\n"
 "                        <span id=\"txt_translate_printed\">Printed</span>"
 msgstr ""
 "<span id=\"txt_translate_select_lot\">Seleccione un lote</span>\n"
-"                        <span id=\"txt_translate_select_type_box\">Tipo de "
-"caja</span>\n"
-"                        <span id=\"txt_translate_select_product"
-"\">Seleccione un producto</span>\n"
-"                        <span id=\"txt_translate_select_family\">Familia</"
-"span>\n"
-"                        <span id=\"txt_translate_alert_no_product\">Ningún "
-"producto seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_type_box"
-"\">Ninguno tipo de caja seleccionado</span>\n"
-"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote "
-"seleccionado</span>\n"
-"                        <span id="
-"\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga algún valor "
-"válido en la caja de peso fijo</span>\n"
-"                        <span id=\"txt_translate_alert_tare_greater_weight"
-"\">El valor de la tara es mayor que el valor del peso</span>\n"
-"                        <span id=\"txt_translate_alert_connect_scale\">Peso "
-"inválido</span>\n"
-"                        <span id=\"txt_translate_contact_administrator"
-"\">Error inesperado, por favor contacte con el administrador</span>\n"
-"                        <span id=\"txt_translate_lot_finished\">El lote ha "
-"sido terminado</span>\n"
-"                        <span id=\"txt_translate_weight_correctly\">Se ha "
-"pesado correctamente</span>\n"
-"                        <span id=\"txt_translate_wait_printing\">Espere un "
-"momento...</span>\n"
+"                        <span id=\"txt_translate_select_type_box\">Tipo de caja</span>\n"
+"                        <span id=\"txt_translate_select_product\">Seleccione un producto</span>\n"
+"                        <span id=\"txt_translate_select_family\">Familia</span>\n"
+"                        <span id=\"txt_translate_alert_no_product\">Ningún producto seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_type_box\">Ninguno tipo de caja seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_no_lot\">Ningún lote seleccionado</span>\n"
+"                        <span id=\"txt_translate_alert_valid_value_fixed_weight_box\">Ponga algún valor válido en la caja de peso fijo</span>\n"
+"                        <span id=\"txt_translate_alert_tare_greater_weight\">El valor de la tara es mayor que el valor del peso</span>\n"
+"                        <span id=\"txt_translate_alert_connect_scale\">Peso inválido</span>\n"
+"                        <span id=\"txt_translate_contact_administrator\">Error inesperado, por favor contacte con el administrador</span>\n"
+"                        <span id=\"txt_translate_lot_finished\">El lote ha sido terminado</span>\n"
+"                        <span id=\"txt_translate_weight_correctly\">Se ha pesado correctamente</span>\n"
+"                        <span id=\"txt_translate_wait_printing\">Espere un momento...</span>\n"
 "                        <span id=\"txt_translate_success\">Hecho</span>\n"
-"                        <span id=\"txt_translate_printing\">Imprimiendo</"
-"span>\n"
+"                        <span id=\"txt_translate_printing\">Imprimiendo</span>\n"
 "                        <span id=\"txt_translate_printed\">Impreso</span>"
 
 #. module: fcd_weight_scale_mrp
@@ -230,20 +230,20 @@ msgstr ""
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid ""
-"<span>Contains fish. May contain traces of crustaceans and/or molluscs.</"
-"span>"
+"<span>Contains fish. May contain traces of crustaceans and/or "
+"molluscs.</span>"
 msgstr ""
-"<span>Contiene pescado. Puede contener trazas de crustáceos y/o moluscos.</"
-"span>"
+"<span>Contiene pescado. Puede contener trazas de crustáceos y/o "
+"moluscos.</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
 msgid ""
-"<span>Contains mollusks. May contain traces of fish and/or crustaceans.</"
-"span>"
+"<span>Contains mollusks. May contain traces of fish and/or "
+"crustaceans.</span>"
 msgstr ""
-"<span>Contiene moluscos. Puede contener trazas de pescado y/o crustáceos.</"
-"span>"
+"<span>Contiene moluscos. Puede contener trazas de pescado y/o "
+"crustáceos.</span>"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.report_tag_document_pdf
@@ -305,6 +305,7 @@ msgid "CHECKPOINT LIST"
 msgstr "LISTA DE PUNTOS DE CONTROL"
 
 #. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #: code:addons/fcd_weight_scale_mrp/models/product_secondary_unit.py:0
 #, python-format
 msgid "Cannot create another secondary unit of measure with factor 0.00 !"
@@ -424,11 +425,6 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Default select example"
-msgstr "Ejemplo de selección por defecto"
-
-#. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
 msgid "Define the user that will be used to work with the weight scale"
 msgstr "Definir el usuario que se utilizará para trabajar con la báscula"
@@ -469,11 +465,6 @@ msgstr "Fecha de caducidad"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__external_tara_button
 msgid "External Tara Button"
 msgstr "Botón tara externo"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Family"
-msgstr "Familia"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale_log__fcd_document_line_id
@@ -570,11 +561,9 @@ msgid "Input Product"
 msgstr "Producto Entrada"
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "It has been weighted correctly"
-msgstr "Se ha pesado correctamente"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_config_settings__weight_scale_limit
+msgid "Kg Limit"
+msgstr "Límite Kg"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint____last_update
@@ -635,6 +624,11 @@ msgid "Last weight value"
 msgstr "Último peso"
 
 #. module: fcd_weight_scale_mrp
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
+msgid "Limit Kg"
+msgstr "Límite Kg"
+
+#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_document_line__log_ids
 #: model:ir.ui.menu,name:fcd_weight_scale_mrp.menu_log
 msgid "Log"
@@ -654,6 +648,11 @@ msgstr "Registro de pesadas"
 #: model:ir.model,name:fcd_weight_scale_mrp.model_stock_production_lot
 msgid "Lot/Serial"
 msgstr "Lote/Número de serie"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_res_company__weight_scale_limit
+msgid "Maximum kg limit on weight scale"
+msgstr "Límite máximo de kg en la báscula"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__product_category__fcd_type__molluscs
@@ -754,11 +753,9 @@ msgid "Price Real Kg"
 msgstr "Precio real Kg"
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "Printed"
-msgstr "Impreso"
+#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_checkpoint_form
+msgid "Printer"
+msgstr "Impresora"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_ip
@@ -767,9 +764,15 @@ msgstr "IP de la impresora"
 
 #. module: fcd_weight_scale_mrp
 #: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
+#: code:addons/fcd_weight_scale_mrp/models/fcd_weight_scale_log.py:0
 #, python-format
 msgid "Printer Not Conected"
 msgstr "Impresora no conectada"
+
+#. module: fcd_weight_scale_mrp
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_pass
+msgid "Printer Pass"
+msgstr "Contraseña de la impresora"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_port
@@ -777,11 +780,9 @@ msgid "Printer Port"
 msgstr "Puerto de la impresora"
 
 #. module: fcd_weight_scale_mrp
-#. openerp-web
-#: code:addons/fcd_weight_scale_mrp/static/src/js/cp_weight.js:0
-#, python-format
-msgid "Printing"
-msgstr "Imprimiendo"
+#: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_checkpoint__printer_user
+msgid "Printer User"
+msgstr "Usuario de la impresora"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model,name:fcd_weight_scale_mrp.model_product_product
@@ -912,16 +913,6 @@ msgid "Secondary Uom"
 msgstr "Unidad Secundaria"
 
 #. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Select a lot"
-msgstr "Seleccione un lote"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Select a product"
-msgstr "Seleccione un producto"
-
-#. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__fcd_weight_scale__last_weight_stability__stable
 msgid "Stable"
 msgstr "Estable"
@@ -968,11 +959,6 @@ msgstr "Tiempo superado (s)"
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.fcd_weight_scale_log_view_search
 msgid "Today"
 msgstr "Hoy"
-
-#. module: fcd_weight_scale_mrp
-#: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.chkpoint_weight
-msgid "Type of box"
-msgstr "Tipo de caja"
 
 #. module: fcd_weight_scale_mrp
 #: model:ir.model.fields.selection,name:fcd_weight_scale_mrp.selection__fcd_weight_scale__last_weight_stability__unknown
@@ -1089,6 +1075,12 @@ msgstr "Registro de pesadas de báscula"
 #: model:ir.model.fields,field_description:fcd_weight_scale_mrp.field_fcd_weight_scale__weight_uom_id
 msgid "Weight Unit"
 msgstr "Unidad de pesaje"
+
+#. module: fcd_weight_scale_mrp
+#: code:addons/fcd_weight_scale_mrp/models/fcd_chkpoint.py:0
+#, python-format
+msgid "Weight exceeds the limit"
+msgstr "El peso excede el límite"
 
 #. module: fcd_weight_scale_mrp
 #: model_terms:ir.ui.view,arch_db:fcd_weight_scale_mrp.conf_settings_weight_scale_credentials_inherit
