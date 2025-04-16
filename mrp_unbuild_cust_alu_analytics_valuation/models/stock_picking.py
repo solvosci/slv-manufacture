@@ -49,6 +49,14 @@ class StockPicking(models.Model):
         string="Valuation Involved Unbuilds",
     )
 
+    def action_view_valuation_data(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "mrp_unbuild_cust_alu_analytics_valuation.action_view_valuation_data"
+        ).read()[0]
+        action["res_id"] = self.id
+        return action
+
     def _compute_val_cost(self):
         pick_out = self.filtered(
             lambda x: x.picking_type_code == "outgoing" and x.state == "done"
