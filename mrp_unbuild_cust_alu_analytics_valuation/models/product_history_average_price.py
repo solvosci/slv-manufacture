@@ -35,9 +35,13 @@ class ProductHistoryAveragePrice(models.Model):
             ub_quantity = svl.stock_move_id._compute_unbuild_svl_quantity(svl.quantity)
             # TODO float_is_zero for ub_quantity
             return (
-                ub_quantity and unbuild_id.cost_unit_price
+                ub_quantity and self._get_svl_unbuild_cost(svl)
                 or 0.0,
                 svl.quantity
             )
         else:
             return super()._update_dependent_svls_get_svl_data(svl)
+        
+    def _get_svl_unbuild_cost(self, svl):
+        unbuild_id = svl.stock_move_id.unbuild_id
+        return unbuild_id and unbuild_id.cost_unit_price or 0.0

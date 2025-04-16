@@ -21,9 +21,7 @@ class StockMove(models.Model):
         self.ensure_one()
         if self.product_id.has_waste_cost_mgmt:
             return 0.0
-        quant_total = self.unbuild_id.bom_quants_total_ids.filtered(
-            lambda x: x.bom_line_id.product_id == self.product_id
-        )
+        quant_total = self._get_quant_total_id()
         # TODO it should be only one, but...
         if quant_total and quant_total[0].disabled_mrp_unbuild_valuation:
             return 0.0
@@ -72,3 +70,9 @@ class StockMove(models.Model):
             return sale_line_id.price_unit
         else:
             return 0.0
+        
+    def _get_quant_total_id(self):
+        self.ensure_one()
+        return self.unbuild_id.bom_quants_total_ids.filtered(
+            lambda x: x.bom_line_id.product_id == self.product_id
+        )
