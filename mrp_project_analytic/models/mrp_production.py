@@ -33,6 +33,7 @@ class ManufactureOrder(models.Model):
             })
 
     def _prepare_mark_account_move_ids(self):
+        # TODO remove method as obsolete
         child_productions = self._get_children()
         child_products = child_productions.mapped('product_id')
         raw_material_moves = self.move_raw_ids.filtered(
@@ -42,8 +43,21 @@ class ManufactureOrder(models.Model):
 
         return aml_ids
 
+    def _get_from_child_acount_move_lines(self):
+        """
+        For new mark desired behavior we need those account move lines
+        that belong to child productions
+        """
+        child_productions = self._get_children()
+        child_moves = (
+            child_productions.move_raw_ids | child_productions.move_finished_ids
+        )
+        aml_ids = child_moves.sudo().account_move_ids.line_ids
+
+        return aml_ids
+
     def mark_analytic_mrp_from_child(self):
-        aml_ids = self._prepare_mark_account_move_ids()
+        aml_ids = self._get_from_child_acount_move_lines()
 
         if aml_ids:
             debit_aml_ids = aml_ids.filtered(lambda x: x.debit > 0)
