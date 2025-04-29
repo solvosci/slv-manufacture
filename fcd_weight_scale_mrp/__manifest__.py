@@ -3,12 +3,12 @@
 {
     'name': "FCD Weight Scale MRP",
     'summary': """
-        Weight module to package lots 
+        Weight module to package lots
     """,
     'author': "Solvos",
     'website': "http://www.solvos.com",
     'category': 'Weight',
-    'version': '14.0.1.14.0',
+    'version': '14.0.1.14.1',
     'depends': [
         "mrp",
         "fcd_purchase_order",

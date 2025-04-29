@@ -59,6 +59,7 @@ class FCDWeightScaleLog(models.Model):
         company_id = self.env.company
         location_id = stock_move_id.location_dest_id
         location_production_id = self.env['stock.location'].search([('usage', '=', 'production'), ('company_id', '=', self.env.company.id)])
+        picking_type_id = self.env['stock.picking.type'].search([('code', '=', 'mrp_operation'),('warehouse_id', '=', log_id.warehouse_id.id)], limit=1)
 
         lot_id = self.env['stock.production.lot'].search([
             ('name', '=', stock_move_id.fcd_document_line_id.lot_id.name),
@@ -79,6 +80,7 @@ class FCDWeightScaleLog(models.Model):
             'product_qty': log_id.quantity,
             'qty_producing': log_id.quantity,
             'qty_produced': log_id.quantity,
+            'picking_type_id': picking_type_id.id,
             'location_src_id': location_id.id,
             'location_dest_id': location_id.id,
             'lot_producing_id': lot_id.id
