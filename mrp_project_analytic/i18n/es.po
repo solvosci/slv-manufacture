@@ -6,14 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05 11:35+0000\n"
-"PO-Revision-Date: 2025-03-05 11:35+0000\n"
+"POT-Creation-Date: 2025-05-13 06:54+0000\n"
+"PO-Revision-Date: 2025-05-13 08:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. module: mrp_project_analytic
 #: model:ir.model.fields,field_description:mrp_project_analytic.field_account_move_line__analytic_mrp_from_child
@@ -22,8 +24,8 @@ msgstr "Proviene de Fab. hija"
 
 #. module: mrp_project_analytic
 #: model:ir.model.fields,field_description:mrp_project_analytic.field_account_move_line__analytic_mrp_unbuilt
-msgid "Analytic Mrp Unbuilded"
-msgstr "Proviene de una deconstrucción"
+msgid "Analytic Mrp Unbuilt"
+msgstr ""
 
 #. module: mrp_project_analytic
 #: model:ir.model,name:mrp_project_analytic.model_account_move_line
@@ -31,9 +33,21 @@ msgid "Journal Item"
 msgstr "Apunte contable"
 
 #. module: mrp_project_analytic
+#: code:addons/mrp_project_analytic/models/mrp_production.py:0
+#, python-format
+msgid "Only Production Managers can do this."
+msgstr "Solo Administradores de Fabricación pueden realizar esta operación."
+
+#. module: mrp_project_analytic
 #: model:ir.model,name:mrp_project_analytic.model_mrp_production
 msgid "Production Order"
 msgstr "Orden de producción"
+
+#. module: mrp_project_analytic
+#: model:ir.actions.server,name:mrp_project_analytic.action_duplicate_ticket
+#: model_terms:ir.ui.view,arch_db:mrp_project_analytic.mrp_production_form_view
+msgid "Set 'From Child' for journal items"
+msgstr "Establece \"prov. de fab. hija\" en apuntes"
 
 #. module: mrp_project_analytic
 #: model:ir.model,name:mrp_project_analytic.model_mrp_unbuild

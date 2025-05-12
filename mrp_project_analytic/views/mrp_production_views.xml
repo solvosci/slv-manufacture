@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form (in mrp_project_analytic)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <button name="button_unbuild" position="after">
+                <button
+                    name="action_mark_analytic_mrp_from_child"
+                    type="object"
+                    string="Set 'From Child' for journal items"
+                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                    groups="base.group_no_one"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="action_duplicate_ticket" model="ir.actions.server">
+        <field name="name">Set 'From Child' for journal items</field>
+        <field name="model_id" ref="mrp.model_mrp_production" />
+        <field name="binding_model_id" ref="mrp.model_mrp_production" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_mark_analytic_mrp_from_child()
+        </field>
+    </record>   
+</odoo>
