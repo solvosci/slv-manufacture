@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 07:08+0000\n"
-"PO-Revision-Date: 2024-06-04 07:08+0000\n"
+"POT-Creation-Date: 2025-05-14 05:56+0000\n"
+"PO-Revision-Date: 2025-05-14 05:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -215,9 +215,19 @@ msgid "Unbuild order"
 msgstr "Orden de despiece"
 
 #. module: mrp_unbuild_advanced
+#: model:ir.module.category,name:mrp_unbuild_advanced.module_mrp_unbuild_tablet_category
+msgid "Unbuild on tablet"
+msgstr "Despiece en tablet"
+
+#. module: mrp_unbuild_advanced
 #: model:res.groups,name:mrp_unbuild_advanced.group_mrp_unbuild_tablet
-msgid "Unbuild user on tablet"
-msgstr "Usuario de despieces en tablet"
+msgid "User"
+msgstr "Usuario"
+
+#. module: mrp_unbuild_advanced
+#: model:res.groups,name:mrp_unbuild_advanced.group_mrp_unbuild_tablet_denegate_stock
+msgid "User + denegate stock"
+msgstr "Usuario + denegar inventario"
 
 #. module: mrp_unbuild_advanced
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_advanced.mrp_unbuild_bom_totals_reduced_view

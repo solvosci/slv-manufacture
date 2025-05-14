@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record model="ir.module.category" id="module_mrp_unbuild_tablet_category">
+            <field name="name">Unbuild on tablet</field>
+        </record>
         <record id="group_mrp_unbuild_tablet" model="res.groups">
-            <field name="name">Unbuild user on tablet</field>
-            <field name="category_id" ref="base.module_category_hidden"/>
-            <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user'))]"/>
+            <field name="name">User</field>
+            <field name="category_id" ref="module_mrp_unbuild_tablet_category" />
+            <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user'))]" />
+        </record>
+        <record id="group_mrp_unbuild_tablet_denegate_stock" model="res.groups">
+            <field name="name">User + denegate stock</field>
+            <field name="category_id" ref="module_mrp_unbuild_tablet_category" />
+            <field name="implied_ids"
+                eval="[(4, ref('mrp_unbuild_advanced.group_mrp_unbuild_tablet'))]" />
         </record>
     </data>
 </odoo>
