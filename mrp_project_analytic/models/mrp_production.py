@@ -57,16 +57,11 @@ class ManufactureOrder(models.Model):
 
         return aml_ids
 
-    def mark_analytic_mrp_from_child(self, reset_all=False):
+    def mark_analytic_mrp_from_child(self):
         aml_ids = self._get_from_child_acount_move_lines()
-
-        if aml_ids:
-            if reset_all:
-                aml_ids.write({"analytic_mrp_from_child": False})
-            debit_aml_ids = aml_ids.filtered(lambda x: x.debit > 0)
-            debit_aml_ids.write({
-                "analytic_mrp_from_child": True,
-            })
+        aml_ids.write({
+            "analytic_mrp_from_child": True,
+        })
 
     def action_mark_analytic_mrp_from_child(self):
         if not self.env.user.has_group("mrp.group_mrp_manager"):
@@ -75,7 +70,7 @@ class ManufactureOrder(models.Model):
             self.env.context.get("active_ids", self.ids)
         ).filtered(lambda x: x.state == "done"):
             # TODO mark_analytic_mrp_from_child is singleton at this point
-            mrp.mark_analytic_mrp_from_child(reset_all=True)
+            mrp.mark_analytic_mrp_from_child()
 
     def button_mark_done(self):
         res = super().button_mark_done()
