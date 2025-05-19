@@ -67,7 +67,7 @@ class ManufactureOrder(models.Model):
         if not self.env.user.has_group("mrp.group_mrp_manager"):
             raise ValidationError(_("Only Production Managers can do this."))
         for mrp in self.browse(
-            self.env.context.get("active_ids", self.ids)
+            self.ids or self.env.context.get("active_ids")
         ).filtered(lambda x: x.state == "done"):
             # TODO mark_analytic_mrp_from_child is singleton at this point
             mrp.mark_analytic_mrp_from_child()
