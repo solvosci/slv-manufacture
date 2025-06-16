@@ -1,0 +1,84 @@
+<odoo>
+    <record id="hr_equipment_view_form" model="ir.ui.view">
+        <field name="name">equipment.form (in mdc_weight_mgmt_xml_import)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form" />
+        <field name="arch" type="xml">
+            <field name="owner_user_id" position="after">
+                <field
+                    name="mdc_xml_import_active"
+                    widget="boolean_toggle"
+                />
+            </field>
+            <page name="maintenance" position="after">
+                <page
+                    string="Weight Record Settings"
+                    name="mdc_xml_import_settings"
+                    invisible="mdc_xml_import_active == False">
+                    <group>
+                        <group name="mdc_settings" string="Import Settings">
+                            <field name="mdc_timezone" />
+                            <field
+                                name="mdc_xml_weight_in_path"
+                                required="mdc_xml_import_active == True"
+                            />
+                            <field
+                                name="mdc_xml_weight_processed_path"
+                                required="mdc_xml_import_active == True"
+                            />
+                        </group>
+                        <group
+                            name="mdc_ftp_settings"
+                            string="FTP Conn Settings">
+                            <group>
+                                <field
+                                    name="requires_ftp"
+                                    widget="boolean_toggle"
+                                />
+                            </group>
+                            <group></group>
+                            <group invisible="requires_ftp == False">
+                                <field
+                                    name="ftp_host"
+                                    required="requires_ftp == True"
+                                />
+                                <field
+                                    name="ftp_port"
+                                    required="requires_ftp == True"
+                                />
+                                <field name="ftp_folder" />
+                            </group>
+                            <group invisible="requires_ftp == False">
+                                <field
+                                    name="ftp_user"
+                                    required="requires_ftp == True"
+                                />
+                                <field
+                                    name="ftp_password"
+                                    required="requires_ftp == True"
+                                    password="True"
+                                />
+                            </group>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="hr_equipment_view_search" model="ir.ui.view">
+        <field name="name">equipment.search (in mdc_weight_mgmt_xml_import)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='available']" position="after">
+                <separator />
+                <filter
+                    name="mdc_xml_import_active"
+                    string="XML Import Active"
+                    domain="[('mdc_xml_import_active', '=', True)]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
