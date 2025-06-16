@@ -1,0 +1,17 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.maintenance (in
+            mdc_weight_mgmt_xml_import)</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mdc_weight_mgmt.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='mdc_weight_mgmt']/block" position="after">
+                <block title="XML Import Settings">
+                    <setting help="Select one or more partner(s) to notify when an error occurs during XML import.">
+                        <field name="mdc_notify_error_partner_ids" widget="many2many_tags"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

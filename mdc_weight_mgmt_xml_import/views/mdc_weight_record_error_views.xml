@@ -1,0 +1,150 @@
+<odoo>
+    <record id="action_mdc_weight_record_error" model="ir.actions.act_window">
+        <field name="name">Errors from XML import</field>
+        <field name="res_model">mdc.weight.record.error</field>
+        <field name="context">{'search_default_not_reviewed': 1}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_mdc_weight_record_error"
+        name="Import errors"
+        parent="mdc_weight_mgmt.menu_mdc_weight_data"
+        sequence="50"
+        action="action_mdc_weight_record_error"
+    />
+
+    <record id="view_mdc_weight_record_error_tree" model="ir.ui.view">
+        <field name="name">mdc.weight.record.error.tree</field>
+        <field name="model">mdc.weight.record.error</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="reviewed == False" decoration-success="reviewed == True">
+                <header>
+                    <button
+                        string="Error reviewed"
+                        name="action_check_review"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        string="Cancel review"
+                        name="action_cancel_review"
+                        type="object"
+                    />
+                </header>
+                <field name="create_date" />
+                <field name="equipment_id" />
+                <field name="file_name" />
+                <field name="error_message" />
+                <button
+                    name="action_check_review"
+                    string="Check review"
+                    type="object"
+                    icon="fa-check"
+                    invisible="reviewed == True"
+                />
+                <button
+                    name="action_cancel_review"
+                    string="Cancel review"
+                    type="object"
+                    icon="fa-undo"
+                    invisible="reviewed == False"
+                    />
+
+                <field name="reviewed" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mdc_weight_record_error_form" model="ir.ui.view">
+        <field name="name">mdc.weight.record.error.form</field>
+        <field name="model">mdc.weight.record.error</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Check review"
+                        name="action_check_review"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="reviewed == True"
+                    />
+                    <button
+                        string="Cancel review"
+                        name="action_cancel_review"
+                        type="object"
+                        invisible="reviewed == False"
+                    />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Reviewed"
+                        invisible="reviewed == False"
+                    />
+                    <h1>
+                        <field name="file_name" />
+                    </h1>
+                    <h2>
+                        <field name="equipment_id" />
+                    </h2>
+                    <h2>
+                        <field name="create_date" />
+                    </h2>
+                    <group>
+                        <group>
+                            <field name="error_message" />
+                            <field name="reviewed" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="traceback" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mdc_weight_record_error_search" model="ir.ui.view">
+        <field name="name">mdc.weight.record.error.search</field>
+        <field name="model">mdc.weight.record.error</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="equipment_id" />
+                <field name="reviewed" />
+                <field name="create_date" />
+                <separator />
+                <filter
+                    name="errors_today"
+                    string="Errors Today"
+                    domain="[('create_date', '>=', (context_today()))]"
+                />
+                <filter
+                    name="not_reviewed"
+                    string="Not Reviewed"
+                    domain="[('reviewed', '=', False)]"
+                />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="equipment_id_groupby"
+                        string="Equipment"
+                        context="{'group_by': 'equipment_id'}"
+                    />
+                    <filter
+                        name="create_date_groupby"
+                        string="Create Date"
+                        context="{'group_by': 'create_date'}"
+                    />
+                    <filter
+                        name="file_name_groupby"
+                        string="File Name"
+                        context="{'group_by': 'file_name'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

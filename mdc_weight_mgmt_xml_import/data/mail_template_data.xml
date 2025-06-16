@@ -1,0 +1,53 @@
+<odoo>
+    <data noupdate="0">
+        <record id="email_template_xml_import_error_notification" model="mail.template">
+            <field name="name">XML Import Error Notification</field>
+            <field name="model_id" ref="mdc_weight_mgmt_xml_import.model_mdc_weight_record_error" />
+            <field name="subject">XML Import Error: {{ (object.create_date.strftime('%d-%m-%Y - %H:%M:%S') or 'Unknown File') }}</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.company_id.mdc_notify_error_partner_ids.email_formatted }}</field>
+            <field name="description">Sent to user after finding errors in weight record import</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p>
+                        <strong>Errors where found while importing XML</strong>
+                    </p>
+                    <table border="1" cellpadding="5" cellspacing="0"
+                        style="border-collapse: collapse; width: 100%;">
+                        <thead style="background-color: #f0f0f0;">
+                            <tr>
+                                <th>Line</th>
+                                <th>File</th>
+                                <th>Error Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="ctx.get('error_list')" t-as="err">
+                                <tr>
+                                    <td>
+                                        <t t-esc="err.equipment_id or '---'" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="err.file_name or '---'" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="err.error_message or '---'" />
+                                    </td>
+                                    <td>
+                                        <t
+                                            t-esc="err.create_date.strftime('%d-%m-%Y - %H:%M:%S') if err.create_date else '---'" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 20px;">You can review these errors in the <a
+                        href="/web#action=mdc_weight_mgmt_xml_import.action_mdc_weight_record_error"
+                        target="_blank">Import errors</a> menu.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
