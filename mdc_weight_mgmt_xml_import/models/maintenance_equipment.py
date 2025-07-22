@@ -202,11 +202,11 @@ class MaintenanceEquipment(models.Model):
         end_str = self.get_text_from('Production_End', root=root, nsmap=nsmap)
         period_str = self.get_statvalue_by_id('11', root=root, nsmap=nsmap)
         weight_nom = self.get_statvalue_by_id('21', root=root, nsmap=nsmap)
-        weight_dec = self.get_statvalue_by_id('1262', root=root, nsmap=nsmap)
-        unit_ok = self.get_statvalue_by_id('30', unit='6', root=root, nsmap=nsmap)
+        weight_dec = self.get_statvalue_by_id('1261', root=root, nsmap=nsmap)
+        unit_ok = self.get_statvalue_by_id('35', unit='6', root=root, nsmap=nsmap)
         weight_ok_tot_qty = self.get_statvalue_by_id('30', unit='4', root=root, nsmap=nsmap)
-        unit_reject_low = self.get_statvalue_by_id('34', unit='6', root=root, nsmap=nsmap)
-        unit_reject_exceed = self.get_statvalue_by_id('36', unit='6', root=root, nsmap=nsmap)
+        unit_reject_low = self.get_statvalue_by_id('32', unit='6', root=root, nsmap=nsmap)
+        unit_reject_exceed = self.get_statvalue_by_id('38', unit='6', root=root, nsmap=nsmap)
 
         fmt = "%Y-%m-%d %H:%M"
         tz = pytz.timezone(record.mdc_timezone)
