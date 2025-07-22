@@ -157,8 +157,8 @@ class MdcWeightRecord(models.Model):
         overlapping = self.search([
             ('equipment_id', '=', equipment_id.id),
             '|',
-                '&', ('start', '<=', start), ('end', '>=', start),
-                '&', ('start', '<=', end),   ('end', '>=', end),
+                '&', ('start', '<=', start), ('end', '>', start),
+                '&', ('start', '<', end),   ('end', '>=', end),
         ], limit=1)
         if overlapping:
             return (_(
