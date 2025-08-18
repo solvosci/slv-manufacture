@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class MrpUnbuildBoMMixin(models.AbstractModel):
     _name = "mrp.unbuild.bom.mixin"
+    _description = "Mixin BoM based Unbuild"
 
     name = fields.Char(
         string="Description",

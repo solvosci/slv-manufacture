@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mrp_unbuild_bom_quants_view_form_basic" model="ir.ui.view">
         <field name="name">mrp.unbuild.bom.quants.view.form (basic)</field>
@@ -24,9 +23,7 @@
                     <label
                         for="lot_id"
                         style="font-size: 200%;"
-                        attrs="{
-                            'invisible': [('lot_required', '=', False)],
-                        }"
+                        invisible= "not lot_required"
                         groups="stock.group_production_lot"
                     />
                     <field
@@ -34,10 +31,8 @@
                         nolabel="1"
                         style="font-size: 200%;"
                         domain="[('product_id', '=', product_id)]"
-                        attrs="{
-                            'invisible': [('lot_required', '=', False)],
-                            'required': [('lot_required', '=', True)],
-                        }"
+                        invisible= "not lot_required"
+                        required= "lot_required"
                         options="{'no_create_edit': True}"
                         groups="stock.group_production_lot"
                     /> 
@@ -71,9 +66,9 @@
         <field name="model">mrp.unbuild.bom.quants</field>
         <field name="arch" type="xml">
             <tree string="Quants" editable="top" create="false">
-                <field name="unbuild_id" invisible="1" />
-                <field name="bom_id" invisible="1" />
-                <field name="company_id" invisible="1" />
+                <field name="unbuild_id" column_invisible="1" />
+                <field name="bom_id" column_invisible="1" />
+                <field name="company_id" column_invisible="1" />
                 <field name="bom_line_id" readonly="1" />
                 <field name="name" />
                 <field name="departure_date" readonly="1" />

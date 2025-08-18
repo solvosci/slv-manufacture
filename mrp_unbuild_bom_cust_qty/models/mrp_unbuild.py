@@ -45,7 +45,6 @@ class MrpUnbuild(models.Model):
         inverse_name="unbuild_id",
         string="BoM Quants",
         readonly=False,
-        states={'done': [('readonly', True)]},
         copy=False,
     )
     bom_quants_total_ids = fields.One2many(
@@ -77,24 +76,25 @@ class MrpUnbuild(models.Model):
             else:
                 record.bom_quants_has_totals = False
 
-    @api.model
-    def create(self, values):
-        rec = super().create(values)
-        if not rec.mo_id:
-            bom_line_myself = (
-                rec.bom_custom_quants_add_myself
-                and rec._get_bom_line_myself()
-                or self.env["mrp.bom.line"]
-            )
-            for bom_line in (rec.bom_id.bom_line_ids | bom_line_myself):
-                # TODO Review values are not saved
-                rec.bom_quants_total_ids = [(
-                    0,
-                    0,
-                    {'bom_line_id': bom_line.id}
-                )]
-        return rec
-    
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        for rec in res:
+            if not rec.mo_id:
+                bom_line_myself = (
+                    rec.bom_custom_quants_add_myself
+                    and rec._get_bom_line_myself()
+                    or self.env["mrp.bom.line"]
+                )
+                for bom_line in (rec.bom_id.bom_line_ids | bom_line_myself):
+                    # TODO Review values are not saved
+                    rec.bom_quants_total_ids = [(
+                        0,
+                        0,
+                        {'bom_line_id': bom_line.id}
+                    )]
+        return res
+
     def _get_bom_line_myself(self):
         bom_line_myself = self.env["mrp.bom.line"].search(
             [("product_id", "=", self.product_id.id)],
@@ -324,7 +324,7 @@ class MrpUnbuild(models.Model):
 
         location_id = product.property_stock_production or self.location_id
         location_dest_id = self.location_dest_id or product.with_context(force_company=self.company_id.id).property_stock_production
-        warehouse = location_dest_id.get_warehouse()
+        warehouse = location_dest_id.warehouse_id
         move = self.env['stock.move'].create({
             'name': self.name,
             'date': self.create_date,

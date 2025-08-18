@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mrp_unbuild_search_view" model="ir.ui.view">
         <field name="name">mrp.unbuild.search (in mrp_unbuild_bom_cust_qty)</field>
@@ -27,7 +26,7 @@
                     name="action_add_myself"
                     string="Add Main Product to Components"
                     type="object"
-                    attrs="{'invisible': [('action_add_myself_enabled', '=', False)]}"
+                    invisible="not action_add_myself_enabled"
                 />
             </xpath>
             <xpath expr="//group[1]" position="after">
@@ -36,23 +35,22 @@
                         <field name="bom_quants_has_totals" invisible="1" />
                         <field
                             name="bom_custom_quants"
-                            attrs="{'invisible': [('mo_id','!=',False)], 'readonly': [('bom_quants_has_totals', '!=', False)]}"
+                            invisible="mo_id"
+                            readonly="bom_quants_has_totals"
                         />
                     </group>
                     <group>
                         <field
                             name="bom_custom_quants_add_myself"
-                            attrs="{
-                                'invisible': [('bom_custom_quants', '=' , False)],
-                                'readonly': [('bom_quants_has_totals', '!=', False)],
-                            }"
+                            invisible="not bom_custom_quants"
+                            readonly="bom_quants_has_totals"
                         />
                     </group>                    
                 </group>
                 <group></group>
                 <notebook 
                     colspan="4"
-                    attrs="{'invisible': ['|',('bom_custom_quants','=',False),('id','=',False)]}"
+                    invisible="not bom_custom_quants or not id"
                     >
                     <page string="BoM Quant Totals" autofocus="autofocus">
                         <field name="bom_line_ids" invisible="1"/>
@@ -63,6 +61,7 @@
                             name="bom_quants_ids"
                             context="{'default_unbuild_id': id}"
                             class="oe_editable_tree_only"
+                            readonly="state == 'done'"
                         />
                     </page>
                 </notebook>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mrp_unbuild_bom_total_view_tree" model="ir.ui.view">
         <field name="name">mrp.unbuild.bom.totals.view.tree</field>
@@ -12,16 +11,16 @@
                 decoration-danger="deco_danger == True"
                 decoration-it="is_product_uom_diff"
             >
-                <field name="company_id" invisible="1" />
-                <field name="deco_danger" invisible="1" />
-                <field name="check_bom_line" invisible="1" />
-                <field name="unbuild_id" invisible="1" />
-                <field name="bom_line_ids" invisible="1" />
-                <field name="bom_id" invisible="1" />
-                <field name="is_product_uom_diff" invisible="1" />
+                <field name="company_id" column_invisible="1" />
+                <field name="deco_danger" column_invisible="1" />
+                <field name="check_bom_line" column_invisible="1" />
+                <field name="unbuild_id" column_invisible="1" />
+                <field name="bom_line_ids" column_invisible="1" />
+                <field name="bom_id" column_invisible="1" />
+                <field name="is_product_uom_diff" column_invisible="1" />
                 <field name="bom_line_id"
-                    domain="[('id', 'not in', bom_line_ids)]" 
-                    attrs="{'readonly': ['|',('check_bom_line', '=', True), ('total_qty','>',0)]}"
+                    domain="[('id', 'not in', bom_line_ids)]"
+                    readonly="check_bom_line or total_qty > 0"
                 />
                 <field name="total_qty" />
                 <field name="expected_qty" />
@@ -33,13 +32,15 @@
                 <button name="product_weighing"
                     type="object"
                     icon="fa-refresh"
-                    attrs="{'invisible': [('parent.state', '=', 'done')]}"
+                    title="Add a weight"
+                    invisible="parent.state == 'done'"
                 />
                 <button name="unlink"
                     class="o_list_record_remove"
                     type="object"
                     icon="fa-trash-o"
-                    attrs="{'invisible': ['|', ('check_bom_line', '=', True), ('parent.state', '=', 'done')]}"
+                    title="Remove the line"
+                    invisible="check_bom_line or parent.state == 'done'"
                 />
             </tree>
         </field>
