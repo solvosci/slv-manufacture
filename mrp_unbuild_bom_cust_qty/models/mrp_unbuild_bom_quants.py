@@ -16,7 +16,7 @@ class MrpUnbuildBoMQuants(models.Model):
         required=True,
     )
     lot_id = fields.Many2one(
-        comodel_name="stock.production.lot",
+        comodel_name="stock.lot",
     )
     has_lot = fields.Boolean(
         compute="_compute_has_lot",
@@ -76,14 +76,15 @@ class MrpUnbuildBoMQuants(models.Model):
         self.ensure_one()
         return {'type': 'ir.actions.act_window_close'}
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        res.unbuild_id._update_product_qty_from_bom_totals()
-        res.departure_date = fields.datetime.now()
-        res.name = ('%s on %s at %s' % (self.env.user.name,
-                                        fields.datetime.now().strftime('%d/%m/%Y'),
-                                        fields.datetime.now().strftime('%H:%M')))
+        for rec in res:
+            rec.unbuild_id._update_product_qty_from_bom_totals()
+            rec.departure_date = fields.datetime.now()
+            rec.name = ('%s on %s at %s' % (self.env.user.name,
+                                            fields.datetime.now().strftime('%d/%m/%Y'),
+                                            fields.datetime.now().strftime('%H:%M')))
         return res
 
     def write(self, values):
