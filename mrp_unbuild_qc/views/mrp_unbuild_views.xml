@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mrp_unbuild_view_form_qc" model="ir.ui.view">
         <field name="name">mrp.unbuild.form (in mrp_unbuild_bom_cust_qty)</field>

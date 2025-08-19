@@ -9,14 +9,11 @@ class QcInspection(models.Model):
 
     unbuild_id = fields.Many2one(
         comodel_name="mrp.unbuild",
-        readonly=True,
     )
     rel_unbuild_product_id = fields.Many2one(
         comodel_name="product.product",
         compute="_compute_rel_unbuild_product_id",
         store=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         string="Related unbuild product",
     )
 
