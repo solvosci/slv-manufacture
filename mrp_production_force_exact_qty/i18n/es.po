@@ -18,8 +18,8 @@ msgstr ""
 #. module: mrp_production_force_exact_qty
 #: code:addons/mrp_production_force_exact_qty/models/mrp_production.py:0
 #, python-format
-msgid "Consumed and produced quantities don't match (%.3f != %.3f)"
-msgstr "Las cantidades consumidas y producidas no coinciden (%.3f != %.3f)"
+msgid "For MO %s, consumed and produced quantities don't match (%.3f != %.3f)"
+msgstr "Para la fabricación %s, las cantidades consumidas y producidas no coinciden (%.3f != %.3f)"
 
 #. module: mrp_production_force_exact_qty
 #: model:ir.model,name:mrp_production_force_exact_qty.model_mrp_production

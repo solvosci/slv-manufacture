@@ -10,15 +10,21 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     def button_mark_done(self):
+        if not self.env.context.get("mrp_force_exact_skip", False):
+            for mrp in self:
+                mrp._check_button_mark_done()
+        return super().button_mark_done()
+
+    def _check_button_mark_done(self):
         # We'll only check quantities if every consumed and produced move
         #  belongs to the same UoM cateogory. Other operation should be
         #  inconsistent
         # TODO float_compare
         consumed_moves = self.move_raw_ids.filtered(
-            lambda x: x.quantity_done > 0.0
+            lambda x: x.quantity > 0.0
         )
         produced_moves = self.move_finished_ids.filtered(
-            lambda x: x.quantity_done > 0.0
+            lambda x: x.quantity > 0.0
         )
         uom_categs = (consumed_moves | produced_moves).mapped(
             "product_uom_category_id"
@@ -26,11 +32,11 @@ class MrpProduction(models.Model):
         mrp_force_exact_skip = self.env.context.get(
             "mrp_force_exact_skip", False
         )
-        if not mrp_force_exact_skip and len(uom_categs) == 1:
-            qty_produced = sum(produced_moves.mapped("quantity_done"))
+        if len(uom_categs) == 1:
+            qty_produced = sum(produced_moves.mapped("quantity"))
             qty_consumed = sum(
                 move.product_uom._compute_quantity(
-                    move.quantity_done, self.product_uom_id
+                    move.quantity, self.product_uom_id
                 )
                 for move in consumed_moves
             )
@@ -39,8 +45,6 @@ class MrpProduction(models.Model):
                 precision_rounding=self.product_uom_id.rounding
             ):
                 raise ValidationError(
-                    _("Consumed and produced quantities don't match (%.3f != %.3f)")
-                    % (qty_consumed, qty_produced)
+                    _("For MO %s, consumed and produced quantities don't match (%.3f != %.3f)")
+                    % (self.name, qty_consumed, qty_produced)
                 )
-
-        return super().button_mark_done()
