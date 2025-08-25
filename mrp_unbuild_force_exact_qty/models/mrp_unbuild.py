@@ -20,10 +20,10 @@ class MrpUnbuild(models.Model):
             lambda x: x.location_dest_id.usage == "production"
         )
         move_produced = (line_ids - move_consumed)
-        qty_consumed = sum(move_consumed.mapped("quantity_done"))
+        qty_consumed = sum(move_consumed.mapped("quantity"))
         qty_produced = sum(
             move.product_uom._compute_quantity(
-                move.quantity_done, self.product_uom_id
+                move.quantity, self.product_uom_id
             )
             for move in move_produced
         )
