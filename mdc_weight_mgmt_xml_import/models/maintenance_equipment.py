@@ -196,6 +196,7 @@ class MaintenanceEquipment(models.Model):
         root = tree.getroot()
         nsmap = root.nsmap
 
+        product_name = self.get_statvalue_by_id('102', root=root, nsmap=nsmap)
         product_code = self.get_statvalue_by_id('103', root=root, nsmap=nsmap)
         machine_text = self.get_text_from('Machine_Number', root=root, nsmap=nsmap)
         start_str = self.get_text_from('Production_Start', root=root, nsmap=nsmap)
@@ -225,8 +226,31 @@ class MaintenanceEquipment(models.Model):
                     found=equipment.name if equipment else "None"
                 ))
             product = self.env['product.product'].search([('default_code', '=', product_code)], limit=1)
-            if not product or not product_code:
-                raise Exception(_("Product with code %(code)s not found", code=product_code))
+            if not product:
+                categ = (
+                    record.company_id.product_categ_default_id
+                    or self.env.ref("product.product_category_all", raise_if_not_found=False)
+                    or self.env['product.category'].search(
+                        [('company_id', '=', record.company_id.id)] if record.company_id else [('company_id', '=', False)],
+                        limit=1
+                    )
+                )
+                product_template = self.env['product.template'].sudo().create({
+                    'name': product_name,
+                    'default_code': product_code,
+                    'detailed_type': 'consu',
+                    'categ_id': categ.id,
+                    'company_id': record.company_id.id or False,
+                })
+                product = product_template.product_variant_id
+                logger.warning(
+                    "Product with code %s not found. Automatically created with name '%s'.",
+                    product_code,product_name
+                )
+                product.message_post(
+                    body=_("Automatically created from file '%(file)s'",file=file.name),
+                    subtype_id=self.env.ref("mail.mt_comment").id
+                )
 
             msg = self.env['mdc.weight.record']._check_overlap_manual(equipment, start_dt, end_dt)
             if msg:
