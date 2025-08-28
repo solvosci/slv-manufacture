@@ -7,7 +7,7 @@
     """,
     "author": "Solvos",
     "license": "AGPL-3",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.2.0",
     "category": "Manufacture",
     "website": "https://github.com/solvosci/manufacture",
     "depends": [
