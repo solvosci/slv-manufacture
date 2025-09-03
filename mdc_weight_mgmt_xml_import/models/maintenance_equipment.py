@@ -207,42 +207,44 @@ class MaintenanceEquipment(models.Model):
         weight_ok_tot_qty = self.get_statvalue_by_id('30', unit='4', root=root, nsmap=nsmap)
         unit_reject_low = self.get_statvalue_by_id('32', unit='6', root=root, nsmap=nsmap)
         unit_reject_exceed = self.get_statvalue_by_id('38', unit='6', root=root, nsmap=nsmap)
+        if unit_ok == '0' and (unit_reject_exceed == '0' and unit_reject_low == '0'):
+            logger.warning("File %s was empty.", file.name)
+        else:
+            fmt = "%Y-%m-%d %H:%M"
+            tz = pytz.timezone(record.mdc_timezone)
+            start_dt = tz.localize(datetime.strptime(start_str, fmt)).astimezone(pytz.UTC).replace(tzinfo=None) if start_str else None
+            end_dt   = tz.localize(datetime.strptime(end_str, fmt)).astimezone(pytz.UTC).replace(tzinfo=None) if end_str else None
+            t= datetime.strptime(period_str, "%H:%M:%S")
+            period_min = t.hour * 60 + t.minute + t.second / 60
+            machine_number = re.match(r'\d+', machine_text).group() if machine_text else None
+            equipment = self.env['maintenance.equipment'].search([('serial_no', '=', machine_number)], limit=1)
+            if not equipment or equipment.id != record.id:
+                raise Exception(_(
+                    "Equipment mismatch or not found.\nExpected: %(expected)s\nFound: %(found)s",
+                    expected=record.name,
+                    found=equipment.name if equipment else "None"
+                ))
+            product = self.env['product.product'].search([('default_code', '=', product_code)], limit=1)
+            if not product or not product_code:
+                raise Exception(_("Product with code %(code)s not found", code=product_code))
 
-        fmt = "%Y-%m-%d %H:%M"
-        tz = pytz.timezone(record.mdc_timezone)
-        start_dt = tz.localize(datetime.strptime(start_str, fmt)).astimezone(pytz.UTC).replace(tzinfo=None) if start_str else None
-        end_dt   = tz.localize(datetime.strptime(end_str, fmt)).astimezone(pytz.UTC).replace(tzinfo=None) if end_str else None
-        t= datetime.strptime(period_str, "%H:%M:%S")
-        period_min = t.hour * 60 + t.minute + t.second / 60
-        machine_number = re.match(r'\d+', machine_text).group() if machine_text else None
-        equipment = self.env['maintenance.equipment'].search([('serial_no', '=', machine_number)], limit=1)
-        if not equipment or equipment.id != record.id:
-            raise Exception(_(
-                "Equipment mismatch or not found.\nExpected: %(expected)s\nFound: %(found)s",
-                expected=record.name,
-                found=equipment.name if equipment else "None"
-            ))
-        product = self.env['product.product'].search([('default_code', '=', product_code)], limit=1)
-        if not product or not product_code:
-            raise Exception(_("Product with code %(code)s not found", code=product_code))
+            msg = self.env['mdc.weight.record']._check_overlap_manual(equipment, start_dt, end_dt)
+            if msg:
+                raise Exception(msg)
 
-        msg = self.env['mdc.weight.record']._check_overlap_manual(equipment, start_dt, end_dt)
-        if msg:
-            raise Exception(msg)
-
-        self.env['mdc.weight.record'].with_context(mdc_cron_create=True).create({
-            'product_id': product.id,
-            'equipment_id': equipment.id,
-            'start': start_dt,
-            'end': end_dt,
-            'period_min': period_min,
-            'weight_nom_qty': float(weight_nom or 0),
-            'weight_dec_qty': float(weight_dec or 0),
-            'unit_ok': int(unit_ok or 0),
-            'weight_ok_tot_qty': float(weight_ok_tot_qty or 0),
-            'unit_reject_low': int(unit_reject_low or 0),
-            'unit_reject_exceed': int(unit_reject_exceed or 0),
-        })
+            self.env['mdc.weight.record'].with_context(mdc_cron_create=True).create({
+                'product_id': product.id,
+                'equipment_id': equipment.id,
+                'start': start_dt,
+                'end': end_dt,
+                'period_min': period_min,
+                'weight_nom_qty': float(weight_nom or 0),
+                'weight_dec_qty': float(weight_dec or 0),
+                'unit_ok': int(unit_ok or 0),
+                'weight_ok_tot_qty': float(weight_ok_tot_qty or 0),
+                'unit_reject_low': int(unit_reject_low or 0),
+                'unit_reject_exceed': int(unit_reject_exceed or 0),
+            })
         processed_file = processed_path / file.name
         file.rename(processed_file)
         logger.info("Moved processed file to: %s", processed_file)
