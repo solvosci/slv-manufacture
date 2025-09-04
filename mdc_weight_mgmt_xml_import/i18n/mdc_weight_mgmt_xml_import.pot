@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-15 12:57+0000\n"
-"PO-Revision-Date: 2025-07-15 12:57+0000\n"
+"POT-Creation-Date: 2025-09-04 07:41+0000\n"
+"PO-Revision-Date: 2025-09-04 07:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,14 @@ msgid "Automated import XML daily"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#, python-format
+msgid "Automatically created from file '%(file)s'"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xml_import
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt_xml_import.view_mdc_weight_record_error_form
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt_xml_import.view_mdc_weight_record_error_tree
 msgid "Cancel review"
@@ -131,6 +139,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid ""
 "Equipment mismatch or not found.\n"
@@ -146,6 +155,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid "Error downloading files from FTP: %s"
 msgstr ""
@@ -153,8 +163,9 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
-msgid "Error processing FTP files: {e}"
+msgid "Error processing FTP files: %s"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
@@ -181,6 +192,9 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid "FTP connection failed: %s"
 msgstr ""
@@ -188,29 +202,25 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
-msgid "FTP connection failed: {e}"
+msgid "Failed to change directory to %s: %s"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
-msgid "Failed to change directory to {record.ftp_folder}: {e}"
+msgid "Failed to delete remote file %s: %s"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
-msgid "Failed to delete remote file {file_name}: {e}"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xml_import
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
-#, python-format
-msgid "Failed to download file {file_name}: {e}"
+msgid "Failed to download file %s: %s"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
@@ -227,6 +237,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid "Folder creation failed: %s"
 msgstr ""
@@ -310,6 +321,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid "Listing files failed: %s"
 msgstr ""
@@ -389,15 +401,9 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
 #, python-format
 msgid "Processing failed: %s"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xml_import
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xml_import/models/maintenance_equipment.py:0
-#, python-format
-msgid "Product with code %(code)s not found"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
@@ -451,11 +457,6 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt_xml_import.hr_equipment_view_form
 msgid "Weight Record Settings"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xml_import
-#: model:ir.model,name:mdc_weight_mgmt_xml_import.model_mdc_weight_record
-msgid "Weight record"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
