@@ -9,4 +9,16 @@
         <field name="state">code</field>
         <field name="code">model._cron_import_xml_weight()</field>
     </record>
+
+    <record id="ir_cron_mdc_cleanup_processed_files" model="ir.cron">
+        <field name="name">Automated clean processed XML Weight Files</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="active" eval="False" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="model_maintenance_equipment" />
+        <field name="state">code</field>
+        <field name="code">model._cron_mdc_xml_cleanup_processed_files()</field>
+    </record>
 </odoo>

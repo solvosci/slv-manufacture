@@ -23,3 +23,7 @@ The optional Folder field specifies the remote directory where the XML files are
 
 7. You can optionally configure a notification partner in *Weight Management* > *Configuration* > *Settings*.
 That partner will receive email alerts for any import errors detected during cron execution.
+
+8. You can define the retention period (in days) for processed files at the equipment level.
+By default, files are kept for 90 days. The cleanup runs daily via a scheduled cron job.
+If the value is set to 0, files will be kept indefinitely.

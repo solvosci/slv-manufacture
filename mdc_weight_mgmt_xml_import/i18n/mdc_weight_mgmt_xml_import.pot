@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-04 07:41+0000\n"
-"PO-Revision-Date: 2025-09-04 07:41+0000\n"
+"POT-Creation-Date: 2025-09-22 11:06+0000\n"
+"PO-Revision-Date: 2025-09-22 11:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,6 +67,11 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
+#: model:ir.actions.server,name:mdc_weight_mgmt_xml_import.ir_cron_mdc_cleanup_processed_files_ir_actions_server
+msgid "Automated clean processed XML Weight Files daily"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xml_import
 #: model:ir.actions.server,name:mdc_weight_mgmt_xml_import.ir_cron_mdc_weight_import_ir_actions_server
 msgid "Automated import XML daily"
 msgstr ""
@@ -119,6 +124,18 @@ msgstr ""
 #. module: mdc_weight_mgmt_xml_import
 #: model:ir.model.fields,field_description:mdc_weight_mgmt_xml_import.field_mdc_weight_record_error__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xml_import
+#: model:ir.model.fields,field_description:mdc_weight_mgmt_xml_import.field_maintenance_equipment__mdc_xml_days_delete
+msgid "Days to Keep Processed Files"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xml_import
+#: model:ir.model.fields,help:mdc_weight_mgmt_xml_import.field_maintenance_equipment__mdc_xml_days_delete
+msgid ""
+"Delete files older than this number of days from the processed folder.\n"
+"        If set to less than 1, files will be kept indefinitely."
 msgstr ""
 
 #. module: mdc_weight_mgmt_xml_import
