@@ -26,6 +26,7 @@
                                 name="mdc_xml_weight_processed_path"
                                 required="mdc_xml_import_active == True"
                             />
+                            <field name="mdc_xml_days_delete"/>
                         </group>
                         <group
                             name="mdc_ftp_settings"

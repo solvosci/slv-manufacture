@@ -27,6 +27,18 @@ class MaintenanceEquipment(models.Model):
         string="XML Processed Folder Path",
         help="Path to the folder where processed XML files are moved."
     )
+    mdc_timezone = fields.Selection(
+        selection=_tz_get,
+        string="Timezone",
+        default=lambda self: self.env.user.tz or 'UTC',
+        help="Timezone for the equipment."
+    )
+    mdc_xml_days_delete = fields.Integer(
+        string="Days to Keep Processed Files",
+        default=90,
+        help="""Delete files older than this number of days from the processed folder.
+        If set to less than 1, files will be kept indefinitely.""",
+    )
     # FTP connection settings
     requires_ftp = fields.Boolean(
         string="Requires FTP Connection",
@@ -37,13 +49,6 @@ class MaintenanceEquipment(models.Model):
     ftp_user = fields.Char(string="Username")
     ftp_password = fields.Char(string="Password")
     ftp_folder = fields.Char(string="Folder")
-
-    mdc_timezone = fields.Selection(
-        selection=_tz_get,
-        string="Timezone",
-        default=lambda self: self.env.user.tz or 'UTC',
-        help="Timezone for the equipment."
-    )
 
     @api.model
     def _cron_import_xml_weight(self):
@@ -118,6 +123,37 @@ class MaintenanceEquipment(models.Model):
             error_model = self.env['mdc.weight.record.error'].sudo()
             created_errors = error_model.create(errors)
             created_errors.action_send_mail()
+
+    @api.model
+    def _cron_mdc_xml_cleanup_processed_files(self):
+        logger = logging.getLogger(__name__)
+        now = datetime.now()
+        for record in self.env['maintenance.equipment'].search([
+            ('mdc_xml_import_active', '=', True),
+            ('mdc_xml_days_delete', '>', 0),
+        ]):
+            processed_path = Path(record.mdc_xml_weight_processed_path or "")
+            if not processed_path.exists():
+                continue
+
+            deleted_files = []
+            for file in processed_path.iterdir():
+                if file.is_file():
+                    age_days = (now - datetime.fromtimestamp(file.stat().st_mtime)).days
+                    if age_days > record.mdc_xml_days_delete:
+                        try:
+                            file.unlink()
+                            deleted_files.append(file.name)
+                        except Exception as e:
+                            logger.error("Error deleting file %s: %s", file.name, e)
+
+            if deleted_files:
+                logger.warning(
+                    "Deleted processed XML files for equipment %s older than %s days: %s",
+                    record.name,
+                    record.mdc_xml_days_delete,
+                    ", ".join(deleted_files)
+                )
 # ********** Getters for XML data extraction ***********
     def get_statvalue_by_id(self,stat_id, unit=None, root=None, nsmap=None):
         query = f'.//wpt:Statvalue[@id="{stat_id}"]'
