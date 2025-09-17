@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-30 06:33+0000\n"
-"PO-Revision-Date: 2025-06-30 06:33+0000\n"
+"POT-Creation-Date: 2025-09-17 09:13+0000\n"
+"PO-Revision-Date: 2025-09-17 09:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,27 +32,15 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Accepted"
+msgid "Average Weight Accepted(%s)"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
-#, python-format
-msgid "Accepted (%)"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xlsx_report
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
-#, python-format
-msgid "Avg Accepted"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xlsx_report
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Date:"
 msgstr ""
@@ -60,13 +48,15 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Declared Weight"
+msgid "Declared Weight (%s)"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "End"
 msgstr ""
@@ -79,6 +69,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Line:"
 msgstr ""
@@ -87,6 +78,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "No selected"
 msgstr ""
@@ -94,20 +87,15 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Nominal Weight"
+msgid "Nominal Weight (%s)"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
-#, python-format
-msgid "Overweight"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xlsx_report
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Overweight (%)"
 msgstr ""
@@ -115,6 +103,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Period (min)"
 msgstr ""
@@ -122,6 +111,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Product"
 msgstr ""
@@ -129,6 +119,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Product:"
 msgstr ""
@@ -136,13 +127,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
-#, python-format
-msgid "Rejected (%)"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xlsx_report
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Shift:"
 msgstr ""
@@ -150,6 +135,7 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Start"
 msgstr ""
@@ -157,27 +143,23 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Total Acc. Declared"
+msgid "Total Accepted Weight(%s)"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Total Acc. Weight"
+msgid "Total Declared Weight(%s)"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
-#, python-format
-msgid "Total Rejected"
-msgstr ""
-
-#. module: mdc_weight_mgmt_xlsx_report
-#. odoo-python
-#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
 msgid "Total Units"
 msgstr ""
@@ -185,15 +167,57 @@ msgstr ""
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Underweight"
+msgid "Total Units Rejected"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
 #. odoo-python
 #: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
 #, python-format
-msgid "Units/min"
+msgid "Total Units/min"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xlsx_report
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#, python-format
+msgid "Units Accepted"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xlsx_report
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#, python-format
+msgid "Units Accepted(%)"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xlsx_report
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#, python-format
+msgid "Units Rejected (%)"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xlsx_report
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#, python-format
+msgid "Units Rejected Overweight"
+msgstr ""
+
+#. module: mdc_weight_mgmt_xlsx_report
+#. odoo-python
+#: code:addons/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt_xlsx_report/reports/report_xlsx.py:0
+#, python-format
+msgid "Units Rejected Underweight"
 msgstr ""
 
 #. module: mdc_weight_mgmt_xlsx_report
