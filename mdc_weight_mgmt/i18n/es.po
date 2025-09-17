@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-15 12:51+0000\n"
-"PO-Revision-Date: 2025-07-15 12:51+0000\n"
+"POT-Creation-Date: 2025-09-17 08:35+0000\n"
+"PO-Revision-Date: 2025-09-17 08:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,14 +75,14 @@ msgid "Attachment Count"
 msgstr "Recuento de Archivos Adjuntos"
 
 #. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Average Weight Accepted("
+msgstr "Peso Medio Aceptado("
+
+#. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_ok_avg_qty
 msgid "Average weight accepted"
 msgstr "Peso medio aceptado"
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Avg Accepted ("
-msgstr "Med. Aceptado ("
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_mdc_weight_record_report_wizard_form
@@ -109,7 +109,7 @@ msgstr "Compañia"
 #. module: mdc_weight_mgmt
 #: model:ir.model,name:mdc_weight_mgmt.model_res_config_settings
 msgid "Config Settings"
-msgstr "Ajustes de Configuración"
+msgstr "Ajustes de configuración"
 
 #. module: mdc_weight_mgmt
 #: model:ir.actions.act_window,name:mdc_weight_mgmt.action_mdc_weight_settings
@@ -133,13 +133,13 @@ msgstr "Creado el"
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Decl. Weight ("
-msgstr "Peso Dec. ("
+msgid "Declared Weight ("
+msgstr "Peso Declarado ("
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_dec_qty
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
-msgid "Declarated Weight"
+msgid "Declared Weight"
 msgstr "Peso Declarado"
 
 #. module: mdc_weight_mgmt
@@ -303,15 +303,15 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Nom. Weight ("
-msgstr "Peso Nom. ("
-
-#. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_nom_qty
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
 msgid "Nominal Weight"
 msgstr "Peso Nominal"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Nominal Weight ("
+msgstr "Peso Nominal ("
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_shift__message_needaction_counter
@@ -336,7 +336,7 @@ msgstr "Numero de mensajes con error de envío"
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
 msgid "Overweight (%)"
-msgstr "Sobrepeso (%)"
+msgstr "Exceso peso (%)"
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
@@ -374,11 +374,6 @@ msgstr "Información de producto"
 #: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_products
 msgid "Products"
 msgstr "Productos"
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Reject. (%)"
-msgstr "Rech. (%)"
 
 #. module: mdc_weight_mgmt
 #: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_reports
@@ -445,6 +440,8 @@ msgstr "Fecha de incio de registro"
 #. odoo-python
 #: code:addons/mdc_weight_mgmt/models/mdc_weight_record.py:0
 #: code:addons/mdc_weight_mgmt/wizard/mdc_weight_record_report_wizard.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt/models/mdc_weight_record.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt/wizard/mdc_weight_record_report_wizard.py:0
 #, python-format
 msgid "The end date must be later than the start date."
 msgstr "La fecha final debe ser más tarde que la inicial."
@@ -452,6 +449,7 @@ msgstr "La fecha final debe ser más tarde que la inicial."
 #. module: mdc_weight_mgmt
 #. odoo-python
 #: code:addons/mdc_weight_mgmt/models/mdc_weight_record.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt/models/mdc_weight_record.py:0
 #, python-format
 msgid ""
 "There is already a record with this equipment (%(equipment)s) at this time "
@@ -463,6 +461,7 @@ msgstr ""
 #. module: mdc_weight_mgmt
 #. odoo-python
 #: code:addons/mdc_weight_mgmt/wizard/mdc_weight_record_report_wizard.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt/wizard/mdc_weight_record_report_wizard.py:0
 #, python-format
 msgid "There is no records for that day, shift, equipment or product."
 msgstr "No hay registros para ese día, turno, equipamiento o producto."
@@ -474,33 +473,34 @@ msgstr ""
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Total Acc. Declared("
-msgstr "Peso Total Declarado("
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Total Acc. Weight("
+msgid "Total Accepted Weight("
 msgstr "Peso Total Aceptado("
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Total Reject."
-msgstr "Total Rech."
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Total Uds."
-msgstr "Uds. Totales"
+msgid "Total Declared Weight("
+msgstr "Peso Total Declarado("
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__unit_total
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
 msgid "Total Units"
 msgstr "Unidades totales"
 
 #. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Total Units Rejected"
+msgstr "Total Unidades Rechazadas"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Total Units/min"
+msgstr "Unidades Totales/Min"
+
+#. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__unit_reject_total
 msgid "Total units rejected"
-msgstr "Unidades totales rechazadas"
+msgstr "Total unidades rechazadas"
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_ok_tot_qty
@@ -523,31 +523,6 @@ msgid "UOM type for total"
 msgstr "Tipo de UM para totales"
 
 #. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Ud. Over."
-msgstr "Uds. Sobre."
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Ud. Unde."
-msgstr "Uds. Bajo."
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Uds. Acc."
-msgstr "Uds. Acept."
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Uds. Acc.(%)"
-msgstr "Uds. Acept.(%)"
-
-#. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Uds/min"
-msgstr ""
-
-#. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
 msgid "Unit Information"
 msgstr "Informción de unidades"
@@ -556,6 +531,31 @@ msgstr "Informción de unidades"
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
 msgid "Unit of Measure"
 msgstr "Unidad de Medida"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Units Accepted"
+msgstr "Unidades Aceptadas"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Units Accepted(%)"
+msgstr "Unidades Aceptadas(%)"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Units Rejected (%)"
+msgstr "Unidades Rechazadas(%)"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Units Rejected Overweight"
+msgstr "Unidades Rechazadas con Sobrepeso"
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Units Rejected Underweight"
+msgstr "Unidades Rechazadas con BajoPeso"
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__unit_ok

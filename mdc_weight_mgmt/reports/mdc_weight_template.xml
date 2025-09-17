@@ -74,27 +74,27 @@
                                     <t t-if="not o.product_id">
                                         <th>Product</th>
                                     </t>
-                                    <th>Nom. Weight (<span t-field="o.weight_uom.name" />)</th>
-                                    <th>Decl. Weight (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Nominal Weight (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Declared Weight (<span t-field="o.weight_uom.name" />)</th>
                                     <th>Start</th>
                                     <th>End</th>
                                     <th>Period (min)</th>
-                                    <th>Total Uds.</th>
-                                    <th>Uds/min</th>
-                                    <th>Uds. Acc.</th>
-                                    <th>Uds. Acc.(%)</th>
-                                    <th>Total Acc. Weight(<span
+                                    <th>Total Units</th>
+                                    <th>Total Units/min</th>
+                                    <th>Units Accepted</th>
+                                    <th>Units Accepted(%)</th>
+                                    <th>Total Accepted Weight(<span
                                             t-field="o.mdc_weight_record_ids[0].weight_total_uom" />
                                         )</th>
-                                    <th>Total Acc. Declared(<span
+                                    <th>Total Declared Weight(<span
                                             t-field="o.mdc_weight_record_ids[0].weight_total_uom" />
                                         )</th>
-                                    <th>Avg Accepted (<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Average Weight Accepted(<span t-field="o.weight_uom.name" />)</th>
                                     <th>Overweight (%)</th>
-                                    <th>Ud. Over.</th>
-                                    <th>Ud. Unde.</th>
-                                    <th>Total Reject.</th>
-                                    <th>Reject. (%)</th>
+                                    <th>Units Rejected Overweight</th>
+                                    <th>Units Rejected Underweight</th>
+                                    <th>Total Units Rejected</th>
+                                    <th>Units Rejected (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
