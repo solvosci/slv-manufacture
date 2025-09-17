@@ -30,13 +30,13 @@ class MdcWeightXlsxReport(models.AbstractModel):
             'valign': 'vcenter'
         })
         decimal_format = workbook.add_format({
-            'num_format': '0.00',
+            'num_format': '#,##0.00',
             'border': 1,
             'align': 'center',
             'valign': 'vcenter'
         })
         integer_format = workbook.add_format({
-            'num_format': '0',
+            'num_format': '#,##0',
             'border': 1,
             'align': 'center',
             'valign': 'vcenter'
@@ -111,22 +111,22 @@ class MdcWeightXlsxReport(models.AbstractModel):
 
                 for product_filtered in products_filtered:
                     worksheet.write(row, 0, product_filtered.product_id.name, text_format)
-                    worksheet.write(row, 1, product_filtered.weight_nom_qty, text_format)
-                    worksheet.write(row, 2, product_filtered.weight_dec_qty or '', text_format)
+                    worksheet.write(row, 1, product_filtered.weight_nom_qty, integer_format)
+                    worksheet.write(row, 2, product_filtered.weight_dec_qty or '', integer_format)
                     worksheet.write(row, 3, product_filtered.start.strftime('%H:%M'), text_format)
                     worksheet.write(row, 4, product_filtered.end.strftime('%H:%M'), text_format)
                     worksheet.write(row, 5, product_filtered.period_min, integer_format)
-                    worksheet.write(row, 6, product_filtered.unit_total, text_format)
+                    worksheet.write(row, 6, product_filtered.unit_total, integer_format)
                     worksheet.write(row, 7, product_filtered.unit_x_min, decimal_format)
-                    worksheet.write(row, 8, product_filtered.unit_ok, text_format)
+                    worksheet.write(row, 8, product_filtered.unit_ok, integer_format)
                     worksheet.write(row, 9, product_filtered.unit_ok_pct, decimal_format)
-                    worksheet.write(row, 10, product_filtered.weight_ok_tot_qty, text_format)
-                    worksheet.write(row, 11, product_filtered.weight_ok_dec_qty or '', text_format)
-                    worksheet.write(row, 12, product_filtered.weight_ok_avg_qty, text_format)
+                    worksheet.write(row, 10, product_filtered.weight_ok_tot_qty, decimal_format)
+                    worksheet.write(row, 11, product_filtered.weight_ok_dec_qty or '', decimal_format)
+                    worksheet.write(row, 12, product_filtered.weight_ok_avg_qty, decimal_format)
                     worksheet.write(row, 13, product_filtered.exceed_pct, decimal_format)
-                    worksheet.write(row, 14, product_filtered.unit_reject_exceed or '', text_format)
-                    worksheet.write(row, 15, product_filtered.unit_reject_low or '', text_format)
-                    worksheet.write(row, 16, product_filtered.unit_reject_total, text_format)
+                    worksheet.write(row, 14, product_filtered.unit_reject_exceed or '', integer_format)
+                    worksheet.write(row, 15, product_filtered.unit_reject_low or '', integer_format)
+                    worksheet.write(row, 16, product_filtered.unit_reject_total, integer_format)
                     worksheet.write(row, 17, product_filtered.unit_reject_pct, decimal_format)
                     row += 1
 
@@ -147,17 +147,17 @@ class MdcWeightXlsxReport(models.AbstractModel):
 
                 worksheet.write(row, 0, product.name, header_format)
                 worksheet.write(row, 5, total_period_min, integer_format)
-                worksheet.write(row, 6, total_unit_totals, text_format)
+                worksheet.write(row, 6, total_unit_totals, integer_format)
                 worksheet.write(row, 7, total_unit_x_min_avg, decimal_format)
-                worksheet.write(row, 8, total_unit_ok, text_format)
+                worksheet.write(row, 8, total_unit_ok, integer_format)
                 worksheet.write(row, 9, total_unit_ok_pct_avg, decimal_format)
-                worksheet.write(row, 10, total_weight_ok_tot_qty, text_format)
-                worksheet.write(row, 11, total_weight_ok_dec_qty, text_format)
+                worksheet.write(row, 10, total_weight_ok_tot_qty, decimal_format)
+                worksheet.write(row, 11, total_weight_ok_dec_qty, decimal_format)
                 worksheet.write(row, 12, total_weight_ok_avg_qty, decimal_format)
                 worksheet.write(row, 13, total_exceed_pct_avg, decimal_format)
-                worksheet.write(row, 14, total_unit_reject_exceed, text_format)
-                worksheet.write(row, 15, total_unit_reject_low, text_format)
-                worksheet.write(row, 16, total_unit_reject_total, text_format)
+                worksheet.write(row, 14, total_unit_reject_exceed, integer_format)
+                worksheet.write(row, 15, total_unit_reject_low, integer_format)
+                worksheet.write(row, 16, total_unit_reject_total, integer_format)
                 worksheet.write(row, 17, total_unit_reject_pct_avg, decimal_format)
                 row += 1
 
@@ -180,16 +180,16 @@ class MdcWeightXlsxReport(models.AbstractModel):
             worksheet.write(row, 0, equipment.name, header_format)
             worksheet.write(row, 1, total_weight_nom_qty, integer_format)
             worksheet.write(row, 5, total_equipment_period_min, integer_format)
-            worksheet.write(row, 6, total_equipment_unit_totals, text_format)
+            worksheet.write(row, 6, total_equipment_unit_totals, integer_format)
             worksheet.write(row, 7, total_equipment_unit_x_min_avg, decimal_format)
-            worksheet.write(row, 8, total_equipment_unit_ok, text_format)
+            worksheet.write(row, 8, total_equipment_unit_ok, integer_format)
             worksheet.write(row, 9, total_equipment_unit_ok_pct_avg, decimal_format)
-            worksheet.write(row, 10, total_equipment_weight_ok_tot_qty, text_format)
-            worksheet.write(row, 11, total_equipment_weight_ok_dec_qty, text_format)
+            worksheet.write(row, 10, total_equipment_weight_ok_tot_qty, decimal_format)
+            worksheet.write(row, 11, total_equipment_weight_ok_dec_qty, decimal_format)
             worksheet.write(row, 12, total_equipment_weight_ok_avg_qty, decimal_format)
             worksheet.write(row, 13, total_equipment_exceed_pct_avg, decimal_format)
-            worksheet.write(row, 14, total_equipment_unit_reject_exceed, text_format)
-            worksheet.write(row, 15, total_equipment_unit_reject_low, text_format)
-            worksheet.write(row, 16, total_equipment_unit_reject_total, text_format)
+            worksheet.write(row, 14, total_equipment_unit_reject_exceed, integer_format)
+            worksheet.write(row, 15, total_equipment_unit_reject_low, integer_format)
+            worksheet.write(row, 16, total_equipment_unit_reject_total, integer_format)
             worksheet.write(row, 17, total_equipment_unit_reject_pct_avg, decimal_format)
             row += 3
