@@ -50,7 +50,7 @@ class MdcWeightRecord(models.Model):
         required=True
     )
     weight_dec_qty = fields.Float(
-        string='Declarated Weight',
+        string='Declared Weight',
         required=True
     )
     start = fields.Datetime(
