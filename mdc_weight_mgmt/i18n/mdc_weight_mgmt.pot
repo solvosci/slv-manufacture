@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 08:34+0000\n"
-"PO-Revision-Date: 2025-09-17 08:34+0000\n"
+"POT-Creation-Date: 2025-09-23 10:22+0000\n"
+"PO-Revision-Date: 2025-09-23 10:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,11 @@ msgstr ""
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "<strong>Shift:</strong>"
+msgstr ""
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
 msgid "<strong>TOTAL PRODUCTION</strong>"
 msgstr ""
 
@@ -72,8 +77,8 @@ msgid "Average Weight Accepted("
 msgstr ""
 
 #. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Average Weight Accepted("
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_ok_avg_qty
+msgid "Average weight accepted"
 msgstr ""
 
 #. module: mdc_weight_mgmt
@@ -124,14 +129,18 @@ msgid "Created on"
 msgstr ""
 
 #. module: mdc_weight_mgmt
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
-msgid "Declared Weight ("
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
+msgid "Declarated Weight"
 msgstr ""
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_dec_qty
-#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
 msgid "Declared Weight"
+msgstr ""
+
+#. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
+msgid "Declared Weight ("
 msgstr ""
 
 #. module: mdc_weight_mgmt
@@ -350,7 +359,6 @@ msgstr ""
 #. module: mdc_weight_mgmt
 #: model:ir.model,name:mdc_weight_mgmt.model_product_template
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__product_id
-#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record_report_wizard__product_id
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_search
@@ -363,6 +371,7 @@ msgid "Product Information"
 msgstr ""
 
 #. module: mdc_weight_mgmt
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record_report_wizard__product_ids
 #: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_products
 msgid "Products"
 msgstr ""

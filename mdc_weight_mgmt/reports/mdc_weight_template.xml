@@ -37,15 +37,15 @@
                             </div>
                             <div class="text-left">
                                 <div style="font-size: 10px;">
-                                    <strong>Date:</strong> <span
+                                    <strong>Date:</strong>
+                                    <span
                                         t-field="o.date_from"
-                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /> <span
-                                        t-field="o.shift_id.hour_from"
-                                        t-options="{'widget': 'float_time'}" /> - <span
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}'
+                                    />
+                                    - <span
                                         t-field="o.date_to"
-                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /> <span
-                                        t-field="o.shift_id.hour_to"
-                                        t-options="{'widget': 'float_time'}" />
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}'
+                                    />
                                 </div>
                                 <t t-if="o.equipment_id">
                                     <div style="font-size: 10px;">
@@ -59,10 +59,27 @@
                                         <span t-field="equipment.name" />
                                     </div>
                                 </t>
-                                <t t-if="o.product_id">
+                                <t t-if="len(o.product_ids) == 1">
                                     <div style="font-size: 10px;">
                                         <strong>Product:</strong>
-                                        <span t-field="o.product_id.name" />
+                                        <span t-field="o.product_ids.name" />
+                                    </div>
+                                </t>
+                                <t t-if="o.shift_id">
+                                    <div style="font-size: 10px;">
+                                        <strong>Shift:</strong>
+                                        <span t-field="o.shift_id.name" />
+                                        (
+                                        <span
+                                            t-field="o.shift_id.hour_from"
+                                            t-options="{'widget': 'float_time'}"
+                                        />
+                                        -
+                                        <span
+                                            t-field="o.shift_id.hour_to"
+                                            t-options="{'widget': 'float_time'}"
+                                        />
+                                        )
                                     </div>
                                 </t>
                             </div>
@@ -71,8 +88,11 @@
                             <thead style="color: indigo; border-bottom: 2px solid black;">
                                 <tr>
                                     <th>Cod.</th>
-                                    <t t-if="not o.product_id">
+                                    <t t-if="not o.product_ids or len(o.product_ids) &gt; 1">
                                         <th>Product</th>
+                                    </t>
+                                    <t t-else="">
+                                        <td></td>
                                     </t>
                                     <th>Nominal Weight (<span t-field="o.weight_uom.name" />)</th>
                                     <th>Declared Weight (<span t-field="o.weight_uom.name" />)</th>
@@ -89,7 +109,8 @@
                                     <th>Total Declared Weight(<span
                                             t-field="o.mdc_weight_record_ids[0].weight_total_uom" />
                                         )</th>
-                                    <th>Average Weight Accepted(<span t-field="o.weight_uom.name" />)</th>
+                                    <th>Average Weight Accepted(<span t-field="o.weight_uom.name" />
+                                        )</th>
                                     <th>Overweight (%)</th>
                                     <th>Units Rejected Overweight</th>
                                     <th>Units Rejected Underweight</th>
@@ -120,9 +141,14 @@
                                             <td style="text-align: left;">
                                                 <span t-field="record.product_id.code" />
                                             </td>
-                                            <td style="text-align: center; padding: 3px;">
-                                                <span t-field="record.product_id.name" />
-                                            </td>
+                                            <t t-if="not o.product_ids or len(o.product_ids) &gt; 1">
+                                                <td style="text-align: center; padding: 3px;">
+                                                    <span t-field="record.product_id.name" />
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td></td>
+                                            </t>
                                             <td>
                                                 <span t-field="record.weight_nom_qty" />
                                             </td>
@@ -228,9 +254,14 @@
                                     <tr
                                         style="text-align: center; font-weight: bold; border-top: 1px solid black;">
                                         <td>Total</td>
-                                        <td style="text-align: center; padding: 3px;">
-                                            <span t-field="product.name" />
-                                        </td>
+                                        <t t-if="not o.product_ids or len(o.product_ids) &gt; 1">
+                                            <td style="text-align: center; padding: 3px;">
+                                                <span t-field="product.name" />
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td></td>
+                                        </t>
                                         <td></td>
                                         <td></td>
                                         <td></td>
