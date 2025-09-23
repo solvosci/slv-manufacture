@@ -52,11 +52,15 @@ class MdcWeightXlsxReport(models.AbstractModel):
             worksheet.write(f'B{row}', f"{weight_records.date_from.strftime(_('%d/%m/%Y')) } - {weight_records.date_to.strftime(_('%d/%m/%Y')) }", text_format)
             worksheet.write(f'D{row}', _('Shift:'), header_format)
             shift_time = f"{weight_records.shift_id.name}: {self.format_time(weight_records.shift_id.hour_from)} - {self.format_time(weight_records.shift_id.hour_to)}"
-            worksheet.write(f'E{row}', shift_time, text_format)
+            worksheet.write(f'E{row}', shift_time if weight_records.shift_id else _("No selected"), text_format)
             worksheet.write(f'G{row}', _('Line:'), header_format)
             worksheet.write(f'H{row}', weight_records.equipment_id.name if weight_records.equipment_id else _("No selected"), text_format)
             worksheet.write(f'J{row}', _('Product:'), header_format)
-            worksheet.write(f'K{row}', weight_records.product_id.name if weight_records.product_id else _("No selected"), text_format)
+            if weight_records.product_ids:
+                worksheet.write(f'K{row}', weight_records.product_ids[0].name if len(weight_records.product_ids) == 1 else _("Multiple products"), text_format)
+            else:
+                worksheet.write(f'K{row}', _("No selected"), text_format)
+
             row += 1
 
             worksheet.write(f'A{row}', _('Product'), header_format)
