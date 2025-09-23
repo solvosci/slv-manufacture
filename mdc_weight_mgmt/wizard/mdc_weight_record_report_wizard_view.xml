@@ -12,7 +12,7 @@
                     <group>
                         <field name="shift_id" />
                         <field name="equipment_id" />
-                        <field name="product_id" optional="show" />
+                        <field name="product_ids" widget="many2many_tags" />
                     </group>
                 </group>
                 <footer>

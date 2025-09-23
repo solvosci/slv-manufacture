@@ -31,7 +31,6 @@ class MdcWeightRecordReportWizard(models.TransientModel):
     shift_id = fields.Many2one(
         comodel_name="mdc.weight.shift",
         string="Shift",
-        required=True
     )
     equipment_id = fields.Many2one(
         comodel_name="maintenance.equipment",
@@ -39,9 +38,9 @@ class MdcWeightRecordReportWizard(models.TransientModel):
         required=False,
         domain=lambda self: self._get_equipment_domain()
     )
-    product_id = fields.Many2one(
+    product_ids = fields.Many2many(
         comodel_name="product.product",
-        string="Product",
+        string="Products",
         required=False,
         domain=lambda self: self._get_product_domain()
     )
@@ -72,36 +71,42 @@ class MdcWeightRecordReportWizard(models.TransientModel):
             return [('category_id', '=', equipment_category_default_id.id)]
         return []
 
-    @api.depends('date_from', 'date_to', 'shift_id','equipment_id','product_id')
+    @api.depends('date_from', 'date_to', 'shift_id','equipment_id','product_ids')
     def _compute_mdc_weight_record_ids(self):
         for record in self:
-            if record.date_from and record.date_to and record.shift_id:
+            if record.date_from and record.date_to:
                 domain = [
                     ('start', '>=', record.date_from),
                     ('end', '<=', record.date_to),
                 ]
                 if record.equipment_id:
                     domain += [('equipment_id', '=', record.equipment_id.id)]
-                if record.product_id:
-                    domain += [('product_id', '=', record.product_id.id)]
+                if record.product_ids:
+                    domain.append(('product_id', 'in', record.product_ids.ids))
 
-                shift_from = record.shift_id.hour_from
-                shift_to = record.shift_id.hour_to
                 matched_records = []
                 all_records = self.env['mdc.weight.record'].search(domain)
 
-                for weight_record in all_records:
-                    # Convert start time to user's timezone to compare with shift times
+                if record.shift_id:
+                    shift_from = record.shift_id.hour_from
+                    shift_to = record.shift_id.hour_to
                     user_tz = self.env.context.get('tz') or self.env.user.tz
-                    start_dt = pytz.utc.localize(weight_record.start).astimezone(pytz.timezone(user_tz))
-                    start_hour = start_dt.hour + start_dt.minute / 60.0
-                    if shift_from < shift_to:
-                        if shift_from <= start_hour < shift_to:
-                            matched_records.append(weight_record.id)
 
-            if matched_records:
-                record.mdc_weight_record_ids = [(6, 0, matched_records)]
-                record.weight_uom = record.mdc_weight_record_ids[0].weight_uom
+                    for weight_record in all_records:
+                        # Convert start time to user's timezone to compare with shift times
+                        start_dt = pytz.utc.localize(weight_record.start).astimezone(pytz.timezone(user_tz))
+                        start_hour = start_dt.hour + start_dt.minute / 60.0
+                        if shift_from < shift_to:
+                            if shift_from <= start_hour < shift_to:
+                                matched_records.append(weight_record.id)
+                else:
+                    matched_records = all_records.ids
+                if matched_records:
+                    record.mdc_weight_record_ids = [(6, 0, matched_records)]
+                    record.weight_uom = record.mdc_weight_record_ids[0].weight_uom
+                else:
+                    record.mdc_weight_record_ids = False
+                    record.weight_uom = False
             else:
                 record.mdc_weight_record_ids = False
                 record.weight_uom = False
