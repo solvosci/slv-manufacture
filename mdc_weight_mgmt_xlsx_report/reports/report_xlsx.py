@@ -1,7 +1,7 @@
 # © 2025 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 from odoo import models, _
-
+import pytz
 
 class MdcWeightXlsxReport(models.AbstractModel):
     _name = 'report.mdc_weight_mgmt_xlsx_report.mdc_weight'
@@ -13,6 +13,7 @@ class MdcWeightXlsxReport(models.AbstractModel):
         return f"{hours:02d}:{minutes:02d}"
 
     def generate_xlsx_report(self, workbook, data, weight_records):
+        user_tz = self.env.context.get('tz') or self.env.user.tz
         worksheet = workbook.add_worksheet('Weight Report')
         worksheet.set_column('A:ZZ', 15)
         header_format = workbook.add_format({
@@ -114,11 +115,14 @@ class MdcWeightXlsxReport(models.AbstractModel):
                 total_unit_reject_pct_avg = 0
 
                 for product_filtered in products_filtered:
+                    start_dt = pytz.utc.localize(product_filtered.start).astimezone(pytz.timezone(user_tz))
+                    end_dt = pytz.utc.localize(product_filtered.end).astimezone(pytz.timezone(user_tz))
+
                     worksheet.write(row, 0, product_filtered.product_id.name, text_format)
                     worksheet.write(row, 1, product_filtered.weight_nom_qty, integer_format)
                     worksheet.write(row, 2, product_filtered.weight_dec_qty or '', integer_format)
-                    worksheet.write(row, 3, product_filtered.start.strftime('%H:%M'), text_format)
-                    worksheet.write(row, 4, product_filtered.end.strftime('%H:%M'), text_format)
+                    worksheet.write(row, 3, start_dt.strftime('%H:%M'), text_format)
+                    worksheet.write(row, 4, end_dt.strftime('%H:%M'), text_format)
                     worksheet.write(row, 5, product_filtered.period_min, integer_format)
                     worksheet.write(row, 6, product_filtered.unit_total, integer_format)
                     worksheet.write(row, 7, product_filtered.unit_x_min, decimal_format)
