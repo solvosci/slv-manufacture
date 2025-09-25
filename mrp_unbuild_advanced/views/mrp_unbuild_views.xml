@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="mrp_unbuild_form_view_user" model="ir.ui.view">
@@ -6,10 +5,10 @@
             mrp.unbuild.form user (in mrp_unbuild_advanced)
         </field>
         <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view"/>
-        <field eval="100" name="priority"/>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_form_view" />
+        <field eval="100" name="priority" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='company_id']" position="after">
+            <xpath expr="//group/group/field[@name='company_id']" position="after">
                 <field
                     name="tag_ids"
                     widget="many2many_tags"
@@ -19,13 +18,13 @@
             <xpath expr="//field[@name='mo_id']/../.." position="after">
                 <group
                     name="group_shift"
-                    attrs="{'invisible': [('id','=',False)]}"
+                    invisible="not id"
                     string="Shift data"
                 >
                     <group>
-                        <field name="shift_start_date" string="Start"/>
-                        <field name="shift_end_date" string="End"/>
-                        <field name="notes"/>
+                        <field name="shift_start_date" string="Start" required="state == 'done'" />
+                        <field name="shift_end_date" string="End" required="state == 'done'" />
+                        <field name="notes" />
                     </group>
                     <group>
                         <field
@@ -36,11 +35,13 @@
                             name="shift_total_time"
                             widget="float_time"
                             string="Shift time"
+                            required="state == 'done'"
                         />
                         <field
                             name="shift_break_time"
                             widget="float_time"
                             string="Break time"
+                            required="state == 'done'"
                         />
                         <field
                             name="shift_stop_time"
@@ -55,31 +56,22 @@
                     name="action_back_draft"
                     string="Back to draft"
                     type="object"
-                    states="done"
                     class="oe_highlight"
-                    invisible="1"
+                    invisible="state == 'draft'"
+                    groups="stock.group_stock_manager"
                 />
             </xpath>
             <xpath expr="//field[@name='product_id']" position="before">
-                <field name="unbuild_date" readonly="1"/>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="mrp_unbuild_form_view_manager" model="ir.ui.view">
-        <field name="name">
-            mrp.unbuild.form manager (in mrp_unbuild_advanced)
-        </field>
-        <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_user"/>
-        <!-- TODO: Change group to mrp manager -->
-        <field name="groups_id" eval="[(4,ref('stock.group_stock_manager'))]"/>
-        <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_back_draft']" position="attributes">
-                <attribute name="invisible">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='unbuild_date']" position="attributes">
-                <attribute name="readonly">0</attribute>
+                <field
+                    name="unbuild_date"
+                    readonly="state != 'draft'"
+                    groups="stock.group_stock_manager"
+                />
+                <field
+                    name="unbuild_date"
+                    readonly="1"
+                    groups="!stock.group_stock_manager"
+                />
             </xpath>
         </field>
     </record>
@@ -93,17 +85,20 @@
         <field name="arch" type="xml">
             <form string="Unbuild order" class="tablet_font_size">
                 <div class="oe_title">
-                    <field name="company_id" invisible="1"/>
-                    <h1><field name="product_id" placeholder="Unbuild Product" nolabel="1" readonly="1"/></h1>
+                    <field name="company_id" invisible="1" />
+                    <h1>
+                        <field name="product_id" placeholder="Unbuild Product" nolabel="1"
+                            readonly="1" />
+                    </h1>
                 </div>
                 <group
                     name="group_shift"
                 >
                     <group>
-                        <field name="state" invisible="1"/>
-                        <field name="shift_start_date" string="Start"/>
-                        <field name="shift_end_date" string="End"/>
-                        <field name="notes"/>
+                        <field name="state" invisible="1" />
+                        <field name="shift_start_date" string="Start" />
+                        <field name="shift_end_date" string="End" />
+                        <field name="notes" />
                     </group>
                     <group>
                         <field
@@ -131,12 +126,12 @@
                     </group>
                 </group>
                 <group>
-                    <group style="{'text-align':'center'}">
+                    <group
+                        style="margin-top: 20px; margin-bottom: 20px; text-align: center; justify-content: center; display: flex;">
                         <button
                             class="btn btn-primary material_button"
                             name="action_materials_tree_reduced_view"
-                            type="object"
-                            style="font-size:3em">
+                            type="object">
                             MATERIALS
                         </button>
                     </group>
@@ -148,10 +143,10 @@
     <record id="mrp_unbuild_tree_view" model="ir.ui.view">
         <field name="name">mrp.unbuild.tree (in mrp_unbuild_advanced)</field>
         <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="unbuild_date" optional="hide"/>
+                <field name="unbuild_date" optional="hide" />
             </xpath>
             <field name="state" position="after">
                 <field
@@ -166,7 +161,7 @@
     <record id="mrp_unbuild_search_view" model="ir.ui.view">
         <field name="name">mrp.unbuild.search (in mrp_unbuild_advanced)</field>
         <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view"/>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_search_view" />
         <field name="arch" type="xml">
             <field name="product_id" position="before">
                 <field name="name" />
@@ -176,10 +171,11 @@
             </field>
             <xpath expr="//filter[@name='done']" position="after">
                 <separator />
-                <filter name="unbuild_date" string="Unbuild Date" date="unbuild_date"/>
+                <filter name="unbuild_date" string="Unbuild Date" date="unbuild_date" />
             </xpath>
             <xpath expr="//group/filter[@name='mogroup']" position="after">
-                <filter string="Unbuild Date" name="groupby_unbuild_date" context="{'group_by': 'unbuild_date'}"/>
+                <filter string="Unbuild Date" name="groupby_unbuild_date"
+                    context="{'group_by': 'unbuild_date'}" />
             </xpath>
         </field>
     </record>
@@ -188,10 +184,11 @@
         <field name="name">mrp.unbuild.calendar</field>
         <field name="model">mrp.unbuild</field>
         <field name="arch" type="xml">
-            <calendar date_start="shift_start_date" date_delay="scheduled_time" quick_add="False" color="product_id" string="Unbuild Orders">
-                <field name="name"/>
-                <field name="bom_code"/>
-                <field name="product_id"/>
+            <calendar date_start="shift_start_date" string="Unbuild Orders"
+                date_delay="scheduled_time" quick_create="False" color="product_id">
+                <field name="name" />
+                <field name="bom_code" />
+                <field name="product_id" />
             </calendar>
         </field>
     </record>
@@ -199,49 +196,55 @@
     <record id="mrp_unbuild_kanban_view_shift_dates" model="ir.ui.view">
         <field name="name">mrp.unbuild.kanban (Shift dates)</field>
         <field name="model">mrp.unbuild</field>
-        <field name="inherit_id" ref="mrp.mrp_unbuild_kanban_view"/>
+        <field name="inherit_id" ref="mrp.mrp_unbuild_kanban_view" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@class='o_kanban_record_top']" position="after">
-                <field name="state" invisible="1"/>
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="after">
                 <div class="row">
-                    <div name="btn_action_tablet" class="col-6 text-center">
-                        <button 
+                    <div name="btn_action_tablet" class="icon_tablet_button">
+                        <button
                             string="Custom form view"
                             name="action_open_tablet_unbuild_form_view"
                             type="object"
-                            style="background-image: url(/mrp_unbuild_advanced/static/description/icon_tablet.png); display: block; width:70px; height:70px; background-size: cover;"
-                        />
-                    </div>
-                    <!-- attrs="{'invisible': [('user', '!=', '')]}" Invisible if user is not operario-->
-                </div>
-                <div class="row">
-                    <div class="col-3 text-left">
-                        <span><label>From:</label></span>
-                    </div>
-                    <div class="col-9 text-right">
-                        <span><field name="shift_start_date"/></span>
+                        >
+                            <img src="/mrp_unbuild_advanced/static/description/icon_tablet.png"
+                                style="width:80px; height:75px; margin-right:5px; vertical-align:middle;"
+                                alt="icon_tablet"/>
+                        </button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-3 text-left">
-                        <span><label>To:</label></span>
+                        <span>From:</span>
                     </div>
                     <div class="col-9 text-right">
-                        <span><field name="shift_end_date"/></span>
+                        <span>
+                            <field name="shift_start_date" />
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-left">
+                        <span>To:</span>
+                    </div>
+                    <div class="col-9 text-right">
+                        <span>
+                            <field name="shift_end_date" />
+                        </span>
                     </div>
                 </div>
             </xpath>
         </field>
     </record>
 
-    <!-- Replace: <field name="view_mode">tree,kanban,form</field> -->
-    <!-- Add new context default draft unbuilds --> 
+    <!-- Replace: <field name="view_mode">tree,kanban,form,activity</field> -->
+    <!-- TODO uninstall hook that should restore view_mode -->
+    <!-- Add new context default draft unbuilds -->
     <record id="mrp.mrp_unbuild" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="view_mode">tree,kanban,form,activity,calendar</field>
         <field name="context">{
             'search_default_draft': 1,
             'mrp_unbuild_calendar': True
-        }</field>
+            }</field>
     </record>
 
     <record id="action_mrp_unbuild_kanban_view_tablet" model="ir.actions.act_window">
@@ -250,7 +253,7 @@
         <field name="view_mode">kanban</field>
         <field name="context">{
             'search_default_draft': 1
-        }</field>
+            }</field>
     </record>
 
     <menuitem
