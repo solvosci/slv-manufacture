@@ -10,26 +10,15 @@ class MrpUnbuild(models.Model):
 
     unbuild_date = fields.Datetime(
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)], 'done': [('readonly', True)]},
         default=fields.Datetime.now,
         help="This date will be used in further stock moves,"
         " when unbuild is done",
     )
 
-    shift_start_date = fields.Datetime(
-        states={"draft": [("required", False)], "done": [("required", True)]},
-    )
-    shift_end_date = fields.Datetime(
-        states={"draft": [("required", False)], "done": [("required", True)]},
-    )
-    shift_total_time = fields.Float(
-        states={"draft": [("required", False)], "done": [("required", True)]},
-        default=8,
-    )
-    shift_break_time = fields.Float(
-        states={"draft": [("required", False)], "done": [("required", True)]},
-    )
+    shift_start_date = fields.Datetime()
+    shift_end_date = fields.Datetime()
+    shift_total_time = fields.Float(default=8)
+    shift_break_time = fields.Float()
     shift_stop_time = fields.Float()
     scheduled_time = fields.Float(default=8)
 
@@ -44,7 +33,9 @@ class MrpUnbuild(models.Model):
         related="bom_id.code",
     )
 
+    @api.depends("name", "bom_code", "product_id.name")
     def _compute_display_name(self):
+        # FIXME this is not working from v17
         if self.env.context.get('mrp_unbuild_calendar'):
             for record in self:
                 record.display_name = '%s // %s // %s' % (record.name, record.bom_code or '', record.product_id.name)
@@ -106,12 +97,12 @@ class MrpUnbuild(models.Model):
         mls = moves.move_line_ids
         for ml in mls:
             available_qty, in_date = Quant._update_available_quantity(
-                ml.product_id, ml.location_id, ml.qty_done,
+                ml.product_id, ml.location_id, ml.quantity,
                 lot_id=ml.lot_id, package_id=ml.package_id,
                 owner_id=ml.owner_id,
             )
             Quant._update_available_quantity(
-                ml.product_id, ml.location_dest_id, -ml.qty_done,
+                ml.product_id, ml.location_dest_id, -ml.quantity,
                 lot_id=ml.lot_id, package_id=ml.result_package_id,
                 owner_id=ml.owner_id, in_date=in_date,
             )
@@ -140,13 +131,13 @@ class MrpUnbuild(models.Model):
             'domain': [('unbuild_id', '=', self.id)],
         }
 
-    @api.model
-    def create(self, values):
+    @api.model_create_multi
+    def create(self, vals_list):
         if self.user_has_groups('mrp_unbuild_advanced.group_mrp_unbuild_tablet'):
             raise ValidationError(_('A tablet user cant perform this action!'))
-        return super(MrpUnbuild, self).create(values)
+        return super(MrpUnbuild, self).create(vals_list)
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False) 
+    def _unlink_no_tablet_user(self):
         if self.user_has_groups('mrp_unbuild_advanced.group_mrp_unbuild_tablet'):
             raise ValidationError(_('A tablet user cant perform this action!'))
-        return super(MrpUnbuild, self).unlink()
