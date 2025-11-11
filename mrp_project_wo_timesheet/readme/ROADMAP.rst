@@ -1,0 +1,2 @@
+- Projects with strict privacy are ignored when creating time sheets.
+- Any Manufacturing user can delete a work order, which will also remove all related time sheets.
