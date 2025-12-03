@@ -1,6 +1,5 @@
 # © 2025 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
-import pytz
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -130,6 +129,17 @@ class MdcWeightRecord(models.Model):
             return [('category_id', '=', equipment_category_default_id.id)]
         return []
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('equipment_id') or not vals.get('start') or not vals.get('end') or self.env.context.get('mdc_cron_create', False):
+                continue
+            msg = self._check_overlap_manual(vals.get('equipment_id'), vals.get('start'), vals.get('end'))
+            if msg:
+                raise ValidationError(msg)
+        return super().create(vals_list)
+
+
     def write(self, vals):
         res = super(MdcWeightRecord, self).write(vals)
         for record in self:
@@ -143,19 +153,10 @@ class MdcWeightRecord(models.Model):
                 raise ValidationError(_("The end date must be later than the start date."))
         return res
 
-    @api.constrains('equipment_id', 'start', 'end')
-    def _check_overlap_constrains(self):
-        for record in self:
-            if not record.equipment_id or not record.start or not record.end or self.env.context.get('mdc_cron_create', False):
-                continue
-            msg = self._check_overlap_manual(record.equipment_id, record.start, record.end)
-            if msg:
-                raise ValidationError(msg)
-
-    @api.model
     def _check_overlap_manual(self, equipment_id, start, end):
+        equip_id = equipment_id if isinstance(equipment_id, int) else equipment_id.id
         overlapping = self.search([
-            ('equipment_id', '=', equipment_id.id),
+            ('equipment_id', '=', equip_id),
             '|',
                 '&', ('start', '<=', start), ('end', '>', start),
                 '&', ('start', '<', end),   ('end', '>=', end),
@@ -163,9 +164,9 @@ class MdcWeightRecord(models.Model):
         if overlapping:
             return (_(
                 "There is already a record with this equipment (%(equipment)s) at this time range: %(start)s - %(end)s",
-                equipment=equipment_id.name,
-                start=start,
-                end=end
+                equipment=overlapping.equipment_id.name,
+                start=overlapping.start,
+                end=overlapping.end
             ))
         return False
 

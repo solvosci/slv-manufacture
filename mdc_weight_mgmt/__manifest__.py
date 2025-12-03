@@ -8,7 +8,7 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.1.1",
     "category": "Manufacture",
     "website": "https://github.com/solvosci/manufacture",
     "depends": ["product","maintenance"],
