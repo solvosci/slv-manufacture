@@ -50,7 +50,7 @@ class MdcWeightRecord(models.Model):
     )
     weight_dec_qty = fields.Float(
         string='Declared Weight',
-        required=True
+        compute='_compute_weight_dec_qty',
     )
     start = fields.Datetime(
         string='Start register date',
@@ -222,6 +222,12 @@ class MdcWeightRecord(models.Model):
                 record.unit_ok_pct = (record.unit_ok / record.unit_total) * 100
             else:
                 record.unit_ok_pct = 0
+
+    @api.depends('product_id','product_id.mdc_weight_dec_qty')
+    def _compute_weight_dec_qty(self):
+        for record in self:
+            product = record.product_id
+            record.weight_dec_qty = product.mdc_weight_dec_qty if product else 0.0
 
     def _compute_weight_ok_dec_qty(self):
         for record in self:

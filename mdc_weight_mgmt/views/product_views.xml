@@ -1,0 +1,22 @@
+<odoo>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form (in mdc_weight_mgmt)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <page name="inventory" position="after">
+                <field name="mdc_category_check" invisible="1" />
+                <page name="mdc_weight_data" string="MDC Weight Data" invisible="not mdc_category_check">
+                    <group>
+                        <field name="mdc_weight_dec_qty" />
+                        <!--
+                        TODO weight_uom field
+                        -->
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

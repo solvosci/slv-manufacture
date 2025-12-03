@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-23 10:24+0000\n"
-"PO-Revision-Date: 2025-09-23 10:24+0000\n"
+"POT-Creation-Date: 2025-12-12 09:04+0000\n"
+"PO-Revision-Date: 2025-12-12 09:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -95,6 +95,12 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: mdc_weight_mgmt
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_product_product__mdc_category_check
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_product_template__mdc_category_check
+msgid "Category Check"
+msgstr "Comprobación de Categoría"
+
+#. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.mdc_weight_template
 msgid "Cod."
 msgstr ""
@@ -143,6 +149,8 @@ msgstr "Peso Declarado"
 
 #. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__weight_dec_qty
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_product_product__mdc_weight_dec_qty
+#: model:ir.model.fields,field_description:mdc_weight_mgmt.field_product_template__mdc_weight_dec_qty
 msgid "Declared Weight"
 msgstr "Peso Declarado"
 
@@ -286,6 +294,11 @@ msgid "Last Updated on"
 msgstr "Ultima actualización el"
 
 #. module: mdc_weight_mgmt
+#: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.product_template_form_view
+msgid "MDC Weight Data"
+msgstr "MDC Datos de Pesadas"
+
+#. module: mdc_weight_mgmt
 #: model:ir.model,name:mdc_weight_mgmt.model_maintenance_equipment
 msgid "Maintenance Equipment"
 msgstr "Equipo de mantenimiento"
@@ -379,6 +392,11 @@ msgid "Product Information"
 msgstr "Información de producto"
 
 #. module: mdc_weight_mgmt
+#: model:ir.model,name:mdc_weight_mgmt.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: mdc_weight_mgmt
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record_report_wizard__product_ids
 #: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_products
 msgid "Products"
@@ -444,6 +462,14 @@ msgstr "Hora Inicial"
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_record__start
 msgid "Start register date"
 msgstr "Fecha de incio de registro"
+
+#. module: mdc_weight_mgmt
+#. odoo-python
+#: code:addons/mdc_weight_mgmt/models/product_product.py:0
+#: code:addons/slv-manufacture/mdc_weight_mgmt/models/product_product.py:0
+#, python-format
+msgid "The declared weight must be greater than 0."
+msgstr "El peso declarado debe ser mayor que 0."
 
 #. module: mdc_weight_mgmt
 #. odoo-python
