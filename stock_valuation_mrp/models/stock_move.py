@@ -32,7 +32,7 @@ class StockMove(models.Model):
                     lambda x: x.raw_material_production_id.id == mrp.id
                     or x.production_id.id == mrp.id
                 ).with_context(
-                    stock_move_custom_date=mrp.date_planned_start
+                    stock_move_custom_date=mrp.date_start
                 )
                 done_moves |= super(StockMove, moves)._action_done(
                     cancel_backorder=cancel_backorder
@@ -56,10 +56,10 @@ class StockMove(models.Model):
         for component in raw_ids:
             total_amount += PHAP_sudo.get_price(
                 component.product_id,
-                component.location_id.get_warehouse(),
+                component.location_id.warehouse_id,
                 dt=date
-            ) * component.quantity_done
-            total_qtys += component.quantity_done
+            ) * component.quantity
+            total_qtys += component.quantity
         # TODO divide by zero, is it possible?
         return total_amount / total_qtys
 

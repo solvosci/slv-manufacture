@@ -25,7 +25,7 @@ class StockValuationLayer(models.Model):
     )
 
     @api.model
-    def create(self, vals):
+    def _create_prepare_vals(self, vals):
         PHAP_sudo = self.env["product.history.average.price"].sudo()
         if vals.get("stock_move_id"):
             move_id = self.env["stock.move"].browse(vals["stock_move_id"])
@@ -45,17 +45,17 @@ class StockValuationLayer(models.Model):
 
                 # if not move_id.picking_id and move_id.unbuild_id:
                 # FIXME maybe better based SLV quantity sign
-                # if move_id.location_id.get_warehouse():
-                #     vals["warehouse_id"] = move_id.location_id.get_warehouse().id
+                # if move_id.location_id.warehouse_id:
+                #     vals["phap_warehouse_id"] = move_id.location_id.warehouse_id.id
                 # else:
-                #     vals["warehouse_id"] = move_id.location_dest_id.get_warehouse().id
+                #     vals["phap_warehouse_id"] = move_id.location_dest_id.warehouse_id.id
                 # Other option:
                 # * move_id._is_in() => move_id.location_dest_id
                 # * not move_id._is_in() => move_id.location_id
                 if vals.get("quantity") > 0:
-                    vals["warehouse_id"] = move_id.location_dest_id.get_warehouse().id
+                    vals["phap_warehouse_id"] = move_id.location_dest_id.warehouse_id.id
                 else:
-                    vals["warehouse_id"] = move_id.location_id.get_warehouse().id
+                    vals["phap_warehouse_id"] = move_id.location_id.warehouse_id.id
 
                 # Actual Date determination
                 # For now, to possible sources
@@ -69,8 +69,8 @@ class StockValuationLayer(models.Model):
                 # if not move_id.picking_id:
                 #     date = fields.Datetime.now()
 
-                quantity = move_id.quantity_done
-                history_last_day, history_today = self.get_history_values(vals.get("product_id"), vals.get("warehouse_id"), date)
+                quantity = move_id.quantity
+                history_last_day, history_today = self.get_history_values(vals.get("product_id"), vals.get("phap_warehouse_id"), date)
 
                 average_price_last = history_last_day.average_price
                 if history_today:
@@ -89,10 +89,10 @@ class StockValuationLayer(models.Model):
                         # for component in raw_ids:
                         #     total_amount += PHAP_sudo.get_price(
                         #         component.product_id,
-                        #         move_id.location_id.get_warehouse(),
+                        #         move_id.location_id.warehouse_id,
                         #         dt=date
-                        #     ) * component.quantity_done
-                        #     total_qtys += component.quantity_done
+                        #     ) * component.quantity
+                        #     total_qtys += component.quantity
                         # # price_unit = 0
                         # # for record in move_id.production_id.move_raw_ids:
                         # #     price_unit += record.product_id.standard_price_warehouse_ids.filtered(lambda x: x.warehouse_id.id == move_id.picking_type_id.warehouse_id.id).average_price
@@ -107,7 +107,7 @@ class StockValuationLayer(models.Model):
                         # vals["unit_cost"] = move_id.product_id.standard_price_warehouse_ids.filtered(lambda x: x.warehouse_id.id == move_id.picking_type_id.warehouse_id.id).average_price
                         vals["unit_cost"] = PHAP_sudo.get_price(
                             move_id.product_id,
-                            move_id.location_id.get_warehouse(),
+                            move_id.location_id.warehouse_id,
                             dt=date
                         )
                         vals["value"] = vals.get("unit_cost") * vals.get("quantity")
@@ -118,20 +118,20 @@ class StockValuationLayer(models.Model):
                     # unbuild_product = move_id.unbuild_id.produce_line_ids.filtered(lambda x: x.warehouse_id.id is False).product_id
                     unbuild_product = move_id.unbuild_id.product_id
 
-                    # vals["unit_cost"] = unbuild_product.standard_price_warehouse_ids.filtered(lambda x: x.warehouse_id.id == vals.get("warehouse_id")).average_price
+                    # vals["unit_cost"] = unbuild_product.standard_price_warehouse_ids.filtered(lambda x: x.warehouse_id.id == vals.get("phap_warehouse_id")).average_price
                     # <VAL2.0>
                     # - Teniendo calculado el extra, obtener nuevo precio valoración corregido
                     # - Y la cantidad será la cantidad o bien 0, dependiendo de la naturaleza del producto 
                     # Código antiguo
                     # vals["unit_cost"] = PHAP_sudo.get_price(
                     #     unbuild_product,
-                    #     move_id.unbuild_id.location_id.get_warehouse(),
+                    #     move_id.unbuild_id.location_id.warehouse_id,
                     #     dt=date
                     # )
                     # vals["value"] = vals.get("unit_cost") * vals.get("quantity")
                     vals["unit_cost"] = PHAP_sudo.get_price(
                         unbuild_product,
-                        move_id.unbuild_id.location_id.get_warehouse(),
+                        move_id.unbuild_id.location_id.warehouse_id,
                         dt=date
                     )
                     # TODO BAD COMPARISON (an unbuild could have as produced product itself)!!!
@@ -160,9 +160,8 @@ class StockValuationLayer(models.Model):
                     else:
                         vals["average_price"] = history_last_day.average_price
 
-                vals["history_average_price_id"] = self.product_history_link(vals.get("product_id"), vals.get("warehouse_id"), vals.get("average_price"), vals.get("quantity"), vals.get("value"), vals.get("accumulated"), history_today, date)
-
-        return super(StockValuationLayer, self).create(vals)
+                vals["history_average_price_id"] = self.product_history_link(vals.get("product_id"), vals.get("phap_warehouse_id"), vals.get("average_price"), vals.get("quantity"), vals.get("value"), vals.get("accumulated"), history_today, date)
+        super()._create_prepare_vals(vals)
 
     def _compute_origin_type(self):
         super()._compute_origin_type()
