@@ -1,6 +1,7 @@
 # © 2025 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 from odoo import models, fields, api, _
+from odoo.tools import float_is_zero
 from odoo.exceptions import UserError, ValidationError
 import pytz
 
@@ -127,13 +128,20 @@ class MdcWeightRecordReportWizard(models.TransientModel):
         return sum(getattr(record, key)for record in records)
 
     def total_avg(self, unit_a, unit_b):
+        if float_is_zero(unit_b, precision_digits=2):
+            return 0.0
         return unit_a/unit_b
 
     def total_pct_avg(self, unit_a, unit_b):
+        if float_is_zero(unit_b, precision_digits=2):
+            return 0.0
         return (unit_a/unit_b) * 100
 
     def total_weight_nom(self, records):
+        total_unit_ok = self.sum_total(records, 'unit_ok')
+        if float_is_zero(total_unit_ok, precision_digits=2):
+            return 0.0
         sum_weight_nom = 0
         for record in records:
             sum_weight_nom += record.weight_nom_qty * record.unit_ok
-        return (sum_weight_nom/self.sum_total(records,'unit_ok'))
+        return sum_weight_nom / total_unit_ok

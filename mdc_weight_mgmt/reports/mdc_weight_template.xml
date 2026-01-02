@@ -153,9 +153,7 @@
                                                 <span t-field="record.weight_nom_qty" />
                                             </td>
                                             <td>
-                                                <t t-if="record.weight_dec_qty">
-                                                    <span t-field="record.weight_dec_qty" />
-                                                </t>
+                                                <span t-field="record.weight_dec_qty" />
                                             </td>
                                             <td style="text-align: left; padding: 3px;">
                                                 <span
@@ -191,10 +189,8 @@
                                                 <span t-field="record.weight_ok_tot_qty" />
                                             </td>
                                             <td>
-                                                <t t-if="record.weight_ok_dec_qty">
-                                                    <span t-field="record.weight_ok_dec_qty"
-                                                        t-options="{'widget': 'float', 'precision': 1}" />
-                                                </t>
+                                                <span t-field="record.weight_ok_dec_qty"
+                                                    t-options="{'widget': 'float', 'precision': 1}" />
                                             </td>
                                             <td>
                                                 <span t-field="record.weight_ok_avg_qty"
@@ -205,14 +201,10 @@
                                                     t-options="{'widget': 'float', 'precision': 2}" />
                                             </td>
                                             <td>
-                                                <t t-if="record.unit_reject_exceed">
-                                                    <span t-field="record.unit_reject_exceed" />
-                                                </t>
+                                                <span t-field="record.unit_reject_exceed" />
                                             </td>
                                             <td>
-                                                <t t-if="record.unit_reject_low">
-                                                    <span t-field="record.unit_reject_low" />
-                                                </t>
+                                                <span t-field="record.unit_reject_low" />
                                             </td>
                                             <td>
                                                 <span t-field="record.unit_reject_total" />
