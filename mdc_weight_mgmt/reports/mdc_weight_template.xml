@@ -215,6 +215,8 @@
                                             </td>
                                         </tr>
                                     </t>
+                                    <t t-set="total_total_weight_nom_qty"
+                                        t-value="o.total_weight_nom(mdc_weight_record_ids)" />
                                     <t t-set="total_period_min"
                                         t-value="o.sum_total(mdc_weight_record_ids, 'period_min')" />
                                     <t t-set="total_unit_totals"
@@ -238,7 +240,7 @@
                                     <t t-set="total_weight_ok_avg_qty"
                                         t-value="o.total_avg(total_weight_ok_tot_qty, total_unit_ok)*1000" />
                                     <t t-set="total_exceed_pct_avg"
-                                        t-value="o.total_pct_avg((total_weight_ok_avg_qty - record.weight_nom_qty),record.weight_nom_qty)" />
+                                        t-value="o.total_pct_avg((total_weight_ok_avg_qty - total_total_weight_nom_qty),total_total_weight_nom_qty)" />
                                     <t t-if="total_unit_reject_total">
                                         <t t-set="total_unit_reject_pct_avg"
                                             t-value="o.total_pct_avg(total_unit_reject_total, total_unit_totals)" />
@@ -254,8 +256,13 @@
                                         <t t-else="">
                                             <td></td>
                                         </t>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                                            <span t-esc="total_total_weight_nom_qty"
+                                                t-options="{'widget': 'float', 'precision': 1}" />
+                                        </td>
+                                        <td>
+                                            <span t-field="record.weight_dec_qty" />
+                                        </td>
                                         <td></td>
                                         <td></td>
                                         <td>
