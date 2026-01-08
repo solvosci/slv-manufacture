@@ -138,6 +138,7 @@ class MdcWeightXlsxReport(models.AbstractModel):
                     worksheet.write(row, 17, product_filtered.unit_reject_pct, decimal_format)
                     row += 1
 
+                total_total_weight_nom_qty = weight_records.total_weight_nom(products_filtered)
                 total_period_min = weight_records.sum_total(products_filtered, 'period_min')
                 total_unit_totals = weight_records.sum_total(products_filtered, 'unit_total')
                 total_unit_ok = weight_records.sum_total(products_filtered, 'unit_ok')
@@ -149,11 +150,13 @@ class MdcWeightXlsxReport(models.AbstractModel):
                 total_unit_x_min_avg = weight_records.total_avg(total_unit_ok, total_period_min)
                 total_weight_ok_avg_qty = weight_records.total_avg(total_weight_ok_tot_qty, total_unit_ok)*1000
                 total_unit_ok_pct_avg = weight_records.total_pct_avg(total_unit_ok, total_unit_totals)
-                total_exceed_pct_avg = weight_records.total_pct_avg((total_weight_ok_avg_qty - product_filtered.weight_nom_qty),product_filtered.weight_nom_qty)
+                total_exceed_pct_avg = weight_records.total_pct_avg((total_weight_ok_avg_qty - total_total_weight_nom_qty),total_total_weight_nom_qty)
                 if total_unit_reject_total:
                     total_unit_reject_pct_avg = weight_records.total_pct_avg(total_unit_reject_total, total_unit_totals)
 
                 worksheet.write(row, 0, product.name, header_format)
+                worksheet.write(row, 1, total_total_weight_nom_qty, integer_format)
+                worksheet.write(row, 2, product_filtered.weight_dec_qty or '', integer_format)
                 worksheet.write(row, 5, total_period_min, integer_format)
                 worksheet.write(row, 6, total_unit_totals, integer_format)
                 worksheet.write(row, 7, total_unit_x_min_avg, decimal_format)
