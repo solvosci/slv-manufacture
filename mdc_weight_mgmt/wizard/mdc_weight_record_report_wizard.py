@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.tools import float_is_zero
 from odoo.exceptions import UserError, ValidationError
 import pytz
+from collections import defaultdict
 
 class MdcWeightRecordReportWizard(models.TransientModel):
     _name = 'mdc.weight.record.report.wizard'
@@ -102,12 +103,62 @@ class MdcWeightRecordReportWizard(models.TransientModel):
                                 matched_records.append(weight_record.id)
                 else:
                     matched_records = all_records.ids
-                if matched_records:
-                    record.mdc_weight_record_ids = [(6, 0, matched_records)]
-                    record.weight_uom = record.mdc_weight_record_ids[0].weight_uom
-                else:
+                if not matched_records:
                     record.mdc_weight_record_ids = False
                     record.weight_uom = False
+                    continue
+
+                records = self.env['mdc.weight.record'].browse(matched_records)
+                hourly_groups = defaultdict(list)
+                for r in records:
+                    hour_key = (
+                        r.start.date(),
+                        r.start.hour,
+                        r.weight_nom_qty,
+                        r.product_id.id,
+                        r.equipment_id.id,
+                    )
+                    hourly_groups[hour_key].append(r)
+                hourly_totals = []
+                for hour_key, recs in sorted(hourly_groups.items()):
+                    weight_nom_qty = recs[0].weight_nom_qty
+                    start = min(r.start for r in recs)
+                    end = max(r.end for r in recs)
+                    sums = {
+                        'period_min': self.sum_total(recs, 'period_min'),
+                        'unit_total': self.sum_total(recs, 'unit_total'),
+                        'unit_ok': self.sum_total(recs, 'unit_ok'),
+                        'weight_ok_tot_qty': self.sum_total(recs, 'weight_ok_tot_qty'),
+                        'weight_ok_dec_qty': self.sum_total(recs, 'weight_ok_dec_qty'),
+                        'unit_reject_exceed': self.sum_total(recs, 'unit_reject_exceed'),
+                        'unit_reject_low': self.sum_total(recs, 'unit_reject_low'),
+                        'unit_reject_total': self.sum_total(recs, 'unit_reject_total'),
+                    }
+                    unit_x_min = self.total_avg(sums['unit_ok'], sums['period_min'])
+                    unit_ok_pct = self.total_pct_avg(sums['unit_ok'], sums['unit_total'])
+                    weight_ok_avg_qty = self.total_avg(sums['weight_ok_tot_qty'], sums['unit_ok']) * 1000
+                    exceed_pct = self.total_pct_avg(weight_ok_avg_qty - weight_nom_qty, weight_nom_qty)
+                    unit_reject_pct = self.total_pct_avg(sums['unit_reject_total'], sums['unit_total'])
+
+                    hourly_totals.append(
+                        self.env['mdc.weight.record'].new({
+                            'product_id': recs[0].product_id.id,
+                            'equipment_id': recs[0].equipment_id.id,
+                            'start': start,
+                            'end': end,
+                            'weight_nom_qty': weight_nom_qty,
+                            'weight_dec_qty': recs[0].weight_dec_qty,
+                            **sums,
+                            'unit_x_min': unit_x_min,
+                            'unit_ok_pct': unit_ok_pct,
+                            'weight_ok_avg_qty': weight_ok_avg_qty,
+                            'exceed_pct': exceed_pct,
+                            'unit_reject_pct': unit_reject_pct,
+                        })
+                    )
+                record.mdc_weight_record_ids = [(6, 0, [r.id for r in hourly_totals if r.exists()])]
+                record.weight_uom = hourly_totals[0].weight_uom if hourly_totals else False
+
             else:
                 record.mdc_weight_record_ids = False
                 record.weight_uom = False
