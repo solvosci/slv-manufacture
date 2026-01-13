@@ -1,13 +1,10 @@
-<?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data noupdate="1">
         <record id="mail_template_unbuild_done_message" model="mail.template">
             <field name="name">Unbuild done notification</field>
-            <field name="email_from">${(False if not object else object.company_id.email or '') |
-                safe}</field>
-            <field name="email_to">${ctx.get('email_to', '')}</field>
-            <field name="model_id" ref="mrp.model_mrp_unbuild" />
-            <field name="subject">Unbuild ${(object.name or '')} done</field>
+            <field name="email_from">{{ object.company_id.email or user.email }}</field>
+            <field name="model_id" ref="mrp.model_mrp_unbuild"/>
+            <field name="subject">Unbuild {{ object.name }} done</field>
             <field name="body_html" type="html">
                 <table border="0" width="100%" cellpadding="0" bgcolor="#ededed"
                     style="border-collapse:collapse;padding: 20px; background-color: #ededed; border-collapse:separate;">
@@ -19,7 +16,7 @@
                                     <thead style="border-bottom: 1px solid black">
                                         <tr>
                                             <th style="text-align:left;font-size: 16px;">Unbuild
-                                                ${(object.name or '')} done</th>
+                                                <t t-out="object.name">UB/0001</t> done</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -32,11 +29,11 @@
                                                     Hello,</p>
                                                 <p
                                                     style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">The
-                                                    user ${ctx.get('user_name', '')} has completed
-                                                    the unbuild process for ${(object.name or '')}</p>
+                                                    user <t t-out="ctx.get('user_name', '')">Mitchell Admin</t>  has completed
+                                                    the unbuild process for <t t-out="object.name">UB/0001</t></p>
                                                 <br />
                                                 <a
-                                                    href="/mail/view?model=mrp.unbuild&amp;res_id=${(object.id)}"
+                                                    t-att-href="'/mail/view?model=mrp.unbuild&amp;res_id=%s' % object.id"
                                                     style="text-decoration:none;color:rgb(124, 123, 173);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                     View unbuild
                                                 </a>
