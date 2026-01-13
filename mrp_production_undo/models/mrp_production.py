@@ -42,12 +42,12 @@ class MrpProduction(models.Model):
         mls = mrp_move_ids.move_line_ids
         for ml in mls:
             available_qty, in_date = Quant._update_available_quantity(
-                ml.product_id, ml.location_id, ml.qty_done,
+                ml.product_id, ml.location_id, ml.quantity,
                 lot_id=ml.lot_id, package_id=ml.package_id,
                 owner_id=ml.owner_id,
             )
             Quant._update_available_quantity(
-                ml.product_id, ml.location_dest_id, -ml.qty_done,
+                ml.product_id, ml.location_dest_id, -ml.quantity,
                 lot_id=ml.lot_id, package_id=ml.result_package_id,
                 owner_id=ml.owner_id, in_date=in_date,
             )
