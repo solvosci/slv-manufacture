@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-08 11:05+0000\n"
-"PO-Revision-Date: 2025-05-08 11:05+0000\n"
+"POT-Creation-Date: 2026-01-13 10:28+0000\n"
+"PO-Revision-Date: 2026-01-13 10:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,20 +26,20 @@ msgid ""
 "                                    <thead style=\"border-bottom: 1px solid black\">\n"
 "                                        <tr>\n"
 "                                            <th style=\"text-align:left;font-size: 16px;\">Unbuild\n"
-"                                                ${(object.name or '')} done</th>\n"
+"                                                <t t-out=\"object.name\">UB/0001</t> done</th>\n"
 "                                        </tr>\n"
 "                                    </thead>\n"
 "                                    <tbody>\n"
 "                                        <tr>\n"
 "                                            <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
-"                                                <br/>\n"
-"                                                <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"                                                <br>\n"
+"                                                <p style='margin:0px;font-size:13px;font-family:\"Lucida Grande\", Helvetica, Verdana, Arial, sans-serif;'>\n"
 "                                                    Hello,</p>\n"
-"                                                <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">The\n"
-"                                                    user ${ctx.get('user_name', '')} has completed\n"
-"                                                    the unbuild process for ${(object.name or '')}</p>\n"
-"                                                <br/>\n"
-"                                                <a href=\"/mail/view?model=mrp.unbuild&amp;res_id=${(object.id)}\" style=\"text-decoration:none;color:rgb(124, 123, 173);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                <p style='margin:0px;font-size:13px;font-family:\"Lucida Grande\", Helvetica, Verdana, Arial, sans-serif;'>The\n"
+"                                                    user <t t-out=\"ctx.get('user_name', '')\">Mitchell Admin</t>  has completed\n"
+"                                                    the unbuild process for <t t-out=\"object.name\">UB/0001</t></p>\n"
+"                                                <br>\n"
+"                                                <a t-att-href=\"'/mail/view?model=mrp.unbuild&amp;res_id=%s' % object.id\" style=\"text-decoration:none;color:rgb(124, 123, 173);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
 "                                                    View unbuild\n"
 "                                                </a>\n"
 "                                            </td>\n"
@@ -60,7 +60,7 @@ msgstr ""
 "                                    <thead style=\"border-bottom: 1px solid black\">\n"
 "                                        <tr>\n"
 "                                            <th style=\"text-align:left;font-size: 16px;\">Despiece\n"
-"                                                ${(object.name or '')} realizado</th>\n"
+"                                                <t t-out=\"object.name\">UB/0001</t> realizado</th>\n"
 "                                        </tr>\n"
 "                                    </thead>\n"
 "                                    <tbody>\n"
@@ -70,10 +70,10 @@ msgstr ""
 "                                                <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
 "                                                    Hola,</p>\n"
 "                                                <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">El\n"
-"                                                    usuario ${ctx.get('user_name', '')} ha completado\n"
-"                                                    el proceso de despiece para ${(object.name or '')}</p>\n"
+"                                                    usuario <t t-out=\"ctx.get('user_name', '')\">Mitchell Admin</t> ha completado\n"
+"                                                    el proceso de despiece para <t t-out=\"object.name\">UB/0001</t></p>\n"
 "                                                <br/>\n"
-"                                                <a href=\"/mail/view?model=mrp.unbuild&amp;res_id=${(object.id)}\" style=\"text-decoration:none;color:rgb(124, 123, 173);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                <a t-att-href=\"'/mail/view?model=mrp.unbuild&amp;res_id=%s' % object.id\" style=\"text-decoration:none;color:rgb(124, 123, 173);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
 "                                                    Ver Despiece\n"
 "                                                </a>\n"
 "                                            </td>\n"
@@ -87,37 +87,40 @@ msgstr ""
 "            "
 
 #. module: mrp_unbuild_done_message
+#. odoo-python
 #: code:addons/mrp_unbuild_done_message/models/mrp_unbuild.py:0
 #, python-format
 msgid "Done unbuild notification email sent to: %s"
 msgstr "Correo de notificación de despiece completado, enviado a: %s"
 
 #. module: mrp_unbuild_done_message
+#. odoo-python
 #: code:addons/mrp_unbuild_done_message/models/mrp_unbuild.py:0
 #, python-format
 msgid "No users to notify to closed unbuild in the warehouse."
 msgstr "No hay usuarios a notificar despieces cerrados en el almacén."
 
 #. module: mrp_unbuild_done_message
+#. odoo-python
 #: code:addons/mrp_unbuild_done_message/models/mrp_unbuild.py:0
 #, python-format
 msgid "No warehouse or users configured for notifications."
 msgstr "No hay almacén o usuarios configurados para notificaciones."
 
 #. module: mrp_unbuild_done_message
-#: model:mail.template,subject:mrp_unbuild_done_message.mail_template_unbuild_done_message
-msgid "Unbuild ${(object.name or '')} done"
-msgstr "Despiece ${(object.name or '')} realizado"
-
-#. module: mrp_unbuild_done_message
-#: model:mail.activity.type,name:mrp_unbuild_done_message.mail_act_unbuild_done
-msgid "Unbuild Done"
-msgstr "Despiece realizado"
-
-#. module: mrp_unbuild_done_message
 #: model:ir.model,name:mrp_unbuild_done_message.model_mrp_unbuild
 msgid "Unbuild Order"
 msgstr "Orden de despiece"
+
+#. module: mrp_unbuild_done_message
+#: model:mail.template,name:mrp_unbuild_done_message.mail_template_unbuild_done_message
+msgid "Unbuild done notification"
+msgstr ""
+
+#. module: mrp_unbuild_done_message
+#: model:mail.template,subject:mrp_unbuild_done_message.mail_template_unbuild_done_message
+msgid "Unbuild {{ object.name }} done"
+msgstr "Despiece {{ object.name }} realizado"
 
 #. module: mrp_unbuild_done_message
 #: model:ir.model.fields,field_description:mrp_unbuild_done_message.field_stock_warehouse__unbuild_close_notify_users
