@@ -1,7 +1,7 @@
 # © 2025 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3 - See https://www.gnu.org/licenses/lgpl-3.0.html
 
-from odoo import fields, models, _
+from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 
 
@@ -10,13 +10,25 @@ class MRPWorkcenterProductivity(models.Model):
 
     timesheet_id = fields.Many2one('account.analytic.line', copy=False)
 
+    def _check_production_project_id(self):
+        if not all([production.project_id for production in self.production_id]):
+            raise UserError(_('To generate the related timesheets, you need to specify the project for this manufacturing.'))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        mwp_ids = super(MRPWorkcenterProductivity, self).create(vals_list)
+        for record in mwp_ids.filtered(lambda x: x.date_end):
+            record._check_production_project_id()
+            if record.production_id.project_id and record.production_id.project_id.analytic_account_id:
+                record._recalculate_timesheet(record.date_end.date())
+        return mwp_ids
+
     def write(self, vals):
         old_dates = {record.id: {'date_end': record.date_end} for record in self}
         res = super(MRPWorkcenterProductivity, self).write(vals)
         if 'date_end' not in vals:
             return res
-        if not self.filtered(lambda x: x.production_id.project_id):
-            raise UserError(_('To generate the related timesheets, you need to specify the project for this manufacturing.'))
+        self._check_production_project_id()
 
         for record in self.filtered(lambda x: x.date_end and x.production_id.project_id and x.production_id.project_id.analytic_account_id):
             old_date = old_dates[record.id].get('date_end')
