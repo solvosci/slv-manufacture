@@ -147,7 +147,7 @@ class MdcWeightXlsxReport(models.AbstractModel):
                 total_unit_reject_exceed = weight_records.sum_total(products_filtered, 'unit_reject_exceed')
                 total_unit_reject_low = weight_records.sum_total(products_filtered, 'unit_reject_low')
                 total_unit_reject_total = weight_records.sum_total(products_filtered, 'unit_reject_total')
-                total_unit_x_min_avg = weight_records.total_avg(total_unit_ok, total_period_min)
+                total_unit_x_min_avg = weight_records.total_avg(total_unit_totals, total_period_min)
                 total_weight_ok_avg_qty = weight_records.total_avg(total_weight_ok_tot_qty, total_unit_ok)*1000
                 total_unit_ok_pct_avg = weight_records.total_pct_avg(total_unit_ok, total_unit_totals)
                 total_exceed_pct_avg = weight_records.total_pct_avg((total_weight_ok_avg_qty - total_total_weight_nom_qty),total_total_weight_nom_qty)
