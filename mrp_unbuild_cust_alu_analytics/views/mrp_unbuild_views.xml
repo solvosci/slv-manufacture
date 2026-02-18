@@ -48,7 +48,12 @@
                 <xpath expr="//notebook" position="inside">
                     <page string="Incidences">
                         <field name="incidence_ids" context="{'default_incidence_ids': id}" class="oe_editable_tree_only" widget="one2many">
-                            <tree editable="bottom" create="1" edit="1">
+                            <tree
+                                editable="bottom"
+                                create="1"
+                                edit="1"
+                                decoration-success="state == 'solved'"
+                            >
                                 <field name="start_incidence" required="1"/>
                                 <field name="incidence_type_id" required="1"/>
                                 <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]" required="1"/>
@@ -88,7 +93,7 @@
             <field name="inherit_id" ref="mrp_unbuild_advanced.mrp_unbuild_form_view_tablet"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="process_type_id" nolabel="1" readonly="1"/> | 
+                    <field name="process_type_id" nolabel="1" readonly="1"/> |
                 </xpath>
                 <xpath expr="//button[@name='action_materials_tree_reduced_view']/.." position="after">
                     <group>
