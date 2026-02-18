@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_mrp_incidence_tree" model="ir.ui.view">
@@ -14,7 +13,13 @@
                 <field name="detail"/>
                 <field name="duration" widget="float_time"/>
                 <field name="machine"/>
-                <field name="state"/>
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-warning="state == 'in_progress'"
+                    decoration-success="state == 'solved'"
+
+                />
             </tree>
         </field>
     </record>

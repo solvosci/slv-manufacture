@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <report
-        id="mrp_unbuild_cust_alu_analytics_report"
-        model="mrp.unbuild"
-        string="Unbuild XLSX"
-        report_type="xlsx"
-        name="mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx"
-        file="mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx"
-        attachment_use="False"
-    />
+
+    <record id="action_mrp_unbuild_xlsx" model="ir.actions.report">
+        <field name="name">Unbuild XLSX</field>
+        <field name="model">mrp.unbuild</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_unbuild"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">
+            'mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx'
+        </field>
+    </record>
+
 </odoo>
