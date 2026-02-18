@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="action_mrp_incidence_type" model="ir.actions.act_window">
@@ -25,7 +24,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem 
+    <menuitem
         id="menu_mrp_incidence_type"
         name="Incidence Types"
         parent="mrp.menu_mrp_configuration"
@@ -49,7 +48,7 @@
         sequence="40"
     />
 
-    <menuitem 
+    <menuitem
         id="menu_mrp_incidence"
         name="Incidences"
         parent="mrp.menu_mrp_reporting"

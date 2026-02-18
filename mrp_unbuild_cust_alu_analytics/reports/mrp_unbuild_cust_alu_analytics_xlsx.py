@@ -3,7 +3,6 @@
 
 from odoo import fields, models, _
 import openpyxl.utils
-from datetime import datetime
 
 
 class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
@@ -155,13 +154,6 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
                 'bg_color': '#ffb2b2'
             }
         )
-        int_format = workbook.add_format(
-            {
-                'align': 'right',
-                'num_format': '0',
-                'border': 1
-            }
-        )
         string_format = workbook.add_format(
             {
                 'align': 'left',
@@ -179,7 +171,7 @@ class MrpUnbuildCustAluAnalyticsXlsx(models.AbstractModel):
             list_unique_orders += [list(filter(lambda x: x.product_id.id == product_id.id and x.process_type_id.id == process_type_id.id, order))]
 
 
-        # Create a Sheet for each unqiue combination 
+        # Create a Sheet for each unique combination
         for unique_list in list_unique_orders:
             sheet = workbook.add_worksheet("%s-%s" % (unique_list[0].product_id.default_code, unique_list[0].process_type_id.name))
 

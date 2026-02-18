@@ -3,6 +3,7 @@
 
 from odoo import fields, models
 
+
 class MrpUnbuildProcessType(models.Model):
     _name = "mrp.unbuild.process.type"
     _inherit = ["mail.thread.cc", "mail.activity.mixin"]

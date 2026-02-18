@@ -7,6 +7,7 @@ import os
 from lxml import etree
 import logging
 
+
 class MrpUnbuild(models.Model):
     _inherit = "mrp.unbuild"
 

@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 
+
 class MrpBom(models.Model):
     _inherit = "mrp.unbuild.bom.totals"
 

@@ -8,7 +8,7 @@
                 <form>
                     <sheet>
                         <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
                         <div class="oe_title">
                             <h1><field name="name" placeholder="Incidence Description" nolabel="1"/></h1>
                         </div>
