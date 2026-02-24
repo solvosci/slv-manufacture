@@ -134,7 +134,7 @@ class MdcWeightRecordReportWizard(models.TransientModel):
                         'unit_reject_low': self.sum_total(recs, 'unit_reject_low'),
                         'unit_reject_total': self.sum_total(recs, 'unit_reject_total'),
                     }
-                    unit_x_min = self.total_avg(sums['unit_ok'], sums['period_min'])
+                    unit_x_min = self.total_avg(sums['unit_total'], sums['period_min'])
                     unit_ok_pct = self.total_pct_avg(sums['unit_ok'], sums['unit_total'])
                     weight_ok_avg_qty = self.total_avg(sums['weight_ok_tot_qty'], sums['unit_ok']) * 1000
                     exceed_pct = self.total_pct_avg(weight_ok_avg_qty - weight_nom_qty, weight_nom_qty)

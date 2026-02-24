@@ -176,7 +176,7 @@
                                             </td>
                                             <td>
                                                 <span t-field="record.unit_x_min"
-                                                    t-options="{'widget': 'float', 'precision': 0}" />
+                                                    t-options="{'widget': 'float', 'precision': 2}" />
                                             </td>
                                             <td>
                                                 <span t-field="record.unit_ok" />
@@ -274,7 +274,7 @@
                                         </td>
                                         <td>
                                             <span t-esc="total_unit_x_min_avg"
-                                                t-options="{'widget': 'float', 'precision': 0}" />
+                                                t-options="{'widget': 'float', 'precision': 2}" />
                                         </td>
                                         <td>
                                             <span t-esc="total_unit_ok" />
@@ -368,7 +368,7 @@
                                     </td>
                                     <td>
                                         <span t-esc="equipment_total_unit_x_min_avg"
-                                            t-options="{'widget': 'float', 'precision': 0}" />
+                                            t-options="{'widget': 'float', 'precision': 2}" />
                                     </td>
                                     <td>
                                         <span t-esc="equipment_total_unit_ok" />
