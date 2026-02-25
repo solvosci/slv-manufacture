@@ -175,6 +175,14 @@ class MdcWeightRecordReportWizard(models.TransientModel):
         self._validate_report_data()
         return self.env.ref('mdc_weight_mgmt.action_mdc_weight_report_pdf').report_action(self)
 
+    def action_open_today_weight_report(self):
+        today = fields.Date.context_today(self)
+        wizard = self.env['mdc.weight.record.report.wizard'].create({
+            'date_from': today,
+            'date_to': today,
+        })
+        return wizard.action_mdc_weight_report_html()
+
     def sum_total(self, records, key):
         return sum(getattr(record, key)for record in records)
 

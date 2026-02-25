@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-12 09:04+0000\n"
-"PO-Revision-Date: 2025-12-12 09:04+0000\n"
+"POT-Creation-Date: 2026-02-27 12:35+0000\n"
+"PO-Revision-Date: 2026-02-27 12:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -141,6 +141,11 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:mdc_weight_mgmt.field_mdc_weight_shift__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: mdc_weight_mgmt
+#: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_report_daily
+msgid "Daily Report"
+msgstr "Informe Diario"
 
 #. module: mdc_weight_mgmt
 #: model_terms:ir.ui.view,arch_db:mdc_weight_mgmt.view_weight_record_form
@@ -673,6 +678,11 @@ msgstr "Gestión de Pesadas"
 #: model:ir.actions.act_window,name:mdc_weight_mgmt.action_mdc_weight_products
 msgid "Weight Products"
 msgstr "Productos de pesadas"
+
+#. module: mdc_weight_mgmt
+#: model:ir.actions.server,name:mdc_weight_mgmt.action_weight_report_daily
+msgid "Weight Record Daily"
+msgstr "Informe Diario de Pesadas"
 
 #. module: mdc_weight_mgmt
 #: model:ir.ui.menu,name:mdc_weight_mgmt.menu_mdc_weight_report_wizard

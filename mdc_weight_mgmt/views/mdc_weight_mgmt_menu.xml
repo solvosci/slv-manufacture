@@ -47,6 +47,15 @@
         <field name="type">ir.actions.act_window</field>
     </record>
 
+    <record id="action_weight_report_daily" model="ir.actions.server">
+        <field name="name">Weight Record Daily</field>
+        <field name="model_id" ref="model_mdc_weight_record_report_wizard"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = env['mdc.weight.record.report.wizard'].action_open_today_weight_report()
+        </field>
+    </record>
+
     <menuitem
         id="menu_mdc_weight"
         name="Weight Management"
@@ -97,6 +106,14 @@
         parent="menu_mdc_weight_reports"
         sequence="30"
         action="action_weight_report_wizard"
+    />
+
+    <menuitem
+        id="menu_mdc_weight_report_daily"
+        name="Daily Report"
+        parent="menu_mdc_weight"
+        sequence="27"
+        action="action_weight_report_daily"
     />
 
     <menuitem
