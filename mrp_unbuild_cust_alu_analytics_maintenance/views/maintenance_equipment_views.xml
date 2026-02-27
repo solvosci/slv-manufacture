@@ -3,18 +3,18 @@
         <record id="maintenance_equipment_total_unbuilds_form" model="ir.ui.view">
             <field name="name">maintenance.equipment.form (mrp_total_unbuild)</field>
             <field name="model">maintenance.equipment</field>
-            <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]"/>
             <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='technician_user_id']" position="after">
-                    <field name="works_with_unbuild" widget="boolean_toggle" />
+                    <field name="works_with_unbuild" widget="boolean_toggle" groups="mrp.group_mrp_user"/>
                 </xpath>
                 <xpath expr="//sheet/div[@name='button_box']" position="inside">
                     <button
                         class="oe_stat_button"
                         type="action"
                         name="%(action_total_unbuilds)d"
-                        icon="fa-list">
+                        icon="fa-list"
+                        groups="mrp.group_mrp_user">
                             <field
                                 name="unbuild_count"
                                 widget="statinfo"
@@ -27,11 +27,10 @@
         <record id="maintenance_equipment_works_with_unbuild_search" model="ir.ui.view">
             <field name="name">maintenance.equipment.search (works_with_unbuild)</field>
             <field name="model">maintenance.equipment</field>
-            <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user')), (4,ref('maintenance.group_equipment_manager'))]"/>
             <field name="inherit_id" ref="maintenance.hr_equipment_view_search"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='owner_user_id']" position="after">
-                    <field name="works_with_unbuild"/>
+                    <field name="works_with_unbuild" groups="mrp.group_mrp_user,maintenance.group_equipment_manager"/>
                 </xpath>
             <xpath expr="//filter[@name='message_needaction']" position="after">
                 <separator />
@@ -39,11 +38,13 @@
                     string="Works with unbuild"
                     name="works_with_unbuild"
                     domain="[('works_with_unbuild', '=', True)]"
+                    groups="mrp.group_mrp_user,maintenance.group_equipment_manager"
                 />
                 <filter
                     string="Not Work with unbuild"
                     name="not_work_with_unbuild"
                     domain="[('works_with_unbuild', '=', False)]"
+                    groups="mrp.group_mrp_user,maintenance.group_equipment_manager"
                 />
             </xpath>
             </field>

@@ -9,7 +9,7 @@
                     <field name="maintenance_equipment_id" />
                 </xpath>
                 <xpath expr="//page/field[@name='incidence_ids']/tree/field[@name='machine']" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                    <attribute name="column_invisible">1</attribute>
                 </xpath>
             </field>
         </record>

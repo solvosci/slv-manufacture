@@ -3,6 +3,7 @@
 
 from odoo import fields, models
 
+
 class MaintenanceEquipment(models.Model):
     _inherit = "maintenance.equipment"
 
@@ -12,7 +13,7 @@ class MaintenanceEquipment(models.Model):
         compute="_compute_count_unbuilds", string="Unbuild Incidences"
     )
 
-    def _compute_count_unbuilds(self):  
+    def _compute_count_unbuilds(self):
         # TODO: this code is inefficient for multiple records, try with read_group
         for record in self:
             incidence_ids = self.env["mrp.unbuild.incidence"].search([("maintenance_equipment_id", "=", record.id)])
