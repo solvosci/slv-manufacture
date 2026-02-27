@@ -5,7 +5,7 @@
     "summary": """
         Connect incidences with maintenance_equipment
     """,
-    "version": "13.0.1.2.0",
+    "version": "17.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "author": "Solvos",
