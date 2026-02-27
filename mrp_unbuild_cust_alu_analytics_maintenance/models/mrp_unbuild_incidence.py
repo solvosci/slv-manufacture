@@ -3,6 +3,7 @@
 
 from odoo import fields, models
 
+
 class MrpUnbuildIncidence(models.Model):
     _inherit = "mrp.unbuild.incidence"
 
