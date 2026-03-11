@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_workorder_productivity_instruction_view" model="ir.ui.view">
+        <field name="name">mrp.workorder.productivity.instruction.wizard.view</field>
+        <field name="model">mrp.workorder.productivity.instruction.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Last Technical Point Instruction">
+                <sheet>
+                    <field name="workorder_id" invisible="1"/>
+                    <field name="technical_instruction_point" widget="pad" nolabel="1"/>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
