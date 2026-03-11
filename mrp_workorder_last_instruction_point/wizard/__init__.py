@@ -1,0 +1,1 @@
+from . import mrp_workorder_productivity_instruction_wizard

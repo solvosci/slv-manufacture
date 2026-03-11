@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workorder_last_instruction_point
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-20 07:32+0000\n"
+"PO-Revision-Date: 2026-03-20 07:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_workorder_last_instruction_point
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_last_instruction_point.mrp_workorder_productivity_instruction_view
+msgid "Cancel"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_last_instruction_point.mrp_workorder_productivity_instruction_view
+msgid "Confirm"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_last_instruction_point.mrp_production_workorder_tree_editable_view
+msgid "Last Tech. Ins. P User"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_last_instruction_point.mrp_production_workorder_tree_editable_view
+msgid "Last Tech. Ins. P."
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder__last_technical_instruction_point
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_last_instruction_point.mrp_workorder_productivity_instruction_view
+msgid "Last Technical Point Instruction"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder__last_technical_instruction_point_user_id
+msgid "Last Technical Point Instruction User"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,help:mrp_workorder_last_instruction_point.field_mrp_workorder__last_technical_instruction_point
+msgid ""
+"Last technical point instruction given to the operator in this workorder."
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: code:addons/mrp_workorder_last_instruction_point/models/mrp_workorder.py:0
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workcenter_productivity__technical_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__technical_instruction_point
+#, python-format
+msgid "Technical Instruction Point"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,help:mrp_workorder_last_instruction_point.field_mrp_workorder__last_technical_instruction_point_user_id
+msgid "User who created the last technical point instruction."
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model,name:mrp_workorder_last_instruction_point.model_mrp_workorder
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model,name:mrp_workorder_last_instruction_point.model_mrp_workcenter_productivity
+msgid "Workcenter Productivity Log"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model.fields,field_description:mrp_workorder_last_instruction_point.field_mrp_workorder_productivity_instruction_wizard__workorder_id
+msgid "Workorder"
+msgstr ""
+
+#. module: mrp_workorder_last_instruction_point
+#: model:ir.model,name:mrp_workorder_last_instruction_point.model_mrp_workorder_productivity_instruction_wizard
+msgid "Workorder Productivity Instruction Wizard"
+msgstr ""
