@@ -1,0 +1,2 @@
+- Add ondelete and handle the unlink of those records in case addon is uninstalled
+- Hook is not actually covering those unbuilds that don't come from an MO, we'll not cover this yet.
