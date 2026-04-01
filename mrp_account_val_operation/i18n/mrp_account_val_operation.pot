@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_account_val_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-01 10:00+0000\n"
+"PO-Revision-Date: 2026-04-01 10:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_account_val_operation
+#: model:ir.model.fields.selection,name:mrp_account_val_operation.selection__account_move_line__val_operation__ub_prod
+msgid "Disassembly - Previously produced items"
+msgstr ""
+
+#. module: mrp_account_val_operation
+#: model:ir.model.fields.selection,name:mrp_account_val_operation.selection__account_move_line__val_operation__ub_cons
+msgid "Disassembly - Re-entry of consumed items"
+msgstr ""
+
+#. module: mrp_account_val_operation
+#: model:ir.model,name:mrp_account_val_operation.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: mrp_account_val_operation
+#: model:ir.model.fields.selection,name:mrp_account_val_operation.selection__account_move_line__val_operation__mrp_cons
+msgid "Manufacture Consumption"
+msgstr ""
+
+#. module: mrp_account_val_operation
+#: model:ir.model.fields.selection,name:mrp_account_val_operation.selection__account_move_line__val_operation__mrp_prod
+msgid "Manufacture Production"
+msgstr ""
+
+#. module: mrp_account_val_operation
+#: model:ir.model.fields,field_description:mrp_account_val_operation.field_account_move_line__val_operation
+msgid "Val Operation"
+msgstr ""
