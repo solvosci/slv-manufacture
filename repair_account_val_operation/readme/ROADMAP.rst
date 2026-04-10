@@ -1,0 +1,1 @@
+- Add ondelete and handle the unlink of those records in case addon is uninstalled
