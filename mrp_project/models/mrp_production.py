@@ -26,3 +26,12 @@ class ManufactureOrder(models.Model):
     @api.onchange("project_id")
     def _onchange_project_id_parent(self):
         self._assign_project_to_children()
+
+    @api.model
+    def create(self, values):
+        # This part of the code is triggered by another automated process and is executed by OdooBot with permissions
+        production = super().create(values)
+        production_source = production._get_sources()
+        if production_source and len(production_source) == 1:
+            production.project_id = production_source.project_id
+        return production
