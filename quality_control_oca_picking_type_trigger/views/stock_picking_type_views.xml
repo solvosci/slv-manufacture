@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_type_form" model="ir.ui.view">
+        <field name="name">stock.picking.type.form (in quality_control_oca_picking_type_trigger)</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field
+            name="groups_id"
+            eval="[(4, ref('quality_control_oca.group_quality_control_user'))]"
+        />        
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='use_create_lots']/../.." position="after">
+                <group name="qc" string="Quality control">
+                    <field name="qc_triggers" nolabel="1">
+                        <tree editable="bottom">
+                            <field
+                                name="trigger"
+                                options="{'no_create': True, 'no_edit': True, 'no_open': True}"
+                            />
+                            <field name="test" />
+                            <field name="user" />
+                            <field name="partners" widget="many2many_tags" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
