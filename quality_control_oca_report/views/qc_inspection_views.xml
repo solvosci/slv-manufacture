@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="qc_inspection_form_view">
+        <field name="name">qc.inspection.form (in quality_control_oca_report)</field>
+        <field name="model">qc.inspection</field>
+        <field name="inherit_id" ref="quality_control_oca.qc_inspection_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="%(quality_control_oca_report.action_qc_report_wizard)d"
+                    type="action"
+                    attrs="{'invisible': [('state', '=', 'canceled')]}"
+                    string="Report"
+                    class="oe_highlight"
+                />
+            </header>
+        </field>
+    </record>
+</odoo>

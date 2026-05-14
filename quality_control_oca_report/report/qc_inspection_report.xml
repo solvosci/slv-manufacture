@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_qc_incidence" model="ir.actions.report">
+        <field name="name">Quality Control Report</field>
+        <field name="model">qc.inspection.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">quality_control_oca_report.qc_inspection_template</field>
+        <field name="report_file">quality_control_oca_report.qc_inspection_template</field>
+        <field name="print_report_name">'%s_%s' % (object.inspection_id.test.name, object.inspection_id.name)</field>
+    </record>
+
+</odoo>
