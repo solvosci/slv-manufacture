@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="qc_inspection_template" inherit_id="quality_control_oca_report.qc_inspection_template">
+        <xpath expr="//div[@name='product']" position="after">
+            <t t-set="picking" t-value="insp.picking_id"/>
+            <t t-set="purchase" t-value="picking.purchase_id if picking and 'purchase_id' in picking._fields else False"/>
+
+            <tr>
+                <td class="qc_label">Picking</td>
+                <td class="qc_label">Purchase Order</td>
+                <td class="qc_label">Lot / Serial</td>
+            </tr>
+            <tr>
+                <td><span t-field="picking.name" t-if="picking"/></td>
+                <td>
+                    <t t-if="purchase">
+                        <span t-field="purchase.name" />
+                        (<span t-field="purchase.partner_id.name" />)
+                    </t>
+                </td>
+                <td><span t-field="insp.lot_id.name" t-if="insp.lot_id"/></td>
+            </tr>
+            <tr>
+                <td class="qc_label">Warehouse</td>
+                <td colspan="2" class="qc_label">Destination Location</td>
+            </tr>
+            <tr>
+                <td><span t-field="picking.picking_type_id.warehouse_id.name" t-if="picking"/></td>
+                <td colspan="2"><span t-field="picking.location_dest_id.display_name" t-if="picking"/></td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

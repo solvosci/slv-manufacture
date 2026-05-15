@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_stock_oca_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-19 11:06+0000\n"
+"PO-Revision-Date: 2026-05-19 11:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_stock_oca_report
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca_report.qc_inspection_template
+msgid "Destination Location"
+msgstr ""
+
+#. module: quality_control_stock_oca_report
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca_report.qc_inspection_template
+msgid "Lot / Serial"
+msgstr ""
+
+#. module: quality_control_stock_oca_report
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca_report.qc_inspection_template
+msgid "Picking"
+msgstr ""
+
+#. module: quality_control_stock_oca_report
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca_report.qc_inspection_template
+msgid "Purchase Order"
+msgstr ""
+
+#. module: quality_control_stock_oca_report
+#: model_terms:ir.ui.view,arch_db:quality_control_stock_oca_report.qc_inspection_template
+msgid "Warehouse"
+msgstr ""
