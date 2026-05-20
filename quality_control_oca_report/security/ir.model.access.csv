@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_qc_inspection_report_wizard_user,qc.inspection_report_wizard user,model_qc_inspection_report_wizard,quality_control_oca.group_quality_control_user,1,0,0,0
-access_qc_inspection_report_wizard_manager,qc.inspection_report_wizard manager,model_qc_inspection_report_wizard,quality_control_oca.group_quality_control_manager,1,1,1,1
