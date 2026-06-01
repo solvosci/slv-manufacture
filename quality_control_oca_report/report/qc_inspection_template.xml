@@ -89,10 +89,6 @@
                                     </td>
                                 </tr>
                             </t>
-                            <tr t-if="insp.internal_notes">
-                                <td class="qc_label">Comments</td>
-                                <td><span t-field="insp.internal_notes"/></td>
-                            </tr>
                         </tbody>
                     </table>
 
