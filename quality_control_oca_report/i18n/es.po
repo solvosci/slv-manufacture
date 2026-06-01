@@ -6,21 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 11:14+0000\n"
-"PO-Revision-Date: 2026-05-19 13:27+0200\n"
+"POT-Creation-Date: 2026-06-01 10:28+0000\n"
+"PO-Revision-Date: 2026-06-01 10:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: quality_control_oca_report
 #: model:ir.actions.report,print_report_name:quality_control_oca_report.action_report_qc_incidence
 msgid "'%s_%s' % (object.inspection_id.test.name, object.inspection_id.name)"
-msgstr "'%s_%s' % (object.inspection_id.test.name, object.inspection_id.name)"
+msgstr ""
 
 #. module: quality_control_oca_report
 #: model_terms:ir.ui.view,arch_db:quality_control_oca_report.view_qc_report_wizard_form
@@ -31,11 +29,6 @@ msgstr "Adjuntar imágenes"
 #: model_terms:ir.ui.view,arch_db:quality_control_oca_report.view_qc_report_wizard_form
 msgid "Close"
 msgstr "Cerrar"
-
-#. module: quality_control_oca_report
-#: model_terms:ir.ui.view,arch_db:quality_control_oca_report.qc_inspection_template
-msgid "Comments"
-msgstr "Comentarios"
 
 #. module: quality_control_oca_report
 #: model:ir.model.fields,field_description:quality_control_oca_report.field_qc_inspection_report_wizard__create_uid
@@ -90,8 +83,10 @@ msgstr "Imágenes"
 
 #. module: quality_control_oca_report
 #: model:ir.model.fields,help:quality_control_oca_report.field_qc_inspection_report_wizard__image_ids
-msgid "Images (JPEG, PNG, etc.) that will be attached to the inspection report"
-msgstr "Imágenes (JPEG, PNG, etc.) que se adjuntarán al informe de la inspección"
+msgid ""
+"Images (JPEG, PNG, etc.) that will be attached to the inspection report"
+msgstr ""
+"Imágenes (JPEG, PNG, etc.) que se adjuntarán al informe de la inspección"
 
 #. module: quality_control_oca_report
 #: model_terms:ir.ui.view,arch_db:quality_control_oca_report.qc_inspection_template
@@ -183,7 +178,7 @@ msgstr "Éxito"
 #. module: quality_control_oca_report
 #: model_terms:ir.ui.view,arch_db:quality_control_oca_report.qc_inspection_template
 msgid "Test"
-msgstr "Test"
+msgstr ""
 
 #. module: quality_control_oca_report
 #: model:ir.model.fields,field_description:quality_control_oca_report.field_qc_inspection_report_wizard__title

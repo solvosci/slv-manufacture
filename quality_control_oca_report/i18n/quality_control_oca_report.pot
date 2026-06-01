@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 11:06+0000\n"
-"PO-Revision-Date: 2026-05-19 11:06+0000\n"
+"POT-Creation-Date: 2026-06-01 10:28+0000\n"
+"PO-Revision-Date: 2026-06-01 10:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,6 @@ msgstr ""
 #. module: quality_control_oca_report
 #: model_terms:ir.ui.view,arch_db:quality_control_oca_report.view_qc_report_wizard_form
 msgid "Close"
-msgstr ""
-
-#. module: quality_control_oca_report
-#: model_terms:ir.ui.view,arch_db:quality_control_oca_report.qc_inspection_template
-msgid "Comments"
 msgstr ""
 
 #. module: quality_control_oca_report
