@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_mrp_area_tree">
+        <field name="name">product.mrp.area.tree (in mrp_multi_level_parameter_area)</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="mrp_multi_level.product_mrp_area_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_transit_delay']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_inspection_delay']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='supply_method']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='main_supplierinfo_id']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='mrp_exclude']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_verified']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_nbr_days']" position="attributes">
+                <attribute name="string">Demand Horizon (Days)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_minimum_order_qty']" position="attributes">
+                <attribute name="string">Min. Order/Produce Qty</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_maximum_order_qty']" position="attributes">
+                <attribute name="string">Max. Order/Produce Qty</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_mrp_area_form">
+        <field name="name">product.mrp.area.form (in mrp_multi_level_parameter_area)</field>
+        <field name="model">product.mrp.area</field>
+        <field name="type">form</field>
+        <field name="priority" eval="999"/>
+        <field name="inherit_id" ref="mrp_multi_level.product_mrp_area_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mrp_exclude']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_verified']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_nbr_days']" position="attributes">
+                <attribute name="string">Demand Horizon (Days)</attribute>
+                <attribute name="attrs">{'invisible': [('supply_method', '!=', 'manufacture')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_nbr_days']" position="after">
+                <field name="mrp_nbr_days" string="Purchase Demand Horizon (Days)" attrs="{'invisible': [('supply_method', '!=', 'buy')]}" />
+            </xpath>
+            <xpath expr="//label[@for='mrp_minimum_order_qty']" position="replace"/>
+            <xpath expr="//div[@name='mrp_minimum_order_qty']" position="replace">
+                <label for="mrp_minimum_order_qty" string="Minimum Manufacturing Qty" attrs="{'invisible': [('supply_method', '!=', 'manufacture')]}"/>
+                <div class="o_row" attrs="{'invisible': [('supply_method', '!=', 'manufacture')]}">
+                    <field name="mrp_minimum_order_qty" />
+                </div>
+                <label for="mrp_minimum_order_qty" string="Minimum Vendor Order Qty" attrs="{'invisible': [('supply_method', '!=', 'buy')]}"/>
+                <div class="o_row" attrs="{'invisible': [('supply_method', '!=', 'buy')]}">
+                    <field name="mrp_minimum_order_qty" />
+                    <span name="update_min_qty">
+                        <button
+                            string="Get from main supplier"
+                            type="object"
+                            name="update_min_qty_from_main_supplier"
+                            attrs="{'invisible':[('main_supplierinfo_id', '=', False)]}"
+                            class="oe_link pt-0 oe_inline"
+                        />
+                    </span>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='mrp_maximum_order_qty']" position="attributes">
+                <attribute name="string">Maximum Manufacturing Qty</attribute>
+                <attribute name="attrs">{'invisible': [('supply_method', '!=', 'manufacture')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_maximum_order_qty']" position="after">
+                <field name="mrp_maximum_order_qty" string="Maximum Vendor Order Qty" attrs="{'invisible': [('supply_method', '!=', 'buy')]}" />
+            </xpath>
+            <xpath expr="//field[@name='mrp_lead_time']" position="attributes">
+                <attribute name="string">Manufacturing Lead Time</attribute>
+                <attribute name="attrs">{'invisible': [('supply_method', 'not in', ('pull', 'push', 'pull_push')),('supply_method', '!=', 'manufacture')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mrp_lead_time']" position="after">
+                <field name="mrp_lead_time" string="Supply Lead Time" attrs="{'invisible': [('supply_method', 'not in', ('pull', 'push', 'pull_push')),('supply_method', '!=', 'buy')]}" />
+            </xpath>
+            <xpath expr="//field[@name='mrp_qty_multiple']" position="attributes">
+                <attribute name="string">Quantity Multiple</attribute>
+                <attribute name="attrs">{'invisible': [('supply_method', '!=', 'buy')], 'readonly': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='supply_method']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="supply_method"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
