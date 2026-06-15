@@ -58,8 +58,12 @@ class MrpProduction(models.Model):
         # (6) ... but only remove produced moves and consumed move lines, not moves
         finished_move_ids.unlink()
         consume_move_ids.move_line_ids.unlink()
+        self.move_raw_ids.write({"picked": False})
         # (7) Set back to draft state whole production
-        self.write({"state": "draft"})
+        self.write({
+            "qty_producing": 0.0,
+            "state": "draft",
+        })
         # ---------------------------------------------------------------------
 
         message = _(
