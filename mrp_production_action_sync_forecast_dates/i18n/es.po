@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_action_sync_forecast_dates
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-16 10:27+0000\n"
+"PO-Revision-Date: 2026-07-16 10:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: code:addons/mrp_production_action_sync_forecast_dates/models/mrp_production.py:0
+#, python-format
+msgid "Forecast Sync Report"
+msgstr "Informe de sincronización de pronóstico"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: model:ir.actions.server,name:mrp_production_action_sync_forecast_dates.action_mrp_production_sync_forecast
+msgid "MRP: sync MO's"
+msgstr "MRP: sincr. MO's"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: model:ir.model,name:mrp_production_action_sync_forecast_dates.model_mrp_production
+msgid "Production Order"
+msgstr "Orden de producción"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: code:addons/mrp_production_action_sync_forecast_dates/models/mrp_production.py:0
+#, python-format
+msgid "The following orders could not be updated (please check each one):"
+msgstr "No se pudieron actualizar las siguientes órdenes (por favor revise cada una):"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: code:addons/mrp_production_action_sync_forecast_dates/models/mrp_production.py:0
+#, python-format
+msgid "Updated Manufacturing Orders:"
+msgstr "Órdenes de fabricación actualizadas:"
+
+#. module: mrp_production_action_sync_forecast_dates
+#: code:addons/mrp_production_action_sync_forecast_dates/models/mrp_production.py:0
+#, python-format
+msgid "• %(mo_name)s ➔ New Date: %(mo_new_date)s"
+msgstr "• %(mo_name)s ➔ Nueva Fecha: %(mo_new_date)s"
