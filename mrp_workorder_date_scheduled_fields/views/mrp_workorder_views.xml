@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_workorder_tree_editable_view"
+            model="ir.ui.view">
+        <field name="name">mrp.production.work.order.tree.editable (in mrp_workorder_date_scheduled_fields)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_planned_start']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_planned_finished']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_planned_finished']" position="after">
+                <field
+                    name="date_first_scheduled_start"
+                    string="First Sched. Start"
+                    optional="show"/>
+                <field
+                    name="date_first_scheduled_finished"
+                    string="First Sched. End"
+                    optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_workorder_form_view_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.form (in mrp_workorder_date_scheduled_fields)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='production_id']" position="after">
+                <field
+                    name="date_first_scheduled_start"
+                    string="First Sched. Start"/>
+                <field
+                    name="date_first_scheduled_finished"
+                    string="First Sched. End"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_work_order_search" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.search (in mrp_workorder_date_scheduled_fields)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_work_order_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="after">
+                <filter
+                    name="date_first_scheduled_start_filter"
+                    string="Late First Sched."
+                    domain="[('date_first_scheduled_start','&lt;=',time.strftime('%%Y-%%m-%%d'))]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_production_workorder_form_view_filter" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.select (in mrp_workorder_date_scheduled_fields)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_workorder_form_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="after">
+                <filter
+                    name="date_first_scheduled_start_filter"
+                    string="Late First Sched."
+                    domain="[('date_first_scheduled_start','&lt;=',time.strftime('%%Y-%%m-%%d'))]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
