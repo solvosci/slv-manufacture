@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_from_mo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-15 10:02+0000\n"
+"PO-Revision-Date: 2026-07-15 10:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_from_mo
+#: code:addons/mrp_bom_from_mo/wizards/mrp_bom_from_mo_wizard.py:0
+#, python-format
+msgid "Bill of Materials"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: code:addons/mrp_bom_from_mo/wizards/mrp_bom_from_mo_wizard.py:0
+#, python-format
+msgid "Bill of Materials %s was created from this Manufacturing Order."
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__code
+msgid "Bill of Materials Reference"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model_terms:ir.ui.view,arch_db:mrp_bom_from_mo.view_mrp_bom_from_mo_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: code:addons/mrp_bom_from_mo/models/mrp_production.py:0
+#: model_terms:ir.ui.view,arch_db:mrp_bom_from_mo.mrp_production_form_view_inherit_bom_from_mo
+#: model_terms:ir.ui.view,arch_db:mrp_bom_from_mo.view_mrp_bom_from_mo_wizard_form
+#, python-format
+msgid "Create Bill of Materials"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model,name:mrp_bom_from_mo.model_mrp_bom_from_mo_wizard
+msgid "Create Bill of Materials from Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__log_in_chatter
+msgid "Log In Chatter"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,field_description:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__production_id
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model,name:mrp_bom_from_mo.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model_terms:ir.ui.view,arch_db:mrp_bom_from_mo.view_mrp_bom_from_mo_wizard_form
+msgid "Reference"
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model:ir.model.fields,help:mrp_bom_from_mo.field_mrp_bom_from_mo_wizard__code
+msgid "Reference that will be set on the newly created Bill of Materials."
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: code:addons/mrp_bom_from_mo/wizards/mrp_bom_from_mo_wizard.py:0
+#, python-format
+msgid ""
+"The Bill of Materials cannot be generated because this Manufacturing Order "
+"has no produced quantity."
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: code:addons/mrp_bom_from_mo/wizards/mrp_bom_from_mo_wizard.py:0
+#, python-format
+msgid "This Bill of Materials was generated from Manufacturing Order %s."
+msgstr ""
+
+#. module: mrp_bom_from_mo
+#: model_terms:ir.ui.view,arch_db:mrp_bom_from_mo.view_mrp_bom_from_mo_wizard_form
+msgid "e.g. v1.0"
+msgstr ""

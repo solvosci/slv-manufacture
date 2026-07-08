@@ -1,0 +1,1 @@
+* This functionality doesn't cover product variants enabled scenario.
