@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_bom_from_mo_wizard_manager,mrp.bom.from.mo.wizard.manager,model_mrp_bom_from_mo_wizard,mrp.group_mrp_manager,1,1,1,1

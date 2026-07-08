@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view_inherit_bom_from_mo" model="ir.ui.view">
+        <field name="name">mrp.production.form (in mrp_bom_from_mo)</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_mark_done']" position="after">
+                <button
+                    name="action_open_bom_from_mo_wizard"
+                    type="object"
+                    string="Create Bill of Materials"
+                    class="btn-secondary"
+                    groups="mrp.group_mrp_manager"
+                    attrs="{'invisible': [('state', '!=', 'done')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
