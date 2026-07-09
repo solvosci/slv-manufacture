@@ -2,7 +2,9 @@
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
 from odoo import models, fields
+import logging
 
+_logger = logging.getLogger(__name__)
 
 class StockProductionLot(models.Model):
     _inherit = "stock.production.lot"
@@ -42,3 +44,36 @@ class StockProductionLot(models.Model):
             return result
         else:
             return super().name_get()
+
+    def check_and_log_stock_balance(self, state, origin=""):
+        is_active = self.env['ir.config_parameter'].sudo().get_param('fcd_weight_scale_mrp.enable_lot_logs', default='False') == 'True'
+        if not is_active or not self:
+            return
+
+        try:
+            domain_sml = [('lot_id', '=', self.id), ('state', '=', 'done')]
+            move_lines = self.env['stock.move.line'].sudo().search(domain_sml)
+
+            total_sml = 0.0
+            for sml in move_lines:
+                if sml.location_dest_id.usage == 'internal' and sml.location_id.usage != 'internal':
+                    total_sml += sml.qty_done
+                elif sml.location_id.usage == 'internal' and sml.location_dest_id.usage != 'internal':
+                    total_sml -= sml.qty_done
+
+            quants = self.env['stock.quant'].sudo().search([
+                ('lot_id', '=', self.id),
+                ('location_id.usage', '=', 'internal')
+            ])
+            total_quant = sum(quants.mapped('quantity'))
+
+            breakdown = abs(total_sml - total_quant) > 0.001
+            log_method = _logger.error if breakdown else _logger.warning
+
+            log_method(
+                "[fcd_weight_scale_mrp] Lot: %s | State: %s | Origin: %s | SML Total: %s | Quant Total: %s | Breakdown?: %s",
+                self.name, state, origin, total_sml, total_quant, "YES" if breakdown else "NO"
+            )
+
+        except Exception as e:
+            _logger.error("[fcd_weight_scale_mrp] Error executing logs: %s", e)
