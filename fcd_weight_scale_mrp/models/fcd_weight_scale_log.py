@@ -98,6 +98,7 @@ class FCDWeightScaleLog(models.Model):
         })
 
         mrp_production_id.action_confirm()
+        lot_id.check_and_log_stock_balance("T1.B Production Confirm", mrp_production_id.name)
 
         finished_move_id = self.env['stock.move'].create({
             'name': product_id.partner_ref,
@@ -126,6 +127,7 @@ class FCDWeightScaleLog(models.Model):
             'secondary_uom_qty': 1,
         })
         mrp_production_id.button_mark_done()
+        lot_id.check_and_log_stock_balance("T1.B Production Done", mrp_production_id.name)
 
         return mrp_production_id
 
@@ -186,6 +188,7 @@ class FCDWeightScaleLog(models.Model):
             picking_id.action_assign()
             picking_id._action_done()
 
+        move_id.fcd_document_line_id.lot_id.check_and_log_stock_balance("T1.A Validate or Update Picking", picking_id.name)
         production_id = self.create_mrp_production(log_id)
 
         #Create Log Modificar el vals dependiendo de si ya hay o no un movimiento del mismo producto
