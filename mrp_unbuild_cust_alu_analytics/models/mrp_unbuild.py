@@ -27,8 +27,26 @@ class MrpUnbuild(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
+        # TODO this code is completely bypassing base _onchange_product_id (https://github.com/odoo/odoo/blob/3a28e5b0adbb36bdb1155a6854cdfbe4e7f9b187/addons/mrp/models/mrp_production.py#L588)
+        # and this can cause problems!
         if self.product_id and self.process_type_id:
-            self.bom_id = self.product_id.product_tmpl_id.bom_ids.filtered(lambda r: r.process_type_id == self.process_type_id)[0]
+            # For selected process type, custom variant BoM is preferred;
+            # if not found, a "generic" one (for every variant) is accepted
+            product_bom_ids = self.product_id.product_tmpl_id.bom_ids.filtered(
+                lambda r: (
+                    r.process_type_id == self.process_type_id
+                    and (
+                        not r.product_id
+                        or r.product_id == self.product_id
+                    )
+                )
+            )
+            self.bom_id = (
+                product_bom_ids.filtered(
+                    lambda x: x.product_id and x.product_id == self.product_id
+                )[:1]
+                or product_bom_ids[:1]
+            )
         else:
             super(MrpUnbuild, self)._onchange_product_id()
 
@@ -49,10 +67,17 @@ class MrpUnbuild(models.Model):
     @api.onchange("product_id", "process_type_id")
     def _onchange_product_id_process_type_id(self):
         for record in self:
+            # Condition inspired in https://github.com/odoo/odoo/blob/4cc086d330b73514fbc64a7fcf22d8a7a9f1b691/addons/mrp/models/mrp_production.py#L120-L130
+            # To original bom domain process type AND condition is actually added
             domain_bom_id = [
-                "&",
+                ("type", "=", "normal"),
+                ("company_id", "in", [record.company_id.id, False]),
                 ("process_type_id", "=", record.process_type_id.id),
-                ("product_tmpl_id", "=", record.product_id.product_tmpl_id.id)
+                "|",            
+                    ("product_id", "=", record.product_id.id),
+                    "&",
+                        ("product_tmpl_id", "=", record.product_id.product_tmpl_id.id),
+                        ("product_id", "=", False),
             ]
             domain_product_id = [
                 ("process_type_ids", "=", record.process_type_id.id),
