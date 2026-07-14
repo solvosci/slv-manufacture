@@ -1,0 +1,320 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_classification
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-15 11:50+0000\n"
+"PO-Revision-Date: 2026-07-15 11:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_classification
+#: model_terms:ir.ui.view,arch_db:mrp_production_classification.view_mrp_classification_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_classification_wizard__force_confirm
+msgid ""
+"Check this box to confirm the classification even if the total distributed "
+"does not match the initially planned quantity."
+msgstr ""
+"Marque esta casilla para confirmar la clasificación aunque el total "
+"repartido no coincida con la cantidad inicialmente planificada."
+
+#. module: mrp_production_classification
+#: model:ir.model,name:mrp_production_classification.model_mrp_classification_wizard_line
+msgid "Classification Distribution Line"
+msgstr "Línea de reparto de clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model,name:mrp_production_classification.model_mrp_classification_wizard
+msgid "Classification Distribution Wizard"
+msgstr "Asistente de reparto de clasificación"
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/models/mrp_production.py:0
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:mrp_production_classification.view_mrp_classification_wizard_form
+msgid "Classification Result"
+msgstr "Resultado de la clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__qty
+msgid "Classified Quantity"
+msgstr "Cantidad clasificada"
+
+#. module: mrp_production_classification
+#: model_terms:ir.ui.view,arch_db:mrp_production_classification.view_mrp_production_form_classification
+msgid "Classify"
+msgstr "Clasificar"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__confirm_and_process
+msgid "Complete Manufacturing Order"
+msgstr "Completar orden de fabricación"
+
+#. module: mrp_production_classification
+#: model_terms:ir.ui.view,arch_db:mrp_production_classification.view_mrp_classification_wizard_form
+msgid "Confirm Classification"
+msgstr "Confirmar clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__force_confirm
+msgid "Confirm even if it differs from the plan"
+msgstr "Confirmar aunque difiera de lo planificado"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__difference
+msgid "Consumed - Planned"
+msgstr "Consumido - Planificado"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__create_uid
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__create_date
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__display_name
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__display_name
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_production_classification.field_stock_picking_type__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_classification_wizard_line__product_tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "Garantiza la trazabilidad de un producto almacenable en su almacén."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__lot_id
+msgid "Existing Lot"
+msgstr "Lote existente"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__id
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__id
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_production_classification.field_stock_picking_type__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_classification_wizard__confirm_and_process
+msgid ""
+"If checked, the manufacturing order is marked as done immediately after "
+"confirming the classification."
+msgstr ""
+"Si está marcada, la orden de fabricación se marca como hecha inmediatamente "
+"después de confirmar la clasificación."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_production__classification_planned_qty
+msgid "Initial Classification Demand"
+msgstr "Demanda inicial de clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_production__is_classification_type
+msgid "Is Classification"
+msgstr "Es clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_stock_picking_type__is_classification
+msgid "Is Classification Operation"
+msgstr "Es operación de clasificación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__write_uid
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__write_date
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__lot_name
+msgid "Lot Name to Create"
+msgstr "Nombre de lote a crear"
+
+#. module: mrp_production_classification
+#: model:ir.model,name:mrp_production_classification.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Orden de fabricación"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_production__is_classification_type
+#: model:ir.model.fields,help:mrp_production_classification.field_stock_picking_type__is_classification
+msgid ""
+"Enables the distribution wizard on manufacturing orders associated with this"
+" operation type."
+msgstr ""
+"Habilita el asistente de reparto en las órdenes de fabricación asociadas a "
+"este tipo de operación."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__move_id
+msgid "Move"
+msgstr "Movimiento"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_classification_wizard__raw_move_id
+msgid "Move of the bulk component being consumed."
+msgstr "Movimiento del componente a granel que se está consumiendo."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__original_product_id
+msgid "Original Product"
+msgstr "Producto original"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_classification_wizard_line__move_id
+msgid "Original move of the finished product/byproduct in the MO."
+msgstr "Movimiento original del producto terminado/subproducto en la OF."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,help:mrp_production_classification.field_mrp_production__classification_planned_qty
+msgid ""
+"Original planned quantity of the bulk component the first time the "
+"classification wizard was opened."
+msgstr ""
+"Cantidad planificada original del componente a granel la primera vez que se "
+"abrió el asistente de clasificación."
+
+#. module: mrp_production_classification
+#: model:ir.model,name:mrp_production_classification.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo de albarán"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__qty_to_consume
+msgid "Planned Quantity (Initial Demand)"
+msgstr "Cantidad planificada (demanda inicial)"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__product_uom_id
+msgid "Product Uom"
+msgstr "UdM del producto"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__production_id
+msgid "Production"
+msgstr "Producción"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__raw_move_id
+msgid "Raw Move"
+msgstr "Movimiento de materia prima"
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard.py:0
+msgid "The order's main product cannot end up at 0 after the distribution."
+msgstr ""
+"El producto principal de la orden no puede quedar en 0 tras el reparto."
+
+#. module: mrp_production_classification
+#: model_terms:ir.ui.view,arch_db:mrp_production_classification.view_mrp_classification_wizard_form
+msgid ""
+"The total distributed differs from the initially planned quantity.\n"
+"                    This is just a warning; the actual consumption of the original product\n"
+"                    will always equal the total distributed. Check the confirmation box to continue."
+msgstr ""
+"El total repartido difiere de la cantidad inicialmente planificada.\n"
+"                    Esto es solo un aviso; el consumo real del producto original\n"
+"                    siempre será igual al total repartido. Marque la casilla de confirmación para continuar."
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard.py:0
+msgid ""
+"The unit of measure of these products is not compatible with that of the "
+"bulk component."
+msgstr ""
+"La unidad de medida de estos productos no es compatible con la del "
+"componente a granel."
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard.py:0
+msgid ""
+"There is no stock reserved for this order, so the source lot cannot be "
+"determined."
+msgstr ""
+"No hay stock reservado para esta orden, por lo que no se puede determinar el"
+" lote de origen."
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard.py:0
+msgid ""
+"There is not enough stock in the warehouse to cover the total distributed. "
+"Check availability before classifying."
+msgstr ""
+"No hay suficiente stock en el almacén para cubrir el total repartido. "
+"Compruebe la disponibilidad antes de clasificar."
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/models/mrp_production.py:0
+msgid ""
+"This MO has no finished product or byproducts defined in the bill of "
+"materials."
+msgstr ""
+"Esta OF no tiene producto terminado ni subproductos definidos en la lista de"
+" materiales."
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard.py:0
+msgid ""
+"This wizard does not support products tracked by unique Serial Number. "
+"Configure these products with Lot tracking."
+msgstr ""
+"Este asistente no admite productos con seguimiento por número de serie "
+"único. Configure estos productos con seguimiento por lote."
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard__total_distributed
+msgid "Total Distributed"
+msgstr "Total repartido"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__product_tracking
+msgid "Tracking"
+msgstr "Seguimiento"
+
+#. module: mrp_production_classification
+#: model:ir.model.fields,field_description:mrp_production_classification.field_mrp_classification_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: mrp_production_classification
+#. odoo-python
+#: code:addons/mrp_production_classification/wizard/mrp_classification_wizard_line.py:0
+msgid "You must specify an existing lot or a lot name."
+msgstr "Debe especificar un lote existente o un nombre de lote."
