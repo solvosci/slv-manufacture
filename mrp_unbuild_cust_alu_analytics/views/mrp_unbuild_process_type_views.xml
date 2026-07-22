@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_mrp_process_form" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.form</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="cmplanta_id"/>
+                                <field name="send_notification" widget="boolean_toggle"/>
+                            </group>
+                            <group>
+                                <field name="bom_line_ids" widget="many2many_tags"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients', 'open_attachments': True}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_mrp_process_tree" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.tree</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="active == False">
+                    <field name="active" column_invisible="1"/>
+                    <field name="name"/>
+                    <field name="cmplanta_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="send_notification" widget="boolean_toggle" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mrp_process_search" model="ir.ui.view">
+            <field name="name">mrp.unbuild.process.type.search</field>
+            <field name="model">mrp.unbuild.process.type</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" />
+                    <separator/>
+                    <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+    </data>
+
+</odoo>
