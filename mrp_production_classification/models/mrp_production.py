@@ -1,7 +1,7 @@
 # Copyright 2026 Solvos Consultoría Informática, S.L. (<https://www.solvos.es>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -11,7 +11,6 @@ class MrpProduction(models.Model):
     is_classification_type = fields.Boolean(
         related="picking_type_id.is_classification",
         string="Is Classification",
-        store=False,
     )
 
     classification_planned_qty = fields.Float(
@@ -28,15 +27,16 @@ class MrpProduction(models.Model):
         raw_moves = self.move_raw_ids.filtered(lambda m: m.state != "cancel")
         if len(raw_moves) != 1:
             raise UserError(
-                _(
+                self.env._(
                     "The Classification process expects a single bulk "
-                    f"component in the bill of materials. This MO has {len(raw_moves)}."
+                    "component in the bill of materials. This MO has %s.",
+                    len(raw_moves),
                 )
             )
 
         if not self.move_finished_ids.filtered(lambda m: m.state != "cancel"):
             raise UserError(
-                _(
+                self.env._(
                     "This MO has no finished product or byproducts defined "
                     "in the bill of materials."
                 )
@@ -57,9 +57,22 @@ class MrpProduction(models.Model):
 
         return {
             "type": "ir.actions.act_window",
-            "name": _("Classification Result"),
+            "name": self.env._("Classification Result"),
             "res_model": "mrp.classification.wizard",
             "res_id": wizard.id,
             "view_mode": "form",
             "target": "new",
         }
+
+    def button_mark_done(self):
+        classification_orders = self.filtered(
+            lambda p: p.picking_type_id.is_classification
+        )
+        if self - classification_orders:
+            return super().button_mark_done()
+
+        # Block the native consumption warning wizard from
+        # popping up when marking a classification order as done.
+        return super(
+            MrpProduction, self.with_context(skip_consumption=True)
+        ).button_mark_done()

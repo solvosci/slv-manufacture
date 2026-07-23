@@ -1,7 +1,7 @@
 # Copyright 2026 Solvos Consultoría Informática, S.L. (<https://www.solvos.es>)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -19,7 +19,7 @@ class MrpClassificationWizardLine(models.TransientModel):
         help="Original move of the finished product/byproduct in the MO.",
     )
     product_id = fields.Many2one("product.product", required=True, readonly=True)
-    product_tracking = fields.Selection(related="product_id.tracking", readonly=True)
+    product_tracking = fields.Selection(related="product_id.tracking")
 
     product_uom_id = fields.Many2one("uom.uom", required=True, readonly=True)
 
@@ -42,7 +42,9 @@ class MrpClassificationWizardLine(models.TransientModel):
             return self.lot_id
 
         if not self.lot_name:
-            raise UserError(_("You must specify an existing lot or a lot name."))
+            raise UserError(
+                self.env._("You must specify an existing lot or a lot name.")
+            )
 
         company = self.wizard_id.production_id.company_id
         lot = self.env["stock.lot"].search(

@@ -9,8 +9,8 @@ class StockLotSuggestNameWizard(models.TransientModel):
     _description = "Suggest Lot/Serial Name"
 
     lot_id = fields.Many2one("stock.lot", required=True, readonly=True)
-    product_id = fields.Many2one(related="lot_id.product_id", readonly=True)
-    current_name = fields.Char(related="lot_id.name", readonly=True)
+    product_id = fields.Many2one(related="lot_id.product_id")
+    current_name = fields.Char(related="lot_id.name")
     suggested_name = fields.Char(compute="_compute_suggested_name", store=True, readonly=False)
 
     @api.depends("lot_id")

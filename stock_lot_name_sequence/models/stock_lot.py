@@ -11,9 +11,8 @@ class StockLot(models.Model):
 
     @api.onchange("product_id")
     def _onchange_product_id_suggest_name(self):
-        for lot in self:
-            if lot.product_id:
-                lot.name = lot._suggest_name(lot.product_id, lot.company_id)
+        for lot in self.filtered(lambda x: x.product_id):
+            lot.name = lot._suggest_name(lot.product_id, lot.company_id)
 
     def action_suggest_name(self):
         self.ensure_one()

@@ -1,7 +1,7 @@
 # Copyright 2026 Solvos Consultoría Informática, S.L. (<https://www.solvos.es>)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare, float_is_zero
 
@@ -18,7 +18,10 @@ class MrpClassificationWizard(models.TransientModel):
         help="Move of the bulk component being consumed.",
     )
     original_product_id = fields.Many2one(
-        related="raw_move_id.product_id", string="Original Product", readonly=True
+        related="raw_move_id.product_id", string="Original Product"
+    )
+    product_uom_id = fields.Many2one(
+        related="raw_move_id.product_uom", string="Unit of Measure"
     )
 
     qty_to_consume = fields.Float(
@@ -71,7 +74,7 @@ class MrpClassificationWizard(models.TransientModel):
         serial_tracked = moves.product_id.filtered(lambda p: p.tracking == "serial")
         if serial_tracked:
             raise UserError(
-                _(
+                self.env._(
                     "This wizard does not support products tracked by unique "
                     "Serial Number. Configure these products with Lot tracking."
                 )
@@ -83,7 +86,7 @@ class MrpClassificationWizard(models.TransientModel):
         )
         if uom_error:
             raise UserError(
-                _(
+                self.env._(
                     "The unit of measure of these products is not compatible "
                     "with that of the bulk component."
                 )
@@ -120,9 +123,11 @@ class MrpClassificationWizard(models.TransientModel):
             and not self.force_confirm
         ):
             raise UserError(
-                _(
-                    f"The total distributed ({self.total_distributed}) differs "
-                    f"from the initially planned quantity ({self.qty_to_consume})."
+                self.env._(
+                    "The total distributed (%(total)s) differs "
+                    "from the initially planned quantity (%(planned)s).",
+                    total=self.total_distributed,
+                    planned=self.qty_to_consume,
                 )
             )
 
@@ -130,7 +135,10 @@ class MrpClassificationWizard(models.TransientModel):
             lambda x: float_compare(x.qty, 0.0, precision_digits=precision) < 0
         ):
             raise UserError(
-                _(f"The quantity of {line.product_id.display_name} cannot be negative.")
+                self.env._(
+                    "The quantity of %s cannot be negative.",
+                    line.product_id.display_name,
+                )
             )
 
         production = self.production_id
@@ -139,15 +147,18 @@ class MrpClassificationWizard(models.TransientModel):
         )
         if len(main_line) != 1:
             raise UserError(
-                _(
-                    f"Cannot find the main product line "
-                    f"({production.product_id.display_name}) in the distribution."
+                self.env._(
+                    "Cannot find the main product line "
+                    "(%s) in the distribution.",
+                    production.product_id.display_name,
                 )
             )
 
         if float_is_zero(main_line.qty, precision_digits=precision):
             raise UserError(
-                _("The order's main product cannot end up at 0 after the distribution.")
+                self.env._(
+                    "The order's main product cannot end up at 0 after the distribution."
+                )
             )
 
         byproduct_lines = self.line_ids - main_line
@@ -197,7 +208,7 @@ class MrpClassificationWizard(models.TransientModel):
         if not lines:
             if move.product_id.tracking != "none":
                 raise UserError(
-                    _(
+                    self.env._(
                         "There is no stock reserved for this order, so the "
                         "source lot cannot be determined."
                     )
@@ -225,7 +236,7 @@ class MrpClassificationWizard(models.TransientModel):
                 < 0
             ):
                 raise UserError(
-                    _(
+                    self.env._(
                         "There is not enough stock in the warehouse to cover "
                         "the total distributed. Check availability before "
                         "classifying."

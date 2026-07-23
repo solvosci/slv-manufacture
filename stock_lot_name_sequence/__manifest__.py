@@ -4,7 +4,7 @@
     "name": "Stock Lot Name Sequence",
     "version": "19.0.1.0.0",
     "category": "Inventory",
-    "website": "https://github.com/solvosci/slv-manufacture",
+    "website": "https://github.com/solvosci/slv-stock",
     "summary": "Suggests lot/serial names using a CCCC_YYYYMMDD_NN pattern "
                 "(product code, date, daily sequence)",
     "author": "Solvos",
