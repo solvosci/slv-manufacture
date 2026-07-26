@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_picking_type_form_inherit_custom_location" model="ir.ui.view">
+        <field name="name">stock.picking.type.form.inherit.mrp.custom.location</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='default_location_src_id']" position="after">
+                <field name="is_pbm_manufacture_type" invisible="1"/>
+                <field
+                    name="mrp_custom_src_location"
+                    attrs="{
+                        'invisible': [('is_pbm_manufacture_type', '=', False)],
+                        'readonly':  [('is_pbm_manufacture_type', '=', False)]
+                    }"
+                    widget="boolean_toggle"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
