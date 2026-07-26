@@ -82,6 +82,7 @@ class MrpProduction(models.Model):
                     'custom_location_src_id': custom_loc.id,
                     'location_src_id': custom_loc.id,
                 })
+                # production.move_raw_ids.write({'location_id': custom_loc.id})
 
         return production
 
@@ -119,6 +120,9 @@ class MrpProduction(models.Model):
                     'custom_location_src_id': custom_loc.id,
                     'location_src_id': custom_loc.id,
                 })
+                # TODO make the same at other cases
+                # production.move_raw_ids.write({'location_id': custom_loc.id})
+
 
         # --- Case 2: no longer requires custom location -------------------------
         to_remove = affected.filtered(
@@ -207,6 +211,7 @@ class MrpProduction(models.Model):
                 and m.state not in ('done', 'cancel')
             )
             if upstream_to_fix:
+                upstream_to_fix.picking_id.write({'location_dest_id': custom_loc.id})
                 upstream_to_fix.write({'location_dest_id': custom_loc.id})
                 upstream_to_fix.mapped('move_line_ids').write(
                     {'location_dest_id': custom_loc.id}
