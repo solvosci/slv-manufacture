@@ -40,7 +40,7 @@ class MrpProduction(models.Model):
         if not pbm_location:
             return False
 
-        location_name = self.name or _('New manufacturing order')
+        location_name = (self.name or _('New manufacturing order')).replace('/', '-')
         return self.env['stock.location'].create({
             'name': location_name,
             'location_id': pbm_location.id,
@@ -159,6 +159,58 @@ class MrpProduction(models.Model):
                     'custom_location_src_id': custom_loc.id,
                     'location_src_id': custom_loc.id,
                 })
+
+        return result
+
+    def action_confirm(self):
+        """After standard confirmation, ensure both sides of the Pre-Production
+        handoff point to the per-order custom location instead of the generic
+        pbm_loc_id of the warehouse.
+
+        Two corrections are needed:
+
+        1. move_raw_ids (consumption moves of the MO) — their location_id may
+           have been reset to the generic pbm_loc_id by Odoo's own onchange on
+           picking_type_id, which overwrites location_src_id with the operation
+           type's default before the moves are created.  We fix location_id on
+           those moves (and their move_line_ids) so the MO consumes from the
+           right place.
+
+        2. move_orig_ids of each raw move (the 'Pick Components' moves) — the
+           pull rule pbm_mto_pull_id stamps location_dest_id = pbm_loc_id on
+           every move it generates, regardless of what the consuming move
+           actually declares.  We fix location_dest_id so the picking delivers
+           to the same custom location the MO will consume from.
+        """
+        result = super().action_confirm()
+
+        for production in self.filtered(lambda p: p.custom_location_src_id):
+            custom_loc = production.custom_location_src_id
+            pbm_loc = production._get_warehouse_pbm_location()
+            if not pbm_loc:
+                continue
+
+            # --- 1. Raw moves (consumption): fix location_id ----------------
+            raw_to_fix = production.move_raw_ids.filtered(
+                lambda m: m.location_id.id == pbm_loc.id
+                and m.state not in ('done', 'cancel')
+            )
+            if raw_to_fix:
+                raw_to_fix.write({'location_id': custom_loc.id})
+                raw_to_fix.mapped('move_line_ids').write(
+                    {'location_id': custom_loc.id}
+                )
+
+            # --- 2. Upstream moves (Pick Components): fix location_dest_id --
+            upstream_to_fix = production.move_raw_ids.mapped('move_orig_ids').filtered(
+                lambda m: m.location_dest_id.id == pbm_loc.id
+                and m.state not in ('done', 'cancel')
+            )
+            if upstream_to_fix:
+                upstream_to_fix.write({'location_dest_id': custom_loc.id})
+                upstream_to_fix.mapped('move_line_ids').write(
+                    {'location_dest_id': custom_loc.id}
+                )
 
         return result
 
