@@ -8,10 +8,12 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "category": "Manufacturing",
     "website": "https://github.com/solvosci/slv-manufacture",
     "depends": ["mrp_project_analytic", "purchase"],
-    "data": [],
+    "data": [
+        "views/account_move_line_view.xml",
+    ],
     "installable": True,
 }
