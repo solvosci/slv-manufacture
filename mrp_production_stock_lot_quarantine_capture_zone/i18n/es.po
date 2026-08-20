@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_stock_lot_quarantine_capture_zone
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-02 12:51+0000\n"
+"PO-Revision-Date: 2026-09-02 12:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_stock_lot_quarantine_capture_zone
+#: model:ir.model.fields,field_description:mrp_production_stock_lot_quarantine_capture_zone.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: mrp_production_stock_lot_quarantine_capture_zone
+#: model:ir.model.fields,field_description:mrp_production_stock_lot_quarantine_capture_zone.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_production_stock_lot_quarantine_capture_zone
+#: model:ir.model,name:mrp_production_stock_lot_quarantine_capture_zone.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Orden de fabricación"
+
+#. module: mrp_production_stock_lot_quarantine_capture_zone
+#. odoo-python
+#: code:addons/mrp_production_stock_lot_quarantine_capture_zone/models/mrp_production.py:0
+msgid ""
+"Product %(product)s was missing INTECMAR product type(s), present in its "
+"consumed components added automatically so the toxin block could be "
+"evaluated."
+msgstr ""
+"Al producto %(product)s le faltaban tipos de producto INTECMAR presentes en "
+"sus componentes consumidos, añadidos automáticamente para poder evaluar el "
+"bloqueo por toxinas."
