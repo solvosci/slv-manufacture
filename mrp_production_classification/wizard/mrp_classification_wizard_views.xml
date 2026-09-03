@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_classification_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.classification.wizard.form</field>
+        <field name="model">mrp.classification.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Classification Result">
+                <group>
+                    <group>
+                        <field name="production_id" invisible="1" />
+                        <field name="raw_move_id" invisible="1" />
+                        <field name="original_product_id" />
+                        <field name="product_uom_id" groups="uom.group_uom" />
+                        <field name="qty_to_consume" />
+                        <field name="confirm_and_process" />
+                    </group>
+                    <group>
+                        <field name="total_distributed" />
+                        <field
+                            name="difference"
+                            decoration-danger="difference != 0"
+                            decoration-success="difference == 0"
+                        />
+                        <field name="force_confirm" invisible="difference == 0" />
+                    </group>
+                </group>
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="difference == 0"
+                >
+                    The total distributed differs from the initially planned quantity.
+                    This is just a warning; the actual consumption of the original product
+                    will always equal the total distributed. Check the confirmation box to continue.
+                </div>
+
+                <field name="line_ids">
+                    <list editable="bottom" create="false" delete="false">
+                        <field name="move_id" column_invisible="1" />
+                        <field name="product_id" readonly="1" />
+                        <field name="qty" />
+                        <field
+                            name="product_uom_id"
+                            readonly="1"
+                            groups="uom.group_uom"
+                        />
+                        <field name="lot_id" invisible="product_tracking == 'none'" />
+                        <field
+                            name="lot_name"
+                            invisible="product_tracking == 'none' or lot_id"
+                        />
+                    </list>
+                </field>
+
+                <footer>
+                    <button
+                        name="button_confirm"
+                        type="object"
+                        string="Confirm Classification"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
