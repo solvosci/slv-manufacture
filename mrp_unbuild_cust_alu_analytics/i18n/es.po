@@ -1,0 +1,806 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unbuild_cust_alu_analytics
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-20 09:42+0000\n"
+"PO-Revision-Date: 2025-01-20 09:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__active
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__active
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_25
+msgid "Al"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test,name:mrp_unbuild_cust_alu_analytics.qc_test_1
+msgid "Analysis"
+msgstr "Análisis"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__analytic_ids
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_incidence_ids_analytics
+#, python-format
+msgid "Analytics"
+msgstr "Analíticas"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_type_view_search
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_description_form
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_type_form
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_process_form
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_process_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_10
+msgid "Be"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_24
+msgid "Bg"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_11
+msgid "Bi"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Lista de materiales"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Break Time"
+msgstr "Tiempo de descanso"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__cmplanta_id
+msgid "CMPlanta ID"
+msgstr "ID CMPlanta"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#, python-format
+msgid "Can't create folder"
+msgstr "No se pudo crear la carpeta"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_12
+msgid "Cd"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_13
+msgid "Co"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__code
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__code
+msgid "Code"
+msgstr "Código"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_res_company
+msgid "Companies"
+msgstr "Compañias"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_6
+msgid "Cr"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__create_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__create_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__create_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__create_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__create_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_3
+msgid "Cu"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Date"
+msgstr "Fecha"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_description_id
+msgid "Description"
+msgstr "Descripción"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__detail
+msgid "Detail"
+msgstr "Detalle"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__display_name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_cust_alu_analytics_mpr_unbuild_xlsx__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__duration
+msgid "Duration"
+msgstr "Duración"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__email_cc
+msgid "Email cc"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "End Date"
+msgstr "Fecha fin"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "End Hour"
+msgstr "Hora fin"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_2
+msgid "Fe"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Filters"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_14
+msgid "Ga"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Gross Time"
+msgstr "Tiempo bruto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Group by..."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_cust_alu_analytics_mpr_unbuild_xlsx__id
+msgid "ID"
+msgstr "Id."
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_process_type_form_tablet_view
+msgid "INCIDENCES"
+msgstr "INCIDENCIAS"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_needaction
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_error
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__state__in_progress
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "In progress"
+msgstr "En progreso"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__incidence_ids
+msgid "Incidence"
+msgstr "Incidencia"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__incidence_count
+msgid "Incidence Count"
+msgstr "Cantidad de Incidencias"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_description_form
+msgid "Incidence Description"
+msgstr "Descripción de incidencias"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__incidence_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Incidence Type"
+msgstr "Tipo de Incidencia"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_incidence_type
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_incidence_type
+msgid "Incidence Types"
+msgstr "Tipos de Incidencia"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_incidence_type.py:0
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_incidences_tree_form_reduced_view
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_incidence
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__incidence_ids
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_incidence
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_form_incidence_ids_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_type_form
+#, python-format
+msgid "Incidences"
+msgstr "Incidencias"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_incidence_description
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_incidence_description
+msgid "Incidences Description"
+msgstr "Descripción de incidencias"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type____last_update
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_report_mrp_unbuild_cust_alu_analytics_mpr_unbuild_xlsx____last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación en"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__write_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__write_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_uid
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__write_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__write_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__write_date
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_15
+msgid "Li"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__email_cc
+msgid "List of cc from incoming emails."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__bom_line_ids
+msgid "Lists of Materials"
+msgstr "Lista de materiales"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_incidence
+msgid "MRP Incidence"
+msgstr "Incidencia MRP"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.act_window,name:mrp_unbuild_cust_alu_analytics.action_mrp_process
+msgid "MRP Process"
+msgstr "Proceso MRP"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__machine
+msgid "Machine"
+msgstr "Máquina"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_5
+msgid "Mg"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_qc_inspection_line__minor
+msgid "Minor"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_4
+msgid "Mn"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_16
+msgid "Na"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_description__name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_incidence_type__name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__name
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Net Time"
+msgstr "Tiempo Neto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_7
+msgid "Ni"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "No"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_18
+msgid "Pb"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.ui.menu,name:mrp_unbuild_cust_alu_analytics.menu_mrp_process
+msgid "Process Types"
+msgstr "Tipos de proceso"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_bom__process_type_id
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__process_type_id
+msgid "Process type"
+msgstr "Tipo de proceso"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_product_product__process_type_ids
+msgid "Process types"
+msgstr "Tipos de proceso"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_qc_inspection_line
+msgid "Quality control inspection line"
+msgstr "Línea de inspección del control de calidad"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_qc_test
+msgid "Quality control test"
+msgstr "Test de control de calidad"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_bom_totals
+msgid "Quant Totals for BoM based Unbuild"
+msgstr "Resúmenes de cantidades para LdM basado en Desconstrucción"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.server,name:mrp_unbuild_cust_alu_analytics.cron_ir_actions_server
+#: model:ir.cron,cron_name:mrp_unbuild_cust_alu_analytics.cron
+#: model:ir.cron,name:mrp_unbuild_cust_alu_analytics.cron
+msgid "Read mrp.unbuild QC inspection from XML"
+msgstr "Leer Inspecciones QC de despieces desde XML"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Rest Break Time"
+msgstr "Resto paradas"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_unbuild_bom_quants_view_form_extended_only_save
+msgid "Save"
+msgstr "Guardar"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_19
+msgid "Sb"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Scheduled Time"
+msgstr "Tiempo programado"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__send_notification
+msgid "Send notification when unbuild is completed"
+msgstr "Enviar notificación cuando el despiece esté completado"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild__shift_stop_time
+msgid "Shift Stop Time"
+msgstr "Total paradas técnicas"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_1
+msgid "Si"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_20
+msgid "Sn"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics.selection__mrp_unbuild_incidence__state__solved
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Solved"
+msgstr "Resuelto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_21
+msgid "Sr"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Start Date"
+msgstr "Fecha inicio"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Start Hour"
+msgstr "Hora inicio"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__start_incidence
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Start Incidence"
+msgstr "Inicio de incidencia"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__state
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "State"
+msgstr "Estado"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "TM/h Gross"
+msgstr "TM/h Bruto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "TM/h Net"
+msgstr "TM/h Neto"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "TOTAL"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__unbuild_date
+msgid "This date will be used in further stock moves, when unbuild is done"
+msgstr ""
+"Esta fecha se usará en los movimientos de stock que se generen cuando el "
+"despiece se complete"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_9
+msgid "Ti"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Total"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_bom_totals__total_qty_percentage
+msgid "Total Qty Percentage"
+msgstr "Porcentaje cantidad total"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__incidence_type_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.mrp_incidence_description_view_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__unbuild_id
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.res_config_settings_unbuild_workflow_view_form
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Unbuild"
+msgstr "Despiece"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_incidence__unbuild_date
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics.view_mrp_incidence_search
+msgid "Unbuild Date"
+msgstr "Fecha de despiece"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Orden de deconstrucción"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_unbuild_process_type
+msgid "Unbuild Process Type"
+msgstr "Tipo de proceso de deconstrucción"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.actions.report,name:mrp_unbuild_cust_alu_analytics.mrp_unbuild_cust_alu_analytics_report
+msgid "Unbuild XLSX"
+msgstr "Despieces XLSX"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Unbuilds"
+msgstr "Despieces"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_mrp_unbuild_process_type__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_res_company__xml_analytic_path
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics.field_res_config_settings__xml_analytic_path
+msgid "XML Analytic Path"
+msgstr "Ruta de las analíticas XML"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/models/mrp_unbuild.py:0
+#, python-format
+msgid "XML Analytic Path not defined"
+msgstr "Ruta de las analíticas XML no definida"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: code:addons/mrp_unbuild_cust_alu_analytics/reports/mrp_unbuild_cust_alu_analytics_xlsx.py:0
+#, python-format
+msgid "Yes"
+msgstr "Si"
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_8
+msgid "Zn"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:qc.test.question,name:mrp_unbuild_cust_alu_analytics.test_line_23
+msgid "Zr"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_incidence_description
+msgid "mrp.incidence.description"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_mrp_incidence_type
+msgid "mrp.incidence.type"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics.model_report_mrp_unbuild_cust_alu_analytics_mpr_unbuild_xlsx
+msgid "report.mrp_unbuild_cust_alu_analytics.mpr_unbuild_xlsx"
+msgstr ""

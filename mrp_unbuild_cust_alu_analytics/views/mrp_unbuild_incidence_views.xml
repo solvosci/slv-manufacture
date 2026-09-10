@@ -1,0 +1,87 @@
+<odoo>
+
+    <record id="view_mrp_incidence_tree" model="ir.ui.view">
+        <field name="name">mrp.unbuild.incidence.tree</field>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="start_incidence" />
+                <field name="unbuild_id"/>
+                <field name="unbuild_date"/>
+                <field name="incidence_type_id"/>
+                <field name="incidence_description_id"/>
+                <field name="detail"/>
+                <field name="duration" widget="float_time"/>
+                <field name="machine"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mrp_incidence_search" model="ir.ui.view">
+        <field name="name">mrp.unbuild.incidence.search</field>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="incidence_type_id"/>
+                <field name="detail"/>
+                <group expand="0" string="Filters">
+                    <filter name="in_progress" string="In progress" domain="[('state', '=', 'in_progress')]"/>
+                    <filter name="solved" string="Solved" domain="[('state', '=', 'solved')]"/>
+                    <filter name="unbuild_date" string="Unbuild Date" date="unbuild_date"/>
+                    <filter name="start_incidence" string="Start Incidence" date="start_incidence"/>
+                </group>
+                <group expand="0" string="Group by...">
+                    <filter string="Unbuild" name="groupby_unbuild_id" context="{'group_by': 'unbuild_id'}"/>
+                    <filter string="Incidence Type" name="groupby_incidence_type_id" context="{'group_by': 'incidence_type_id'}"/>
+                    <filter string="State" name="groupby_state" context="{'group_by': 'state'}"/>
+                    <filter string="Unbuild Date" name="groupby_unbuild_date" context="{'group_by': 'unbuild_date'}"/>
+                    <filter string="Start Incidence" name="groupby_start_incidence" context="{'group_by': 'start_incidence'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree View Tablet -->
+    <record id="mrp_unbuild_incidence_process_type_tree_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.view.tree (process_id)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <tree class="tablet_font_size">
+                <field name="start_incidence"/>
+                <field name="incidence_type_id"/>
+                <field name="incidence_description_id"/>
+                <field name="detail"/>
+                <field name="duration" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View Tablet -->
+    <record id="mrp_unbuild_incidence_process_type_form_reduced_view" model="ir.ui.view">
+        <field name="name">mrp.unbuild.view.form (process_id)</field>
+        <field name="priority" eval="100"/>
+        <field name="model">mrp.unbuild.incidence</field>
+        <field name="arch" type="xml">
+            <form class="tablet_font_size">
+                <group>
+                    <group>
+                        <field name="incidence_type_id" required="1"/>
+                        <field name="start_incidence" required="1"/>
+                        <field name="duration" widget="float_time"/>
+                    </group>
+                    <group>
+                        <field name="incidence_description_id" domain="[('incidence_type_id', '=', incidence_type_id)]" required="1"/>
+                        <field name="state" required="1"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="machine"/>
+                    <field name="detail"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
