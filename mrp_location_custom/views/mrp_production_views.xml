@@ -14,7 +14,13 @@
                     readonly="1"
                     attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
                 />
-            </xpath>
+                <field
+                    name="custom_route_id"
+                    string="Custom route"
+                    readonly="1"
+                    attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
+                />
+            </xpath>            
 
         </field>
     </record>

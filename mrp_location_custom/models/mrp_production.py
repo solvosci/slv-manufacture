@@ -15,6 +15,15 @@ class MrpProduction(models.Model):
         ),
     )
 
+    custom_route_id = fields.Many2one(
+        comodel_name="stock.location.route",
+        string="Custom route for this MO",
+        copy=False,
+        help="""
+            When a MO has a custom Pre-Production location, a custom route is required as well
+        """,
+    )
+
     # -------------------------------------------------------------------------
     # Helpers
     # -------------------------------------------------------------------------
@@ -65,6 +74,73 @@ class MrpProduction(models.Model):
         if not has_stock:
             loc.write({'active': False})
 
+    def _create_custom_route(self):
+        """Create a dedicated 2-step route (Pick + Make) for this manufacturing
+        order, using the per-order custom location as the intermediate point.
+        The route is created with the lowest possible sequence so existing
+        warehouse rules take precedence in any other context.
+
+        Stores the created route in a new field  custom_route_id  (Many2one to
+        stock.route) that must be declared alongside this method.
+        """
+        self.ensure_one()
+        custom_loc = self.custom_location_src_id
+        warehouse  = self.picking_type_id.warehouse_id
+
+        # Picking types involved
+        # pbm_type  : 'Pick Components' operation type of the warehouse
+        # manu_type : 'Manufacturing'   operation type (self.picking_type_id)
+        pbm_type  = warehouse.pbm_type_id
+        manu_type = self.picking_type_id
+
+        route = self.env['stock.location.route'].create({
+            'name': "%s: Select components and then produce (%s)" % (warehouse.name, self.name),
+            'sequence': 1000,          # highest sequence = lowest priority
+            'company_id': self.company_id.id,
+            'warehouse_selectable': True,
+            'warehouse_ids': [(4, warehouse.id)],
+        })
+
+        # Rule 1 — Pick Components: Stock → custom_loc
+        # Mirrors pbm_mto_pull_id but with exact location_id = custom_loc.
+        self.env['stock.rule'].create({
+            'name': '%s: %s → %s' % (warehouse.code, warehouse.lot_stock_id.name, custom_loc.name),
+            'route_id': route.id,
+            'action': 'pull',
+            'procure_method': 'make_to_stock',   # take from stock
+            'location_id': custom_loc.id,         # where components are needed
+            'location_src_id': warehouse.lot_stock_id.id,  # from stock
+            'picking_type_id': pbm_type.id,
+            'warehouse_id': warehouse.id,
+            'group_propagation_option': 'propagate',
+            'company_id': self.company_id.id,
+            'sequence': 10,
+        })
+
+        # Rule 2 — Manufacture: custom_loc → production location
+        # Mirrors manufacture_pull_id but with location_src_id = custom_loc.
+        production_location_id = warehouse._get_production_location()
+        self.env['stock.rule'].create({
+            'name': '%s: %s → %s' % (warehouse.code, custom_loc.name, production_location_id.name),
+            'route_id': route.id,
+            'action': 'pull',
+            'procure_method': 'make_to_order',
+            'location_id': production_location_id.id,
+            'location_src_id': custom_loc.id,
+            'picking_type_id': manu_type.id,
+            'warehouse_id': warehouse.id,
+            'group_propagation_option': 'propagate',
+            'company_id': self.company_id.id,
+            'sequence': 20,
+        })
+
+        self.custom_route_id = route
+
+    def _archive_custom_route(self):
+        route_ids = self.custom_route_id
+        route_ids.rule_ids.write({'active': False})
+        route_ids.write({'active': False})        
+
     # -------------------------------------------------------------------------
     # ORM overrides
     # -------------------------------------------------------------------------
@@ -82,7 +158,8 @@ class MrpProduction(models.Model):
                     'custom_location_src_id': custom_loc.id,
                     'location_src_id': custom_loc.id,
                 })
-                # production.move_raw_ids.write({'location_id': custom_loc.id})
+                # TODO check if moves are still at 'draft' state
+                production.move_raw_ids.write({'location_id': custom_loc.id})
 
         return production
 
@@ -121,7 +198,8 @@ class MrpProduction(models.Model):
                     'location_src_id': custom_loc.id,
                 })
                 # TODO make the same at other cases
-                # production.move_raw_ids.write({'location_id': custom_loc.id})
+                # TODO check if moves are still at 'draft' state
+                production.move_raw_ids.write({'location_id': custom_loc.id})
 
 
         # --- Case 2: no longer requires custom location -------------------------
@@ -167,57 +245,21 @@ class MrpProduction(models.Model):
         return result
 
     def action_confirm(self):
-        """After standard confirmation, ensure both sides of the Pre-Production
-        handoff point to the per-order custom location instead of the generic
-        pbm_loc_id of the warehouse.
+        for mrp in self.filtered(lambda x: x.custom_location_src_id):
+            mrp._create_custom_route()
+        return super().action_confirm()
 
-        Two corrections are needed:
+    def _action_cancel(self):
+        res = super()._action_cancel()
+        self._archive_custom_route()
+        # TODO custom location archive management
+        return res
 
-        1. move_raw_ids (consumption moves of the MO) — their location_id may
-           have been reset to the generic pbm_loc_id by Odoo's own onchange on
-           picking_type_id, which overwrites location_src_id with the operation
-           type's default before the moves are created.  We fix location_id on
-           those moves (and their move_line_ids) so the MO consumes from the
-           right place.
-
-        2. move_orig_ids of each raw move (the 'Pick Components' moves) — the
-           pull rule pbm_mto_pull_id stamps location_dest_id = pbm_loc_id on
-           every move it generates, regardless of what the consuming move
-           actually declares.  We fix location_dest_id so the picking delivers
-           to the same custom location the MO will consume from.
-        """
-        result = super().action_confirm()
-
-        for production in self.filtered(lambda p: p.custom_location_src_id):
-            custom_loc = production.custom_location_src_id
-            pbm_loc = production._get_warehouse_pbm_location()
-            if not pbm_loc:
-                continue
-
-            # --- 1. Raw moves (consumption): fix location_id ----------------
-            raw_to_fix = production.move_raw_ids.filtered(
-                lambda m: m.location_id.id == pbm_loc.id
-                and m.state not in ('done', 'cancel')
-            )
-            if raw_to_fix:
-                raw_to_fix.write({'location_id': custom_loc.id})
-                raw_to_fix.mapped('move_line_ids').write(
-                    {'location_id': custom_loc.id}
-                )
-
-            # --- 2. Upstream moves (Pick Components): fix location_dest_id --
-            upstream_to_fix = production.move_raw_ids.mapped('move_orig_ids').filtered(
-                lambda m: m.location_dest_id.id == pbm_loc.id
-                and m.state not in ('done', 'cancel')
-            )
-            if upstream_to_fix:
-                upstream_to_fix.picking_id.write({'location_dest_id': custom_loc.id})
-                upstream_to_fix.write({'location_dest_id': custom_loc.id})
-                upstream_to_fix.mapped('move_line_ids').write(
-                    {'location_dest_id': custom_loc.id}
-                )
-
-        return result
+    def button_mark_done(self):
+        action = super().button_mark_done()
+        self._archive_custom_route()
+        # TODO custom location archive management
+        return action
 
     # -------------------------------------------------------------------------
     # Onchange for UX
