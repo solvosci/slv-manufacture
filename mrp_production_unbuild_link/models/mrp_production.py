@@ -7,9 +7,10 @@ from odoo import fields, models
 class ManufactureOrder(models.Model):
     _inherit = "mrp.production"
 
-    finished_unbuild_id = fields.Many2one(
+    finished_unbuild_ids = fields.One2many(
         comodel_name="mrp.unbuild",
+        inverse_name="mo_id",
+        domain=[("state", "=", "done")],
         string="Unbuild",
-        readonly=True,
-        help="Finished unbuild for this production order.",
+        help="Finished unbuilds for this production order.",
     )

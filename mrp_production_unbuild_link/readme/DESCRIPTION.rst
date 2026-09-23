@@ -1,4 +1,3 @@
-For a MRP Production provides a link to linked Unbuild.
+For a MRP Production provides a link to linked Unbuilds.
 
-This addon also provides an extra control in order to prevent unbuild a MRP
-more than once.
+Only finished unbuilds are considered for this computation.
