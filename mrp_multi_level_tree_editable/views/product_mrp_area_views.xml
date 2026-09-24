@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_mrp_area_tree" model="ir.ui.view">
+        <field name="name">	product.mrp.area.tree (in mrp_multi_level_tree_editable)</field>
+        <field name="model">product.mrp.area</field>
+        <field name="inherit_id" ref="mrp_multi_level.product_mrp_area_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="editable">top</attribute>
+            </tree>
+        </field>
+    </record>
+</odoo>
