@@ -224,19 +224,20 @@ class FCDWeightScaleLog(models.Model):
     def generate_barcode_base(self):
         # 02 not is a ean13 has 14 characters(ean13 + 0)
         ean13 = '0%s' % (self.output_product_id.ean13) if self.output_product_id.ean13 else "00000000000000"
-        qty = '{:06.0f}'.format(self.quantity * 100)
+        qty = '{:06.0f}'.format(self.quantity * 1000)
         lot = self.fcd_document_line_id.lot_id.name
+        expiration_date = self.expiration_date.strftime('%y%m%d') if self.expiration_date else "000000"
 
-        return ean13, qty, lot
+        return ean13, qty, expiration_date, lot
 
     def generate_barcode(self):
-        ean13, qty, lot = self.generate_barcode_base()
+        ean13, qty, expiration_date, lot = self.generate_barcode_base()
         # chr(29) = \x1D
-        return '02%s%s3102%s%s10%s' % (ean13, chr(29), qty, chr(29), lot)
+        return '02%s%s3103%s%s17%s%s10%s' % (ean13, chr(29), qty, chr(29), expiration_date, chr(29), lot)
 
     def generate_barcode_text(self):
-        ean13, qty, lot = self.generate_barcode_base()
-        return '(02)%s(3102)%s(10)%s' % (ean13, qty, lot)
+        ean13, qty, expiration_date, lot = self.generate_barcode_base()
+        return '(02)%s(3103)%s(17)%s(10)%s' % (ean13, qty, expiration_date, lot)
 
     def generate_report_tag_zpl(self):
         tag_fields = {
