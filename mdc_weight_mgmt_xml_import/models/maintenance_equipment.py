@@ -239,7 +239,7 @@ class MaintenanceEquipment(models.Model):
         end_str = self.get_text_from('Production_End', root=root, nsmap=nsmap)
         period_str = self.get_statvalue_by_id('11', root=root, nsmap=nsmap)
         weight_nom = self.get_statvalue_by_id('21', root=root, nsmap=nsmap)
-        weight_dec = self.get_statvalue_by_id('1261', root=root, nsmap=nsmap)
+        #weight_dec = self.get_statvalue_by_id('1261', root=root, nsmap=nsmap)
         unit_ok = self.get_statvalue_by_id('35', unit='6', root=root, nsmap=nsmap)
         weight_ok_tot_qty = self.get_statvalue_by_id('30', unit='4', root=root, nsmap=nsmap)
         unit_reject_low = self.get_statvalue_by_id('32', unit='6', root=root, nsmap=nsmap)
@@ -299,7 +299,7 @@ class MaintenanceEquipment(models.Model):
                 'end': end_dt,
                 'period_min': period_min,
                 'weight_nom_qty': float(weight_nom or 0),
-                'weight_dec_qty': float(weight_dec or 0),
+                #'weight_dec_qty': float(weight_dec or 0),
                 'unit_ok': int(unit_ok or 0),
                 'weight_ok_tot_qty': float(weight_ok_tot_qty or 0),
                 'unit_reject_low': int(unit_reject_low or 0),
