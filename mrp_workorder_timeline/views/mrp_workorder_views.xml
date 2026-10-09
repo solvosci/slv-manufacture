@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_workorder_view_timeline" model="ir.ui.view">
+        <field name="name">mrp.workorder.view.timeline</field>
+        <field name="model">mrp.workorder</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline
+                string="Work Orders"
+                date_start="date_planned_start"
+                date_stop="date_planned_finished"
+                default_group_by="workcenter_id"
+                event_open_popup="true"
+                zoomKey="ctrlKey"
+                mode="week"
+                colors="#ec7063:state=='cancel';#2ecb71:state=='done';#f5b041:state=='progress';#5dade2:state=='ready';"
+            >
+                <field name="name" />
+                <field name="production_id" />
+                <field name="workcenter_id" />
+                <field name="state" />
+                <templates>
+                    <div t-name="timeline-item">
+                        <div t-out="record.name" />
+                        <span t-if="record.production_id" t-out="record.production_id[1]" />
+                    </div>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+
+    <record id="mrp.action_mrp_workorder_workcenter" model="ir.actions.act_window">
+        <field name="name">Work Orders Planning</field>
+        <field name="res_model">mrp.workorder</field>
+        <field name="view_mode">timeline</field>
+        <field name="domain">[("state", "!=", "cancel")]</field>
+    </record>
+
+</odoo>
