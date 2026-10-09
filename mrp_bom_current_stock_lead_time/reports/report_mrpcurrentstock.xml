@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_mrpbom_current_stock_pdf"
+        inherit_id="mrp_bom_current_stock.report_mrpbom_current_stock_pdf"
+    >
+        <xpath expr="//table/thead/tr[last()]/th[last()]" position="after">
+            <th>Supp. type</th>
+            <th>Days</th>
+        </xpath>
+        <xpath expr="//table/tbody/tr[last()]/td[last()]" position="after">
+            <td><span t-field="l.supply_type" /></td>
+            <td><span t-field="l.lead_time_days" /></td>
+        </xpath>
+    </template>
+</odoo>
