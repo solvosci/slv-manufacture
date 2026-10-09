@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="mrp_bom_current_stock_view_form2" model="ir.ui.view">
+        <field name="name">mrp.bom.current.stock.form2.lead.time (in mrp_bom_current_stock_lead_time)</field>
+        <field name="model">mrp.bom.current.stock</field>
+        <field name="inherit_id" ref="mrp_bom_current_stock.mrp_bom_current_stock_view_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='step_2']/field[@name='bom_id']" position="after">
+                <field name="total_lead_time_days" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+                <attribute name="decoration-warning">needs_supply</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='qty_available_in_source_loc']"
+                position="after"
+            >
+                <field name="supply_type" />
+                <field name="lead_time_days" />
+                <field name="needs_supply" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
