@@ -64,7 +64,10 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Analytics">
+                    <page
+                        string="Analytics"
+                        groups="quality_control_oca.group_quality_control_user"
+                    >
                         <field name="analytic_ids" class="oe_editable_tree_only">
                         </field>
                     </page>
