@@ -1,7 +1,7 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
-from odoo import _, models, fields
+from odoo import _, api, models, fields
 from odoo.exceptions import ValidationError
 from .mrp_unbuild_process_type import COST_UNIT_SELECTION_FIELDS
 
@@ -20,14 +20,12 @@ class ProductPricelist(models.Model):
 
     unbuild_process_type_id = fields.Many2one(
         comodel_name="mrp.unbuild.process.type",
-        readonly=True,
         copy=False,
         ondelete="restrict",
     )
     unbuild_process_type_cost = fields.Selection(
         selection=COST_UNIT_SELECTION_FIELDS,
         default=False,
-        readonly=True,
         copy=False,
     )
 
@@ -41,38 +39,40 @@ class ProductPricelist(models.Model):
                 "Cannot activate a pricelist with a linked unbuild process type!"
             ))
         return super().write(values)
-    
-    def unlink(self):
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_unbuild_process_type(self):        
         if self.unbuild_process_type_id:
             raise ValidationError(_(
                 "Cannot delete a pricelist with a linked unbuild process type!"
             ))
-        return super().unlink()
     
     def _update_cost_value(self, cost_value):
         self.ensure_one()
         if not self.unbuild_process_type_id:
             return
-        today = fields.Date.today()
-        yesterday = today - timedelta(days=1)
+        now = fields.Datetime.now()
+        today = fields.Date.context_today(self)
+        prev_now = now - timedelta(seconds=1)
         # There are the following cases:
         # 1. Change today's cost. => an item starting from today is found
         # 2. Close a past cost => an item starting from before today (and not closed) is found => close with yesterday
         item_ids = self.with_context(active_test=False).item_ids
         # If should be only one
         item_1 = item_ids.filtered(
-            lambda x: x.date_start and x.date_start <= today and not x.date_end
+            lambda x: x.date_start and x.date_start <= now and not x.date_end
         )
-        if item_1 and item_1.date_start == today:
+        # TODO timezone comparison
+        if item_1 and item_1.date_start.date() == today:
             item_1.write({"fixed_price": cost_value})
         else:
-            item_1.write({"date_end": yesterday})
+            item_1.write({"date_end": prev_now})
             self.item_ids.create({
                 "pricelist_id": self.id,
                 "applied_on": "3_global",
                 "compute_price": "fixed",
                 "fixed_price": cost_value,
-                "date_start": today,
+                "date_start": now,
                 "date_end": False,
             })
 

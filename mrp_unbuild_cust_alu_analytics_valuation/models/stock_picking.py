@@ -51,9 +51,9 @@ class StockPicking(models.Model):
 
     def action_view_valuation_data(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "mrp_unbuild_cust_alu_analytics_valuation.action_view_valuation_data"
-        ).read()[0]
+        )
         action["res_id"] = self.id
         return action
 
@@ -64,10 +64,9 @@ class StockPicking(models.Model):
         for picking in pick_out:
             picking.val_cost = sum(
                 move._get_move_cost()
-                for move in picking.move_lines
+                for move in picking.move_ids
             )
-        # TODO replace write() by update()
-        (self - pick_out).write({
+        (self - pick_out).update({
             "val_cost": 0.0,
         })
     
@@ -78,7 +77,7 @@ class StockPicking(models.Model):
         fields = []
         if "sale_id" in self:
             # sale_stock is already installed
-            fields.append("move_lines.sale_line_id")
+            fields.append("move_ids.sale_line_id")
         return fields
     
     @api.depends(_get_compute_val_income_fields)
@@ -90,10 +89,9 @@ class StockPicking(models.Model):
             # TODO proper UoM conversion
             picking.val_income = sum(
                 move.product_uom_qty * move._get_move_income_price_unit()
-                for move in picking.move_lines
+                for move in picking.move_ids
             )
-        # TODO replace write() by update()
-        (self - pick_out).write({
+        (self - pick_out).update({
             "val_income": 0.0,
         })
 
@@ -105,8 +103,7 @@ class StockPicking(models.Model):
             picking.val_margin = picking.val_income - picking.val_cost
             picking.val_margin_pct = picking.val_margin / picking.val_cost
         # TODO or val_margin = val_income ?
-        # TODO replace write() by update()
-        (self - pick_cost).write({
+        (self - pick_cost).update({
             "val_margin": 0.0,
             "val_margin_pct": 0.0,
         })
@@ -120,4 +117,4 @@ class StockPicking(models.Model):
             for ml in picking.move_line_ids.filtered(lambda x: x.state == "done"):
                 val_unbuild_ids |= ml.move_id._get_move_line_cost_unbuild_ids(ml)
             picking.val_unbuild_ids = val_unbuild_ids
-        (self - pick_out).write({"val_unbuild_ids": False})
+        (self - pick_out).update({"val_unbuild_ids": False})

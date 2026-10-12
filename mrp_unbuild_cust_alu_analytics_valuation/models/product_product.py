@@ -33,7 +33,7 @@ class ProductProduct(models.Model):
     @api.depends("categ_id.warehouse_valuation")
     def _compute_has_waste_cost_mgmt(self):
         valuation_products = self.filtered(lambda x: x.warehouse_valuation == False and x.has_waste_cost_mgmt == True)
-        valuation_products.write(
+        valuation_products.update(
             {"has_waste_cost_mgmt": False}
         )
 
@@ -41,7 +41,7 @@ class ProductProduct(models.Model):
     @api.depends("has_waste_cost_mgmt")
     def _compute_waste_mgmt_pricelist_id(self):
         valuation_products = self.filtered(lambda x: x.has_waste_cost_mgmt == False and x.waste_mgmt_pricelist_id != False)
-        valuation_products.write(
+        valuation_products.update(
             {"waste_mgmt_pricelist_id": False}
         )
 

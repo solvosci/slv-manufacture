@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="product_product_form_view_stock_valuation_mrp" model="ir.ui.view">
         <field name="name">product.product.form.view (in mrp_unbuild_cust_alu_analytics_valuation)</field>
@@ -8,16 +7,12 @@
             <field name="barcode" position="after">
                 <field 
                     name="has_waste_cost_mgmt"
-                    attrs="{'invisible': [
-                        ('warehouse_valuation','=',False),
-                    ]}"
+                    invisible="not warehouse_valuation"
                 />
                 <field
                     name="waste_mgmt_pricelist_id"
-                    attrs="{
-                        'invisible': [('has_waste_cost_mgmt','=',False),],
-                        'required': [('has_waste_cost_mgmt','=',True),
-                    ]}"
+                    invisible="not has_waste_cost_mgmt"
+                    required="has_waste_cost_mgmt"
                 /> 
                 <!-- TODO add domain based on product, maybe dynamic domain -->
             </field>

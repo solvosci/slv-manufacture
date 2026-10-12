@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="product_pricelist_view" model="ir.ui.view">
         <field name="name">product.pricelist.form (in mrp_unbuild_cust_alu_analytics_valuation)</field>
@@ -15,16 +14,19 @@
                         type="object"
                         icon="fa-dollar"
                         string="Costs Hist. Items"
-                        attrs="{
-                            'invisible': [('unbuild_process_type_id', '=', False)],
-                        }"
+                        invisible="not unbuild_process_type_id"
                     />
                 </div>
             </widget>
+            <page name="pricelist_rules" position="before">
+                <field
+                    name="unbuild_process_type_id"
+                    invisible="1"
+                    groups="!mrp.group_mrp_manager"
+                />
+            </page>
             <page name="pricelist_rules" position="attributes">
-                <attribute name="attrs">{
-                    'invisible': [('unbuild_process_type_id', '!=', False)],
-                }</attribute>
+                <attribute name="invisible">unbuild_process_type_id</attribute>
             </page>
             <page name="pricelist_config" position="before">
                 <page
@@ -36,12 +38,14 @@
                         <group>
                             <field
                                 name="unbuild_process_type_id"
+                                readonly="1"
                                 string="Process Type"
                             />
                         </group>
                         <group>
                             <field
                                 name="unbuild_process_type_cost"
+                                readonly="1"
                                 string="Related Cost"
                             />
                         </group>
