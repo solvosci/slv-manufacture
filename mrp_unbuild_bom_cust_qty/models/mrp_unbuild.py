@@ -210,7 +210,7 @@ class MrpUnbuild(models.Model):
                 self.env['stock.move.line'].create({
                     'move_id': finished_move.id,
                     'lot_id': self.lot_id.id,
-                    'qty_done': finished_move.product_uom_qty,
+                    'quantity': finished_move.product_uom_qty,
                     'product_id': finished_move.product_id.id,
                     'product_uom_id': finished_move.product_uom.id,
                     'location_id': finished_move.location_id.id,
@@ -254,7 +254,7 @@ class MrpUnbuild(models.Model):
         finished_moves._action_done()
         consume_moves._action_done()
         produce_moves._action_done()
-        produced_move_line_ids = produce_moves.mapped('move_line_ids').filtered(lambda ml: ml.qty_done > 0)
+        produced_move_line_ids = produce_moves.mapped('move_line_ids').filtered(lambda ml: ml.quantity > 0)
         consume_moves.mapped('move_line_ids').write({'produce_line_ids': [(6, 0, produced_move_line_ids.ids)]})
 
         return self.write({'state': 'done'})        
@@ -272,7 +272,7 @@ class MrpUnbuild(models.Model):
         return {
             "move_id": move.id,
             "lot_id": bom_quant_id.lot_id.id,
-            "qty_done": bom_quant_id.custom_qty,
+            "quantity": bom_quant_id.custom_qty,
             "product_id": move.product_id.id,
             "product_uom_id": move.product_uom.id,
             "location_id": move.location_id.id,
