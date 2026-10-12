@@ -4,7 +4,6 @@
             <field name="name">mrp.unbuild.process.type.view.form (mrp_bom_cust_analytics_valuation)</field>
             <field name="model">mrp.unbuild.process.type</field>
             <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.view_mrp_process_form"/>
-            <field name="groups_id" eval="[(4,ref('mrp.group_mrp_manager'))]"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button
@@ -12,11 +11,16 @@
                         type="object"
                         icon="fa-dollar"
                         string="Costs Hist. Items"
-                        attrs="{'invisible': [('id', '=', False)]}"
+                        invisible="not id"
+                        groups="mrp.group_mrp_manager"
                     />
                 </xpath>
                 <xpath expr="//group" position="inside">
-                    <group name="costs_hr" string="Costs per hour">
+                    <group
+                        name="costs_hr"
+                        string="Costs per hour"
+                        groups="mrp.group_mrp_manager"
+                    >
                         <group>
                             <field
                                 name="cost_hr_manpower"
@@ -31,7 +35,11 @@
                         </group>
                         <field name="currency_id" invisible="1"/>
                     </group>
-                    <group name="costs_unit" string="Costs per unit">
+                    <group
+                        name="costs_unit"
+                        string="Costs per unit"
+                        groups="mrp.group_mrp_manager"
+                    >
                         <group>
                             <field
                                 name="cost_unit_uom_id"
@@ -66,9 +74,12 @@
             <field name="name">mrp.unbuild.process.type.view.tree (mrp_bom_cust_analytics_valuation)</field>
             <field name="model">mrp.unbuild.process.type</field>
             <field name="inherit_id" ref="mrp_unbuild_cust_alu_analytics.view_mrp_process_tree"/>
-            <field name="groups_id" eval="[(4,ref('mrp.group_mrp_manager'))]"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='company_id']" position="after">
+                <xpath
+                    expr="//field[@name='company_id']"
+                    position="after"
+                    groups="mrp.group_mrp_manager"
+                >
                     <field name="cost_hr_manpower" optional="show"/>
                     <field name="cost_hr_energy" optional="show"/>
                     <field name="cost_hr_amortization" optional="show"/>
@@ -76,7 +87,7 @@
                     <field name="cost_unit_uom_id" optional="show"/>
                     <field name="cost_unit_consumable" optional="show"/>
                     <field name="cost_unit_maquila" optional="show"/>
-                    <field name="currency_id" invisible="1"/>
+                    <field name="currency_id" column_invisible="1"/>
                 </xpath>
             </field>
         </record>

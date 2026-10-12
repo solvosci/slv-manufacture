@@ -1,7 +1,7 @@
 # © 2024 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License AGPL-3.0 (https://www.gnu.org/licenses/agpl-3.0.html)
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, Command
 
 from datetime import timedelta
 
@@ -45,7 +45,6 @@ class MrpUnbuildProcessType(models.Model):
     currency_id = fields.Many2one(
         'res.currency',
         related='company_id.currency_id',
-        readonly=True
     )
 
     cost_unit_uom_id = fields.Many2one(
@@ -87,9 +86,9 @@ class MrpUnbuildProcessType(models.Model):
     
     def action_view_costs_pricelist_items(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "mrp_unbuild_cust_alu_analytics_valuation.action_product_pricelist_item"
-        ).read()[0]
+        )
         action["domain"] = [('pricelist_id.unbuild_process_type_id', '=', self.id)]
         return action
     
@@ -103,19 +102,20 @@ class MrpUnbuildProcessType(models.Model):
         priceslist_vals_list = []
         cost_field_dict = self._get_costs_fields_dict()
         cost_field_keys = self._get_costs_fields()
-        today = fields.Date.today()
-        yesterday = today - timedelta(days=1)
+        now = fields.Datetime.now()
+        prev_now = now - timedelta(seconds=1)
         for type in self:
             for field in cost_field_keys:
-                item_list = [(0, 0 , {
+                item_list = [Command.create({
                     "applied_on": "3_global",
-                    "date_end": yesterday,
+                    "date_end": prev_now,
                     "compute_price": "fixed",
                     "fixed_price": type[field],                    
                 })]
-                item_list.append((0, 0, {
+                item_list.append(Command.create({
                     "applied_on": "3_global",
-                    "date_start": today,
+                    "date_start": now,
+                    "date_end": False,
                     "compute_price": "fixed",
                     "fixed_price": type[field],                    
                 }))
@@ -164,8 +164,9 @@ class MrpUnbuildProcessType(models.Model):
             lambda x: x.unbuild_process_type_cost == cost_field
         )
         if cost_pricelist_id:
-            price, rule_id = cost_pricelist_id.get_product_price_rule(
-                production_id.product_id, 1.0, False, date=production_id.unbuild_date
+            return cost_pricelist_id._get_product_price(
+                production_id.product_id,
+                quantity=1.0,
+                date=production_id.unbuild_date,
             )
-            return price
         return 0.0

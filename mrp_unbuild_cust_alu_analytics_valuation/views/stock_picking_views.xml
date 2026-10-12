@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="stock_picking_valulation_data_form_view" model="ir.ui.view">        
         <field name="name">stock.picking.valuation.data.form</field>
@@ -24,7 +23,7 @@
                                 name="val_unbuild_ids"
                                 string="Involved UBs"
                                 widget="many2many_tags"
-                                attrs="{'invisible': [('val_unbuild_ids', '=', [])]}"
+                                invisible="not val_unbuild_ids"
                                 groups="mrp.group_mrp_user"
                             />
                         </group>
@@ -71,7 +70,7 @@
                     class="oe_stat_button"
                     icon="fa-eur"
                     groups="account.group_account_invoice"
-                    attrs="{'invisible': [('state', 'not in', ['done'])]}"
+                    invisible="state != 'done'"
                 />
             </button>
         </field>

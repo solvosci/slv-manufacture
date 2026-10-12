@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="product_pricelist_item_tree_view" model="ir.ui.view">
         <field name="name">product.pricelist.item.tree from unbuild process type (in mrp_unbuild_cust_alu_analytics_valuation)</field>

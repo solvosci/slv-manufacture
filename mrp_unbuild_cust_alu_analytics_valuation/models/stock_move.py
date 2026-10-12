@@ -38,10 +38,10 @@ class StockMove(models.Model):
         for ml in self.move_line_ids.filtered(lambda x: x.state == "done"):
             unbuild_id = ml.move_id._get_move_line_cost_unbuild_ids(ml)
             if len(unbuild_id) == 1:
-                cost += unbuild_id.cost_unit_price * ml.qty_done
+                cost += unbuild_id.cost_unit_price * ml.quantity
             else:
                 # TODO if there's more than one valuation layer?
-                cost += ml.qty_done * (
+                cost += ml.quantity * (
                     self.stock_valuation_layer_ids
                     and self.stock_valuation_layer_ids[0].unit_cost
                     or 0.0

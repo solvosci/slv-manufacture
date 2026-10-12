@@ -28,10 +28,10 @@ class MrpUnbuildBoMTotals(models.Model):
             x.unbuild_id.state == "done"
             or x.bom_line_id._get_mrp_unbuild_valuation_to_disable()
         ))
-        total_ro.write({
+        total_ro.update({
             "disabled_mrp_unbuild_valuation_readonly": True,
         })
-        (self - total_ro).write({
+        (self - total_ro).update({
             "disabled_mrp_unbuild_valuation_readonly": False,
         })
 
