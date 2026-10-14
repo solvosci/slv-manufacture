@@ -41,13 +41,16 @@ class MrpProduction(models.Model):
                     product=product.display_name,
                 ))
             new_origin_vals += [
-                {
-                    "lot_id": finished_lot.id,
-                    "capture_zone_id": origin.capture_zone_id.id,
-                    "product_type_id": origin.product_type_id.id,
-                    "capture_date": origin.capture_date,
-                }
+                self._prepare_finished_lot_capture_origin_vals(finished_lot, origin)
                 for origin in component_origins
             ]
         self.env["lot.capture.zone.origin"].sudo().create(new_origin_vals)
         finished_lots._evaluate_toxin_block()
+
+    def _prepare_finished_lot_capture_origin_vals(self, finished_lot, origin):
+        return {
+            "lot_id": finished_lot.id,
+            "capture_zone_id": origin.capture_zone_id.id,
+            "product_type_id": origin.product_type_id.id,
+            "capture_date": origin.capture_date,
+        }
