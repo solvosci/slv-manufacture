@@ -27,7 +27,7 @@ class MrpProduction(models.Model):
             return
 
         component_types = component_origins.product_type_id
-        new_origin_vals = []
+        raw_vals = []
         for finished_lot in finished_lots:
             product = finished_lot.product_id
             missing_types = component_types - product.intecmar_categ
@@ -40,11 +40,24 @@ class MrpProduction(models.Model):
                     "block could be evaluated.",
                     product=product.display_name,
                 ))
-            new_origin_vals += [
+            raw_vals += [
                 self._prepare_finished_lot_capture_origin_vals(finished_lot, origin)
                 for origin in component_origins
             ]
-        self.env["lot.capture.zone.origin"].sudo().create(new_origin_vals)
+
+        seen_keys = {
+            (o.lot_id.id, o.capture_zone_id.id, o.product_type_id.id, o.capture_date)
+            for o in self.env["lot.capture.zone.origin"].sudo().search([("lot_id", "in", finished_lots.ids)])
+        }
+        new_origin_vals = []
+        for vals in raw_vals:
+            key = (vals["lot_id"], vals["capture_zone_id"], vals["product_type_id"], vals["capture_date"])
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            new_origin_vals.append(vals)
+        if new_origin_vals:
+            self.env["lot.capture.zone.origin"].sudo().create(new_origin_vals)
         finished_lots._evaluate_toxin_block()
 
     def _prepare_finished_lot_capture_origin_vals(self, finished_lot, origin):
