@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_production_form_purification" model="ir.ui.view">
+        <field name="name">mrp.production.form.purification</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_row')][field[@name='lot_producing_ids']]" position="after">
+                <field name="restart_purification" invisible="not product_id.purifiable"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
