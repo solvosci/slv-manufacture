@@ -24,17 +24,18 @@ class StockLot(models.Model):
             "context": {"default_lot_id": self.id},
         }
 
-    def _suggest_name(self, product, company=None):
-        return self._suggest_names([product], company)[0]
+    def _suggest_name(self, product, company=None, extra_names=None):
+        return self._suggest_names([product], company, extra_names)[0]
 
-    def _suggest_names(self, products, company=None):
+    def _suggest_names(self, products, company=None, extra_names=None):
         """Suggest a name for each product in `products` (repeats allowed,
         one name returned per entry, same order) using the
         CCCC_YYYYMMDD_NN pattern:
         - CCCC: the product's short code.
         - YYYYMMDD: today's date.
         - NN: a daily counter per product, computed from existing
-        lots with that prefix.
+        lots with that prefix, plus `extra_names` (e.g. names already
+        typed on sibling lines that aren't saved as lots yet).
         """
         today = fields.Date.context_today(self)
         date_str = today.strftime("%Y%m%d")
@@ -49,14 +50,15 @@ class StockLot(models.Model):
         if company_id:
             domain += ["|", ("company_id", "=", company_id), ("company_id", "=", False)]
         existing_lots = self.env["stock.lot"].sudo().search(domain)
+        existing_names = existing_lots.mapped("name") + list(extra_names or [])
 
         next_seq = {}
         for product_id, prefix in prefixes.items():
             max_seq = 0
-            for lot in existing_lots:
-                if lot.product_id.id != product_id or not lot.name.startswith(prefix):
+            for name in existing_names:
+                if not name.startswith(prefix):
                     continue
-                suffix = lot.name[len(prefix):]
+                suffix = name[len(prefix):]
                 if suffix.isdigit():
                     max_seq = max(max_seq, int(suffix))
             next_seq[product_id] = max_seq + 1
