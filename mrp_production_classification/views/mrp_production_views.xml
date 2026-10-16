@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_mrp_production_form_classification" model="ir.ui.view">
+        <field name="name">mrp.production.form.classification.button</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_mark_done']" position="before">
+                <button
+                    name="action_open_classification_wizard"
+                    type="object"
+                    string="Classify"
+                    class="btn-primary"
+                    invisible="not is_classification_type or state in ('draft', 'done', 'cancel')"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
