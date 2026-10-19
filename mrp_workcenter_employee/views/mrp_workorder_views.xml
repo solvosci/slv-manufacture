@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_production_workorder_tree_editable_view" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.tree.editable (in mrp_workcenter_employee)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <field name="workcenter_id" position="after">
+                <field name="is_mrp_manager" invisible="1"/>
+                <field
+                    name="employee_id"
+                    string="Employee"
+                    domain="[('workcenter_ids', '=', workcenter_id)]"
+                    options="{'no_create': True}"
+                    attrs="{'readonly': ['|', ('is_mrp_manager', '=', False), ('state', 'in', ['done', 'cancel'])]}"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_workorder_form_view_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.form (in mrp_workcenter_employee)</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='duration_expected']/parent::div" position="after">
+                <field name="is_mrp_manager" invisible="1"/>
+                <field
+                    name="employee_id"
+                    string="Employee"
+                    domain="[('workcenter_ids', '=', workcenter_id)]"
+                    options="{'no_create': True}"
+                    attrs="{'readonly': ['|', ('is_mrp_manager', '=', False), ('state', 'in', ['done', 'cancel'])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

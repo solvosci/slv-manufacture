@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workcenter_employee
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-28 13:16+0000\n"
+"PO-Revision-Date: 2026-10-28 13:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_workcenter_employee
+#: code:addons/mrp_workcenter_employee/models/mrp_workorder.py:0
+#, python-format
+msgid "%(employee)s does not work in the work center %(workcenter)s."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_workcenter_view
+msgid "<span class=\"oe_inline\">→</span>"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workcenter__week_date
+msgid "Any date of the week to show. Defaults to today."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workcenter__week_load_label
+msgid "Available hours / capacity hours, as HH:MM."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model,name:mrp_workcenter_employee.model_hr_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workorder__employee_id
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_production_workorder_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_production_workorder_tree_editable_view
+msgid "Employee"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workorder__employee_id
+msgid "Employee who is responsible for this work order."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__employee_ids
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_workcenter_view
+msgid "Employees"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workcenter__employee_ids
+msgid ""
+"Employees who work in this work center.This field is used to filter the "
+"employees available for the work orders of this work center."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workcenter__week_planned_hours
+msgid "Expected duration of the work orders starting in the week."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workorder__is_mrp_manager
+msgid "Is Mrp Manager"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_workcenter_view
+msgid "Period"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_date
+msgid "Reference Date"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_mrp_workcenter__week_capacity_hours
+msgid "Scheduled hours of the employees of this work center in the week."
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_available_hours
+msgid "Week Available (h)"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_capacity_hours
+msgid "Week Capacity (h)"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_end
+msgid "Week End"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_load_label
+msgid "Week Load"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_planned_hours
+msgid "Week Planned (h)"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_mrp_workcenter__week_start
+msgid "Week Start"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter_employee.mrp_workcenter_view
+msgid "Week of"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model,name:mrp_workcenter_employee.model_mrp_workcenter
+msgid "Work Center"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_hr_employee__workcenter_ids
+msgid "Work Centers"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model,name:mrp_workcenter_employee.model_mrp_workorder
+msgid "Work Order"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,field_description:mrp_workcenter_employee.field_hr_employee__workorder_ids
+msgid "Work Orders"
+msgstr ""
+
+#. module: mrp_workcenter_employee
+#: model:ir.model.fields,help:mrp_workcenter_employee.field_hr_employee__workcenter_ids
+msgid "Work centers where this employee can work."
+msgstr ""

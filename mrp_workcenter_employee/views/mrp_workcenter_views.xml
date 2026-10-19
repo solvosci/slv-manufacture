@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_workcenter_view" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form (in mrp_workcenter_employee)</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']/group[last()]" position="after">
+                <group>
+                    <group name="employees" string="Employees" groups="mrp.group_mrp_manager">
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="week_date" string="Week of" />
+                        <label for="week_start" string="Period" />
+                        <div class="o_row">
+                            <field name="week_start" readonly="1" />
+                            <span class="oe_inline">→</span>
+                            <field name="week_end" readonly="1" />
+                        </div>
+                        <field name="week_load_label" />
+                        <field name="week_capacity_hours" widget="float_time" />
+                        <field name="week_planned_hours" widget="float_time"/>
+                        <field name="week_available_hours" widget="float_time" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
