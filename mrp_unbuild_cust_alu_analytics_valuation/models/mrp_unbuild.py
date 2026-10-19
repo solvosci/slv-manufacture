@@ -138,7 +138,7 @@ class MrpUnbuild(models.Model):
     def action_unbuild(self):
         if (
             self.valuation_mo_id
-            and self.valuation_mo_id.date_planned_finished.date() > self.unbuild_date.date()
+            and self.valuation_mo_id.date_finished.date() > self.unbuild_date.date()
         ):
             raise ValidationError(_("Original MO for Valuation cannot be finished after unbuild date!"))
         self.sudo()._save_cost_fields()
