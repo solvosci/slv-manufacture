@@ -223,11 +223,23 @@ class MdcWeightRecord(models.Model):
             else:
                 record.unit_ok_pct = 0
 
-    @api.depends('product_id','product_id.mdc_weight_dec_qty')
+    @api.depends('product_id', 'start')
     def _compute_weight_dec_qty(self):
         for record in self:
-            product = record.product_id
-            record.weight_dec_qty = product.mdc_weight_dec_qty if product else 0.0
+            record.weight_dec_qty = 0.0
+        grouped = {}
+        for record in self.filtered(lambda r: r.product_id and r.start):
+            ref_date = fields.Date.to_date(record.start)
+            grouped.setdefault((record.product_id.id, ref_date), []).append(record)
+        for (product_id, ref_date), records in grouped.items():
+            weight = self.env['mdc.weight.declared.weight'].search([
+                ('product_id', '=', product_id),
+                '|',('date_from', '=', False), ('date_from', '<=', ref_date),
+                '|',('date_to', '=', False), ('date_to', '>=', ref_date),
+            ], limit=1)
+            value = weight.declared_weight if weight else 0.0
+            for rec in records:
+                rec.weight_dec_qty = value
 
     def _compute_weight_ok_dec_qty(self):
         for record in self:

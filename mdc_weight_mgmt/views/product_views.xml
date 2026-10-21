@@ -8,12 +8,13 @@
             <page name="inventory" position="after">
                 <field name="mdc_category_check" invisible="1" />
                 <page name="mdc_weight_data" string="MDC Weight Data" invisible="not mdc_category_check">
-                    <group>
-                        <field name="mdc_weight_dec_qty" />
-                        <!--
-                        TODO weight_uom field
-                        -->
-                    </group>
+                    <field name="mdc_weight_dec_history">
+                        <tree editable="bottom" default_order="date_to desc">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="declared_weight"/>
+                        </tree>
+                    </field>
                 </page>
             </page>
         </field>

@@ -23,6 +23,12 @@ class ProductTemplate(models.Model):
         compute='_compute_mdc_category_check',
     )
 
+    mdc_weight_dec_history = fields.One2many(
+        comodel_name='mdc.weight.declared.weight',
+        inverse_name='product_id',
+        string='Declared Weight History',
+    )
+
     @api.depends('categ_id', 'company_id.product_categ_default_id')
     def _compute_mdc_category_check(self):
         for product in self:
