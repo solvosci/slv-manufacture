@@ -22,6 +22,6 @@ class StockMoveLine(models.Model):
             return
         siblings = (self.picking_id.move_line_ids if self.picking_id else self.move_id.move_line_ids) - self
         sibling_names = siblings.filtered("lot_name").mapped("lot_name")
-        self.lot_name = self.env["stock.lot"]._suggest_name(
-            self.product_id, self.company_id, extra_names=sibling_names
-        )
+        self.lot_name = self.env["stock.lot"]._suggest_names(
+            [self.product_id], self.company_id, extra_names=sibling_names
+        )[0]
