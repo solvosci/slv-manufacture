@@ -181,11 +181,12 @@ class MrpUnbuild(models.Model):
         try:
             res = super().action_unbuild()
         except UserError as err:
+            msg = str(err)
             # Unbuild is impossible because of MESSAGE
             # original condition of this raise is :
             # any(produce_move.has_tracking != 'none'
             # and not self.mo_id for produce_move in produce_moves)
-            if hasattr(err, "name") and err.name == _(MESSAGE):
+            if msg == _(MESSAGE):
                 return self._bypass_tracked_product_without_mo()
             # Here is the Odoo native raise
             raise err
@@ -210,14 +211,14 @@ class MrpUnbuild(models.Model):
                 self.env['stock.move.line'].create({
                     'move_id': finished_move.id,
                     'lot_id': self.lot_id.id,
-                    'qty_done': finished_move.product_uom_qty,
+                    'quantity': finished_move.product_uom_qty,
                     'product_id': finished_move.product_id.id,
                     'product_uom_id': finished_move.product_uom.id,
                     'location_id': finished_move.location_id.id,
                     'location_dest_id': finished_move.location_dest_id.id,
                 })
             else:
-                finished_move.quantity_done = finished_move.product_uom_qty
+                finished_move.product_uom_qty = finished_move.product_uom_qty
 
         # TODO: Will fail if user do more than one unbuild with lot on the same MO. Need to check what other unbuild has aready took
         for move in produce_moves | consume_moves:
@@ -249,12 +250,12 @@ class MrpUnbuild(models.Model):
                 #         })
                 #         needed_quantity -= taken_quantity
             else:
-                move.quantity_done = float_round(move.product_uom_qty, precision_rounding=move.product_uom.rounding)
+                move.product_uom_qty = float_round(move.product_uom_qty, precision_rounding=move.product_uom.rounding)
 
         finished_moves._action_done()
         consume_moves._action_done()
         produce_moves._action_done()
-        produced_move_line_ids = produce_moves.mapped('move_line_ids').filtered(lambda ml: ml.qty_done > 0)
+        produced_move_line_ids = produce_moves.mapped('move_line_ids').filtered(lambda ml: ml.quantity > 0)
         consume_moves.mapped('move_line_ids').write({'produce_line_ids': [(6, 0, produced_move_line_ids.ids)]})
 
         return self.write({'state': 'done'})        
@@ -272,7 +273,7 @@ class MrpUnbuild(models.Model):
         return {
             "move_id": move.id,
             "lot_id": bom_quant_id.lot_id.id,
-            "qty_done": bom_quant_id.custom_qty,
+            "quantity": bom_quant_id.custom_qty,
             "product_id": move.product_id.id,
             "product_uom_id": move.product_uom.id,
             "location_id": move.location_id.id,
