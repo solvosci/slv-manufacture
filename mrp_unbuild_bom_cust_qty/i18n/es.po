@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-14 08:52+0000\n"
-"PO-Revision-Date: 2025-01-14 09:59+0100\n"
+"POT-Creation-Date: 2026-10-27 07:38+0000\n"
+"PO-Revision-Date: 2026-10-27 07:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__action_add_myself_enabled
@@ -42,8 +40,7 @@ msgid ""
 msgstr ""
 "\n"
 "        Campo técnico que muestra si la unidad de medida de la línea\n"
-"        de la LdM tiene una categoría es diferente de la del producto del "
-"despiece\n"
+"        de la LdM tiene una categoría es diferente de la del producto del despiece\n"
 "        "
 
 #. module: mrp_unbuild_bom_cust_qty
@@ -62,6 +59,12 @@ msgid "Add Main Product to Components"
 msgstr "Añadir producto principal al Resumen de cantidades"
 
 #. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree
+msgid "Add a weight"
+msgstr ""
+
+#. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #, python-format
 msgid "Auto-generated BoM for inverse product %s unbuild"
@@ -110,6 +113,7 @@ msgid "Bom Quants Has Totals"
 msgstr "Hay cantidades en los totales"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_total.py:0
 #, python-format
 msgid ""
@@ -142,7 +146,7 @@ msgstr ""
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_res_config_settings
 msgid "Config Settings"
-msgstr "Opciones de Configuración"
+msgstr "Ajustes de configuración"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__create_uid
@@ -179,7 +183,6 @@ msgid "Discard"
 msgstr "Descartar"
 
 #. module: mrp_unbuild_bom_cust_qty
-#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__display_name
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__display_name
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__display_name
 msgid "Display Name"
@@ -206,7 +209,6 @@ msgid "Has Lot"
 msgstr "Tiene lote"
 
 #. module: mrp_unbuild_bom_cust_qty
-#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__id
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__id
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__id
 msgid "ID"
@@ -220,6 +222,7 @@ msgid "Indicates if this BoM line belongs to the original BoM list"
 msgstr "Indica si esta línea de LdM pertenece a la LdM original"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #, python-format
 msgid ""
@@ -234,6 +237,7 @@ msgstr ""
 "Debe registrar al menos una cantidad, o indicar que la cantidad prevista es 0"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_quants.py:0
 #, python-format
 msgid "Invalid quant for %s: it must be greater than zero!"
@@ -245,13 +249,6 @@ msgstr "Cantidad invalida para %s: ¡debe ser mayor que cero!"
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__is_product_uom_diff
 msgid "Is Product UoM Different"
 msgstr "Es diferente la unidad de medida del producto"
-
-#. module: mrp_unbuild_bom_cust_qty
-#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin____last_update
-#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants____last_update
-#: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_quants__write_uid
@@ -276,6 +273,12 @@ msgid "Lot Required"
 msgstr "Lote obligatorio"
 
 #. module: mrp_unbuild_bom_cust_qty
+#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_mixin
+msgid "Mixin BoM based Unbuild"
+msgstr ""
+
+#. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #, python-format
 msgid "Please select a non-empty BoM for this unbuild and try again"
@@ -316,6 +319,11 @@ msgid "Related BoM Line"
 msgstr "Producto"
 
 #. module: mrp_unbuild_bom_cust_qty
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_total_view_tree
+msgid "Remove the line"
+msgstr ""
+
+#. module: mrp_unbuild_bom_cust_qty
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.mrp_unbuild_bom_quants_view_form_extended
 msgid "Save & Close"
 msgstr "Guardar & Cerrar"
@@ -326,6 +334,7 @@ msgid "Save & New"
 msgstr "Guardar & Nuevo"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #, python-format
 msgid ""
@@ -334,6 +343,17 @@ msgid ""
 msgstr ""
 "Algunos de sus subproductos estan siendo rastreados, debe especificar un "
 "pedido de fabricación para recuperar los subproductos correctos."
+
+#. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
+#, python-format
+msgid ""
+"Some of your components are tracked, you have to specify a manufacturing "
+"order in order to retrieve the correct components."
+msgstr ""
+"Algunos de sus componentes están rastreados, debe especificar una orden "
+"de fabricación para recuperar los componentes correctos."
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_totals__total_qty
@@ -353,6 +373,7 @@ msgid "Unbuild"
 msgstr "Desconstrucción"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_quants.py:0
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild_bom_total.py:0
 #, python-format
@@ -362,7 +383,7 @@ msgstr "LdM de Desconstrucción"
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "örden de desconstrucción"
+msgstr "Orden de desmontaje"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,field_description:mrp_unbuild_bom_cust_qty.field_res_config_settings__group_unbuild_force_exact_qty
@@ -371,17 +392,6 @@ msgid "Unbuilds: force quantity unbuilt from BoM quants"
 msgstr ""
 "Despieces: forzar la cantidad del producto a despiezar a partir de las "
 "cantidades resultantes"
-
-#. module: mrp_unbuild_bom_cust_qty
-#: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.res_config_settings_view_form
-msgid ""
-"Unbuilds: force quantity unbuilt from BoM quants. When activated, unbuild "
-"product quantity is automatically updated when total BoM quants are added"
-msgstr ""
-"Despieces: forzar la cantidad del producto a despiezar a partir de las "
-"cantidades resultantes. Cuando está activado, la cantidad del producto a "
-"despiezar se actualiza automáticamente cuando se añaden cantidades en los "
-"totales"
 
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild_bom_mixin__product_uom_id
@@ -401,8 +411,8 @@ msgstr "Ud."
 #. module: mrp_unbuild_bom_cust_qty
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_bom_cust_qty.res_config_settings_view_form
 msgid ""
-"When activated, unbuild product quantity is automatically updated when total "
-"BoM quants are added"
+"When activated, unbuild product quantity is automatically updated when total"
+" BoM quants are added"
 msgstr ""
 "Cuando está activado, la cantidad del producto a despiezar se actualiza "
 "automáticamente cuando se añaden cantidades en los totales"
@@ -419,19 +429,16 @@ msgstr ""
 #. module: mrp_unbuild_bom_cust_qty
 #: model:ir.model.fields,help:mrp_unbuild_bom_cust_qty.field_mrp_unbuild__bom_custom_quants
 msgid ""
-"When selected, you'll be able to add custom quants for unbuild, and standard "
-"ones are not used"
+"When selected, you'll be able to add custom quants for unbuild, and standard"
+" ones are not used"
 msgstr ""
 "Cuando se selecciona, podrá agregar cantidades para la desconstrucción y no "
 "se utilizarán los estándar"
 
 #. module: mrp_unbuild_bom_cust_qty
+#. odoo-python
+#: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #: code:addons/mrp_unbuild_bom_cust_qty/models/mrp_unbuild.py:0
 #, python-format
 msgid "You have to specify a lot for %s"
 msgstr "Debe especificar un lote para %s"
-
-#. module: mrp_unbuild_bom_cust_qty
-#: model:ir.model,name:mrp_unbuild_bom_cust_qty.model_mrp_unbuild_bom_mixin
-msgid "mrp.unbuild.bom.mixin"
-msgstr ""
