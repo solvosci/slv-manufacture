@@ -15,6 +15,22 @@ class MrpUnbuild(models.Model):
             unbuild._reconcile_repair_operations_with_moves()
         return res
 
+    def _generate_move_from_existing_move(self, move, factor, location_id, location_dest_id):
+        move = super()._generate_move_from_existing_move(move, factor, location_id, location_dest_id)
+        if not move.unbuild_id.lot_id:
+            return move
+
+        repairs = self.env["repair.order"].search([
+            ("lot_id", "=", move.unbuild_id.lot_id.id),
+            ("state", "=", "done"),
+        ], order="id")
+
+        for repair in repairs:
+            for op in repair.operations.filtered(lambda o: o.type == "remove" and o.product_uom_qty > 0):
+                move.unbuild_id._apply_remove_on_moves(move, op)
+
+        return move.exists()
+
     def _reconcile_repair_operations_with_moves(self):
         self.ensure_one()
         if not self.lot_id:
@@ -34,32 +50,29 @@ class MrpUnbuild(models.Model):
                 if op.product_uom_qty <= 0:
                     continue
 
-                if op.type == "remove":
-                    self._apply_remove_operation(self.produce_line_ids.move_line_ids, op)
-                else:
+                if op.type == "add":
                     self._apply_add_operation(self.produce_line_ids.move_line_ids, op)
 
-    def _apply_remove_operation(self, move_lines, op):
+    def _apply_remove_on_moves(self, moves, op):
         rounding = op.product_uom.rounding
 
-        candidates = move_lines.filtered(lambda ml:
-            ml.product_id == op.product_id
-            and not float_is_zero(ml.qty_done, precision_rounding=rounding)
-            and ((op.lot_id and ml.lot_id == op.lot_id) or (not op.lot_id and not ml.lot_id))
+        candidates = moves.filtered(lambda m:
+            m.product_id == op.product_id
+            and not float_is_zero(m.product_uom_qty, precision_rounding=rounding)
         )
-        if not candidates:
-            return
 
         qty_to_remove = op.product_uom_qty
-        for ml in candidates:
+
+        for move in candidates:
             if float_is_zero(qty_to_remove, precision_rounding=rounding):
                 break
-            reducible = min(ml.qty_done, qty_to_remove)
-            new_qty = ml.qty_done - reducible
 
-            ml.qty_done = new_qty
-
+            reducible = min(move.product_uom_qty, qty_to_remove)
+            move.product_uom_qty -= reducible
             qty_to_remove -= reducible
+
+            if float_is_zero(move.product_uom_qty, precision_rounding=rounding):
+                move.unlink()
 
     def _apply_add_operation(self, move_lines, op):
         existing = move_lines.filtered(lambda ml:
