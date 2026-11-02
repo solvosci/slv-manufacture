@@ -23,7 +23,7 @@ class MrpUnbuild(models.Model):
         qty_consumed = sum(move_consumed.mapped("quantity"))
         qty_produced = sum(
             move.product_uom._compute_quantity(
-                move.quantity, self.product_uom_id
+                move.product_qty, self.product_uom_id
             )
             for move in move_produced
         )
