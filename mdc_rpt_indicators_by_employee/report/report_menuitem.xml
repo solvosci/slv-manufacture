@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action: Indicators by Employee Report -->
+    <record model="ir.actions.act_window" id="action_mdc_rpt_indicators_by_employee">
+        <field name="name">Indicators by Employee Report</field>
+        <field name="res_model">mdc.rpt_indicators_by_employee</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="mdc_rpt_indicators_by_employee_search"/>
+        <field name="context">{"search_default_today":1}</field>
+        <field name="limit">2000</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Not possible.
+          </p><p>
+            Can't create or update records in this view.
+          </p>
+        </field>
+    </record>
+
+     <record id="action_mdc_rpt_indicators_by_employee_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="mdc_rpt_indicators_by_employee_tree"/>
+        <field name="act_window_id" ref="action_mdc_rpt_indicators_by_employee"/>
+    </record>
+
+    <!-- Reporting menu -->
+    <menuitem id="mdc_rpt_indicators_by_employee_menu"
+        name="Indicators by Employee Report"
+        action="action_mdc_rpt_indicators_by_employee"
+        parent="mdc.mdc_menu_reporting"
+        sequence="22"/>
+
+</odoo>
