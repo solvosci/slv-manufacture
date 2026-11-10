@@ -1,9 +1,11 @@
+# © 2020 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 # -*- coding: utf-8 -*-
 from odoo import fields, tools, models, _
 from odoo.addons.mdc.report import report_xlsx
 import base64
 import tempfile
-import datetime, pytz
+import pytz
 
 
 def formats():
@@ -67,7 +69,7 @@ class ReportRptPhysicalWorksheetXlsx(models.AbstractModel):
 
         # write logo
         logo_file_name = False
-        binary_logo = self.env['res.company'].sudo().search([]).logo_web
+        binary_logo = self.env.user.company_id.logo_web
         if binary_logo:
             fp = tempfile.NamedTemporaryFile(delete=False)
             fp.write(bytes(base64.b64decode(binary_logo)))
