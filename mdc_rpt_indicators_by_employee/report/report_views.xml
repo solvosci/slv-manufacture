@@ -2,15 +2,16 @@
 <odoo>
 
     <data>
-         <report
-            id="indicators_by_employee_xlsx"
-            model="mdc.rpt_indicators_by_employee"
-            string="Print to XLSX"
-            report_type="xlsx"
-            name="mdc.rpt_indicators_by_employee"
-            file="mdc_rpt_indicators_by_employee"
-            attachment_use="False"
-        />
+
+        <record id="indicators_by_employee_xlsx" model="ir.actions.report">
+            <field name="name">Print to XLSX</field>
+            <field name="model">mdc.rpt_indicators_by_employee</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">mdc.rpt_indicators_by_employee</field>
+            <field name="report_file">mdc_rpt_indicators_by_employee</field>
+            <field name="binding_model_id" ref="model_mdc_rpt_indicators_by_employee"/>
+            <field name="binding_type">report</field>
+        </record>
 
         <!-- Search view: default search for Indicators by Employee Report -->
         <record id="mdc_rpt_indicators_by_employee_search" model="ir.ui.view">
