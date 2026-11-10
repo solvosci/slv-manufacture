@@ -1,5 +1,7 @@
+# © 2020 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 # -*- coding: utf-8 -*-
-from odoo import fields, tools, models, _
+from odoo import models, _
 from odoo.addons.mdc.report import report_xlsx
 import base64
 import tempfile
@@ -43,7 +45,7 @@ class ReportRptIndicatorsByEmployeeXlsx(models.AbstractModel):
 
         # write logo
         logo_file_name = False
-        binary_logo = self.env['res.company'].sudo().search([]).logo_web
+        binary_logo = self.env.user.company_id.logo_web
         if binary_logo:
             fp = tempfile.NamedTemporaryFile(delete=False)
             fp.write(bytes(base64.b64decode(binary_logo)))
@@ -54,7 +56,7 @@ class ReportRptIndicatorsByEmployeeXlsx(models.AbstractModel):
             logo_file_name = "../addons/manufacture/mdc/report/logo.png"
 
         sheet.insert_image('A1', logo_file_name, {
-            'x_offset': 18, 'y_offset': 18, 'x_scale': 0.9, 'y_scale': 0.5})
+            'x_offset': 18, 'y_offset': 18, 'x_scale': 1, 'y_scale': 1})
 
         # write Title
         sheet.write(1, 2, _("INDICATORS REPORT"), f_title)
@@ -165,7 +167,7 @@ class ReportRptIndicatorsByEmployeeXlsx(models.AbstractModel):
             sheet.write(row, 6, res_wind_cleaning_weight, f_percent)
 
             # -- Hidden col contains gross_weight_reference to calculate ponderated average into footer row
-            sheet.write(row, 8, wgross_weight_reference, f_data2d)
+            # sheet.write(row, 8, wgross_weight_reference, f_data2d)
 
             wemployee_code = obj.employee_code
 
@@ -174,7 +176,7 @@ class ReportRptIndicatorsByEmployeeXlsx(models.AbstractModel):
                 sheet.write(row + 1, numcol, '', f_footer)
 
             # formulation columns - indicators
-            sheet.write_formula(row + 1, 8, '=SUM(I' + str(header_row + 1) + ':I' + str(row + 1) + ')', f_footer)
+            # sheet.write_formula(row + 1, 8, '=SUM(I' + str(header_row + 1) + ':I' + str(row + 1) + ')', f_footer)
             sheet.write_formula(row + 1, 2,
                                 '=IF(I' + str(row + 2) + '= 0, 0 , SUMPRODUCT(C' + str(header_row + 1) + ':C' + str(
                                     row + 1) + ', I' + str(header_row + 1) + ':I' + str(row + 1) + ') / I' + str(
