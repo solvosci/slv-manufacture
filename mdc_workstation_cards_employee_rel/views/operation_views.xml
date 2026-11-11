@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<!-- Form view for Cards -->
-    <record id="mdc_cards_form" model="ir.ui.view">
-        <field name="inherit_id" ref="mdc.mdc_cards_form"/>
+    <record id="mdc_cards_form_inherit" model="ir.ui.view">
+        <field name="name">mdc.card.form</field>
         <field name="model">mdc.card</field>
+        <field name="inherit_id" ref="mdc.mdc_card_form"/>
         <field name="arch" type="xml">
 			<xpath expr="//field[@name='employee_id']" position="attributes">
                <attribute name="attrs">{'readonly': [('card_categ_id', '!=', %(mdc.mdc_card_categ_O)d)

@@ -10,9 +10,9 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "11.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Manufacturing",
-    "website": "https://github.com/solvosci/manufacture",
+    "website": "https://github.com/solvosci/slv-manufacture",
     "depends": [
         'mdc'
     ],
