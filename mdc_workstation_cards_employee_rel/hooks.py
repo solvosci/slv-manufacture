@@ -1,8 +1,10 @@
+# © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+
 from odoo import _, api, SUPERUSER_ID
-from datetime import datetime, timedelta
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(cr):
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         current_employees = env['mdc.workstation'].search([
