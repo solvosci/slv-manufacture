@@ -1,10 +1,12 @@
-from odoo import api, fields, models
+# © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+
+from odoo import models
 
 
 class Workstation(models.Model):
     _inherit = 'mdc.workstation'
 
-    @api.multi
     def write(self, values):
         self.ensure_one()
         # Modify cards for employee changes
