@@ -1,27 +1,38 @@
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
+    custom_pre_prod_location_id = fields.Many2one(
+        comodel_name='stock.location',
+        string='Pre-Prod-Check location',
+        copy=False,
+        help='First custom location of the order: the components are sent '
+        'here from the main stock.',
+    )
+    custom_in_process_location_id = fields.Many2one(
+        comodel_name='stock.location',
+        string='In-Process location',
+        copy=False,
+        help='Second custom location of the order: the components wait here '
+        'while they are physically manufactured.',
+    )
     custom_location_src_id = fields.Many2one(
         comodel_name='stock.location',
-        string='Custom source location',
+        string='Post-Prod-Check location (source)',
         copy=False,
         help=(
-            'Pre-Production location created specifically for this manufacturing order. '
+            'Last custom location of the order and source location of its components. '
             'Generated automatically on creation when the operation type has '
             '"Custom source location per manufacturing order" enabled.'
         ),
     )
-
     custom_route_id = fields.Many2one(
         comodel_name="stock.location.route",
         string="Custom route for this MO",
         copy=False,
-        help="""
-            When a MO has a custom Pre-Production location, a custom route is required as well
-        """,
+        help="When a MO has custom locations, a custom route is required as well.",
     )
 
     # -------------------------------------------------------------------------
@@ -38,227 +49,224 @@ class MrpProduction(models.Model):
         return False
 
     def _picking_type_uses_custom_location(self):
-        """Return True if the current operation type requires a custom source location."""
+        """Return True if the current operation type requires custom locations."""
         self.ensure_one()
         return bool(self.picking_type_id.mrp_custom_src_location)
 
-    def _create_custom_src_location(self):
-        """Create a child location under pbm_loc_id and return it."""
+    # -------------------------------------------------------------------------
+    # Custom locations
+    # -------------------------------------------------------------------------
+
+    def _get_custom_location_specs(self):
+        """Custom locations as (field name, name prefix), in the order the
+        components go through them."""
+        return [
+            ('custom_pre_prod_location_id', 'Pre-Prod-Check'),
+            ('custom_in_process_location_id', 'In-Process'),
+            ('custom_location_src_id', 'Post-Prod-Check'),
+        ]
+
+    def _get_custom_location_name(self, prefix):
+        self.ensure_one()
+        order_name = (self.name or _('New manufacturing order')).replace('/', '-')
+        return '%s-%s' % (prefix, order_name)
+
+    def _get_custom_locations(self):
+        self.ensure_one()
+        locations = self.env['stock.location']
+        for field_name, _prefix in self._get_custom_location_specs():
+            locations |= self[field_name]
+        return locations
+
+    def _create_custom_locations(self):
+        """Create the custom locations under pbm_loc_id and return the values
+        to write on the order, or an empty dict if not applicable."""
         self.ensure_one()
         pbm_location = self._get_warehouse_pbm_location()
         if not pbm_location:
-            return False
+            return {}
+        vals = {}
+        for field_name, prefix in self._get_custom_location_specs():
+            name = self._get_custom_location_name(prefix)
+            vals[field_name] = self.env['stock.location'].sudo().create({
+                'name': name,
+                'location_id': pbm_location.id,
+                'usage': 'internal',
+                'active': True,
+                'company_id': self.company_id.id,
+                'comment': _(
+                    'Custom location %(location)s for manufacturing order %(order)s'
+                ) % {'location': name, 'order': self.name},
+            }).id
+        vals['location_src_id'] = vals['custom_location_src_id']
+        return vals
 
-        location_name = (self.name or _('New manufacturing order')).replace('/', '-')
-        return self.env['stock.location'].create({
-            'name': location_name,
-            'location_id': pbm_location.id,
-            'usage': 'internal',
-            'active': True,
-            'company_id': self.company_id.id,
-            'comment': _(
-                'Custom Pre-Production location for manufacturing order %s'
-            ) % location_name,
+    def _update_draft_raw_moves_location(self):
+        self.ensure_one()
+        self.move_raw_ids.filtered(lambda m: m.state == 'draft').write({
+            'location_id': self.location_src_id.id,
         })
 
-    def _archive_custom_src_location(self):
-        """Archive the custom location if it exists and carries no stock."""
-        self.ensure_one()
-        loc = self.custom_location_src_id
-        if not loc:
-            return
-        has_stock = self.env['stock.quant'].search_count([
-            ('location_id', '=', loc.id),
-            ('quantity', '!=', 0),
-        ])
-        if not has_stock:
-            loc.write({'active': False})
+    def _set_custom_locations(self):
+        for production in self:
+            vals = production._create_custom_locations()
+            if vals:
+                production.write(vals)
+                production._update_draft_raw_moves_location()
 
-    def _create_custom_route(self):
-        """Create a dedicated 2-step route (Pick + Make) for this manufacturing
-        order, using the per-order custom location as the intermediate point.
-        The route is created with the lowest possible sequence so existing
-        warehouse rules take precedence in any other context.
+    def _archive_custom_locations(self):
+        """Archive the custom locations of the orders that carry no stock."""
+        for production in self:
+            locations = production._get_custom_locations()
+            with_stock = self.env['stock.quant'].sudo().search([
+                ('location_id', 'in', locations.ids),
+                ('quantity', '!=', 0),
+            ]).location_id
+            (locations - with_stock).sudo().write({'active': False})
 
-        Stores the created route in a new field  custom_route_id  (Many2one to
-        stock.route) that must be declared alongside this method.
+    def _unset_custom_locations(self):
+        """Archive the custom locations and restore the default source location."""
+        for production in self:
+            production._archive_custom_locations()
+            picking_type = production.picking_type_id
+            default_src = (
+                picking_type.default_location_src_id
+                or picking_type.warehouse_id.lot_stock_id
+            )
+            vals = {field_name: False for field_name, _prefix in production._get_custom_location_specs()}
+            if default_src:
+                vals['location_src_id'] = default_src.id
+            production.write(vals)
+            production._update_draft_raw_moves_location()
+
+    # -------------------------------------------------------------------------
+    # Custom route
+    # -------------------------------------------------------------------------
+
+    def _get_first_step_procure_method(self):
+        """Supply method of the first step (Stock -> Pre-Prod-Check).
+
+        'mts_else_mto' takes from stock when it is available and, if not, triggers
+        the supply rule of the product (manufacture, buy...) in the main stock.
         """
         self.ensure_one()
-        custom_loc = self.custom_location_src_id
-        warehouse  = self.picking_type_id.warehouse_id
+        return 'mts_else_mto'
 
-        # Picking types involved
-        # pbm_type  : 'Pick Components' operation type of the warehouse
-        # manu_type : 'Manufacturing'   operation type (self.picking_type_id)
-        pbm_type  = warehouse.pbm_type_id
-        manu_type = self.picking_type_id
+    def _get_custom_route_steps(self):
+        self.ensure_one()
+        warehouse = self.picking_type_id.warehouse_id
+        pre_prod = self.custom_pre_prod_location_id
+        in_process = self.custom_in_process_location_id
+        post_prod = self.custom_location_src_id
+        return [
+            (warehouse.lot_stock_id, pre_prod, warehouse.pbm_type_id, self._get_first_step_procure_method()),
+            (pre_prod, in_process, warehouse.int_type_id, 'make_to_order'),
+            (in_process, post_prod, warehouse.int_type_id, 'make_to_order'),
+            (post_prod, warehouse._get_production_location(), self.picking_type_id, 'make_to_order'),
+        ]
 
-        route = self.env['stock.location.route'].create({
+    def _create_custom_route(self):
+        """Create a dedicated route for this order, with one pull rule per step."""
+        self.ensure_one()
+        warehouse = self.picking_type_id.warehouse_id
+        route = self.env['stock.location.route'].sudo().create({
             'name': "%s: Select components and then produce (%s)" % (warehouse.name, self.name),
-            'sequence': 1000,          # highest sequence = lowest priority
+            'sequence': 1000,
             'company_id': self.company_id.id,
             'warehouse_selectable': True,
             'warehouse_ids': [(4, warehouse.id)],
         })
-
-        # Rule 1 — Pick Components: Stock → custom_loc
-        # Mirrors pbm_mto_pull_id but with exact location_id = custom_loc.
-        self.env['stock.rule'].create({
-            'name': '%s: %s → %s' % (warehouse.code, warehouse.lot_stock_id.name, custom_loc.name),
-            'route_id': route.id,
-            'action': 'pull',
-            'procure_method': 'make_to_stock',   # take from stock
-            'location_id': custom_loc.id,         # where components are needed
-            'location_src_id': warehouse.lot_stock_id.id,  # from stock
-            'picking_type_id': pbm_type.id,
-            'warehouse_id': warehouse.id,
-            'group_propagation_option': 'propagate',
-            'company_id': self.company_id.id,
-            'sequence': 10,
-        })
-
-        # Rule 2 — Manufacture: custom_loc → production location
-        # Mirrors manufacture_pull_id but with location_src_id = custom_loc.
-        production_location_id = warehouse._get_production_location()
-        self.env['stock.rule'].create({
-            'name': '%s: %s → %s' % (warehouse.code, custom_loc.name, production_location_id.name),
-            'route_id': route.id,
-            'action': 'pull',
-            'procure_method': 'make_to_order',
-            'location_id': production_location_id.id,
-            'location_src_id': custom_loc.id,
-            'picking_type_id': manu_type.id,
-            'warehouse_id': warehouse.id,
-            'group_propagation_option': 'propagate',
-            'company_id': self.company_id.id,
-            'sequence': 20,
-        })
-
+        steps = self._get_custom_route_steps()
+        for sequence, (src, dest, picking_type, procure_method) in enumerate(steps, start=1):
+            self.env['stock.rule'].sudo().create({
+                'name': '%s: %s → %s' % (warehouse.code, src.name, dest.name),
+                'route_id': route.id,
+                'action': 'pull',
+                'procure_method': procure_method,
+                'location_src_id': src.id,
+                'location_id': dest.id,
+                'picking_type_id': picking_type.id,
+                'warehouse_id': warehouse.id,
+                'group_propagation_option': 'propagate',
+                'company_id': self.company_id.id,
+                'sequence': sequence * 10,
+            })
         self.custom_route_id = route
 
     def _archive_custom_route(self):
-        route_ids = self.custom_route_id
-        route_ids.rule_ids.write({'active': False})
-        route_ids.write({'active': False})        
+        routes = self.custom_route_id.sudo()
+        routes.rule_ids.write({'active': False})
+        routes.write({'active': False})
+
+    def _archive_custom_locations(self):
+        """Archive the custom locations of the orders that carry no stock."""
+        for production in self:
+            locations = production._get_custom_locations()
+            with_stock = self.env['stock.quant'].sudo().search([
+                ('location_id', 'in', locations.ids),
+                ('quantity', '!=', 0),
+            ]).location_id
+            (locations - with_stock).sudo().write({'active': False})
 
     # -------------------------------------------------------------------------
     # ORM overrides
     # -------------------------------------------------------------------------
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         # Call super first so the sequence name (e.g. WH/MO/00001) is already set
         # before we use it as the location name.
-        production = super().create(vals)
-
-        if production._picking_type_uses_custom_location():
-            custom_loc = production._create_custom_src_location()
-            if custom_loc:
-                production.write({
-                    'custom_location_src_id': custom_loc.id,
-                    'location_src_id': custom_loc.id,
-                })
-                # TODO check if moves are still at 'draft' state
-                production.move_raw_ids.write({'location_id': custom_loc.id})
-
-        return production
+        productions = super().create(vals_list)
+        productions.filtered(
+            lambda p: p._picking_type_uses_custom_location()
+        )._set_custom_locations()
+        return productions
 
     def write(self, vals):
-        # Capture pre-write state for draft orders when the operation type changes.
-        picking_type_changed = 'picking_type_id' in vals
-        pre_state = {}
-        if picking_type_changed:
-            for production in self.filtered(lambda p: p.state == 'draft'):
-                pre_state[production.id] = {
-                    'had_custom': production._picking_type_uses_custom_location(),
-                    'custom_location_src_id': production.custom_location_src_id.id,
-                    'pbm_loc_id': (
-                        production._get_warehouse_pbm_location().id
-                        if production._get_warehouse_pbm_location() else False
-                    ),
-                }
-
+        if 'picking_type_id' not in vals:
+            return super().write(vals)
+        # Capture the state before the operation type changes (draft orders only)
+        pre_state = {
+            production.id: (
+                production._picking_type_uses_custom_location(),
+                production._get_warehouse_pbm_location(),
+            )
+            for production in self.filtered(lambda p: p.state == 'draft')
+        }
         result = super().write(vals)
-
-        if not (picking_type_changed and pre_state):
-            return result
-
-        affected = self.filtered(lambda p: p.id in pre_state)
-
-        # --- Case 1: now requires custom location, previously did not -----------
-        to_create = affected.filtered(
-            lambda p: not pre_state[p.id]['had_custom']
-            and p._picking_type_uses_custom_location()
-        )
-        for production in to_create:
-            custom_loc = production._create_custom_src_location()
-            if custom_loc:
-                production.write({
-                    'custom_location_src_id': custom_loc.id,
-                    'location_src_id': custom_loc.id,
-                })
-                # TODO make the same at other cases
-                # TODO check if moves are still at 'draft' state
-                production.move_raw_ids.write({'location_id': custom_loc.id})
-
-
-        # --- Case 2: no longer requires custom location -------------------------
-        to_remove = affected.filtered(
-            lambda p: pre_state[p.id]['had_custom']
-            and not p._picking_type_uses_custom_location()
-        )
-        for production in to_remove:
-            production._archive_custom_src_location()
-            default_src = (
-                production.picking_type_id.default_location_src_id
-                or production.picking_type_id.warehouse_id.lot_stock_id
-            )
-            production.write({
-                'custom_location_src_id': False,
-                'location_src_id': default_src.id if default_src else False,
-            })
-
-        # --- Case 3: both types use custom location but warehouse changed -------
-        to_relocate = affected.filtered(
-            lambda p: pre_state[p.id]['had_custom']
-            and p._picking_type_uses_custom_location()
-            and p._get_warehouse_pbm_location()
-            and pre_state[p.id]['pbm_loc_id'] != p._get_warehouse_pbm_location().id
-        )
-        for production in to_relocate:
-            old_loc = self.env['stock.location'].browse(
-                pre_state[production.id]['custom_location_src_id']
-            )
-            has_stock = self.env['stock.quant'].search_count([
-                ('location_id', '=', old_loc.id),
-                ('quantity', '!=', 0),
-            ])
-            if not has_stock:
-                old_loc.write({'active': False})
-            custom_loc = production._create_custom_src_location()
-            if custom_loc:
-                production.write({
-                    'custom_location_src_id': custom_loc.id,
-                    'location_src_id': custom_loc.id,
-                })
-
+        for production in self.filtered(lambda p: p.id in pre_state):
+            had_custom, old_pbm = pre_state[production.id]
+            uses_custom = production._picking_type_uses_custom_location()
+            new_pbm = production._get_warehouse_pbm_location()
+            if had_custom and not uses_custom:
+                production._unset_custom_locations()
+            elif uses_custom and not had_custom:
+                production._set_custom_locations()
+            elif uses_custom and new_pbm and new_pbm != old_pbm:
+                # Warehouse changed: the locations must hang from the new one
+                production._unset_custom_locations()
+                production._set_custom_locations()
         return result
 
     def action_confirm(self):
-        for mrp in self.filtered(lambda x: x.custom_location_src_id):
-            mrp._create_custom_route()
+        for production in self.filtered(
+            lambda p: p.custom_location_src_id and not p.custom_route_id
+        ):
+            production._create_custom_route()
         return super().action_confirm()
 
     def _action_cancel(self):
         res = super()._action_cancel()
         self._archive_custom_route()
-        # TODO custom location archive management
+        self._archive_custom_locations()
         return res
 
     def button_mark_done(self):
         action = super().button_mark_done()
-        self._archive_custom_route()
-        # TODO custom location archive management
+        # The action is a wizard when the order is not done yet
+        done = self.filtered(lambda p: p.state == 'done')
+        done._archive_custom_route()
+        done._archive_custom_locations()
         return action
 
     # -------------------------------------------------------------------------
@@ -278,7 +286,7 @@ class MrpProduction(models.Model):
                 'warning': {
                     'title': _('Custom source location'),
                     'message': _(
-                        'On save, a dedicated Pre-Production location will be created '
+                        'On save, dedicated Pre-Production locations will be created '
                         'automatically for this order under warehouse "%s".'
                     ) % self.picking_type_id.warehouse_id.name,
                 }
@@ -289,9 +297,9 @@ class MrpProduction(models.Model):
                 'warning': {
                     'title': _('Custom source location'),
                     'message': _(
-                        'On save, the custom source location "%s" will be archived '
-                        '(provided it holds no stock) and the field will be cleared.'
-                    ) % self.custom_location_src_id.display_name,
+                        'On save, the custom locations of this order will be archived '
+                        '(provided they hold no stock) and the source location restored.'
+                    ),
                 }
             }
 
@@ -303,8 +311,8 @@ class MrpProduction(models.Model):
                     'warning': {
                         'title': _('Custom source location'),
                         'message': _(
-                            'The warehouse has changed. On save, the current custom source '
-                            'location will be archived and a new one will be created '
+                            'The warehouse has changed. On save, the current custom '
+                            'locations will be archived and new ones will be created '
                             'under "%s".'
                         ) % new_pbm.display_name,
                     }
