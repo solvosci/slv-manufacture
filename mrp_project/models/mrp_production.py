@@ -11,11 +11,6 @@ class ManufactureOrder(models.Model):
     project_sequence = fields.Integer(string='Sequence')
     project_id = fields.Many2one('project.project')
 
-    @api.onchange("project_id")
-    def _onchange_project_id(self):
-        if not self.project_id:
-            self.project_sequence = 0
-
     def _assign_project_to_children(self):
         self.ensure_one()
         child_mrp = self._get_children()
