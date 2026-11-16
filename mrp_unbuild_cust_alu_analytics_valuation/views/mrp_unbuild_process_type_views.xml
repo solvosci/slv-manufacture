@@ -64,6 +64,10 @@
                                 name="cost_unit_maquila"
                                 string="Maquilas"
                             />
+                            <field
+                                name="cost_unit_indirect"
+                                string="Indirect"
+                            />
                         </group>
                     </group>
                 </xpath>

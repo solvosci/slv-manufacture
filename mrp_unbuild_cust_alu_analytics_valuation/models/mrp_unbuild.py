@@ -70,6 +70,14 @@ class MrpUnbuild(models.Model):
         compute="_compute_cost_unitary_fields",
         string="Unbuild extra cost - process type (maquilas) (unitary)",
     )
+    cost_extra_pt_indirect = fields.Monetary(
+        string="Unbuild extra cost - process type (indirect)",
+        copy=False,
+    )
+    cost_extra_pt_indirect_unit = fields.Monetary(
+        compute="_compute_cost_unitary_fields",
+        string="Unbuild extra cost - process type (indirect) (unitary)",
+    )
     cost_extra_process_type = fields.Monetary(
         string="Unbuild extra cost - process type",
         copy=False,
@@ -260,6 +268,7 @@ class MrpUnbuild(models.Model):
                 "cost_extra_pt_repair_maintenance_mgmt_unit": mrp.cost_extra_pt_repair_maintenance_mgmt / qty,
                 "cost_extra_pt_consumable_unit": mrp.cost_extra_pt_consumable / qty,
                 "cost_extra_pt_maquila_unit": mrp.cost_extra_pt_maquila / qty,
+                "cost_extra_pt_indirect_unit": mrp.cost_extra_pt_indirect / qty,
             })
         (self - mrp_unitary).update({
             "cost_wo_extra_total_unit": 0.0,
@@ -271,6 +280,7 @@ class MrpUnbuild(models.Model):
             "cost_extra_pt_repair_maintenance_mgmt_unit": 0.0,
             "cost_extra_pt_consumable_unit": 0.0,
             "cost_extra_pt_maquila_unit": 0.0,
+            "cost_extra_pt_indirect_unit": 0.0,
         })
 
     def _get_cost_extra_waste(self):
