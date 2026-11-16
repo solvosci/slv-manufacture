@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 16:13+0000\n"
-"PO-Revision-Date: 2025-04-16 18:16+0200\n"
+"POT-Creation-Date: 2026-11-16 10:00+0000\n"
+"PO-Revision-Date: 2026-11-16 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,help:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__valuation_mo_id
@@ -79,6 +77,11 @@ msgstr "* Energía"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Indirect"
+msgstr "* Indirecto"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "* Manpower"
 msgstr "* Mano de obra"
 
@@ -98,6 +101,7 @@ msgid "Amortization"
 msgstr "Amortización"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_amortization
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_amortization
@@ -111,6 +115,7 @@ msgid "Bill of Material Line"
 msgstr "Línea de Lista de Materiales"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #, python-format
 msgid "Cannot activate a pricelist with a linked unbuild process type!"
@@ -119,6 +124,7 @@ msgstr ""
 "despieces!"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #, python-format
 msgid "Cannot delete a pricelist with a linked unbuild process type!"
@@ -126,6 +132,7 @@ msgstr ""
 "¡No se puede elminar una tarifa vinculada a un tipo de proceso de despieces!"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid ""
@@ -150,6 +157,7 @@ msgid "Components unit cost price"
 msgstr "Precio unitario de coste de componentes"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_consumable
 #, python-format
@@ -230,6 +238,7 @@ msgid "Energy"
 msgstr "Energía"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_energy
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_energy
@@ -264,6 +273,20 @@ msgid "Income"
 msgstr "Ingreso"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Indirect"
+msgstr "Indirecto"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_indirect
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_indirect
+#, python-format
+msgid "Indirect unit cost"
+msgstr "Coste unitario indirecto"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.stock_picking_valulation_data_form_view
 msgid "Involved UBs"
 msgstr "Despieces involucrados"
@@ -274,6 +297,7 @@ msgid "Manpower"
 msgstr "Mano de obra"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_manpower
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_manpower
@@ -282,6 +306,7 @@ msgid "Manpower unit cost"
 msgstr "Coste unitario de mano de obra"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_maquila
 #, python-format
@@ -304,6 +329,7 @@ msgid "Margin"
 msgstr "Margen"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "No Stock Valuation Layer for MO %s produced moves"
@@ -322,6 +348,7 @@ msgid "Original MO for Valuation"
 msgstr "OF original para valoración"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation cannot be finished after unbuild date!"
@@ -330,12 +357,14 @@ msgstr ""
 "fecha del despiece1"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation must be done"
 msgstr "La OF original para valoración debe estar finalizada"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation must be for the same product"
@@ -378,7 +407,7 @@ msgid "Process type and cost type must unique by company!"
 msgstr "¡Tipo de proceso y tipo de coste deben de ser únicos por empresa!"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
-#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_product
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_template
 msgid "Product"
 msgstr "Producto"
 
@@ -408,6 +437,7 @@ msgid "Repair/Maintenance"
 msgstr "Reparación/mantenimiento"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_repair_maintenance_mgmt
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_repair_maintenance_mgmt
@@ -511,6 +541,16 @@ msgid "Unbuild extra cost - process type (energy) (unitary)"
 msgstr "Coste extra de despiece - tipo de proceso (energía) (unitario)"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_indirect
+msgid "Unbuild extra cost - process type (indirect)"
+msgstr "Coste extra de despiece - tipo de proceso (indirecto)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_indirect_unit
+msgid "Unbuild extra cost - process type (indirect) (unitary)"
+msgstr "Coste extra de despiece - tipo de proceso (indirecto) (unitario)"
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower
 msgid "Unbuild extra cost - process type (manpower)"
 msgstr "Coste extra de despiece - tipo de proceso (mano de obra)"
@@ -571,6 +611,7 @@ msgid "Unit"
 msgstr "Unidad"
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_pricelist_ids
 #, python-format

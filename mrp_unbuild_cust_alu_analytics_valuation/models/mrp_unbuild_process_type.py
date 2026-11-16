@@ -12,6 +12,7 @@ COST_UNIT_SELECTION_FIELDS = [
     ('cost_hr_repair_maintenance_mgmt', _("Repair/Maintenance management unit cost")),
     ('cost_unit_consumable', _("Consumable unit cost")),
     ('cost_unit_maquila', _("Maquila unit cost")),
+    ('cost_unit_indirect', _("Indirect unit cost")),
 ]
 
 
@@ -60,6 +61,10 @@ class MrpUnbuildProcessType(models.Model):
     )
     cost_unit_maquila = fields.Monetary(
         string="Maquilas unit cost (by unit)",
+        tracking=True,
+    )
+    cost_unit_indirect = fields.Monetary(
+        string="Indirect unit cost",
         tracking=True,
     )
 
@@ -149,6 +154,7 @@ class MrpUnbuildProcessType(models.Model):
             "cost_extra_pt_repair_maintenance_mgmt": qty * self._get_cost(production_id, "cost_hr_repair_maintenance_mgmt"),
             "cost_extra_pt_consumable": qty * self._get_cost(production_id, "cost_unit_consumable"),
             "cost_extra_pt_maquila": qty * self._get_cost(production_id, "cost_unit_maquila"),
+            "cost_extra_pt_indirect": qty * self._get_cost(production_id, "cost_unit_indirect"),
         }
         costs.update({
             "cost_extra_process_type": sum(costs[k] for k in costs.keys())

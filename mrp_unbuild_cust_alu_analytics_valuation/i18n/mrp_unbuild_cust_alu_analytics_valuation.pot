@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 16:13+0000\n"
-"PO-Revision-Date: 2025-04-16 16:13+0000\n"
+"POT-Creation-Date: 2026-11-16 10:00+0000\n"
+"PO-Revision-Date: 2026-11-16 10:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,11 @@ msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
+msgid "* Indirect"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_unbuild_form_view_user
 msgid "* Manpower"
 msgstr ""
 
@@ -85,6 +90,7 @@ msgid "Amortization"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_amortization
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_amortization
@@ -98,18 +104,21 @@ msgid "Bill of Material Line"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #, python-format
 msgid "Cannot activate a pricelist with a linked unbuild process type!"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #, python-format
 msgid "Cannot delete a pricelist with a linked unbuild process type!"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid ""
@@ -132,6 +141,7 @@ msgid "Components unit cost price"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_consumable
 #, python-format
@@ -212,6 +222,7 @@ msgid "Energy"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_energy
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_energy
@@ -246,6 +257,20 @@ msgid "Income"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.mrp_bom_form_process_type_form_view_mrp_bom_cust_analytics_valuation
+msgid "Indirect"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
+#: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_unit_indirect
+#: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_indirect
+#, python-format
+msgid "Indirect unit cost"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model_terms:ir.ui.view,arch_db:mrp_unbuild_cust_alu_analytics_valuation.stock_picking_valulation_data_form_view
 msgid "Involved UBs"
 msgstr ""
@@ -256,6 +281,7 @@ msgid "Manpower"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_manpower
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_manpower
@@ -264,6 +290,7 @@ msgid "Manpower unit cost"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_unit_maquila
 #, python-format
@@ -286,6 +313,7 @@ msgid "Margin"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "No Stock Valuation Layer for MO %s produced moves"
@@ -302,18 +330,21 @@ msgid "Original MO for Valuation"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation cannot be finished after unbuild date!"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation must be done"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild.py:0
 #, python-format
 msgid "Original MO for Valuation must be for the same product"
@@ -356,7 +387,7 @@ msgid "Process type and cost type must unique by company!"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
-#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_product
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_template
 msgid "Product"
 msgstr ""
 
@@ -366,8 +397,8 @@ msgid "Product Average Price by Warehouse and Date"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
-#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:mrp_unbuild_cust_alu_analytics_valuation.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
@@ -386,6 +417,7 @@ msgid "Repair/Maintenance"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/mrp_unbuild_process_type.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_hr_repair_maintenance_mgmt
 #: model:ir.model.fields.selection,name:mrp_unbuild_cust_alu_analytics_valuation.selection__product_pricelist__unbuild_process_type_cost__cost_hr_repair_maintenance_mgmt
@@ -487,6 +519,16 @@ msgid "Unbuild extra cost - process type (energy) (unitary)"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_indirect
+msgid "Unbuild extra cost - process type (indirect)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
+#: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_indirect_unit
+msgid "Unbuild extra cost - process type (indirect) (unitary)"
+msgstr ""
+
+#. module: mrp_unbuild_cust_alu_analytics_valuation
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild__cost_extra_pt_manpower
 msgid "Unbuild extra cost - process type (manpower)"
 msgstr ""
@@ -547,6 +589,7 @@ msgid "Unit"
 msgstr ""
 
 #. module: mrp_unbuild_cust_alu_analytics_valuation
+#. odoo-python
 #: code:addons/mrp_unbuild_cust_alu_analytics_valuation/models/product_pricelist.py:0
 #: model:ir.model.fields,field_description:mrp_unbuild_cust_alu_analytics_valuation.field_mrp_unbuild_process_type__cost_pricelist_ids
 #, python-format

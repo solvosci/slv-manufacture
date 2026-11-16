@@ -199,6 +199,24 @@
                                     style="font-style: italic; width:auto!important;"
                                 />)
                             </div>
+                            <label
+                                for="cost_extra_pt_indirect"
+                                string="* Indirect"
+                            />
+                            <div class="o_row">
+                                <field
+                                    name="cost_extra_pt_indirect"
+                                    readonly="1"
+                                    widget="monetary"
+                                    class="flex-grow-0" style="width:auto!important"
+                                />
+                                (<field
+                                    name="cost_extra_pt_indirect_unit"
+                                    widget="monetary"
+                                    class="flex-grow-0"
+                                    style="font-style: italic; width:auto!important;"
+                                />)
+                            </div>
                             <field
                                 name="cost_extra_total"
                                 widget="monetary"
