@@ -1,5 +1,7 @@
+# © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+
 from odoo import api, fields, models
-from odoo.addons.base.res.res_partner import _tz_get
 
 
 class MdcConfigSettings(models.TransientModel):
@@ -20,7 +22,6 @@ class MdcConfigSettings(models.TransientModel):
         )
         return res
 
-    @api.multi
     def set_values(self):
         super(MdcConfigSettings, self).set_values()
         IrConfigParameter = self.env['ir.config_parameter'].sudo()
