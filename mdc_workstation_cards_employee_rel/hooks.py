@@ -4,7 +4,7 @@
 from odoo import _, api, SUPERUSER_ID
 
 
-def post_init_hook(cr):
+def post_init_hook(cr, registry):
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         current_employees = env['mdc.workstation'].search([
