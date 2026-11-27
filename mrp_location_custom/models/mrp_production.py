@@ -1,4 +1,11 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+
+_CUSTOM_LOCATION_STEPS = {
+    'custom_pre_prod_location_id': 'pre_prod',
+    'custom_in_process_location_id': 'in_process',
+    'custom_location_src_id': 'post_prod',
+}
 
 
 class MrpProduction(models.Model):
@@ -53,6 +60,51 @@ class MrpProduction(models.Model):
         self.ensure_one()
         return bool(self.picking_type_id.mrp_custom_src_location)
 
+    def _get_default_src_location(self):
+        self.ensure_one()
+        picking_type = self.picking_type_id
+        return picking_type.default_location_src_id or picking_type.warehouse_id.lot_stock_id
+
+    def _is_foreign_custom_location(self, location):
+        """True if the location was created for another manufacturing order."""
+        self.ensure_one()
+        return bool(location.production_id) and location.production_id != self
+
+    def _reset_foreign_custom_locations(self):
+        """An order must not use the temporary locations of another order, which is
+        what happens when it is duplicated from one that had them."""
+        for production in self:
+            if production._is_foreign_custom_location(production.location_src_id):
+                production.location_src_id = production._get_default_src_location()
+            moves = production.move_raw_ids.filtered(
+                lambda m: m.state == 'draft'
+                and production._is_foreign_custom_location(m.location_id)
+            )
+            moves.write({'location_id': production.location_src_id.id})
+
+    def _get_workorder_start_step(self):
+        """Step whose transfer must have delivered components before the work
+        orders of the order can start."""
+        return 'in_process'
+
+    def _check_workorders_can_start(self):
+        for production in self.filtered('custom_location_src_id'):
+            if not production.procurement_group_id:
+                continue
+            step = production._get_workorder_start_step()
+            delivered = self.env['stock.move.line'].sudo().search_count([
+                ('picking_id.group_id', '=', production.procurement_group_id.id),
+                ('picking_id.mrp_step', '=', step),
+                ('state', '=', 'done'),
+                ('qty_done', '>', 0),
+            ])
+            if not delivered:
+                label = dict(self.env['stock.location']._fields['mrp_step'].selection)[step]
+                raise UserError(_(
+                    'The work orders of %(order)s cannot start until at least one '
+                    'component has been delivered in the step "%(step)s".'
+                ) % {'order': production.name, 'step': label})
+
     # -------------------------------------------------------------------------
     # Custom locations
     # -------------------------------------------------------------------------
@@ -94,9 +146,9 @@ class MrpProduction(models.Model):
                 'usage': 'internal',
                 'active': True,
                 'company_id': self.company_id.id,
-                'comment': _(
-                    'Custom location %(location)s for manufacturing order %(order)s'
-                ) % {'location': name, 'order': self.name},
+                'production_id': self.id,
+                'mrp_step': _CUSTOM_LOCATION_STEPS[field_name],
+                'comment': _(...),
             }).id
         vals['location_src_id'] = vals['custom_location_src_id']
         return vals
@@ -115,14 +167,38 @@ class MrpProduction(models.Model):
                 production._update_draft_raw_moves_location()
 
     def _archive_custom_locations(self):
-        """Archive the custom locations of the orders that carry no stock."""
+        """Archive the custom locations that are empty and return the quants
+        left in the others."""
+        leftovers = self.env['stock.quant']
         for production in self:
-            locations = production._get_custom_locations()
-            with_stock = self.env['stock.quant'].sudo().search([
+            locations = production._get_custom_locations().filtered('active')
+            quants = self.env['stock.quant'].sudo().search([
                 ('location_id', 'in', locations.ids),
                 ('quantity', '!=', 0),
-            ]).location_id
-            (locations - with_stock).sudo().write({'active': False})
+            ])
+            (locations - quants.location_id).sudo().write({'active': False})
+            leftovers |= quants
+        return leftovers
+
+    def _get_leftovers_notification(self, quants):
+        lines = []
+        for location in quants.location_id:
+            components = ', '.join(
+                '%s (%g %s)' % (q.product_id.display_name, q.quantity, q.product_uom_id.name)
+                for q in quants.filtered(lambda q: q.location_id == location)
+            )
+            lines.append('%s: %s' % (location.display_name, components))
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Components left in the custom locations'),
+                'message': ' | '.join(lines),
+                'type': 'warning',
+                'sticky': True,
+                'next': {'type': 'ir.actions.act_window_close'},
+            },
+        }
 
     def _unset_custom_locations(self):
         """Archive the custom locations and restore the default source location."""
@@ -220,6 +296,7 @@ class MrpProduction(models.Model):
         productions.filtered(
             lambda p: p._picking_type_uses_custom_location()
         )._set_custom_locations()
+        productions._reset_foreign_custom_locations()
         return productions
 
     def write(self, vals):
@@ -263,10 +340,11 @@ class MrpProduction(models.Model):
 
     def button_mark_done(self):
         action = super().button_mark_done()
-        # The action is a wizard when the order is not done yet
         done = self.filtered(lambda p: p.state == 'done')
         done._archive_custom_route()
-        done._archive_custom_locations()
+        leftovers = done._archive_custom_locations()
+        if leftovers and not isinstance(action, dict):
+            return self._get_leftovers_notification(leftovers)
         return action
 
     # -------------------------------------------------------------------------
