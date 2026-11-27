@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_production_form_inherit_custom_location" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.custom.location</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='location_src_id']" position="after">
+                <field
+                    name="custom_pre_prod_location_id"
+                    readonly="1"
+                    attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
+                />
+                <field
+                    name="custom_in_process_location_id"
+                    readonly="1"
+                    attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
+                />
+                <field
+                    name="custom_location_src_id"
+                    readonly="1"
+                    attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
+                />
+                <field
+                    name="custom_route_id"
+                    string="Custom route"
+                    readonly="1"
+                    attrs="{'invisible': [('custom_location_src_id', '=', False)]}"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
